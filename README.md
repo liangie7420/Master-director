@@ -87,6 +87,6 @@ manju-director/
 
 ## 📄 开源协议
 
-[MIT License](./LICENSE) © 2026 梁捷 (liangie7420)
+[MIT License](./LICENSE) © 2026 liangie7420
 
 允许自由使用、修改、分发与商用，需保留版权声明。
