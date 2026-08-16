@@ -11,9 +11,9 @@
 7. **Imperfection event** — for realistic/life-flow shots (skip only when the style demands clean/crisp).
 8. **Ending aftertaste** — key line/action ends 1–2s before the final frame; last frame is an action landing point.
 9. **Negative prompts** — concentrated on the end line; combat scenes include the violence de-escalation sentence.
-10. **Character budget** — total ≤2000 chars; narrative section ≤300 chars (intent + key details, environment dressing left to reference images).
+10. **Character budget** — total ≤3200 chars (industry benchmark: 500+ Chinese chars ≈ 320+ English words for 15–20s shots); narrative section ≤800 chars standard / ≤1200 chars complex (intent + key details, environment dressing left to reference images).
 
-> A layered skeleton common to all three models (Seedance / Kling / Hailuo). Field order and wording are calibrated per `references/model-adapters/<target model>.md`; the skeleton itself works across all three. Each shot outputs ONE video-prompt code block with a total character budget ≤ 2000 (including spaces).
+> A layered skeleton common to all three models (Seedance / Kling / Hailuo). Field order and wording are calibrated per `references/model-adapters/<target model>.md`; the skeleton itself works across all three. Each shot outputs ONE video-prompt code block with a total character budget ≤ 3200 (including spaces) — calibrated to the industry benchmark of 500+ Chinese characters per 15–20s shot.
 >
 > v3 absorbed open-source community patterns on top of v2: action-state flow, body-linkage lookup table, camera-movement realism four variables, imperfection events for de-AI-ifying, material-source identity, sound & lighting baseline, dialogue-performance control, ending-aftertaste rules, shot-scale abbreviation standard.
 >
@@ -171,12 +171,37 @@ Once the material identity is fixed, all details can be derived. **The core of d
 - Line word conversion: normal 3–4 characters/second; line duration must not exceed shot duration - 1 second (and keep another 1–2 seconds of reaction aftertaste).
 - Strong lip-sync scenes (close-up long lines) → recommend post-dubbing; prompt writes "mouth opens and closes naturally when speaking, lip sync need not be precise".
 
-## 10. Character Budget & Trimming Priority
+## 10. Character Budget & Where the Budget Goes (precision-increment structure)
 
-- Total budget ≤ 2000 characters (incl. spaces). Reference images + core rules + style + negatives ≈ fixed overhead 600; narrative available ≈ 1400.
-- Graded by duration (open-source practice): default target 800–1300 chars (8–15s); simple single-person or single-action 500–800; complex 10–15s 1300–2000; 16–30s only then 2000–3000.
-- Over-budget trimming order (first to last): ① negative prompts (keep only the most critical 8) → ② motion constraints (cut to 4) → ③ sound description (≤10 words) → ④ environment dressing (≤10 words).
-- **NEVER trim**: reference-image declarations, core rules, line text, primary action & micro-expression, style anchors.
+> Industry benchmark: professional 15–20s shots run **500+ Chinese characters** in the prompt. Conversion: **1 Chinese character ≈ 0.65 English words ≈ 3.6 English characters** — so 500 Chinese chars ≈ 320 English words ≈ 1800 chars, and 800 Chinese chars ≈ 520 words ≈ 2900 chars.
+>
+> **More words is NOT the goal — precision is.** The budget beyond the core is spent on high-leverage detail layers (see §10.1) that directly make the output more refined. Never pad with adjectives; every added segment must be a controllable detail.
+
+- Total budget ≤ **3200 characters** (incl. spaces). Budget allocation structure:
+  - **Core layer (fixed ~600 chars, NEVER trimmed)**: reference-image lines + core rules + style anchors + negative end line.
+  - **Narrative layer (the working budget)**: primary action + state flow + body linkage + dialogue + camera + light baseline. Standard 1300–2000 chars; complex (timestamp/action/multi-character) 2000–2800; 16–30s 2800–3600.
+  - **Precision-increment layer (spend remaining budget here, by priority)**: L2 material & light refinement → L3 performance & physics detail → L4 lens optics & visual anchors (§10.1). Add ONLY what the shot actually shows.
+- Graded by duration: simple single-person or single-action 800–1200 chars; standard dialogue/emotion 1300–2000; complex 10–15s 2000–2800; 16–30s long shots 2800–3600.
+- **More is NOT always better**: Seedance-class models lose instruction-following on overly long prompts. Keep "information density first" — every segment must add a controllable detail; cut anything that doesn't help rendering.
+- Over-budget trimming order (first to last): ① negative prompts (keep only the most critical 8) → ② motion constraints (cut to 4) → ③ sound description (≤10 words) → ④ L4 lens optics → ⑤ L3 performance detail → ⑥ environment dressing (≤10 words).
+- **NEVER trim**: reference-image declarations, core rules, line text, primary action & micro-expression, style anchors, L2 material/light refinement on character close-ups (this is what "精致" reads as).
+
+### 10.1 Precision-Increment Layers (L1–L4 — the answer to "what do I spend the budget on")
+
+A flat, long prompt is worse than a short one. Detail must be added BY LAYER, top-down, each layer targeting a dimension the model can actually control. Judge the shot's type first, then add only the matching layers.
+
+| Layer | Dimension | What to add (English examples) | When |
+|---|---|---|---|
+| **L1 · Skeleton** (mandatory) | structure | reference lines / core rules / ONE action + state flow / dialogue / negative | EVERY shot |
+| **L2 · Material & Light refinement** | texture + lighting | **Material**: `fine skin texture with visible pores and soft vellus hairs`, `brushed metal grain catching light`, `silk fabric with a single sharp highlight and soft drape folds`, `wet asphalt mirroring neon`, `frosted glass edge glow`. **Light**: `warm key from left mixing with cool ambient fill`, `light falls off into deep soft shadow`, `volumetric light beam with floating dust`, `rim light tracing the jawline`, `catchlight shaped like a window pane` | character close-ups, product shots, night/interior scenes — **the #1 "精致" lever** |
+| **L3 · Performance & physics detail** | acting + dynamics | **Micro-expression sequence**: `brow first knots then relaxes, gaze drops and holds, lips press once before she speaks`. **Body/fabric physics**: `hem sways with each step then settles`, `a loose strand of hair drifts across the cheek`, `fingers curl then pause mid-air`. **Environment response**: `rain streaks bend on the glass as wind gusts` | emotional/dialogue shots, action shots |
+| **L4 · Lens optics & visual anchors** | optical feel | `anamorphic bokeh, oval highlights`, `subtle halation around bright edges`, `gentle film grain, not digital noise`, `lens flare sweeping across the corner`, ONE visual anchor (`a single drifting ember`, `a ribbon of light wrapping the blade`) | opening shots, hero moments, fantasy/spectacle |
+
+**Layer discipline**:
+- A standard dialogue shot = L1 + L2 (+ L3 if emotional). Do NOT add L4 to every shot — lens optics on dialogue close-ups reads as noise.
+- A hero/spectacle shot = L1 + L2 + L4 (L3 only if a character is present).
+- **One visual anchor per shot max** (L4) — a second anchor splits attention (R3's visual twin).
+- When over budget, trim in the reverse order: L4 → L3 → L2-on-non-close-ups. Never trim L2 on character close-ups.
 
 ## 11. Connection with the Four Consistency Mechanisms
 
@@ -249,7 +274,7 @@ Seedance 2.0-class models have world knowledge + directorial thinking: **describ
 - **Intent + key details**: write "what happens + emotional direction + key visual constraints (form weakness / color / prop)"; leave the rest to the model's directorial thinking.
 - **When to write details** (R1's active zone): the action's causal chain (state flow), body linkage, micro-expression body parts, form weakness, line text — these are what the model cannot infer itself.
 - **When to save details**: environment dressing (scene card already has reference images), lighting-term stacking, camera technical parameters (the model plans them automatically) — hand these to the reference images and the model.
-- **Complexity red line**: single narrative section ≤300 characters; over → split reference materials or split the shot.
+- **Complexity red line**: narrative section ≤ **800 characters** (≈130 English words, equivalent to ~200 Chinese chars of dense direction) for standard shots; up to 1200 characters for 10–15s complex shots (timestamp segments / multi-beat action). Over → split reference materials or split the shot. Every added segment must carry a controllable detail — do not pad with adjectives.
 
 ## 16. Pre-Output Self-Check
 
@@ -264,6 +289,9 @@ Seedance 2.0-class models have world knowledge + directorial thinking: **describ
 - [ ] Ending aftertaste: key lines/actions end 1–2 seconds early; last frame is an action landing point
 - [ ] Timestamp segmentation (complex shots): one primary action per segment, style prefix + dialogue cue explicit
 - [ ] 2-second hook: first shot / key turning shot has a hook (conflict/spectacle/suspense/emotion/comic effect)
-- [ ] Intent balance: narrative section ≤300 chars, key details (state flow/linkage/weakness/lines) kept, environment dressing left to reference images
+- [ ] Precision layers matched to shot type: L2 material/light on close-ups & night/interior scenes; L3 micro-expression sequence on emotional/dialogue shots; L4 optics ONLY on hero/opening shots; ≤1 visual anchor
+- [ ] Material words present on character close-ups (skin/silk/metal/wet — the "精致" that reads on screen)
+- [ ] Light refinement present (color-temp mixing / soft falloff / rim or volumetric where applicable)
+- [ ] Intent balance: narrative section ≤800 chars standard / ≤1200 complex, key details (state flow/linkage/weakness/lines) kept, environment dressing left to reference images
 - [ ] Negative end line: concentrated, precise, no repetition in the positive zone
-- [ ] Total characters ≤ 2000
+- [ ] Total characters ≤ 3200 (graded by duration per §10)

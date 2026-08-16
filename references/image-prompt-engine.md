@@ -13,6 +13,18 @@
 
 > If a reference image is unavailable for a needed anchor, STOP and tell the user — do not write the prompt without it (skipping = face-swap/drift risk).
 
+### 0.1 Precision-Increment Layers (image version — what makes a frame look refined)
+
+A still frame is the EASIEST place to spend budget on refinement — the model can render every detail. Beyond the 8 non-negotiables, add detail by layer, top-down. **Judge the shot type first; add only matching layers.**
+
+| Layer | What to add (English examples) | When |
+|---|---|---|
+| **L2 · Material & light refinement** | **Material**: `skin with visible pores and soft vellus hairs`, `silk with one sharp specular and soft drape`, `brushed metal grain`, `wet asphalt mirroring the sign glow`, `frosted glass rim glow`. **Light**: `warm key left mixing with cool ambient fill`, `deep soft falloff into shadow`, `volumetric beam with floating dust`, `rim light tracing the jawline`, `window-pane-shaped catchlight` | close-ups, night/interior, product — **the #1 refinement lever** |
+| **L3 · Performance & micro-detail** | `brow first knots then relaxes`, `gaze dropped and held, lashes low`, `fingertip resting on the letter's edge, knuckle faintly white`, `a loose strand of hair across the cheek`, `hem settled mid-sway` | emotional/dialogue frames |
+| **L4 · Optics & single visual anchor** | `anamorphic bokeh, oval highlights`, `gentle halation on bright edges`, `fine film grain`, `lens flare grazing the corner`, ONE anchor (`a single drifting ember` / `a ribbon of light wrapping the blade`) | hero frames, opening frames, spectacle |
+
+**Discipline**: ≤1 visual anchor per frame; L4 only on hero/opening frames (not dialogue close-ups); when over the word limit, trim L4 → L3 → L2-on-non-close-ups, never L2 on character close-ups.
+
 > For natural-language image models (Jimeng / Nano Banana / GPT Image, etc. — models WITHOUT a separate negative-prompt field). All control is written into the text itself. This file works with the `assets/character-card.md`, `assets/scene-card.md`, `assets/prop-card.md`, `assets/scene-actor-card.md`, `assets/dialogue-board-card.md` templates.
 >
 > v2 absorbed "reference-image exclusive declarations, three-place repetition, five-piece signature block, word-deletion regulator, dual register, 5 over-complexity types" on top of v1.
