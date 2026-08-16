@@ -12,7 +12,6 @@ manju-director 是一套**从剧本到成片的完整导演工作流**，不是�
 
 **适用场景**：AI 漫剧 / 动态漫 / 短剧批量生产；任何想把"一段原文或一个主题"变成"一整集可投喂视频模型的逐镜生产包"的需求。
 
-> **v4 更新**：skill 文档已全量英文化（AI 处理英文效果更好）；整合 GitHub star 榜头部项目方法论（seedance-prompt-skill 2669★ / awesome-seedance 2295★ / Seedance2-Storyboard-Generator 2104★ / higgsfield-seedance2-jineng 753★ / 十层焚决）；衔接机制升级为四大。
 
 ## 四大一致性机制（核心创新）
 
