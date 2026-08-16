@@ -21,10 +21,11 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 1. **SEQUENCE IS MANDATORY**: Execute Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6 **in that exact order**. Do NOT reorder, merge, or skip any phase.
 2. **EVERY PHASE HAS A DELIVERABLE**: Each phase produces the deliverable listed in its `📦 DELIVERABLE` box. Do NOT end a phase until its deliverable exists in full.
 3. **GATES ARE HARD STOPS**: Each phase ends with a confirmation gate (`🔒 GATE`). **DO NOT START the next phase until the current gate has passed** (user explicitly confirmed). "Not confirmed yet" is NOT "assumed confirmed".
-4. **REQUIRED READS ARE MANDATORY**: The `📖 MUST READ` line of each phase lists files you MUST read before producing that phase's deliverable. **Reading them is not optional.** If a required file cannot be found, STOP and tell the user — do not improvise without it.
+4. **REQUIRED READS ARE MANDATORY**: The `📖 MUST READ` line of each phase lists files you MUST read before producing that phase's deliverable. **Reading them is not optional.** If a required file cannot be found, STOP and tell the user — do not improvise without it. **Evidence**: your deliverable must demonstrate the read — verbatim anchors copied from asset cards, rule citations (R1–R8), template fields actually used. A bare claim of "read" with no visible usage in the deliverable is not accepted.
 5. **NO SILENT SKIPPING**: If you believe a step should be skipped (e.g., "no new characters this episode"), you must STATE the skip explicitly in your reply with a reason, and confirm with the user — never skip silently.
 6. **SELF-CHECK BEFORE REPLYING**: Before ending any reply, verify you have produced the phase's deliverable and that the deliverable obeys the Iron Rules (R1–R8). If any rule is violated, fix it before replying.
 7. **CONSEQUENCE**: An output that skipped a phase, skipped a required read, or skipped a gate is considered **defective**. If the user catches a skipped step, you must go BACK and produce the missing deliverable before anything else.
+8. **INTRA-PHASE SEQUENCE**: Within a phase, steps that have data dependencies (e.g., Phase 5's per-shot loop: output → extract last frame → next shot) MUST be executed strictly in order. Do NOT parallelize steps that depend on each other's output — parallel execution violates continuity and produces unusable results.
 
 ---
 
@@ -118,7 +119,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
   5. **Composite asset image** (trigger: **a new character first appears in a new scene AND the character is strongly tied to that scene**): one image replaces the three separate "character makeup + scene establishing + prop establishing" images (see `scene-actor-card.md`).
   6. **Makeup reference image generation**: use an image-generation tool to produce makeup images one by one per the character card (single person, neutral light, solid-color or blurred background of the actual scene). Present output to user for confirmation → **Gate 2**. After freezing, write the reference-image number back into the card's `ref:` field. Produce scene establishing images the same way.
 - **🔒 GATE 2**: user confirms the frozen reference images. **Gate 2 not passed → entering Phase 3 prompt writing is FORBIDDEN (R5).**
-- **⛔ DO NOT** proceed to Phase 3 until every card is filled AND every reference image is frozen.
+- **⛔ DO NOT** proceed to Phase 3 until every card is filled AND every reference image is frozen. "Filled" means every mandatory field exists, not just the header: character card = appearance anchors + form weakness + voice + makeup prompt; scene card = spatial anchors + light-source direction + color tone + prop inventory; episode-bible = HEX palette (locked) + style anchors + cinematic five-piece signature block + word-deletion regulator + negative library. A card missing any mandatory field is NOT filled.
 
 ### Phase 3 · Shot List 【闸3 / Gate 3】
 
@@ -128,6 +129,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 - **📦 DELIVERABLE**: the production shot list, one line per shot, columns: shot # / duration / shot scale / camera move / frame subject / primary action (unique, R3) / micro-expression / dialogue / emotion / connection method / first-frame source (last-frame=previous shot # / keyframe=makeup or composite asset image # / new=establishing image) / opening→closing frame / risk flags (⚠ multiple people in frame, hand close-up, text in frame, large motion, long-distance dialogue, blur/noise).
 - **🔒 GATE 3**: present the shot list to user; focus the review on: whether connection methods are marked correctly, whether new characters/props all have keyframes arranged, whether any shot violates R3, whether closing frames are all action-complete states (for last-frame extraction), whether dialogue relationship boards align. **DO NOT start Phase 4 until confirmed.**
 - **⛔ DO NOT** batch-generate prompts before the shot list is confirmed — the shot list is the single source of truth for prompts.
+- **⛔ DO NOT** leave the risk-flags column empty — every shot must state its flags explicitly (write `low` when none apply). A shot list with empty flags is incomplete and fails Gate 3.
 
 ### Phase 4 · Per-Shot Prompts 【闸4 / Gate 4 — first shot only】
 
@@ -138,6 +140,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
   1. **First-frame image prompt** (fed to the image model): per the image-prompt-engine structure formula — **subject line (R4 anchor restatement + exclusive declaration) + spatial-composition line (height via compositional relationships, NOT meters) + lighting line (lighting-sculpting formula: direction/half-face/highlight points/wide aperture/contact shadow, MUST include) + environment line + camera line (focal length from lookup) + five-piece signature block + CONSTRAINTS section (core constraint restatement) + negative end line**. For shots connected by "last-frame continuation", the first-frame image = previous shot's last frame; this block is marked "no generation needed, use shot N's last frame". For shots connected by "keyframe insert", the first-frame image = the composite asset / character card / scene card / prop card number.
   2. **Video prompt** (fed to the video model): assembled per the video-prompt-framework general skeleton — 【reference images】【core rules】【video style】【camera & narrative】(apply the four-beat rhythm: establish→develop→climax→close, including opening/closing frame, **action-state flow**, **body linkage**, **dialogue-performance control** and line voice; **dialogue beyond arm's reach MUST add the eye-line-lock three-piece set**; **realistic/life-flow shots MUST add an imperfection event**)【motion constraints】【negative prompts】(**combat scenes MUST add the violence-de-escalation sentence**). Structure calibrated per the model adapter file.
 - **🔒 GATE 4**: produce ONLY **Shot 1's** two code blocks first; user confirms prompt style and detail density; **then** batch-produce all remaining shots. **DO NOT batch before confirmation.**
+- **⛔ DO NOT** write any shot's prompts from memory — before each shot's two code blocks, paste that shot's verbatim anchor lines copied from the asset cards (appearance anchors + scene light sentence, exactly as frozen in Phase 2). Anchors pasted = R4 evidenced; no paste, no prompt. Every batch shot must show its own anchor lines; a batch that recycles Shot 1's anchors for all shots is defective.
 - **⛔ DO NOT** write prompts for shots that depend on reference images that were not frozen in Phase 2 (R5).
 
 ### Phase 5 · Shooting Execution & Shot Connection (per-shot loop)
@@ -145,21 +148,24 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 **📖 MUST READ**: `references/continuity-playbook.md` Chapter 4 (failure-handling matrix) and Chapter 5 (quality checklist) when handling failures; §1.5 for video-extension chaining; §2 for last-frame continuation.
 
 - **📦 DELIVERABLE per shot**: ① the output produced by the user's model ② the connection asset for the next shot (either the extracted last frame, or the video uploaded as `@视频1`) ③ a fast-track quality verdict (pass/fail).
+- **⛔ DO NOT** batch-submit all shots in parallel. The loop MUST be strictly sequential: Shot 1 output → extract last frame → Shot 2 first frame → Shot 2 output → ... Skipping the last-frame extraction and using the same first frame for all shots violates last-frame continuation and produces identical opening frames.
 - Per-shot loop:
-  1. User takes the first-frame image/reference materials + video prompt to the model to produce the output.
+  1. User takes the first-frame image/reference materials + video prompt to the model to produce the output. For Shot 1, use the first-frame image from Phase 4; for subsequent shots, the first frame MUST be the last frame extracted from the previous shot (or the @视频1 for video-extension chaining).
   2. After the output returns, choose the path by connection method:
      - **Video-extension chaining** (preferred when the model supports it): the whole output as `@视频1`; next shot opens with "extend @视频1 by N seconds" (no last-frame extraction needed; most stable continuity; see continuity-playbook §1.5).
-     - **Last-frame continuation**: extract the last frame `scripts/extract_last_frame.py <video path> -o <output dir>` (wraps ffmpeg, auto-names `shot_###_last.png`), use it as the next shot's first-frame input; the prompt notes "first frame = previous shot's last frame; character pose/lighting continue from here".
-  3. Fast-track quality check: pass → next shot; fail → consult `references/continuity-playbook.md` "dual-register decision" (**light edit one sentence: change X to Y, don't touch anything else** → heavy rerun: change ≥3 things / change pose / change camera angle / continuous light edits causing face-melting and identity-swapping → stop, return to Phase 2/4).
+     - **Last-frame continuation**: extract the last frame `scripts/extract_last_frame.py <video path> -o <output dir>` (wraps ffmpeg, auto-names `shot_###_last.png`), use it as the next shot's first-frame input; the prompt notes "first frame = previous shot's last frame; character pose/lighting continue from here". **If extraction fails (ffmpeg missing / video unreadable), STOP and tell the user — do NOT substitute a character makeup image as the next shot's first frame.** Only jump cuts and keyframe inserts may use makeup/establishing images as first frame.
+  3. Fast-track quality check (each verdict MUST cite evidence — e.g., "pose carries over from shot 11's tail frame, light unchanged"; bare "pass" = not checked): pass → next shot; fail → consult `references/continuity-playbook.md` "dual-register decision" (**light edit one sentence: change X to Y, don't touch anything else** → heavy rerun: change ≥3 things / change pose / change camera angle / continuous light edits causing face-melting and identity-swapping → stop, return to Phase 2/4).
 - **Keyframe-insert execution** (shots connected by keyframe insert): prefer the **composite asset image** (scene+character+prop in one image, most efficient); otherwise separate makeup frames per character/scene/prop. See continuity-playbook Chapter 3.
 - **Jump-cut execution**: shots that change scene/time do NOT use last-frame continuation; use that scene's establishing image as the first frame, and rebuild the scene anchors in the prompt's opening sentence.
 - **🔒 GATE 5**: the FIRST shot's output must be accepted by the user before continuing the loop (fast track). **DO NOT mass-produce remaining shots without this acceptance.**
+- **Continuation flows** (user says "continue / keep writing / next shot"): BEFORE writing, output the three §6.1 answers (previous ending state / next emotional advance / continuity notes) from `references/continuity-playbook.md`, then write the shot. Skipping the three answers = defective continuation.
 
 ### Phase 6 · Quality Check & Card-Pull Control
 
 **📖 MUST READ**: `references/continuity-playbook.md` Chapter 5 (quality checklist).
 
 - **📦 DELIVERABLE**: ① every shot checked against the quality checklist ② a final full-episode continuous-watch verdict ③ updated shot-list ledger (✅ locked / 🔄 to-fix / ⏳ to-produce).
+- Every pass verdict MUST cite concrete evidence (e.g., "shot 12 pass: pose continues from shot 11's tail frame, left-window light unchanged, no face drift"). A bare "pass" with no evidence is treated as NOT checked and must be redone.
 - Each shot checked against the Chapter 5 quality checklist: character consistency (face/hairstyle/clothing vs makeup image), scene consistency (props/light-source direction vs scene card), connection quality (whether last-frame continuation is natural), physical plausibility, platform safety.
 - Card-pull control principles (written into every failure recommendation):
   - First freeze everything that can be frozen (makeup, color palette, first frame), reducing variables to only "this shot's action".
@@ -176,11 +182,11 @@ Before declaring the work complete, you MUST paste this checklist into your fina
 - [ ] All 7 phases (0→6) executed in order — none skipped, none merged
 - [ ] Phase 0: four global parameters confirmed by the user
 - [ ] Phase 1: storyboard script + asset scan produced, Gate 1 passed
-- [ ] Phase 2: episode-bible + all cards filled + reference images frozen, Gate 2 passed
-- [ ] Phase 3: dialogue relationship boards (where applicable) + shot list produced, Gate 3 passed
-- [ ] Phase 4: Shot 1 two-block prompts confirmed, then all shots batched, Gate 4 passed
-- [ ] Phase 5: per-shot loop executed, first output accepted (Gate 5), connection assets produced per shot
-- [ ] Phase 6: every shot checked, full-episode continuous-watch passed, ledger updated
+- [ ] Phase 2: episode-bible + all cards filled (all mandatory fields) + reference images frozen, Gate 2 passed
+- [ ] Phase 3: dialogue relationship boards (where applicable) + shot list produced, risk-flags column has no empty cells, Gate 3 passed
+- [ ] Phase 4: Shot 1 two-block prompts confirmed, then all shots batched, each batch shot pasted its own verbatim anchor lines (no recycling), Gate 4 passed
+- [ ] Phase 5: per-shot loop executed sequentially (not batch-submitted), each shot's first frame is previous shot's last frame (or @视频1), no makeup-image substitution on extraction failure, first output accepted (Gate 5), connection assets produced per shot
+- [ ] Phase 6: every shot checked, each pass verdict cites concrete evidence (no bare "pass"), full-episode continuous-watch passed, ledger updated
 - [ ] R1 detail density: every shot's action/expression at body-part level
 - [ ] R3: one primary action per shot, no stacking
 - [ ] R4: anchors restated verbatim in every prompt
