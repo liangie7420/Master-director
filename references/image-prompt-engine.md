@@ -1,5 +1,18 @@
 # First-Frame Image Prompt Engine (MUST READ when writing first-frame image prompts in Phase 4, Refactored v3)
 
+## ⛔ NON-NEGOTIABLE ELEMENTS (every image prompt MUST contain all of these; omitting any = defective prompt)
+
+1. **Subject line with R4 anchor restatement** — restate appearance/color anchors VERBATIM from the asset card; no paraphrasing.
+2. **Exclusive declaration for every reference image** — each image states what it serves and what it does NOT provide (one-image-one-job).
+3. **Lighting line with the full lighting-sculpting formula** — direction / half-face / highlight points / wide aperture / contact shadow. Character frames missing any piece = flat light = costume-photo look.
+4. **CONSTRAINTS section** — shape locks / quantity locks / NO-FACE prohibitions go HERE (not in TONE or Avoid).
+5. **Three-place repetition** — the core constraint (form weakness / color iron rule / core negative) appears in subject-or-TONE (positive) + CONSTRAINTS (prohibition) + Avoid (negative).
+6. **Negative end line** — concentrated on the LAST line; the positive zone NEVER contains unwanted words.
+7. **Five-piece signature block** — composition + hex palette + DP credit + film stock + anti-AI seal, self-consistent.
+8. **Word limit** — complex frames ≤500 words; simple frames ≤350 words.
+
+> If a reference image is unavailable for a needed anchor, STOP and tell the user — do not write the prompt without it (skipping = face-swap/drift risk).
+
 > For natural-language image models (Jimeng / Nano Banana / GPT Image, etc. — models WITHOUT a separate negative-prompt field). All control is written into the text itself. This file works with the `assets/character-card.md`, `assets/scene-card.md`, `assets/prop-card.md`, `assets/scene-actor-card.md`, `assets/dialogue-board-card.md` templates.
 >
 > v2 absorbed "reference-image exclusive declarations, three-place repetition, five-piece signature block, word-deletion regulator, dual register, 5 over-complexity types" on top of v1.

@@ -1,5 +1,18 @@
 # Video Prompt General Skeleton (MUST READ when writing video prompts in Phase 4)
 
+## ⛔ NON-NEGOTIABLE ELEMENTS (every video prompt MUST contain all of these; omitting any = defective prompt)
+
+1. **Reference-image lines** — only the images actually used in THIS shot, each with its purpose; @ references state their use (video-extension chaining writes `extend @视频1 by N seconds` when applicable).
+2. **Core-rules opening** — the first sentence matches the connection method (last-frame continuation / keyframe insert / jump cut / video extension).
+3. **ONE primary action** (R3) + at most two micro-expression changes — with a full action-state flow (initial → trigger → reaction → body linkage → emotion → end) and body linkage.
+4. **Camera move with 4 variables** — path / reference object / parallax / inertia; at most ONE move per shot.
+5. **Dialogue section** — `Character says "line text"` (Chinese line kept), voice copied verbatim from the character card, tone marked; performance control for dialogue/emotional shots; dialogue beyond arm's reach gets the eye-line-lock three-piece set.
+6. **Sound & lighting baseline** — one credible light source + 2–4 concrete sound-field anchors.
+7. **Imperfection event** — for realistic/life-flow shots (skip only when the style demands clean/crisp).
+8. **Ending aftertaste** — key line/action ends 1–2s before the final frame; last frame is an action landing point.
+9. **Negative prompts** — concentrated on the end line; combat scenes include the violence de-escalation sentence.
+10. **Character budget** — total ≤2000 chars; narrative section ≤300 chars (intent + key details, environment dressing left to reference images).
+
 > A layered skeleton common to all three models (Seedance / Kling / Hailuo). Field order and wording are calibrated per `references/model-adapters/<target model>.md`; the skeleton itself works across all three. Each shot outputs ONE video-prompt code block with a total character budget ≤ 2000 (including spaces).
 >
 > v3 absorbed open-source community patterns on top of v2: action-state flow, body-linkage lookup table, camera-movement realism four variables, imperfection events for de-AI-ifying, material-source identity, sound & lighting baseline, dialogue-performance control, ending-aftertaste rules, shot-scale abbreviation standard.
