@@ -142,6 +142,15 @@ character's purpose / emotional barrier / trigger words / pauses & breath / faci
 
 **Multi-shot/suspense/action/continuation scenes**: add a compact 【Overall Sound & Lighting】 block to unify continuity (same light direction, same sound decay across the shot group), avoiding sound/light jumps between shots.
 
+### 6.1 Audio-Reference Binding (@音频)
+
+When the target model supports audio reference (Seedance 2.0 does), upload an audio file and bind it in the prompt — this anchors rhythm/emotion far better than text description:
+
+- **Syntax**: `@音频 <file or one-line description>` placed in the reference section alongside `@视频1` (e.g., `@音频 3秒鼓点 低频心跳`).
+- **What to bind**: dialogue shots → the line's speech rhythm; emotion shots → the music mood from the shot's `Sound:` field (locked in Phase 1); action shots → beat/impact points.
+- **Rule**: the bound audio MUST match the shot's `[Sound: W]` label from the script — no music cue in the label, no music in the prompt; no "sourceless sound".
+- **No audio file available**: fall back to the §6 text sound-field baseline (never leave the sound field empty).
+
 ## 7. Imperfection Events (the key to de-AI-ifying)
 
 AI models have a strong default aesthetic (perfect composition, clean images, smooth camera). To get cinematic feel instead of "AI feel", implant **imperfection events** in the timeline — one per shot, chosen from the following list (do not repeat the same one across the shot's 7 frames):

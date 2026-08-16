@@ -21,6 +21,7 @@
 7. **Production order / 生产排序**: establishing images and look images（the sources of jump cuts and keyframes）must be produced FIRST. Video-extension and tail-frame-carry chains MUST be produced strictly in shot-number order — no skipping numbers. Keyframe-pair shots have no order dependency（batchable）.
 
 ## Stats Self-Check（before submitting to gate 3）/ 统计自检
+- [ ] **Stats summary output with the shot list: total shots / total scenes / total characters**（数量与脚本一致）
 - [ ] Sum of all shot durations = the script's total duration
 - [ ] Transition chain complete: every shot's first-frame source is an existing previous shot or a frozen asset, except S01 and the jump-cut shots
 - [ ] The keyframe-insert shots' look / frame IDs are listed in the production plan and scheduled BEFORE those shots

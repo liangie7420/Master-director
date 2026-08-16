@@ -70,7 +70,8 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 | Write a video prompt | `references/video-prompt-framework.md` (timestamp storyboarding / @reference system / 2-second hook / action-state flow / body linkage) + model adapter file |
 | Seamless shot/episode connection | `references/continuity-playbook.md` §1.5 video-extension chaining (`@视频1` extension) + §2.5 keyframe-pair shooting (首尾帧) + §2 tail-frame carry (fallback) |
 | Broken continuity / face swapping / new character entry | `references/continuity-playbook.md` |
-| Failed output: light edit / heavy rerun / upscale to 2K | `references/continuity-playbook.md` Chapter 4 matrix + dual-register decision |
+| Failed output: light edit / heavy rerun / upscale to 2K | Run `scripts/diagnose.py <symptom>` FIRST (root cause), then `references/continuity-playbook.md` Chapter 4 matrix + dual-register decision |
+| Check a prompt before delivery (R3 / conflicts / missing elements) | `scripts/check_prompt.py --text "<prompt>"` or `--file <prompt.txt>` |
 | Dialogue scene needs a relationship board | `assets/dialogue-board-card.md` (6-cell 2×3 locking the 180° axis) |
 | Composite asset image (character+scene+prop in one) | `assets/scene-actor-card.md` |
 | Fill in a template (character card / scene card / shot list) | corresponding template under `assets/` |
@@ -105,7 +106,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 - Standard storyboard script format (see script-format.md, strictly enforced):
   - Header: aspect ratio / total duration / number of scenes / one-line emotional curve.
   - Each scene: scene header (full environment description: light, color tone, spatial layers, ambient sound).
-  - Each shot: `**[MM:SS.S – MM:SS.S] Beat name**` + `[shot scale | camera move | frame key points]` + extremely detailed action & micro-expression body text (R1) + dialogue (`> **Character**: (tone/subtext) line`) + line-end `[Emotion: X | Hook: Y | Connection: Z]`.
+  - Each shot: `**[MM:SS.S – MM:SS.S] Beat name**` + `[shot scale | camera move | frame key points]` + extremely detailed action & micro-expression body text (R1) + dialogue (`> **Character**: (tone/subtext) line`) + line-end `[Emotion: X | Hook: Y | Connection: Z | Sound: W]` (Sound = ≤8-word ambient + music cue, locked at script time so audio stays consistent across shots; see script-format §5).
   - Connection Z six values: `video extension` (default when the model supports it) / `keyframe pair` (first+end frame interpolation) / `tail-frame carry` (fallback) / `keyframe insert · new character` / `keyframe insert · new prop` / `jump cut`.
   - Single shot duration 4–10 seconds (within model single-segment limits); sum of all shot durations = total duration.
 - **🔒 GATE 1**: present script + asset scan to the user; **DO NOT start Phase 2 until the user explicitly confirms**. If the user's input was only a theme, the three-line outline must also be confirmed before expansion.
@@ -131,7 +132,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 
 - **Dialogue pre-requirement (hard)**: **ANY ≥2-person dialogue scene must produce a dialogue relationship board FIRST** (`assets/dialogue-board-card.md`), 6-cell 2×3 locking the 180° axis + eye-line contact + exclusive declaration. The shot list may only be written after the relationship board passes its gate. **No relationship board, no shot list for that scene.**
 - **📦 DELIVERABLE**: the production shot list, one line per shot, columns: shot # / duration / shot scale / camera move / frame subject / primary action (unique, R3) / micro-expression / dialogue / emotion / connection method (6 values) / first-frame source / **end-frame design (action-landing frame — REQUIRED for every shot; it feeds keyframe-pair mode, no exceptions)** / opening→closing frame / risk flags (⚠ multiple people in frame, hand close-up, text in frame, large motion, long-distance dialogue, blur/noise).
-- **🔒 GATE 3**: present the shot list to user; focus the review on: whether connection methods are marked correctly (6 values), whether new characters/props all have keyframes arranged, whether any shot violates R3, whether **every shot's end-frame design is an action-complete state** (feeds keyframe-pair mode; also needed for tail-frame fallback), whether dialogue relationship boards align. **DO NOT start Phase 4 until confirmed.**
+- **🔒 GATE 3**: present the shot list to user; include a **stats summary (total shots / scenes / characters)** with it; focus the review on: whether connection methods are marked correctly (6 values), whether new characters/props all have keyframes arranged, whether any shot violates R3, whether **every shot's end-frame design is an action-complete state** (feeds keyframe-pair mode; also needed for tail-frame fallback), whether dialogue relationship boards align. **DO NOT start Phase 4 until confirmed.**
 - **⛔ DO NOT** batch-generate prompts before the shot list is confirmed — the shot list is the single source of truth for prompts.
 - **⛔ DO NOT** leave the risk-flags column empty — every shot must state its flags explicitly (write `low` when none apply). A shot list with empty flags is incomplete and fails Gate 3.
 
@@ -145,6 +146,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
   2. **Video prompt** (fed to the video model): assembled per the video-prompt-framework general skeleton — 【reference images】【core rules】【video style】【camera & narrative】(apply the four-beat rhythm: establish→develop→climax→close, including opening/closing frame, **action-state flow**, **body linkage**, **dialogue-performance control** and line voice; **dialogue beyond arm's reach MUST add the eye-line-lock three-piece set**; **realistic/life-flow shots MUST add an imperfection event**)【motion constraints】【negative prompts】(**combat scenes MUST add the violence-de-escalation sentence**). Structure calibrated per the model adapter file.
 - **🔒 GATE 4**: produce ONLY **Shot 1's** two code blocks first; user confirms prompt style and detail density; **then** batch-produce all remaining shots. **DO NOT batch before confirmation.**
 - **⛔ DO NOT** write any shot's prompts from memory — before each shot's two code blocks, paste that shot's verbatim anchor lines copied from the asset cards (appearance anchors + scene light sentence, exactly as frozen in Phase 2). Anchors pasted = R4 evidenced; no paste, no prompt. Every batch shot must show its own anchor lines; a batch that recycles Shot 1's anchors for all shots is defective.
+- **🔒 PROMPT GATE (scripted)**: before presenting ANY shot's two code blocks, run `scripts/check_prompt.py --text "<video prompt>"` and `--text "<image prompt>"`. Any **ERROR** result → fix the prompt, re-scan, then deliver. A prompt that fails the scanner must NOT be delivered (this gate is executed by a script, not by judgement — no skipping).
 - **⛔ DO NOT** write prompts for shots that depend on reference images that were not frozen in Phase 2 (R5).
 
 ### Phase 5 · Shooting Execution & Shot Connection
@@ -164,7 +166,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
   1. **Strictly sequential per-shot loop, NEVER batch**: Shot N output → extract last frame (`scripts/extract_last_frame.py`) → use it as Shot N+1's first frame. **DO NOT batch-submit shots in parallel; skipping the extraction and reusing the same first frame for all shots produces identical opening frames.**
   2. **If extraction fails (ffmpeg missing / video unreadable), STOP and tell the user — do NOT substitute a character makeup image as the next shot's first frame.** Only jump cuts and keyframe inserts may use makeup/establishing images as first frame.
 - **Common rules (all paths)**:
-  - Fast-track QC per shot, verdict MUST cite evidence (e.g., "pose carries over from shot 11's tail frame, left-window light unchanged"; bare "pass" = not checked). Fail → consult `references/continuity-playbook.md` "dual-register decision" (**light edit one sentence: change X to Y, don't touch anything else** → heavy rerun: change ≥3 things / change pose / change camera angle / continuous light edits causing face-melting and identity-swapping → stop, return to Phase 2/4).
+  - Fast-track QC per shot, verdict MUST cite evidence (e.g., "pose carries over from shot 11's tail frame, left-window light unchanged"; bare "pass" = not checked). Fail → run `scripts/diagnose.py <symptom>` FIRST to find the root cause, then consult `references/continuity-playbook.md` "dual-register decision" (**light edit one sentence: change X to Y, don't touch anything else** → heavy rerun: change ≥3 things / change pose / change camera angle / continuous light edits causing face-melting and identity-swapping → stop, return to Phase 2/4).
   - Keyframe-insert shots: prefer the **composite asset image** (scene+character+prop in one image); otherwise separate makeup frames per character/scene/prop. Jump-cut shots: use that scene's establishing image as first frame and rebuild the scene anchors in the prompt's opening sentence.
   - **⛔ DO NOT** skip the end-frame design — every shot's video must land on its designed action-landing state (the end frame feeds the next shot in every mode).
   - **🔒 GATE 5**: the FIRST shot's output must be accepted by the user before continuing (fast track). **DO NOT mass-produce remaining shots without this acceptance.**
@@ -178,6 +180,7 @@ This skill is a **strictly ordered production pipeline**. The following rules ar
 - Every pass verdict MUST cite concrete evidence (e.g., "shot 12 pass: pose continues from shot 11's tail frame, left-window light unchanged, no face drift"). A bare "pass" with no evidence is treated as NOT checked and must be redone.
 - Each shot checked against the Chapter 5 quality checklist: character consistency (face/hairstyle/clothing vs makeup image), scene consistency (props/light-source direction vs scene card), connection quality (per the executed path: extension seam natural / keyframe-pair seam consistent / tail-frame carry natural), physical plausibility, platform safety.
 - Card-pull control principles (written into every failure recommendation):
+  - Before ANY failure recommendation, run `scripts/diagnose.py <symptom>` — its root cause + fix order IS the recommendation; don't improvise fixes.
   - First freeze everything that can be frozen (makeup, color palette, first frame), reducing variables to only "this shot's action".
   - On failure, first change the prompt structure (fewer actions, fewer people in frame, simpler camera moves) — don't rerun the same words.
   - Max 3 reruns per shot; after 3 failures → downgrade plan (split shot / change shot scale / keyframe-insert supplementary narrative), and mark the change in the shot list.
@@ -194,7 +197,7 @@ Before declaring the work complete, you MUST paste this checklist into your fina
 - [ ] Phase 1: storyboard script + asset scan produced, Gate 1 passed
 - [ ] Phase 2: episode-bible + all cards filled (all mandatory fields) + reference images frozen, Gate 2 passed
 - [ ] Phase 3: dialogue relationship boards (where applicable) + shot list produced, risk-flags column has no empty cells, Gate 3 passed
-- [ ] Phase 4: Shot 1 two-block prompts confirmed, then all shots batched, each batch shot pasted its own verbatim anchor lines (no recycling), Gate 4 passed
+- [ ] Phase 4: Shot 1 two-block prompts confirmed, then all shots batched, each batch shot pasted its own verbatim anchor lines (no recycling), **every prompt passed `check_prompt.py` (no ERROR)**, Gate 4 passed
 - [ ] Phase 5: execution path chosen by model capability (keyframe-pair batch → video extension → tail-frame fallback in that priority), every shot's video landed on its designed end-frame state, first output accepted (Gate 5), no makeup-image substitution on extraction failure (PATH C)
 - [ ] Phase 6: every shot checked, each pass verdict cites concrete evidence (no bare "pass"), full-episode continuous-watch passed, ledger updated
 - [ ] R1 detail density: every shot's action/expression at body-part level
@@ -249,3 +252,5 @@ If ANY box is unticked, do NOT declare completion — go back and fix the missin
 | `assets/dialogue-board-card.md` | Required before Phase 3: dialogue relationship board 6-cell 2×3 locking the 180° axis |
 | `assets/shotlist-template.md` | Phase 3 fill-in: shot list template (incl. opening/closing frame columns) |
 | `scripts/extract_last_frame.py` | Phase 5 execution: video last-frame extraction (ffmpeg wrapper) |
+| `scripts/check_prompt.py` | Phase 4 delivery gate (scripted): anti-pattern scanner — R3 overload / conflict pairs / abstract words / missing non-negotiable elements. Run on EVERY prompt before delivery; error result = fix before delivering |
+| `scripts/diagnose.py` | Phase 5/6 failure handling (scripted): symptom → root cause + fix order + stop-loss, and dual-register decision. Run BEFORE rerunning anything |

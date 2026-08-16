@@ -58,9 +58,10 @@
 - Speech-rate conversion: normal 3–4 chars/second, agitated 4–5 chars/second, heavy/slow 2–3 chars/second; line duration must not exceed shot duration minus 1 second of breathing room.
 - Voice-over marked `（画外音）`; monologue marked `（内心独白）` (for dubbing distinction).
 
-### 5. Line-end label `[Emotion | Hook | Connection]`
+### 5. Line-end label `[Emotion | Hook | Connection | Sound]`
 - **Emotion**: take from this episode's emotional-curve stage names (build-up / tug-of-war / climb / reversal / close, or the stage words given by the genre file); used for emotional tinting in the shot list and prompts.
 - **Hook**: this shot's information-gap type given to the audience — visual spectacle / behavioral mystery / information gap / relationship mystery / crisis approaching / none (transition shot). At least one non-"none" hook per 3 shots.
+- **Sound**: this shot's sound cue in ≤8 words — ambient (wind / rain / clock ticking) + music mood (low strings / no music / heartbeat) + any diegetic sound the shot NEEDS (screen beep / footsteps / breath). Written at script time so voice and music stay consistent across shots and episodes (AI video models need the same sound baseline every shot). Example: `wind through glass crack + low strings` / `screen beep + no music` / `breathing + heartbeat`.
 - **Connection**: one of six values, decides the next shot's first-frame source:
   - `video extension` (default when the model supports it): this shot's first frame = previous shot's whole output extended (`@视频1`).
   - `keyframe pair`: first frame + designed end frame generated as a keyframe pair; video produced by first-and-last-frame interpolation.
@@ -96,7 +97,7 @@
 
 Snow squalls sweep across the ring ridge; the observatory is like a rusted rivet nailed to the cliff edge. The camera slowly pushes in from the ridge, passing the cracked dome — deep in the control room, the terminal's dim green standby light flickers on and off in the darkness, like breathing.
 
-`[Emotion: suspense build-up | Hook: visual spectacle | Connection: jump-cut (this episode's first shot, use scene establishing image)]`
+`[Emotion: suspense build-up | Hook: visual spectacle | Connection: jump-cut (this episode's first shot, use scene establishing image) | Sound: wind through glass crack + low strings]`
 
 ---
 
@@ -108,7 +109,7 @@ Shen Zhao (scene SC-01, character CH-01) squeezes sideways into the control room
 
 > **沈昭**: (lowered, to herself) ……不可能还有电。
 
-`[Emotion: suspense build-up | Hook: behavioral mystery (who maintains the power) | Connection: last-frame continuation]`
+`[Emotion: suspense build-up | Hook: behavioral mystery (who maintains the power) | Connection: video extension | Sound: footsteps on dust + breath fog + no music]`
 
 ---
 

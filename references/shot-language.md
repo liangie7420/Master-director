@@ -17,6 +17,25 @@
 | Close-up | face as subject | emotional explosion, reaction shots | high; facial features drift easily, needs character reference |
 | Big close-up | eye/lip/hand/prop close-up | key props, micro-expressions, hook frames | high; hands are the top failure zone |
 
+## 1.1 Shot-Scale Inference Table (from text features to shot scale — use when cutting the script in Phase 1)
+
+> When splitting narrative text into shots, pick the shot scale by the DOMINANT text feature below — do not leave scale choice to subjective feel. After inferring, cross-check against the shot's narrative intent (emotion / information density); if they conflict, the intent wins.
+
+| Text Feature (dominant in the beat) | Infer Shot Scale | Why |
+|---|---|---|
+| Environment / wide description ("远处" "一片" "俯瞰" "整条街") | Extreme long / Long | establishing, spatial pressure |
+| Full-body entry / blocking ("走进" "站在" "坐下" "转身离去") | Full / Medium | position relations, movement |
+| Two-person dialogue ("说" "问" "答道" "他开口") | Medium / Medium close-up | dialogue workhorse |
+| Upper-body action + emotion ("抬手" "低头" "肩膀一沉") | Medium close-up | action + expression balance |
+| Facial expression / eyes ("眼睛" "嘴角" "皱眉" "目光") | Close / Close-up | emotional beats |
+| Body-part-level detail (R1: "指尖" "睫毛" "喉结" "呼吸节奏") | Close-up / Big close-up | the detail IS the subject |
+| Key prop / screen / letter ("信纸" "怀表" "屏幕" "刀刃") | Big close-up | prop hooks |
+| Mental activity ("心中" "意识到" "震惊") | Close-up (face reaction) | externalize as expression |
+| Chase / action run ("追赶" "闪避" "冲出") | Full + track/follow | full body in motion |
+| Anything else | Medium (default) | safest, never wrong |
+
+**Cross-check rule**: a beat rich in R1 body-part details but with low emotional weight → medium close-up (not close-up); a beat with high emotional weight → close-up even if the text is short. Scale must serve intent, not just the words.
+
 ## 2. Camera-Move Table (safe words that video models respond to well in practice)
 
 | Move | Wording | Fits | Risk & Notes |
