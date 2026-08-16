@@ -61,8 +61,10 @@
 ### 5. Line-end label `[Emotion | Hook | Connection]`
 - **Emotion**: take from this episode's emotional-curve stage names (build-up / tug-of-war / climb / reversal / close, or the stage words given by the genre file); used for emotional tinting in the shot list and prompts.
 - **Hook**: this shot's information-gap type given to the audience — visual spectacle / behavioral mystery / information gap / relationship mystery / crisis approaching / none (transition shot). At least one non-"none" hook per 3 shots.
-- **Connection**: one of four values, decides the next shot's first-frame source:
-  - `last-frame continuation` (default): this shot's first frame = previous shot's output last frame.
+- **Connection**: one of six values, decides the next shot's first-frame source:
+  - `video extension` (default when the model supports it): this shot's first frame = previous shot's whole output extended (`@视频1`).
+  - `keyframe pair`: first frame + designed end frame generated as a keyframe pair; video produced by first-and-last-frame interpolation.
+  - `tail-frame carry` (fallback): this shot's first frame = previous shot's output last frame (extracted); only when the model supports neither extension nor 首尾帧.
   - `keyframe insert · new character`: this shot has a new character's first appearance → first produce that character's makeup keyframe; flow in continuity-playbook Chapter 3.
   - `keyframe insert · new prop`: this shot has a key prop's first close-up → first produce the prop establishing frame.
   - `jump cut`: scene/time change → use the scene establishing image as the first frame, not the last frame.
@@ -159,7 +161,7 @@ The wind stops without warning. **Every cracked screen in the control room light
 ## 4. Key Points for Adapting Source Text
 
 1. **Keep golden lines and plot points, re-arrange sight and sound**: the source's psychological descriptions are all externalized into shootable actions/expressions/props; what cannot be externalized is deleted, not forced into lines.
-2. **Episode-splitting principle**: each episode ends at the frame of "maximum information gap"; the new episode's first shot defaults to last-frame continuation (serial feel).
+2. **Episode-splitting principle**: each episode ends at the frame of "maximum information gap"; the new episode's first shot defaults to video extension (serial feel, `@视频1`) — tail-frame carry only as fallback.
 3. **Volume conversion**: 90 seconds ≈ 10–16 shots; ~800 characters of source narrative ≈ one episode. Exceed → split episodes, don't compress single-shot duration.
 
 ## 5. Post-Writing Self-Check (MUST pass before Gate 1)

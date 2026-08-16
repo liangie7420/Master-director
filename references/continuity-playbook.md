@@ -12,16 +12,17 @@
 
 | Mechanism | Solves | First-Frame Source | When to Use |
 |---|---|---|---|
-| Last-frame continuation | inter-shot visual coherence | previous shot's output last frame (extracted by `scripts/extract_last_frame.py`) | default, continuous narrative in the same scene |
-| Video-extension chaining | seamless shot/episode connection (Seedance 2.0 native) | previous shot's full output as `@视频1`, write "extend @视频1 by N seconds" | preferred when the model supports extension; smoother than first-frame images |
-| Keyframe insert | safe entry of new character/new prop/major state change | separately produced makeup keyframe | the shot where a new element first appears |
+| Video-extension chaining | inter-shot/episode seamless continuation | previous shot's whole output as `@视频1` | **PRIMARY** — when the model supports extension |
+| Keyframe-pair shooting (首尾帧) | batch-production continuity | designed first + end frame pair (image model) | **PRIMARY batch** — when the model supports first-and-last-frame interpolation |
+| Tail-frame carry | inter-shot visual coherence (fallback) | previous shot's output last frame (extracted by `scripts/extract_last_frame.py`) | fallback only — neither of the above supported |
+| Keyframe insert | safe entry of new character/prop/state | separately produced makeup keyframe | the shot where a new element first appears |
 | Jump cut | scene/time change | new scene's establishing image | between scenes |
 
-Memory phrase: **same scene same beat → last frame or video extension; new face → makeup first; new place → establishing first.**
+Memory phrase: **same scene same beat → video extension or keyframe pair; new face → makeup first; new place → establishing first; neither extension nor 首尾帧 supported → tail-frame carry (fallback).**
 
-## 1.5 Video-Extension Chaining SOP (Seedance 2.0 preferred connection method)
+## 1.5 Video-Extension Chaining SOP (PRIMARY connection — use whenever the model supports extension)
 
-Seedance 2.0 supports uploading existing video and natively extending it (the added part becomes an independent shot). This is a smoother connection than "last-frame image + image-to-video": frame/lighting/action continuity is inferred by the model from the whole video, no manual last-frame extraction needed.
+Seedance 2.0 / Jimeng extend / Kling 2.x / Vidu support uploading existing video and natively extending it (the added part becomes an independent shot). This is the industry-mainstream connection: frame/lighting/action continuity is inferred by the model from the whole video, no manual last-frame extraction needed. **If the model supports extension, this is the DEFAULT connection — do not fall back to tail-frame carry.**
 
 1. After shot N's output passes acceptance, upload the whole segment as `@视频1`.
 2. Shot N+1's prompt opens with: `extend @视频1 by N seconds` (N = this shot's added duration).
@@ -29,14 +30,15 @@ Seedance 2.0 supports uploading existing video and natively extending it (the ad
 4. Generation length selects the "added part" duration, NOT the total duration.
 5. Video extension is also capacity-limited: reference videos ≤3, total duration ≤15s; for extra-long scenes, extend in segments.
 
-**Choice vs last-frame continuation**:
+**Choice vs keyframe-pair shooting / tail-frame carry**:
 - Model supports video extension + needs seamless action/lighting continuation → **video extension** (first choice, most stable).
-- Model does not support video extension / needs precise first-frame composition control (major camera change) → **last-frame continuation**.
+- Model supports first-and-last-frame interpolation + batch production needed → **keyframe-pair shooting** (§2.5).
+- Model supports neither / needs precise first-frame composition control (major camera change) → **tail-frame carry** (§2).
 - Scene/time change → neither; use **jump cut**.
 
-## 2. Last-Frame Continuation SOP
+## 2. Tail-Frame Carry SOP (FALLBACK — use only when the model supports NEITHER video extension NOR first-and-last-frame interpolation)
 
-### 2.1 Execution flow (per-shot loop)
+### 2.1 Execution flow (per-shot loop — PATH C fallback)
 
 1. After shot N's output passes acceptance, extract the last frame:
    `python scripts/extract_last_frame.py <shotN.mp4> -o <project/frames>` → produces `shot_###_last.png`.
@@ -48,7 +50,7 @@ Seedance 2.0 supports uploading existing video and natively extending it (the ad
    - Pull back (CU→WS): usable, but the last frame only provides the central area; the prompt must fill in surrounding props (restate from the scene card).
    - Change viewing angle (front→side): **do NOT use last-frame continuation**; when the angle jumps, the last frame is misleading; rebuild with the character makeup image + scene establishing image as dual references.
 
-### 2.2 Last-frame quality three principles
+### 2.2 Landing-frame quality principles (apply to BOTH tail-frame extraction AND keyframe-pair end-frame design)
 
 - The last frame should preferably be an "action landing frame" (the still instant of a completed action). Design this actively when writing the script: end each shot's body text with the action reaching its landing point ("hand stops at the cup rim" "gaze settles"), never cut mid-motion.
 - The last frame must NOT contain: motion blur, half-closed eyes, a mouth mid-speech, a half prop at the frame edge. If it does → take an earlier frame.
@@ -59,6 +61,35 @@ Seedance 2.0 supports uploading existing video and natively extending it (the ad
 Serial episodes (model supports video extension): the previous episode's full output as `@视频1`; this episode's first shot opens with "extend @视频1 by N seconds", achieving seamless episode connection (Seedance 2.0 native, more stable than last-frame images).
 Serial episodes (last-frame only): previous episode's last shot's last frame = this episode's first shot's first frame.
 Standalone episodes: this episode's first shot uses jump cut (scene establishing image).
+
+## 2.5 Keyframe-Pair Shooting SOP (首尾帧插帧 · 批量生产主流)
+
+Industry batch-production mode: design keyframe pairs in Phase 3, generate them all with the image model, then interpolate each shot on the platform's first-and-last-frame feature (Kling 首尾帧 / Jimeng). This is the PRIMARY batch path — choose it whenever the model supports first-and-last-frame interpolation.
+
+### 2.5.1 Design (Phase 3, in the shot list)
+
+- Every shot carries an **end-frame design**: an action-landing frame (the action's completion instant — same principles as §2.2: no motion blur, no half-closed eyes, no mid-speech mouth, subject away from the top/bottom 10% edges).
+- The pair (first frame + end frame) defines the shot's full motion path; the video prompt then only describes the **intermediate motion** (state flow), not the landing state.
+- Same-scene runs: first frames derive from the scene establishing image + character makeup (anchor restatement); end frames are the same space with the action landed.
+
+### 2.5.2 Batch generation (Phase 4/5)
+
+1. Generate ALL first frames and ALL end frames with the image model, using the Phase 4 image prompts (end-frame prompt: same structure formula, subject in the designed landing pose).
+2. Present a **contact sheet** (all pairs tiled) to the user — this IS the acceptance gate for this path.
+3. Interpolate per shot: upload first + end frame → first-and-last-frame interpolation → video of the shot's duration. Shots are independent → **batch interpolation allowed** (no data dependency between pairs).
+4. QC per shot (evidence required); by design shot N's end frame ≈ shot N+1's first frame — check this at the pair seams.
+
+### 2.5.3 Why this beats tail-frame carry
+
+- Keyframes are **designed and controllable** (image model), not extracted and inherited (video output).
+- Shots are independent → **batchable** → no sequential bottleneck.
+- Consistency comes from anchor locking + frozen reference images, not from the previous shot's output.
+
+### 2.5.4 Failure handling
+
+- Interpolated motion unnatural → rewrite the **intermediate motion** in the video prompt, keep the pair frames.
+- End frame and first frame inconsistent (face/light jump at the seam) → regenerate the pair's end frame from the same anchor image; don't patch in the video.
+- Max 3 reruns per shot, then downgrade plan (Chapter 7).
 
 ## 3. Keyframe-Insert SOP
 
@@ -141,13 +172,14 @@ Review gate: `opponents are knocked back by force, not visibly injured. No wound
 - [ ] Consistent with first frame: no face change, no clothing change, no light-direction jump
 - [ ] Action complies with R3: single primary action, no teleporting, no glitch loops
 - [ ] Physics plausible: no floating, no clipping, fabric/hair dynamics natural
-- [ ] Last frame usable: final frame is an action landing point, no motion blur, usable as next shot's first frame
+- [ ] Landing state correct: the shot ends on its designed end-frame state (keyframe-pair mode) / final frame is an action landing point, no motion blur, usable as next shot's first frame (tail-frame mode)
 - [ ] Lip sync roughly matches (strong lip-sync scenes use post-dubbing)
 - [ ] Platform safety: no out-of-bounds content, no copyright marks, no real trademarks, combat scenes have violence de-escalation sentences
 
 ### 5.3 Full-episode continuous-watch QC (at wrap)
 
 - [ ] Watch all shots continuously: no color/light/position jumps at connections
+- [ ] Keyframe-pair seams (if PATH A): shot N's end frame ≈ shot N+1's first frame by design; any seam mismatch flagged and regenerated
 - [ ] Emotional curve matches the script line-end labels; hook distribution at least 1 per 3 shots
 - [ ] Full-episode character consistency spot check: randomly compare 3 shots against the makeup image
 - [ ] Dialogue relationship board aligned: shot-list shots map one-to-one with the 6 cells of assets/dialogue-board-card
