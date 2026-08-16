@@ -1,92 +1,83 @@
-# 复合资产卡 · <场景+角色+道具+氛围名>（编号 SA-##）
+# Composite Asset Card — <Scene + Character + Prop + Atmosphere / 场景+角色+道具+氛围>（编号 SA-##）
 
-> 一图覆盖**角色 + 场景 + 道具 + 氛围**四种信息。最适合关键帧插入的高效模式——比分离的角色卡/场景卡/道具卡复用率更高，下游所有镜头都能共享同一图。
+> One image carries FOUR kinds of information at once: **character + scene + prop + atmosphere**. The most efficient mode for keyframe inserts — a far higher reuse rate than separate character / scene / prop cards, because every downstream shot can share the same single image.
 >
-> **何时用**：新角色在新场景首次登场（特别是玄幻 / 都市 / 校园），且该角色与场景有强关联（修炼场所/工位/居所/教室）。
+> **When to use**: a new character's first appearance in a new scene（especially xianxia / urban / campus genres）, when the character and the scene are strongly tied（cultivation site / workstation / residence / classroom）.
 >
-> 配套：单角色多场景用 `character-card.md`；纯场景无人用 `scene-card.md`；关键道具用 `prop-card.md`。
+> Companion cards: single character across multiple scenes → `character-card.md`; pure empty scene → `scene-card.md`; key props → `prop-card.md`.
 
-## 1. 一图职责（参照 image-prompt-engine §二"一图一职"原则）
+## 1. One-Image Mandate（per image-prompt-engine §二 — "one image, one duty"）/ 一图职责
 
-复合资产图承担下列四重职责，**逐项排他声明**：
+The composite asset image takes on the following FOUR duties — declare each one exclusively:
 
-- **角色身份**：脸/发/服装（替代单角色定妆图）
-- **环境结构**：室内空间/室外景物的"骨架"（替代场景定场图）
-- **核心道具**：场景中可见的关键道具（替代道具定场帧）
-- **氛围光影**：光源方向/色调/胶片质感（替代 TONE 段）
+- **Character identity / 角色身份**: face / hair / outfit（replaces the single-character look image）
+- **Environment structure / 环境结构**: the "skeleton" of the interior / exterior（replaces the scene establishing image）
+- **Core prop / 核心道具**: the key props visible in the scene（replaces the prop establishing frame）
+- **Atmosphere & light / 氛围光影**: light direction / palette / film texture（replaces the TONE paragraph）
 
-**不在本图管的维度**（必须明示排他）：
-- 不提供具体机位与构图（机位由各镜分镜决定）
-- 不提供具体动作（动作由各镜分镜决定）
-- 不提供具体台词（台词由剧本决定）
+**Dimensions this image does NOT manage**（must be declared as exclusive）:
+- No specific camera position or composition（each shot's camera is decided in the shot list）
+- No specific action（each shot's action is decided in the shot list）
+- No specific dialogue（dialogue is decided by the script）
 
-## 2. 画面规格
+## 2. Image Specs / 画面规格
+- **Aspect ratio / 画幅**: matches the project's main ratio（9:16 / 16:9）
+- **Composition / 构图**: subject centered or rule-of-thirds, keep a 10% safe-margin around the frame edge
+- **Shot size / 景别**: full body or medium shot（NEVER close-up — a close-up loses the scene information）
+- **Camera angle / 机位**: eye level or a slight low angle（avoid high angle — it destroys body proportions）
+- **Focal feel / 焦段感**: 50mm（standard — no wide-angle distortion）
 
-- **画幅**：与项目主画幅一致（9:16 / 16:9）
-- **构图**：人物居中或三分法，画面留 10% 边距安全区
-- **景别**：全身或中近景（不可切到特写——特写丢失场景信息）
-- **机位**：平视或微仰拍（避免俯拍，俯拍丢失身材比例）
-- **焦段感**：50mm 感（标准，不要广角畸变）
-
-## 3. 外观锚点（一张图锁 4 维度）
-
-| 维度 | 一句话锚点 |
+## 3. Appearance Anchor（one image locks 4 dimensions）/ 外观锚点
+| Dimension / 维度 | One-Sentence Anchor / 一句话锚点 |
 |---|---|
-| 角色 | <脸型/五官/发型/服装/配饰，逐字复述 character-card 的"外观锚点"段> |
-| 场景 | <一句话空间结构 + 陈设清单，逐字复述 scene-card 的"环境锚点"段> |
-| 道具 | <场景中可见的关键道具：形态命门 + 颜色 HEX> |
-| 氛围 | <光源方向 + 色温 + 色调 + 电影感签名块五件套> |
+| Character / 角色 | <face shape / features / hairstyle / outfit / accessories — verbatim reuse of the character-card's "Appearance Anchor" section> |
+| Scene / 场景 | <one-sentence spatial structure + set-dressing — verbatim reuse of the scene-card's "Environment Anchor" section> |
+| Prop / 道具 | <key props visible in the scene: form fatality + color HEX> |
+| Atmosphere / 氛围 | <light direction + color temperature + palette + 5-piece cinematic signature block> |
 
-## 4. 提示词结构（按 image-prompt-engine §三公式）
-
+## 4. Prompt Structure（per the image-prompt-engine §三 formula）/ 提示词结构
 ```
-【参考图片】
-（无——本图自身就是产物）
+[REFERENCE IMAGES]
+(none — this image IS the final product)
 
-【PROMPT 正文】
-<人物外观锚点逐字复述>，<主体姿态：一手持 X、另一手放 Y，目视前方/略偏移>；
-<场景空间结构 + 陈设锚点>，<核心道具形态锁 + 颜色 HEX>；
-<氛围光影四件套：光从某方向 + 半脸光 + 高光点 + 大光圈虚化>；
-<电影感签名块五件套：构图 + 色板 + DP + 胶片 + 反 AI 味封口>；
-<三处复写放最后>。
+[PROMPT BODY]
+<character appearance anchor, verbatim>, <subject pose: one hand holding X, the other at Y, looking forward / slightly off-camera>;
+<scene spatial structure + set-dressing anchor>, <core-prop form lock + color HEX>;
+<atmosphere & light, 4-piece set: light from X direction + half-face light + highlight point + wide-aperture bokeh>;
+<5-piece cinematic signature block: composition school + palette + DP + film stock + anti-AI seal>;
+<three-location rewrites placed LAST>.
 
-【CONSTRAINTS】
-- 角色身份与 character-card 锚点完全一致
-- 场景结构与 scene-card 锚点完全一致
-- 道具形态与 prop-card 锚点完全一致
-- 单一视觉锚点（人物本身）
+[CONSTRAINTS]
+- Character identity exactly matches the character-card anchors
+- Scene structure exactly matches the scene-card anchors
+- Prop form exactly matches the prop-card anchors
+- Single visual anchor (the character itself)
 
-【AVOID】
-未分配的维度（如具体机位、动作、台词）全部排除；
-题材级负向 + 通用反 AI 味（载入 image-prompt-engine §十四）。
+[AVOID]
+Unassigned dimensions (e.g. specific camera, action, dialogue) all excluded;
+genre-level negatives + shared anti-AI flavor（loaded from image-prompt-engine §十四）.
 ```
 
-## 5. 实战用法
+## 5. Practical Use / 实战用法
+The composite asset image serves as the **input first frame** for:
+- The shot where a new character first appears in a new scene（keyframe insert · new character）
+- A "visual continuity baseline" reused across many shots / episodes of the same scene（replaces the two-input combo of single-character look + scene establishing image）
+- The "visual anchor" when a story-critical prop debuts（replaces the standalone prop establishing frame）
 
-复合资产图作为以下情形的**输入首帧**：
-
-- 新角色在新场景首次登场的那镜（关键帧插入·新角色）
-- 同场景多集/多镜的"画面延续基准"（替代单角色定妆图+场景定场图双输入）
-- 剧情关键道具登场的"画面锚点"（替代单道具定场帧）
-
-## 6. 与分离卡片的关系
-
-| 场景 | 推荐卡 |
+## 6. Relationship to the Separate Cards / 与分离卡片的关系
+| Situation / 场景 | Recommended Card / 推荐卡 |
 |---|---|
-| 角色有 3+ 场景（如主角/全剧视角） | character-card.md（多张场景光效版） |
-| 角色只在一个场景 | **本卡（SA）** |
-| 场景无具名角色（纯空镜） | scene-card.md |
-| 关键道具单独特写需要 | prop-card.md |
-| 多人同框对话戏 | character-card + dialogue-board-card.md |
+| Character appears in 3+ scenes（e.g. protagonist / the show's POV） | character-card.md（multiple lighting versions） |
+| Character appears in only ONE scene | **this card（SA）** |
+| Scene with no named character（pure empty shot） | scene-card.md |
+| Key prop needs a standalone close-up | prop-card.md |
+| Multi-character dialogue in one frame | character-card + dialogue-board-card.md |
 
-## 7. 一实战示例（说明用法，非交付）
-
-> 示例：玄幻《丹引》第一集暖阁内室，虞晚首次登场——虞晚（红衣金饰半褪）斜倚锦榻，榻上血丹在烛光下泛红，身后屏风镂空，窗外月光入画。这张图直接替代"虞晚定妆图 + 暖阁定场图 + 血丹定场帧"三张的合并版。
+## 7. Worked Example（illustrates usage — not a deliverable）/ 一实战示例
+> Example: xianxia drama《丹引》episode 1, the warm inner chamber; 虞晚 appears for the first time — 虞晚（red robe, gold ornaments half-removed）leans on a brocade couch, the blood elixir pearl on the couch glowing red in the candlelight, the carved-open screen behind her, moonlight entering through the window. This ONE image replaces the merged version of "虞晚 look image + 暖阁 establishing image + 血丹 establishing frame" — three images compressed into one.
 >
-> 该图在阶段 4 被引入：第 1 镜开场（关键帧插入·新角色）+ 第 3 镜入局（关键帧插入·新道具——血丹首次特写 = 虞晚手中的丹珠）可共用此图作为首帧。
+> The image is introduced in Phase 4: shot 1 opening（keyframe insert · new character）+ shot 3 the game begins（keyframe insert · new prop — the pearl's first close-up, the elixir in 虞晚's hand）can both reuse this image as their first frame.
 
-## 8. 与 references/threading 校验
-
-过闸2 时除逐角色、逐场景、逐道具核对外，新增一项：
-
-- [ ] 复合资产图过闸后，每条提示词中"角色+场景+道具"三段全部逐字复述该图锚点，不允许链上各自漂移
+## 8. Cross-Check with references/threading / 与 references/threading 校验
+At gate 2 (过闸2), on top of the per-character / per-scene / per-prop checks, add one more item:
+- [ ] After the composite image passes the gate, every prompt's "character + scene + prop" segments must ALL reuse this image's anchors verbatim — no drifting from link to link along the chain.

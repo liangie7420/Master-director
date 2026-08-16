@@ -1,176 +1,189 @@
 ---
 name: manju-director
-description: "100% 原创的 AI 漫剧/短剧导演技能：把一段原文或主题，转化为可投喂视频模型（Seedance 即梦 / 可灵 Kling / 海螺 Hailuo）逐镜头产出的整套生产管线。核心机制：尾帧承接保证画面连贯、角色卡/场景卡/道具卡保证人物与场景一致、新角色/新道具关键帧插入、动作与表情描写细致到指尖和眼神。当用户提到漫剧、AI 短剧、短剧剧本、分镜脚本、分镜表、逐镜提示词、文生视频剧本、图生视频、尾帧衔接、首帧承接、角色一致性、动态漫、Seedance、可灵、海螺等时使用本技能。负责一整集/多集连续叙事的生产，不是单个镜头的提示词。"
+description: "A 100% original AI comic-drama / short-drama directing skill. It converts a source text or theme into a complete shot-by-shot production package that can be fed directly to video models (Seedance / Jimeng, Kling, Hailuo). Core mechanisms: last-frame continuation and video-extension chaining guarantee visual continuity; character/scene/prop asset cards lock consistency; keyframe insertion safely introduces new elements; action and expression descriptions are detailed down to fingertips and eye movement. Use this skill whenever the user mentions comic drama, AI short drama, drama script, storyboard script, storyboard table, shot-by-shot prompts, text-to-video scripts, image-to-video, last-frame continuation, video extension, first-frame continuation, character consistency, dynamic comics, Seedance, Kling, or Hailuo. Responsible for producing a full episode / multi-episode continuous narrative — NOT single-shot prompts."
 agent_created: true
 ---
 
-# 漫剧导演 · Manju Director
+# Manju Director (漫剧导演)
 
-把"一段原文 / 一个主题"变成"一整套可直接投喂视频模型的逐镜生产包"：标准分镜剧本 → 资产卡 → 分镜表 → 逐镜提示词（首帧图 + 视频）→ 尾帧衔接执行 → 质检。
+Converts "a piece of source text / a theme" into "a complete shot-by-shot production package ready to feed to video models": Standard storyboard script → Asset cards → Shot list → Per-shot prompts (first-frame image + video) → Continuity execution → Quality check.
 
-> **原创声明**：本技能产出的剧本、角色、台词、提示词全部为原创内容，不引用任何现存作品的名称、角色或情节。
+> **Originality Declaration**: All scripts, characters, dialogue, and prompts produced by this skill are 100% original. It never references the names, characters, or plot elements of any existing work. User-provided source material is adapted within its licensed scope.
 
-**核心哲学：先导演思维，再工程思维。** 一切提示词只是导演决策的书面形式；一切一致性机制只是为了让模型少抽卡、用户少花钱。
-
----
-
-## 三大一致性机制（本技能的骨架，全流程贯穿）
-
-1. **尾帧承接（画面连贯）**：上一镜头成片的最后一帧，提取后作为下一镜头的首帧输入。镜头 N 的结束画面 = 镜头 N+1 的起始画面，空间、光影、姿态无缝延续。默认衔接方式，跳切除外。
-2. **资产卡锁定（人物/场景一致）**：每个角色、场景、关键道具建立一张卡（外观锚点 + 形态命门 + 参考图编号），定妆参考图生成后**冻结**，此后所有提示词复述锚点并引用同一参考图，禁止凭记忆重写外观。
-3. **关键帧插入（新元素安全登场）**：新角色、新道具、重大状态变化（换装/负伤/形态切换）第一次出现时，**不得**直接塞进叙事镜头；先单独产出一帧"定妆关键帧"（角色→半身或全身定妆；道具→特写定场），冻结后作为该镜头的首帧/参考图，再进叙事。
+**Core Philosophy: Directing first, engineering second.** Every prompt is merely the written form of a directing decision; every consistency mechanism exists to make the model pull fewer cards and make the user spend less money.
 
 ---
 
-## 铁律（R1–R8，全流程不可违反）
+## The Four Consistency Mechanisms (the skeleton of this skill, running through the entire workflow)
 
-- **[R1] 细节密度**：剧本与提示词中的动作、表情描写必须具体到身体部位（手指、手腕、下颌线、喉结、睫毛、呼吸节奏、衣料动态）。"她很难过"是废稿，"她指尖攥紧信纸边缘，指节泛白，喉头动了一下没出声"才是成稿。
-- **[R2] 确认门**：标注【闸】的节点必须把产出给用户过目，等明确确认后才推进。五道闸：闸1 大纲与资产表 → 闸2 定妆参考图 → 闸3 分镜表 → 闸4 首镜提示词 → 闸5 首镜成片验收。后续镜头走快速通道（见阶段5）。
-- **[R3] 一次一个主动作**：单个视频镜头（5–10 秒）只压一个主动作 + 至多两个微表情变化。多动作叠加是视频模型肢体崩坏的第一成因。
-- **[R4] 锚点复述**：每条提示词中，登场角色的外观锚点、场景的色调锚点必须**逐字复述**资产卡原文，不得改写、不得省略后凭印象补。
-- **[R5] 资产收敛链单向**：色卡/基调 → 定妆资产 → 分镜 → 提示词 → 成片 → 尾帧。下游永远引用上游已冻结的产物；上游修改 = 下游全部回炉，禁止倒着跑。
-- **[R6] 原创红线**：所有剧本、角色名、设定、台词必须原创。不得引用任何真实影视/动漫/游戏/小说作品的名称、角色、台词、标志性设定。用户提供的原文按其授权范围改编。
-- **[R7] 串文隔离**：不同题材的创作决策（调性、配色、镜头偏好）只从对应题材文件读取，一次创作只加载一个题材文件，禁止跨题材混搭。
-- **[R8] 剧本归文件**：标准分镜剧本、分镜表等长文档写入项目文件（便于复用与迭代）；喂给模型的提示词在对话中以代码块输出（便于直接复制）。
+1. **Last-Frame Continuation (visual coherence)** — The final frame of the previous shot's output is extracted and used as the first-frame input of the next shot. Shot N's ending frame = Shot N+1's starting frame; space, lighting, and pose continue seamlessly. This is the default connection method, except for jump cuts.
+
+2. **Video-Extension Chaining (seamless continuation, preferred on Seedance 2.0)** — When the target model supports video extension, the entire previous shot's output is uploaded as `@视频1` (or `@video1`), and the next shot's prompt opens with "extend @视频1 by N seconds". Visual/lighting/action continuity is inferred by the model from the whole video segment, which is smoother than first-frame images. Used for both inter-shot and inter-episode connections (see continuity-playbook §1.5).
+
+3. **Asset-Card Locking (character/scene consistency)** — Every character, scene, and key prop gets a card (appearance anchors + form weakness + reference-image number). Once the makeup reference image is generated, it is **frozen**; all subsequent prompts must restate the anchors and reference the same image. Rewriting appearance from memory is forbidden.
+
+4. **Keyframe Insertion (safe entry of new elements)** — When a new character, new prop, or major state change (costume change / injury / form switch) appears for the first time, it must **NOT** be stuffed directly into a narrative shot. First produce a separate "makeup keyframe" (character → half-body or full-body makeup; prop → close-up establishing shot), freeze it, then use it as that shot's first-frame/reference before entering the narrative.
 
 ---
 
-## 快速路由（先读哪份文件）
+## Iron Rules (R1–R8, non-negotiable across the whole workflow)
 
-| 用户意图 | 先读 |
+- **[R1] Detail Density** — Action and expression descriptions in scripts and prompts must be specific to body parts (fingers, wrists, jawline, Adam's apple, eyelashes, breathing rhythm, fabric dynamics). "She was sad" is rejected draft; "Her fingertips clenched the edge of the letter, knuckles turning white, throat moved once without a sound" is the finished version.
+- **[R2] Confirmation Gates** — Any node marked 【闸】(Gate) must present its output to the user and wait for explicit confirmation before proceeding. Five gates: Gate 1 outline & asset table → Gate 2 makeup reference images → Gate 3 shot list → Gate 4 first-shot prompts → Gate 5 first-shot output acceptance. Subsequent shots run on the fast track (see Phase 5).
+- **[R3] One Primary Action per Shot** — A single video shot (5–10s) carries exactly ONE primary action plus at most two micro-expression changes. Stacking multiple actions is the #1 cause of model limb breakdown.
+- **[R4] Anchor Restatement** — In every prompt, the appearance anchors of appearing characters and the color anchors of scenes must be restated **verbatim** from the asset card original text. No paraphrasing, no omission followed by improvised completion.
+- **[R5] One-Way Asset Convergence Chain** — Color palette/tone → makeup assets → storyboard → prompts → output → last frame. Downstream always references upstream frozen outputs; modifying upstream = re-forging all downstream. Running backward is forbidden.
+- **[R6] Originality Red Line** — All scripts, character names, settings, and dialogue must be original. No referencing the names, characters, dialogue, or signature settings of any real film/anime/game/novel. User-provided source text is adapted within its authorized scope.
+- **[R7] Genre Isolation** — Creative decisions for different genres (tone, color palette, shot preferences) are read ONLY from the corresponding genre file. One creation session loads exactly ONE genre file. Cross-genre mixing is forbidden.
+- **[R8] Scripts Belong in Files** — Long documents such as the standard storyboard script and shot list are written into project files (for reuse and iteration); prompts fed to models are output in conversation as code blocks (for direct copying).
+
+---
+
+## Quick Routing (which file to read first)
+
+| User Intent | Read First |
 |---|---|
-| 给主题/原文，要产一整集漫剧 | 按工作流阶段 0→6 顺序走，先读 `references/script-format.md` |
-| 指定了题材（科幻/玄幻/都市/言情/校园） | `references/genres/<题材>.md`（只读对应一份，见 R7） |
-| 指定了目标模型（Seedance/可灵/海螺） | `references/model-adapters/<模型>.md` |
-| 问镜头怎么设计（景别/运镜/焦段/节奏） | `references/shot-language.md` + `references/lighting-styles.md` |
-| 写首帧图提示词 | `references/image-prompt-engine.md`（排版/一图一职/三处复写/签名块五件套/双寄存器） |
-| 写视频提示词 | `references/video-prompt-framework.md` + 模型适配文件 |
-| 画面不连贯/人物串脸/新角色登场 | `references/continuity-playbook.md` |
-| 翻车要轻改 / 重刷 / 升 2K | `references/continuity-playbook.md` 第 4 章矩阵 + 双寄存器决策 |
-| 对话戏要打关系板 | `assets/dialogue-board-card.md`（6 格 2×3 锁 180° 轴线） |
-| 复合资产图（角色+场景+道具一图） | `assets/scene-actor-card.md` |
-| 要填模板（角色卡/场景卡/分镜表） | `assets/` 下对应模板 |
+| Give a theme/source text, want a full episode of comic drama | Follow workflow Phase 0→6 in order; first read `references/script-format.md` |
+| Specified genre (sci-fi / xuanhuan / urban / romance / campus) | `references/genres/<genre>.md` (read ONLY that one, see R7) |
+| Specified target model (Seedance / Kling / Hailuo) | `references/model-adapters/<model>.md` |
+| Ask how to design a shot (shot scale / camera move / focal length / pacing) | `references/shot-language.md` + `references/lighting-styles.md` |
+| Write a first-frame image prompt | `references/image-prompt-engine.md` (5 need-anchoring questions / 7-layer frame decomposition / one-image-one-job / three-place repetition / five-piece signature block / lighting-sculpting formula / focal-length lookup / dual register) |
+| Write a video prompt | `references/video-prompt-framework.md` (timestamp storyboarding / @reference system / 2-second hook / action-state flow / body linkage) + model adapter file |
+| Seamless shot/episode connection | `references/continuity-playbook.md` §1.5 video-extension chaining (`@视频1` extension) + §2 last-frame continuation |
+| Broken continuity / face swapping / new character entry | `references/continuity-playbook.md` |
+| Failed output: light edit / heavy rerun / upscale to 2K | `references/continuity-playbook.md` Chapter 4 matrix + dual-register decision |
+| Dialogue scene needs a relationship board | `assets/dialogue-board-card.md` (6-cell 2×3 locking the 180° axis) |
+| Composite asset image (character+scene+prop in one) | `assets/scene-actor-card.md` |
+| Fill in a template (character card / scene card / shot list) | corresponding template under `assets/` |
 
 ---
 
-## 工作流（阶段 0 → 6）
+## Workflow (Phase 0 → 6)
 
-### 阶段 0 · 立项与全局参数（对话完成，不写文件）
+### Phase 0 · Project Setup & Global Parameters (done in conversation, no file written)
 
-收集并确认四项全局参数，缺什么问什么（一次性问完）：
-1. **题材**：科幻 / 玄幻 / 都市 / 言情 / 校园 / 其他（其他 → 就近参照五大题材其一，并向用户说明参照了谁）。
-2. **目标模型**：Seedance / 可灵 / 海螺 / 未定（未定 → 默认 Seedance 结构输出，提示词结构对三模型做兼容层）。
-3. **画幅与单集时长**：9:16 竖屏（短剧主流）或 16:9 横屏；单集默认 60–90 秒。
-4. **画风**：一句话关键词（如"国风水墨漫""赛璐璐动画感""真人感漫改"），阶段 2 扩展为风格锚点块。
+Collect and confirm four global parameters. Ask for anything missing (ask everything in ONE round):
 
-确认后：**加载对应题材文件**（references/genres/）与**模型适配文件**（references/model-adapters/）。本阶段不产出剧本。
+1. **Genre**: Sci-fi / Xuanhuan / Urban / Romance / Campus / Other. (If "Other", reference the nearest of the five genres and tell the user which one was used.)
+2. **Target model**: Seedance / Kling / Hailuo / Undecided. (If undecided, default to Seedance structure output; the prompt structure includes a compatibility layer for all three models.)
+3. **Aspect ratio & episode duration**: 9:16 vertical (mainstream for short drama) or 16:9 horizontal; single episode defaults to 60–90 seconds.
+4. **Art style**: one-line keywords (e.g., "Chinese ink-wash comic style", "cel-shaded anime feel", "live-action-style comic adaptation"). Expanded into a style-anchor block in Phase 2.
 
-### 阶段 1 · 剧本工程【闸1】
+After confirmation: **load the corresponding genre file** (`references/genres/`) and **model adapter file** (`references/model-adapters/`). This phase produces no script.
 
-> 读取 `references/script-format.md`（格式规范 + 原创示例），按需读取题材文件的"情绪曲线范式"与"表演与台词风格"。
+### Phase 1 · Script Engineering 【Gate 1】
 
-输入二选一：
-- **用户给原文**（小说片段/已有剧本）→ 保留主干情节与金句，按标准格式重排为分镜剧本；原文超出一集体量时，按"钩子在尾"原则切成多集，每集结尾留悬念。
-- **用户只给主题** → 先产三行式大纲（一句话设定 / 三拍情绪曲线 / 结尾钩子），用户确认后扩写为标准分镜剧本。
+> Read `references/script-format.md` (format spec + original example). Read the genre file's "emotional-curve patterns" and "performance & dialogue style" sections as needed.
 
-标准分镜剧本格式（详见 script-format.md，严格执行）：
-- 头部：画幅 / 总时长 / 场景数 / 情绪曲线一句话。
-- 每场：场景头（环境全要素描写：光线、色调、空间层次、环境声）。
-- 每镜：`**[MM:SS.S – MM:SS.S] 小节名**` + `[景别|运镜|画面要点]` + 极尽详细的动作与微表情正文（R1）+ 台词（`> **角色**：（语气/潜台词）台词`）+ 行尾 `[情绪：X | 钩子：Y | 衔接：Z]`。
-- 衔接 Z 四值：`尾帧承接`（默认）/ `关键帧插入·新角色` / `关键帧插入·新道具` / `跳切`。
-- 单镜时长 4–10 秒（模型单段上限内）；全镜时长之和 = 总时长。
+Input is one of two:
 
-产出剧本后做**资产扫描**：列出全剧角色表 / 场景表 / 道具表（新登场位置标注哪一镜触发关键帧插入），连同剧本一起交用户确认 → **闸1**。
+- **User provides source text** (novel excerpt / existing script) → Keep the main plot and golden lines, rearrange into a storyboard script per the standard format; if the source exceeds one episode's volume, split into multiple episodes by the "hook at the end" principle, each episode ending with suspense.
+- **User provides only a theme** → First produce a three-line outline (one-sentence setting / three-beat emotional curve / ending hook), get user confirmation, then expand into a standard storyboard script.
 
-### 阶段 2 · 资产卡与定妆【闸2】
+Standard storyboard script format (see script-format.md, strictly enforced):
 
-> 模板：`assets/episode-bible.md`（项目档案）、`assets/character-card.md` / `assets/scene-card.md` / `assets/prop-card.md`（分别建卡）、`assets/scene-actor-card.md`（**复合资产图**：一图覆盖角色+场景+道具+氛围，最适合关键帧插入的高效模式）。
+- Header: aspect ratio / total duration / number of scenes / one-line emotional curve.
+- Each scene: scene header (full environment description: light, color tone, spatial layers, ambient sound).
+- Each shot: `**[MM:SS.S – MM:SS.S] Beat name**` + `[shot scale | camera move | frame key points]` + extremely detailed action & micro-expression body text (R1) + dialogue (`> **Character**: (tone/subtext) line`) + line-end `[Emotion: X | Hook: Y | Connection: Z]`.
+- Connection Z four values: `last-frame continuation` (default) / `keyframe insert · new character` / `keyframe insert · new prop` / `jump cut`.
+- Single shot duration 4–10 seconds (within model single-segment limits); sum of all shot durations = total duration.
 
-按资产收敛链顺序执行（R5）：
-1. **项目档案**：填 episode-bible——基调、配色铁律（从题材文件取 HEX 并锁死，含 6 级强度选择）、画风锚点块（4–6 组风格描述）、**电影感签名块五件套**（构图流派 + hex 色板 + DP 署名 + 胶片型号 + 反 AI 味封口，五件必须自洽）、**删词调节器**（清爽调 vs 压抑调分别删哪些词）、通用负向库（从题材文件"翻车点"章节取）。
-2. **角色卡**：每个角色一张——外观锚点（脸/发型/服装一句话定死）、形态命门（最易被画错的特征）、音色描述（供台词配音与提示词）、定妆提示词（加布光法+眼神光+85mm 焦段感）。
-3. **场景卡**：每场一张——空间结构锚点、光源方向、色调、陈设清单。多角度定场图按需产（同一空间多个机位版）。
-4. **道具卡**：仅关键道具（剧情锚点物），标形态命门（产品布光方案）。
-5. **复合资产图**（按需）：**新角色在新场景首次登场 + 该角色与场景强关联**时，一张图替代"角色定妆 + 场景定场 + 道具定场"三张（见 `scene-actor-card.md`）。
-6. **定妆参考图生成**：用图像生成工具按角色卡逐张产出定妆图（单人、中性光、纯色或本场景背景虚化），产出后交用户确认 → **闸2**。冻结后的参考图编号写回卡片 `ref:` 字段。场景同理产出场景定场图。所有提示词写法按 `image-prompt-engine.md` 严格执行（**一图一职 + 排他声明 + 三处复写 + 签名块五件套 + 光影四件套**）。
+After producing the script, run an **asset scan**: list the full-episode character table / scene table / prop table (mark at which shot each new element triggers a keyframe insert), present together with the script to the user for confirmation → **Gate 1**.
 
-闸2 未过，禁止进入阶段 3 的提示词撰写（R5）。
+### Phase 2 · Asset Cards & Makeup 【Gate 2】
 
-### 阶段 3 · 分镜表【闸3】
+> Templates: `assets/episode-bible.md` (project archive), `assets/character-card.md` / `assets/scene-card.md` / `assets/prop-card.md` (one card each), `assets/scene-actor-card.md` (**composite asset image**: one image covering character+scene+prop+atmosphere, the most efficient mode for keyframe insertion).
 
-> 模板：`assets/shotlist-template.md`；镜头设计语言查 `references/shot-language.md`（含起幅/落幅、单镜节奏四段式、字符级彩字、远距离对话视线锁定、角色关系驱动姿态）+ `references/lighting-styles.md`（布光/焦段/时段光影/DP 调性表）；题材镜头偏好查题材文件第 3 章。
+Execute in asset-convergence-chain order (R5):
 
-**对话戏前置**：**任何 ≥2 人对话戏在写分镜表前先出对话关系板**（`assets/dialogue-board-card.md`），6 格 2×3 锁定 180° 轴线 + 视线相接 + 排他声明。关系板过闸后方可写分镜表。
+1. **Project archive**: fill episode-bible — tone, color-palette iron rules (take HEX values from the genre file and lock them, including the 6-level intensity selection), style-anchor block (4–6 style descriptions), **cinematic five-piece signature block** (composition school + hex palette + DP credit + film stock + anti-AI-quality seal; all five must be self-consistent), **word-deletion regulator** (which words to delete for clean/bright vs dark/oppressive tones), general negative library (from the genre file's "failure points" chapter).
+2. **Character card**: one per character — appearance anchors (face/hairstyle/clothing locked in one sentence), form weakness (the feature most likely to be drawn wrong), voice description (for dialogue dubbing and prompts), makeup prompt (add lighting method + catchlight + 85mm focal-length feel).
+3. **Scene card**: one per scene — spatial-structure anchors, light-source direction, color tone, prop inventory. Multi-angle establishing images as needed (multiple camera-position versions of the same space).
+4. **Prop card**: only key props (plot anchor objects), mark form weakness (product lighting plan).
+5. **Composite asset image** (as needed): when **a new character first appears in a new scene AND the character is strongly tied to that scene**, one image replaces the three separate "character makeup + scene establishing + prop establishing" images (see `scene-actor-card.md`).
+6. **Makeup reference image generation**: use an image-generation tool to produce makeup images one by one per the character card (single person, neutral light, solid-color or blurred background of the actual scene). Present output to user for confirmation → **Gate 2**. After freezing, write the reference-image number back into the card's `ref:` field. Produce scene establishing images the same way. All prompt writing strictly follows `image-prompt-engine.md` (**one-image-one-job + exclusive declaration + three-place repetition + five-piece signature block + lighting sculpting**).
 
-把剧本逐镜转成生产用分镜表，每镜一行，列：镜号 / 时长 / 景别 / 运镜 / 画面主体 / 主动作（唯一，R3）/ 微表情 / 台词 / 情绪 / 衔接方式 / 首帧来源（尾帧=上镜编号 / 关键帧=定妆图/复合资产图编号 / 新建=定场图）/ 起幅→落幅 / 风险标记（⚠ 多人同框、手部特写、文字入画、大幅度运动、远距离对话、糊/噪点）。
+Gate 2 not passed → entering Phase 3 prompt writing is forbidden (R5).
 
-分镜表交用户确认 → **闸3**。重点请用户核对：衔接方式标注是否正确、新角色/道具是否都安排了关键帧、有没有违反 R3 的镜头、落幅是否都是动作完成态（供尾帧提取）、对话戏关系板是否对齐。
+### Phase 3 · Shot List 【Gate 3】
 
-### 阶段 4 · 逐镜提示词【闸4 仅首镜】
+> Template: `assets/shotlist-template.md`; shot design language from `references/shot-language.md` (incl. opening frame/closing frame, single-shot four-beat rhythm, character-level colored text, long-distance dialogue eye-line lock, character-relationship-driven pose) + `references/lighting-styles.md` (lighting/focal length/time-of-day light/DP tone table); genre shot preferences from the genre file Chapter 3.
 
-> 写首帧图提示词读 `references/image-prompt-engine.md`（**一图一职 + 排他声明 + 三处复写 + 签名块五件套 + 光影四件套 + 双寄存器 + 字数 ≤500词**）；写视频提示词读 `references/video-prompt-framework.md`（通用骨架/单镜节奏四段式/字符预算）+ `references/model-adapters/<目标模型>.md`（该模型结构公式）。
+**Dialogue pre-requirement**: **ANY ≥2-person dialogue scene must produce a dialogue relationship board FIRST** (`assets/dialogue-board-card.md`), 6-cell 2×3 locking the 180° axis + eye-line contact + exclusive declaration. The shot list may only be written after the relationship board passes its gate.
 
-每镜产出两个代码块：
-1. **首帧图提示词**（喂图像模型）：按 image-prompt-engine 结构公式——**主体行（R4 锚点复述 + 排他声明）+ 空间构图行（高度用构图关系，不用米数）+ 光影行（光影四件套，必含）+ 环境行 + 镜头行（焦段感）+ 签名块五件套 + CONSTRAINTS 段（核心约束复述）+ 负面末行**。衔接方式为"尾帧承接"的镜头，首帧图 = 上镜尾帧，此块标注"无需生成，使用镜 N 尾帧"。衔接方式为"关键帧插入"的镜头，首帧图 = 复合资产图/角色卡/场景卡/道具卡对应编号。
-2. **视频提示词**（喂视频模型）：按 video-prompt-framework 通用骨架组装——【参考图片】【核心规则】【视频风格】【镜头与叙事】（套用单镜节奏四段式：建立→发展→高潮→收尾，含起幅/落幅与台词音色，**对话戏超一臂距离必加视线锁定三件套**）【运动约束】【负面提示】（**对抗戏必加暴力降级句**）。结构按模型适配文件校准。
+Convert the script shot-by-shot into a production shot list, one line per shot, columns: shot # / duration / shot scale / camera move / frame subject / primary action (unique, R3) / micro-expression / dialogue / emotion / connection method / first-frame source (last-frame=previous shot # / keyframe=makeup or composite asset image # / new=establishing image) / opening→closing frame / risk flags (⚠ multiple people in frame, hand close-up, text in frame, large motion, long-distance dialogue, blur/noise).
 
-只先产**第 1 镜**的两个代码块 → **闸4**（用户确认提示词写法与细节密度），确认后批量产出全部分镜。
+Present the shot list to user for confirmation → **Gate 3**. Focus user review on: whether connection methods are marked correctly, whether new characters/props all have keyframes arranged, whether any shot violates R3, whether closing frames are all action-complete states (for last-frame extraction), whether dialogue relationship boards align.
 
-### 阶段 5 · 拍摄执行与尾帧衔接（逐镜循环）
+### Phase 4 · Per-Shot Prompts 【Gate 4 — first shot only】
 
-每镜循环：
-1. 用户拿首帧图 + 视频提示词去模型成片。
-2. 成片回传后，提取尾帧：`scripts/extract_last_frame.py <视频路径> -o <输出目录>`（封装 ffmpeg，自动命名 `shot_###_last.png`）。
-3. 尾帧作为下一镜首帧输入；下一镜提示词中标注"首帧 = 上镜尾帧，人物姿态/光影从此延续"。
-4. 快速通道质检：过 → 进下一镜；翻车 → 查 `references/continuity-playbook.md` 的"双寄存器决策"（**轻改一句话：把 X 改成 Y，除此之外不要做任何改动** → 重型重刷：同时改 ≥3 件事 / 换姿态 / 换机位 / 连续轻改后熔脸串身份 → 停手回阶段 2/4）。
+> Writing first-frame image prompts: read `references/image-prompt-engine.md` (**5 need-anchoring questions + 7-layer frame decomposition + one-image-one-job/exclusive declaration + three-place repetition + five-piece signature block + lighting-sculpting formula + focal-length lookup + dual register + word limit ≤500**). Writing video prompts: read `references/video-prompt-framework.md` (**camera-language lookup / shot-scale abbreviations + general skeleton + single-shot four-beat rhythm + action-state flow + body-linkage lookup + camera-movement realism + dialogue-performance control + sound & lighting baseline + imperfection events + ending aftertaste + character budget**) + `references/model-adapters/<target model>.md` (that model's structure formula).
 
-**关键帧插入执行**（衔接=关键帧插入的镜头）：优先使用**复合资产图**（场景+角色+道具一图，效率最高），否则按角色/场景/道具分别单独的定妆帧。详见 continuity-playbook 第 3 章。
+Each shot produces two code blocks:
 
-**跳切执行**：换场景/换时间的镜头不用尾帧承接，改用该场景定场图作首帧，并在提示词首句重建场景锚点。
+1. **First-frame image prompt** (fed to the image model): per the image-prompt-engine structure formula — **subject line (R4 anchor restatement + exclusive declaration) + spatial-composition line (height via compositional relationships, NOT meters) + lighting line (lighting-sculpting formula: direction/half-face/highlight points/wide aperture/contact shadow, MUST include) + environment line + camera line (focal length from lookup) + five-piece signature block + CONSTRAINTS section (core constraint restatement) + negative end line**. For shots connected by "last-frame continuation", the first-frame image = previous shot's last frame; this block is marked "no generation needed, use shot N's last frame". For shots connected by "keyframe insert", the first-frame image = the composite asset / character card / scene card / prop card number.
+2. **Video prompt** (fed to the video model): assembled per the video-prompt-framework general skeleton — 【reference images】【core rules】【video style】【camera & narrative】(apply the four-beat rhythm: establish→develop→climax→close, including opening/closing frame, **action-state flow**, **body linkage**, **dialogue-performance control** and line voice; **dialogue beyond arm's reach MUST add the eye-line-lock three-piece set**; **realistic/life-flow shots MUST add an imperfection event**)【motion constraints】【negative prompts】(**combat scenes MUST add the violence-de-escalation sentence**). Structure calibrated per the model adapter file.
 
-### 阶段 6 · 质检与抽卡控制
+Produce ONLY **Shot 1's** two code blocks first → **Gate 4** (user confirms prompt style and detail density), then batch-produce all remaining shots.
 
-每镜按 `references/continuity-playbook.md` 第 5 章质检清单核对：人物一致性（脸/发型/服装 vs 定妆图）、场景一致性（陈设/光源方向 vs 场景卡）、衔接质量（尾帧延续是否自然）、物理合理性、平台安全。
+### Phase 5 · Shooting Execution & Shot Connection (per-shot loop)
 
-抽卡控制原则（写进每次翻车建议）：
-- 先冻结能冻结的一切（定妆、色卡、首帧），把变量减到只剩"本镜动作"。
-- 翻车先改提示词结构（减动作、减同框人数、减运镜复杂度），别同词硬刷。
-- 同镜连刷上限 3 次；3 次不过 → 降级方案（拆镜/换景别/关键帧插入补叙），在分镜表标注变更。
+Per-shot loop:
+
+1. User takes the first-frame image/reference materials + video prompt to the model to produce the output.
+2. After the output returns, choose the path by connection method:
+   - **Video-extension chaining** (preferred when the model supports it): the whole output as `@视频1`; next shot opens with "extend @视频1 by N seconds" (no last-frame extraction needed; most stable continuity; see continuity-playbook §1.5).
+   - **Last-frame continuation**: extract the last frame `scripts/extract_last_frame.py <video path> -o <output dir>` (wraps ffmpeg, auto-names `shot_###_last.png`), use it as the next shot's first-frame input; the prompt notes "first frame = previous shot's last frame; character pose/lighting continue from here".
+3. Fast-track quality check: pass → next shot; fail → consult `references/continuity-playbook.md` "dual-register decision" (**light edit one sentence: change X to Y, don't touch anything else** → heavy rerun: change ≥3 things / change pose / change camera angle / continuous light edits causing face-melting and identity-swapping → stop, return to Phase 2/4).
+
+**Keyframe-insert execution** (shots connected by keyframe insert): prefer the **composite asset image** (scene+character+prop in one image, most efficient); otherwise separate makeup frames per character/scene/prop. See continuity-playbook Chapter 3.
+
+**Jump-cut execution**: shots that change scene/time do NOT use last-frame continuation; use that scene's establishing image as the first frame, and rebuild the scene anchors in the prompt's opening sentence.
+
+### Phase 6 · Quality Check & Card-Pull Control
+
+Each shot checked against the `references/continuity-playbook.md` Chapter 5 quality checklist: character consistency (face/hairstyle/clothing vs makeup image), scene consistency (props/light-source direction vs scene card), connection quality (whether last-frame continuation is natural), physical plausibility, platform safety.
+
+Card-pull control principles (written into every failure recommendation):
+
+- First freeze everything that can be frozen (makeup, color palette, first frame), reducing variables to only "this shot's action".
+- On failure, first change the prompt structure (fewer actions, fewer people in frame, simpler camera moves) — don't rerun the same words.
+- Max 3 reruns per shot; after 3 failures → downgrade plan (split shot / change shot scale / keyframe-insert supplementary narrative), and mark the change in the shot list.
 
 ---
 
-## 连续对话规则
+## Continuous-Conversation Rules
 
-- 全局参数（题材/模型/画幅/画风）一经确认全会话沿用；用户主动改才更新，改题材 → 重载题材文件并提示已冻结资产是否需要回炉（R5）。
-- 同一项目跨会话：所有卡片与分镜表已落盘在项目文件里，新会话先读项目文件恢复上下文，不报缺失。
-- 多集连产：每集独立走阶段 1–6；角色卡/场景卡全剧共用，新集只补新增资产；每集首镜衔接方式 = 上集尾镜的尾帧承接（连播）或跳切（独立成集）。
+- Global parameters (genre/model/aspect/art style) persist for the entire session once confirmed; update only when the user actively changes them. Genre change → reload the genre file and ask whether frozen assets need re-forging (R5).
+- Cross-session for the same project: all cards and the shot list are already saved in project files; new sessions first read the project files to restore context, no missing-reporting.
+- Multi-episode production: each episode independently runs Phases 1–6; character/scene cards are shared across the whole drama; new episodes only add new assets; each episode's first shot connects via the previous episode's last shot's last-frame continuation (serial) or jump cut (standalone episode).
 
-## 输出语言规则
+## Output Language Rules
 
-- 对话与剧本用简体中文；提示词默认中文（三模型均友好），模型适配文件注明某字段需英文时从其规定。
-- 提示词一律放代码块，首帧图提示词与视频提示词分置两个代码块，不合并。
+- Conversation and scripts use Simplified Chinese; prompts default to Chinese (all three models are friendly to it); when a model adapter file specifies that a field needs English, follow that file.
+- Prompts are always placed in code blocks; first-frame image prompts and video prompts go in SEPARATE code blocks, never merged.
 
-## 参考文件索引
+## Reference File Index
 
-| 文件 | 何时读取 |
+| File | When to Read |
 |---|---|
-| `references/script-format.md` | 阶段 1 必读：标准分镜剧本格式 + 原创示例 |
-| `references/shot-language.md` | 阶段 3 设计镜头时：景别/运镜/焦段/轴线/起幅落幅/节奏速查 |
-| `references/lighting-styles.md` | 阶段 2–4：布光法/焦段感/时段光影/产品布光/风格速配 |
-| `references/image-prompt-engine.md` | 阶段 4 写首帧图提示词必读：排版/负面末行/参考图纪律/迭代纪律 |
-| `references/video-prompt-framework.md` | 阶段 4 写视频提示词必读：通用骨架/单镜节奏四段式/字符预算 |
-| `references/continuity-playbook.md` | 阶段 5 必读：尾帧承接/关键帧插入/跳切 SOP + 翻车处理矩阵 + 质检清单 |
-| `references/genres/sci-fi.md` | 题材=科幻时（R7：只读这一份题材文件） |
-| `references/genres/xuanhuan.md` | 题材=玄幻/仙侠时 |
-| `references/genres/urban.md` | 题材=都市时 |
-| `references/genres/romance.md` | 题材=言情时 |
-| `references/genres/campus.md` | 题材=校园时 |
-| `references/model-adapters/seedance.md` | 目标模型=Seedance 即梦时（阶段 4 必读） |
-| `references/model-adapters/kling.md` | 目标模型=可灵时 |
-| `references/model-adapters/hailuo.md` | 目标模型=海螺时 |
-| `assets/episode-bible.md` | 阶段 2 填空：项目档案（基调/色卡 6 级强度/DP 签名块/删词调节器） |
-| `assets/character-card.md` / `scene-card.md` / `prop-card.md` | 阶段 2 填空：分离资产卡模板（定妆含布光/眼神光/焦段） |
-| `assets/scene-actor-card.md` | 阶段 2 填空：复合资产图（角色+场景+道具+氛围一图） |
-| `assets/dialogue-board-card.md` | 阶段 3 之前必出：对话关系板 6 格 2×3 锁 180° 轴线 |
-| `assets/shotlist-template.md` | 阶段 3 填空：分镜表模板（含起幅/落幅列） |
-| `scripts/extract_last_frame.py` | 阶段 5 执行：视频尾帧提取（ffmpeg 封装） |
+| `references/script-format.md` | Phase 1 required: standard storyboard script format + original example |
+| `references/shot-language.md` | Phase 3 shot design: shot scale/camera move/focal length/axis/opening-closing frame/rhythm lookup |
+| `references/lighting-styles.md` | Phases 2–4: lighting methods/focal-length feel/time-of-day light/product lighting/style quick-matching |
+| `references/image-prompt-engine.md` | Phase 4 writing first-frame image prompts required: 5 need-anchoring questions/7-layer decomposition/six-section/lighting-sculpting formula/focal-length lookup/reference-image discipline/iteration discipline |
+| `references/video-prompt-framework.md` | Phase 4 writing video prompts required: camera-language lookup/general skeleton/four-beat rhythm/action-state flow/body linkage/camera-movement realism/dialogue-performance control/sound-light baseline/imperfection events/@reference system/timestamp storyboarding/2-second hook/intent-vs-detail balance/character budget |
+| `references/continuity-playbook.md` | Phase 5 required: video-extension chaining/last-frame continuation/keyframe insert/jump-cut SOP + failure-handling matrix + quality checklist + continuation workflow |
+| `references/genres/sci-fi.md` | When genre=sci-fi (R7: read ONLY this genre file) |
+| `references/genres/xuanhuan.md` | When genre=xuanhuan/immortal-fantasy |
+| `references/genres/urban.md` | When genre=urban |
+| `references/genres/romance.md` | When genre=romance |
+| `references/genres/campus.md` | When genre=campus |
+| `references/model-adapters/seedance.md` | When target model=Seedance Jimeng (Phase 4 required) |
+| `references/model-adapters/kling.md` | When target model=Kling |
+| `references/model-adapters/hailuo.md` | When target model=Hailuo |
+| `assets/episode-bible.md` | Phase 2 fill-in: project archive (tone/6-level color intensity/DP signature block/word-deletion regulator) |
+| `assets/character-card.md` / `scene-card.md` / `prop-card.md` | Phase 2 fill-in: separate asset card templates (makeup incl. lighting/catchlight/focal length) |
+| `assets/scene-actor-card.md` | Phase 2 fill-in: composite asset image (character+scene+prop+atmosphere in one) |
+| `assets/dialogue-board-card.md` | Required before Phase 3: dialogue relationship board 6-cell 2×3 locking the 180° axis |
+| `assets/shotlist-template.md` | Phase 3 fill-in: shot list template (incl. opening/closing frame columns) |
+| `scripts/extract_last_frame.py` | Phase 5 execution: video last-frame extraction (ffmpeg wrapper) |

@@ -1,173 +1,173 @@
-# 标准分镜剧本格式规范（阶段 1 必读）
+# Standard Storyboard Script Format Spec (MUST READ in Phase 1)
 
-> 本格式是"剧本 → 分镜表 → 提示词"全链路的单一事实源。所有产物字段向后兼容：剧本里的每一镜，能无损映射成分镜表的一行、提示词的一段。
+> This format is the single source of truth for the entire "script → shot list → prompt" chain. All output fields are backward compatible: every shot in the script maps losslessly to one row of the shot list and one segment of the prompt.
 
 ---
 
-## 一、文档骨架
+## 1. Document Skeleton
 
 ```markdown
 ---
-# 《片名》第 N 集
-> **画幅**：9:16 竖屏 / 16:9 横屏 | **时长**：约 XX 秒 | **场景数**：N
-> **情绪曲线**：蓄力 → 拉锯 → 爬坡 → 翻转 → 收束（一句话，按题材文件第 1 章模板填）
-> **本集钩子**：（结尾留给观众的悬念，一句话）
+# 《Title》Episode N
+> **Aspect ratio**: 9:16 vertical / 16:9 horizontal | **Duration**: approx. XX s | **Scenes**: N
+> **Emotional curve**: build-up → tug-of-war → climb → reversal → close (one line, filled per the genre file Chapter 1 template)
+> **This episode's hook**: (the suspense left to the audience at the end, one line)
 ---
 
-### 【场景一】场景名（对应场景卡编号 SC-##）
+### 【Scene 1】Scene name (corresponding scene card SC-##)
 
-**环境**：（全要素环境描写：时间 / 光线来源与方向 / 主色调 / 空间层次即前景中景后景 / 地面与材质 / 环境声暗示。这段会被场景卡与定场图提示词复用，写到可直接出图的程度。）
-
----
-
-**[MM:SS.S – MM:SS.S] 小节名**
-
-`[景别|运镜|画面要点（≤15字）]`
-
-（正文：动作与微表情的散文式描写。铁律 R1：具体到身体部位、呼吸、衣料、道具的物理动态。）
-
-> **角色名**：（语气/潜台词）台词内容。
-
-`[情绪：阶段情绪 | 钩子：本镜悬念类型 | 衔接：尾帧承接/关键帧插入·新角色/关键帧插入·新道具/跳切]`
+**Environment**: (full-element environment description: time / light source & direction / primary color tone / spatial layers i.e. foreground-midground-background / ground & materials / ambient-sound hints. This section is reused by the scene card and the establishing-image prompt; write it to the level where an image can be produced directly.)
 
 ---
 
-（下一镜……）
+**[MM:SS.S – MM:SS.S] Beat name**
+
+`[shot scale|camera move|frame key points (≤15 chars)]`
+
+(Body text: prose-style description of action & micro-expression. Iron rule R1: specific to body parts, breathing, fabric, and the physical dynamics of props.)
+
+> **Character name**: (tone/subtext) line text.
+
+`[Emotion: stage emotion | Hook: this shot's suspense type | Connection: last-frame / keyframe-insert-new-character / keyframe-insert-new-prop / jump-cut]`
+
+---
+
+(next shot...)
 ```
 
-## 二、字段规则（每条都是硬性）
+## 2. Field Rules (every one is mandatory)
 
-### 1. 时间码
-- 格式 `MM:SS.S`，从 00:00.0 起连续排，不得重叠、不得断档。
-- 单镜时长 4–10 秒（视频模型单段能力窗）；超过 10 秒的内容必须拆镜。
-- 全场镜时长之和 = 头部声明的总时长，误差为 0。
+### 1. Timecodes
+- Format `MM:SS.S`, consecutive from 00:00.0; no overlap, no gaps.
+- Single shot duration 4–10 seconds (the video model's single-segment capability window); content over 10 seconds MUST be split into more shots.
+- Sum of all shot durations = the total duration declared in the header, with zero error.
 
-### 2. 镜头标注行 `[景别|运镜|画面要点]`
-- 景别与运镜用词必须从 `references/shot-language.md` 的速查表取，禁止自造词（自造词模型不响应）。
-- 画面要点 ≤15 字，只写"谁在哪做什么"的核心，细节留给正文。
-- 双人/多人镜头在要点里标明相对位置（如"虞左谢右"），供轴线纪律使用。
+### 2. Shot-label line `[shot scale|camera move|frame key points]`
+- Shot-scale and camera-move words MUST be taken from the lookup tables in `references/shot-language.md`; self-invented words are forbidden (models don't respond to made-up words).
+- Frame key points ≤15 characters; write only the core of "who does what where"; details go to the body text.
+- Two-person/multi-person shots mark relative positions in the key points (e.g., "Yu left, Xie right") for axis discipline.
 
-### 3. 正文（动作与微表情）——本格式的灵魂
-- **动作链**：一个镜头内按"起势 → 过程 → 落点"写清主动作（铁律 R3：一镜只一个主动作）。
-- **微表情**：每镜至少两处具体到部位的描写——眼神（看向哪、停留多久、何时移开）、嘴角、下颌、喉结、眉峰、睫毛、呼吸（重了一拍/屏住/放缓）、手指（蜷、点、捻、悬停）。
-- **物理动态**：衣料、发丝、道具随动作的物理反馈（"红裙从榻边曳落""流苏随呼吸轻晃"），这是视频模型生成真实感动态的种子。
-- **禁止**：抽象情绪词裸奔（"她很魅惑"）、小说式心理描写（"她心想"）、镜头外信息（观众看不见的设定）。一切必须可拍。
+### 3. Body text (action & micro-expression) — the soul of this format
+- **Action chain**: within one shot, write the primary action as "preparation → process → landing" (iron rule R3: ONE primary action per shot).
+- **Micro-expressions**: at least TWO body-part-specific descriptions per shot — eyes (where they look, how long they stay, when they move away), mouth corners, jaw, Adam's apple, brow peak, eyelashes, breathing (a beat heavier / held / slowed), fingers (curling, tapping, rolling, hovering).
+- **Physical dynamics**: fabric, hair strands, and props physically responding to the action ("the red skirt trailed off the couch edge" "the tassel swayed with each breath") — these are the seeds for the video model to generate realistic dynamics.
+- **Forbidden**: bare abstract emotion words ("she was enchanting"), novel-style inner monologue ("she thought to herself"), off-camera information (settings the audience can't see). Everything must be shootable.
 
-### 4. 台词
-- 格式：`> **角色名**：（语气/潜台词）台词`；语气写声音状态（气声/压低/顿了顿），潜台词可省略但暧昧/对峙戏必写。
-- 语速换算：正常 3–4 字/秒，情绪激动 4–5 字/秒，沉重缓慢 2–3 字/秒；台词时长不得超过本镜时长减去 1 秒留白。
-- 画外音标注 `（画外音）`；独白标注 `（内心独白）`（供配音区分）。
+### 4. Dialogue
+- Format: `> **Character name**: (tone/subtext) line`; tone describes the voice state (breathy / lowered / a pause); subtext may be omitted but is REQUIRED for ambiguous/confrontational scenes.
+- Speech-rate conversion: normal 3–4 chars/second, agitated 4–5 chars/second, heavy/slow 2–3 chars/second; line duration must not exceed shot duration minus 1 second of breathing room.
+- Voice-over marked `（画外音）`; monologue marked `（内心独白）` (for dubbing distinction).
 
-### 5. 行尾标注 `[情绪 | 钩子 | 衔接]`
-- **情绪**：从本集情绪曲线的阶段名中取（蓄力/拉锯/爬坡/翻转/收束 或题材文件给出的阶段词），用于分镜表与提示词的情绪着色。
-- **钩子**：本镜给观众的信息差类型——视觉奇观 / 行为之谜 / 信息缺口 / 关系之谜 / 危机逼近 / 无（过渡镜）。每 3 镜内至少一个非"无"钩子。
-- **衔接**：四值之一，决定下一镜首帧来源：
-  - `尾帧承接`（默认）：本镜首帧 = 上镜成片尾帧。
-  - `关键帧插入·新角色`：本镜有新角色首次登场 → 先产该角色定妆关键帧，流程见 continuity-playbook 第 3 章。
-  - `关键帧插入·新道具`：本镜有关键道具首次特写 → 先产道具定场帧。
-  - `跳切`：换场景/跳时间 → 用场景定场图作首帧，不用尾帧。
+### 5. Line-end label `[Emotion | Hook | Connection]`
+- **Emotion**: take from this episode's emotional-curve stage names (build-up / tug-of-war / climb / reversal / close, or the stage words given by the genre file); used for emotional tinting in the shot list and prompts.
+- **Hook**: this shot's information-gap type given to the audience — visual spectacle / behavioral mystery / information gap / relationship mystery / crisis approaching / none (transition shot). At least one non-"none" hook per 3 shots.
+- **Connection**: one of four values, decides the next shot's first-frame source:
+  - `last-frame continuation` (default): this shot's first frame = previous shot's output last frame.
+  - `keyframe insert · new character`: this shot has a new character's first appearance → first produce that character's makeup keyframe; flow in continuity-playbook Chapter 3.
+  - `keyframe insert · new prop`: this shot has a key prop's first close-up → first produce the prop establishing frame.
+  - `jump cut`: scene/time change → use the scene establishing image as the first frame, not the last frame.
 
-### 6. 沉默与停顿
-- 情感过载处的沉默是戏，要写：`[沉默 N 秒——类型]`（类型如 情感过载型 / 对峙压迫型 / 留白呼吸型），并计入时长。
+### 6. Silence and pauses
+- Silence at emotional overload is acting; write it: `[silence N seconds — type]` (types e.g. emotional-overload / confrontation-pressure / breathing-space), and count it into the duration.
 
-## 三、原创示例（格式锚点，6 镜微缩版）
+## 3. Original Example (format anchor, 6-shot miniature)
 
-> 以下为完整原创示例《归航信标》片段（科幻悬疑），仅作格式参照；题材化写法请读对应题材文件。
-
----
-
-# 《归航信标》第一集 · 片段
-
-> **画幅**：9:16 竖屏 | **时长**：约 34 秒 | **场景数**：1（废弃观测站主控室）
-> **情绪曲线**：悬疑蓄力 → 发现 → 危机逼近
-> **本集钩子**：信标回应的坐标是主角自己的位置
-
-### 【场景一】废弃观测站主控室
-
-**环境**：极夜。废弃三十年的高山观测站主控室，穹顶玻璃裂了三分之一，月光从裂缝灌入，在地面积灰上投下锋利的冷蓝色光带。主控台环形排列，半数屏幕碎裂，仅剩一台终端亮着幽绿待机光。前景是倾倒的转椅与散落文件，中景主控台，后景穹顶与星空。空气中有漂浮的尘粒。只有风声从裂缝挤入，像低哑的哨音。
+> The following is an original excerpt from 《归航信标》(Homebound Beacon, sci-fi suspense), only a format reference; genre-specific writing style per the corresponding genre file.
 
 ---
 
-**[00:00.0 – 00:05.0] 入场 · 唯一的光**
+# 《归航信标》Episode 1 · Excerpt
 
-`[大远景|极缓推|观测站全景，主控室一点绿光]`
+> **Aspect ratio**: 9:16 vertical | **Duration**: approx. 34 s | **Scenes**: 1 (abandoned observatory main control room)
+> **Emotional curve**: suspense build-up → discovery → crisis approaching
+> **This episode's hook**: the coordinates the beacon responds with are the protagonist's own position
 
-风雪掠过环形山脊，观测站像一枚锈蚀的铆钉钉在崖边。镜头从山脊缓推，掠过裂开的穹顶——主控室深处，那台终端的幽绿待机光在黑暗里一明一灭，像呼吸。
+### 【Scene 1】Abandoned observatory main control room
 
-`[情绪：悬疑蓄力 | 钩子：视觉奇观 | 衔接：跳切（本集首镜，用场景定场图）]`
-
----
-
-**[00:05.0 – 00:11.0] 手电 · 尘**
-
-`[中景|手持跟移|沈昭手电扫过主控台]`
-
-沈昭（SC-01 场景，CH-01 角色）侧身挤进主控室，防寒服肩部蹭过门框，积灰簌簌落在她肩头。她右手举着战术手电，光柱切开黑暗——**光柱里尘粒翻滚，像被惊醒的微小生物**。光扫到那台亮着的终端时，**她的手腕明显顿了一下，呼吸在防寒面罩里结成一团白雾**。
-
-> **沈昭**：（压低，对自己说）……不可能还有电。
-
-`[情绪：悬疑蓄力 | 钩子：行为之谜（谁在维持电力） | 衔接：尾帧承接]`
+**Environment**: Polar night. An observatory main control room abandoned for thirty years, a third of the dome glass shattered, moonlight pouring through the crack, casting sharp cold-blue light bands onto the dusty floor. The main console ring-arranged, half the screens cracked, only one terminal glowing a dim green standby light. Foreground: a toppled swivel chair and scattered documents; midground: the main console; background: the dome and starfield. Dust particles float in the air. Only wind squeezes through the crack, like a low whistle.
 
 ---
 
-**[00:11.0 – 00:17.0] 触屏 · 惊醒**
+**[00:00.0 – 00:05.0] Entry · The only light**
 
-`[特写|微推|指尖悬在屏幕上方三寸]`
+`[extreme long shot|extremely slow push-in|observatory panorama, one green light in the control room]`
 
-她走到终端前。**左手悬在屏幕上方三寸，指尖悬停了整整两秒**——灰绿色的待机光映在她瞳孔里。**她睫毛颤了一下，终是落指**。指尖触屏的一瞬，待机光熄灭，屏幕黑了一帧，随即爆出满屏字符流。**她下意识后仰了半寸，下颌绷紧**。
+Snow squalls sweep across the ring ridge; the observatory is like a rusted rivet nailed to the cliff edge. The camera slowly pushes in from the ridge, passing the cracked dome — deep in the control room, the terminal's dim green standby light flickers on and off in the darkness, like breathing.
 
-`[情绪：发现 | 钩子：信息缺口（屏幕内容） | 衔接：尾帧承接]`
-
----
-
-**[00:17.0 – 00:23.0] 回应 · 坐标（新道具登场）**
-
-`[大特写|固定|屏幕字符定格成一行坐标]`
-
-字符流骤然收束，定格成一行坐标，下面一行小字缓慢浮现。**沈昭的呼吸停了**——面罩上的白雾散开，再没有新的。她右手抬起，**指节抵住屏幕边缘，拇指无意识地摩挲着裂开的玻璃边缘**，像在确认这不是幻觉。
-
-（**关键帧插入·新道具**：终端屏幕首次作为叙事核心道具登场 → 先产"屏幕坐标特写定场帧"PR-01，冻结后作本镜首帧。）
-
-`[情绪：发现升级 | 钩子：信息缺口（坐标指向哪） | 衔接：关键帧插入·新道具 PR-01]`
+`[Emotion: suspense build-up | Hook: visual spectacle | Connection: jump-cut (this episode's first shot, use scene establishing image)]`
 
 ---
 
-**[00:23.0 – 00:29.0] 识读 · 血色**
+**[00:05.0 – 00:11.0] Flashlight · Dust**
 
-`[特写|极缓推|她的瞳孔里倒映着坐标]`
+`[medium shot|handheld tracking|Shen Zhao's flashlight sweeps the main console]`
 
-她逐位识读坐标。**瞳孔里那串数字倒着，却一行行对上她烂熟于心的某个位置**。读到倒数第二位时，**她的眉峰猛地拧起，喉结滚动了一下，抵在屏幕边缘的手指蜷紧，指节泛白**。
+Shen Zhao (scene SC-01, character CH-01) squeezes sideways into the control room; her parka shoulder scrapes the door frame, dust sifting onto her shoulder. She holds a tactical flashlight in her right hand, the beam cutting the darkness — **dust motes churn inside the beam like tiny startled creatures**. When the light sweeps across the lit terminal, **her wrist visibly pauses; her breath condenses into a puff of white fog inside the face mask**.
 
-> **沈昭**：（气声，几乎不成句）这是……观测站自己。
+> **沈昭**: (lowered, to herself) ……不可能还有电。
 
-`[情绪：危机逼近 | 钩子：关系之谜（谁在呼叫她） | 衔接：尾帧承接]`
-
----
-
-**[00:29.0 – 00:34.0] 风停 · 灯亮**
-
-`[中景|固定|全部碎屏同时亮起幽绿]`
-
-风声毫无征兆地停了。**主控室里所有碎裂的屏幕同时亮起**，幽绿的光从四面八方落在她身上——**她僵在原地，肩头落灰被震落一层，瞳孔里映着十几块绿光**。
-
-`[沉默 2 秒——危机降临型]`
-
-`[情绪：危机降临 | 钩子：本集钩子回收 | 衔接：尾帧承接（第二集首镜续用）]`
+`[Emotion: suspense build-up | Hook: behavioral mystery (who maintains the power) | Connection: last-frame continuation]`
 
 ---
 
-## 四、从原文改编的要点
+**[00:11.0 – 00:17.0] Touchscreen · Awakening**
 
-1. **保留金句与情节点，重排视听**：原文的心理描写一律外化为可拍的动作/表情/道具；不可外化的删除，不塞进台词硬说。
-2. **切集原则**：每集结束在"信息差最大"的一帧；新一集首镜衔接方式默认尾帧承接（连播感）。
-3. **体量换算**：90 秒 ≈ 10–16 镜；原文 800 字叙事 ≈ 一集。超出就切集，不压缩单镜时长。
+`[close-up|micro push-in|fingertip hovering three inches above the screen]`
 
-## 五、写完后自检清单（闸1 前必过）
+She walks to the terminal. **Her left hand hovers three inches above the screen; the fingertip stays suspended for a full two seconds** — the gray-green standby light reflected in her pupils. **Her eyelashes tremble once; she finally lands her finger**. The instant the fingertip touches the screen, the standby light dies, the screen goes black for a frame, then bursts into a full-screen stream of characters. **She instinctively leans back half an inch, jaw tensing**.
 
-- [ ] 时间码连续、单镜 4–10 秒、总和=总时长
-- [ ] 每镜标注行用词来自 shot-language.md 速查表
-- [ ] 每镜至少两处部位级微表情、一处物理动态
-- [ ] 每镜只有一个主动作（R3）
-- [ ] 行尾三标齐全，衔接四值合法；新角色/新道具首次登场处都标了关键帧插入
-- [ ] 台词时长 ≤ 镜时长 - 1 秒
-- [ ] 无心理描写、无不可拍信息、无版权风险（R6）
+`[Emotion: discovery | Hook: information gap (screen content) | Connection: last-frame continuation]`
+
+---
+
+**[00:17.0 – 00:23.0] Response · Coordinates (new prop debuts)**
+
+`[big close-up|static|screen characters freeze into one line of coordinates]`
+
+The character stream suddenly contracts, freezing into one line of coordinates, with a line of small text slowly emerging below. **Shen Zhao's breath stops** — the fog on the mask disperses, and no new fog comes. She raises her right hand, **knuckles pressing against the screen edge, her thumb unconsciously rubbing the cracked glass edge**, as if confirming this is not an illusion.
+
+(**Keyframe insert · new prop**: the terminal screen debuts as the narrative-core prop → first produce "screen-coordinates close-up establishing frame" PR-01, freeze it, then use it as this shot's first frame.)
+
+`[Emotion: discovery upgraded | Hook: information gap (where do the coordinates point) | Connection: keyframe insert · new prop PR-01]`
+
+---
+
+**[00:23.0 – 00:29.0] Reading · Blood color**
+
+`[close-up|extremely slow push-in|coordinates reflected in her pupils]`
+
+She reads the coordinates digit by digit. **The digits reflected in her pupils run backward, yet line up one by one with a position she knows by heart**. Reading the second-to-last digit, **her brow peak suddenly knots, her Adam's apple rolls once, the finger pressed against the screen edge curls tight, knuckles going white**.
+
+> **沈昭**: (breathy, barely forming words) 这是……观测站自己。
+
+`[Emotion: crisis approaching | Hook: relationship mystery (who is calling her) | Connection: last-frame continuation]`
+
+---
+
+**[00:29.0 – 00:34.0] Wind stops · Lights on**
+
+`[medium shot|static|all cracked screens light up green at once]`
+
+The wind stops without warning. **Every cracked screen in the control room lights up at once**, green light falling on her from all directions — **she freezes in place, a layer of dust shaken off her shoulders, a dozen green glows reflected in her pupils**.
+
+`[silence 2 seconds — crisis-arrival type]`
+
+`[Emotion: crisis arrival | Hook: this episode's hook collected | Connection: last-frame continuation (Episode 2's first shot continues from it)]`
+
+---
+
+## 4. Key Points for Adapting Source Text
+
+1. **Keep golden lines and plot points, re-arrange sight and sound**: the source's psychological descriptions are all externalized into shootable actions/expressions/props; what cannot be externalized is deleted, not forced into lines.
+2. **Episode-splitting principle**: each episode ends at the frame of "maximum information gap"; the new episode's first shot defaults to last-frame continuation (serial feel).
+3. **Volume conversion**: 90 seconds ≈ 10–16 shots; ~800 characters of source narrative ≈ one episode. Exceed → split episodes, don't compress single-shot duration.
+
+## 5. Post-Writing Self-Check (MUST pass before Gate 1)
+
+- [ ] Timecodes consecutive, single shot 4–10s, sum = total duration
+- [ ] Every shot's label line uses words from the shot-language.md lookup table
+- [ ] Every shot has at least two body-part-level micro-expressions and one physical dynamic
+- [ ] Every shot has only ONE primary action (R3)
+- [ ] Line-end triple labels complete; connection values legal; every new character/new prop first appearance marked with keyframe insert
+- [ ] Line duration ≤ shot duration - 1 second
+- [ ] No inner monologue, no unshootable information, no copyright risk (R6)

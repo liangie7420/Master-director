@@ -1,37 +1,37 @@
-# 场景卡 · <场景名>（编号 SC-##）
+# Scene Card — <Scene Name / 场景名>（编号 SC-##）
 
-> 阶段 2 填空；定场图过闸2 后冻结。所有该场景镜头的提示词首段照抄本卡"光源与色调"句（防光影跳变）。
+> Fill in during Phase 2; FREEZE once the establishing image passes gate 2 (过闸2). The first paragraph of every prompt for shots in this scene must copy this card's "Light Source & Tone" sentence VERBATIM（prevents light jumps between shots）.
 
-## 1. 环境锚点（定死，逐字复用）
-- 时间与天气：<如"子夜，雪后初晴">
-- 空间结构：<前中后景各有什么，纵深方向，门窗位置>
-- 主光源：<方向+性质，如"左侧窗格冷白月光，唯一硬光">
-- 辅助光：<如"地面烛火暖橙反射，补人物下颌">
-- 主色调：<HEX 主色+辅色，与项目档案配色铁律一致>
-- 地面/材质：<如"暗红绒毯，反光弱；屏风为磨砂绢面">
-- 环境声暗示：<如"更漏滴答，远处风声"（供视频提示词氛围）>
+## 1. Environment Anchor（LOCKED — reuse verbatim）/ 环境锚点
+- **Time & weather / 时间与天气**: <e.g. "midnight, sky clear right after a snowfall">
+- **Spatial structure / 空间结构**: <foreground / midground / background contents, the depth axis, window & door positions>
+- **Key light / 主光源**: <direction + quality, e.g. "cold white moonlight through the left window lattice — the only hard light">
+- **Fill light / 辅助光**: <e.g. "warm orange candlelight reflecting off the floor, filling the jaw">
+- **Dominant palette / 主色调**: <HEX primary + HEX secondary, consistent with the project bible's color rules>
+- **Floor / material / 地面·材质**: <e.g. "dark crimson rug, low reflectance; the screen is frosted-silk">
+- **Ambient-sound hint / 环境声暗示**: <e.g. "water-clock drips, distant wind" — feeds the video prompt's atmosphere>
 
-## 2. 陈设清单（跨镜一致性核对表）
-| 陈设 | 位置 | 形态要点 | 是否可动 |
+## 2. Set-Dressing Checklist（cross-shot consistency check）/ 陈设清单
+| Prop / 陈设 | Position / 位置 | Form Key Points / 形态要点 | Movable? / 是否可动 |
 |---|---|---|---|
-| <锦榻> | <画面左后景> | <> | 固定 |
+| <brocade couch> | <rear-left of frame> | <> | fixed |
 | <> | <> | <> | <> |
 
-## 3. 轴线档案（对话戏场景必填）
-- 轴线定义：<A 位左 B 位右，机位永远在轴线南侧>
-- 主机位（双人过场）构图描述：<>
-- 正反打机位：<A 越 B 肩 / B 越 A 肩 的视线方向：A 看画右，B 看画左>
+## 3. Axis Archive（required for dialogue scenes）/ 轴线档案
+- **Axis definition / 轴线定义**: <A placed left, B placed right; the camera is ALWAYS on the south side of the A–B axis line>
+- **Master-shot（two-shot）composition / 主机位·双人过场构图**: <>
+- **Over-the-shoulder cameras / 正反打机位**: <A over B's shoulder / B over A's shoulder — gaze directions: A looks screen-RIGHT, B looks screen-LEFT>
 
-## 4. 形态命门与负向
-- 最易画错处：<如"窗格数量 6 格，烛台三足"> → 负向：<>
+## 4. Form Fatality & Negatives / 形态命门与负向
+- **Most easily misdrawn / 最易画错处**: <e.g. "window lattice has 6 panes; the candlestick has three legs"> → negative: <>
 
-## 5. 定场图
-- 定场图 ref: <路径/编号>（空镜，无人版）
-- 时段光影：<黄金时刻/蓝调时刻/正午硬光/阴天漫射，按基调选>
-- 定场图提示词：
+## 5. Establishing Image / 定场图
+- Establishing image ref: <path/ID>（empty shot, no people）
+- Time-of-day lighting: <golden hour / blue hour / harsh noon light / overcast diffusion — pick to match the tone>
+- Establishing image prompt:
 ```
-<画风锚点块>，空镜定场，<环境锚点全段逐字>，无人，
-<陈设清单要点>，<主光源句 + 时段光影>，<主色调 HEX>。
-负向：<场景命门负向> + <项目通用负向库>（负面词全部集中末行）
+<visual-style anchor block>, empty establishing shot, <full environment anchor, verbatim>, no people,
+<set-dressing key points>, <key-light sentence + time-of-day lighting>, <dominant palette HEX>.
+Negative: <scene-fatality negatives> + <project shared negative library>（all negative words concentrated on the final line）
 ```
-> 时段光影/布光法/建筑透视写法查 `references/lighting-styles.md`。
+> Time-of-day lighting / lighting methods / architectural-perspective writing: see `references/lighting-styles.md`.

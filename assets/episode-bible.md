@@ -1,67 +1,68 @@
-# 项目档案 · 《片名》（每部剧一份，阶段 2 填空后冻结）
+# Episode Bible (Project Archive) — <Drama Title / 片名>
 
-> 用法：复制本模板到项目目录，填完即冻结（R5：下游一切产物引用本档案，修改本档案 = 下游回炉）。
+> One file per drama; fill in during Phase 2, then FREEZE. (R5: every downstream deliverable references this archive — editing it after freezing forces a full redo of everything downstream.)
 
-## 1. 全局参数
-- 题材：<科幻/玄幻/都市/言情/校园>（对应 references/genres/<题材>.md）
-- 目标模型：<Seedance/可灵/海螺>（对应 references/model-adapters/<模型>.md）
-- 画幅：<9:16 / 16:9> | 单集时长：<60–90s> | 总集数：<N>
+## 1. Global Parameters / 全局参数
+- **Genre / 题材**: <sci-fi / xianxia / urban / romance / campus>（对应 `references/genres/<题材>.md`）
+- **Target Model / 目标模型**: <Seedance / Kling / Hailuo>（对应 `references/model-adapters/<模型>.md`）
+- **Aspect Ratio / 画幅**: <9:16 / 16:9> | **Episode Length / 单集时长**: <60–90s> | **Total Episodes / 总集数**: <N>
 
-## 2. 基调与画风锚点块
-- 基调一句话：<如"压抑冷峻的近未来悬疑"，全片定死>
-- 画风锚点块（4–6 组，逐字复用到每条首帧图/视频提示词）：
-  `<例：赛璐璐动画质感，细腻赛璐璐阴影，胶片级颗粒，电影感打光，宽幅构图>`
-- DP/参考影调：<如"Roger Deakins 式低照度写实光"，与胶片/画幅自洽>
-- **删词调节器**（lighting-styles §四）：清爽调须删 `Dune / skip-bleach / analog grain / dusty haze`；压抑调保留全套。
-- **电影感签名块五件套**（image-prompt-engine §四）：构图流派 + hex 色板 + DP 署名 + 胶片型号 + 反 AI 味封口，必须自洽。
+## 2. Tone & Visual-Style Anchor Block / 基调与画风锚点块
+- **One-sentence tone / 基调一句话**: <e.g. "oppressive, cold near-future mystery" — locked for the entire show>
+- **Visual-style anchor block**（4–6 pairs, reused VERBATIM as the opening line of every first-frame image / video prompt）:
+  `<e.g. cel-animation texture, fine cel shading, film-grade grain, cinematic lighting, wide composition>`
+- **DP / reference look / DP·参考影调**: <e.g. "Roger Deakins-style low-key realistic light" — must be self-consistent with the film stock and aspect ratio>
+- **Deletion-word regulator / 删词调节器**（lighting-styles §四）: for a clean / bright tone DELETE `Dune / skip-bleach / analog grain / dusty haze`; for an oppressive tone keep the full set.
+- **Cinematic signature block, 5-piece set / 电影感签名块五件套**（image-prompt-engine §四）: composition school + hex palette + DP credit + film stock + anti-AI-flavor seal — must be self-consistent.
 
-## 3. 配色铁律（全片锁死，不许漂）
+## 3. Color Rules（locked for the whole show — no drifting）/ 配色铁律
 
-### 3.1 双区分轴（颜色 + 形态）
+### 3.1 Dual-Axis Differentiation（color + form）/ 双区分轴
 
-| 对象 | 颜色（HEX） | 形态/质地 | 一句话铁律 |
+| Object / 对象 | Color (HEX) | Form / Texture | One-Sentence Rule / 一句话铁律 |
 |---|---|---|---|
-| <角色A能力/阵营> | <#______> | <粒子/结晶/流光/气态/固态> | <如"A 的灵力永远是青白流光，禁红"> |
-| <角色B> | <#______> | <> | <> |
-| 主场景基调 | <#______ 主色 + #______ 辅色> | — | <> |
+| <Character A's power / faction> | <#______> | <particles / crystals / flowing light / gaseous / solid> | <e.g. "A's spiritual energy is always green-white flowing light — red is banned"> |
+| <Character B> | <#______> | <> | <> |
+| Main scene tone | <#______ primary + #______ secondary> | — | <> |
 
-> **双区分轴**：轴一色相/饱和度拉开 + 轴二形态/质地拉开（"软流动粒子 vs 硬结晶尖锐"）。即便同色系，形态一眼能分。
-> **三处复写要求**：同一条配色/形态铁律，要在【特效层】（正向）+【锁定/约束】（禁令）+【Avoid 末行】（负向）**三处各说一遍**（缺一处大概率漂）。
-> **负向常驻**：<错误色1>、<错误色2>、<A 别撞 B 色>。
+> **Dual-axis differentiation / 双区分轴**: Axis 1 pulls hue / saturation apart; Axis 2 pulls form / texture apart（"soft flowing particles vs hard sharp crystals"）. Even inside the same color family, the two forms must be distinguishable at a glance.
+> **Three-location rewrite requirement / 三处复写要求**: every color / form rule must be stated in all THREE places — the VFX layer（positive）+ the LOCK / constraint（prohibition）+ the final AVOID line（negative）. Missing any one spot and it will likely drift.
+> **Permanent negatives / 负向常驻**: <wrong color 1>, <wrong color 2>, <A must not collide with B's color>.
 
-### 3.2 配色强度 6 级（按需选用）
+### 3.2 Color Intensity — 6 Levels（pick as needed）/ 配色强度 6 级
 
-| 级别 | 做法 | 适用 |
+| Level / 级别 | Approach / 做法 | Best For / 适用 |
 |---|---|---|
-| L1 逐元素 hex | 嵌进描述：`cinnabar red #A82A2A talisman strips` | 局部关键物 |
-| L2 整段 color bible（13–22 色） | TONE 之前列命名色板 | 项目级全片统一 |
-| L3 60-30-10 三色英雄律 + 可数约束 | `10% 点缀色 appearing at EXACTLY 4 named spots — no more than 4 accent points anywhere` | 多色对垒戏 |
-| L4 Mondrian 计数法 | 同尺寸物靠数量做色块平衡（a larger block = cluster of 5-6 identical items） | 群像/族群 |
-| L5 甜区 13–22 色 | 太少（<8）锁不住；太多（>25）模型记不住 | 复杂色彩 |
-| L6 黑白片仍给彩色色卡 + 转灰阶层级 | `render as black-and-white but preserve tonal hierarchy (红→中深灰、黑保深、白保亮)` | 黑白武戏 |
+| L1 per-element hex | Embed directly in the description: `cinnabar red #A82A2A talisman strips` | Local key objects |
+| L2 full color bible（13–22 colors） | List a named palette BEFORE the TONE line | Whole-project uniformity |
+| L3 60-30-10 hero-color rule + countable constraint | `10% accent color appearing at EXACTLY 4 named spots — no more than 4 accent points anywhere` | Multi-color clash scenes |
+| L4 Mondrian counting method | Balance color blocks by QUANTITY among same-size objects（a larger block = a cluster of 5-6 identical items） | Group shots / crowds |
+| L5 sweet spot of 13–22 colors | Too few（<8）can't pin the look; too many（>25）the model forgets | Complex color design |
+| L6 B&W shots still get a color card + grayscale hierarchy | `render as black-and-white but preserve tonal hierarchy (red→mid-dark gray, black stays deep, white stays bright)` | B&W action scenes |
 
-> **色板条放在 TONE / 显影链之前**（先定颜色，再定胶片质感）。
+> Place the palette strip BEFORE the TONE / development chain（fix color first, then film texture）.
 
-## 4. 资产清单（编号即冻结编号）
-| 编号 | 类型 | 名称 | 卡片文件 | 定妆/定场图 | 状态 |
+## 4. Asset Registry（each ID = the frozen ID）/ 资产清单
+| ID / 编号 | Type / 类型 | Name / 名称 | Card File / 卡片文件 | Look / Establishing Ref / 定妆·定场图 | Status / 状态 |
 |---|---|---|---|---|---|
-| CH-01 | 角色 | <> | character-card 副本 | <图路径/编号> | <⏳/✅冻结> |
-| SC-01 | 场景 | <> | scene-card 副本 | <> | <> |
-| PR-01 | 道具 | <> | prop-card 副本 | <> | <> |
-| SA-01 | 复合资产 | <> | scene-actor-card 副本（角色+场景+道具+氛围） | <> | <> |
-| DB-01 | 对话关系板 | <> | dialogue-board-card 副本（6 格 2×3 锁轴线） | <> | <> |
+| CH-01 | Character / 角色 | <> | character-card copy | <image path/ID> | <⏳ / ✅ frozen> |
+| SC-01 | Scene / 场景 | <> | scene-card copy | <> | <> |
+| PR-01 | Prop / 道具 | <> | prop-card copy | <> | <> |
+| SA-01 | Composite asset / 复合资产 | <> | scene-actor-card copy（character+scene+prop+atmosphere） | <> | <> |
+| DB-01 | Dialogue board / 对话关系板 | <> | dialogue-board-card copy（6-cell 2×3 locked axis） | <> | <> |
 
-## 5. 角色关系（驱动姿态与站位，定死）
-- <谁强谁弱、谁追谁躲、谁俯视谁>。**强者平静少动甚至零特效，弱者多动多特效**——全片一致（shot-language 角色关系驱动姿态）。
-- 多人同框时：把"关系"翻译成具体 blocking 并写死（谁坐/卧/倚/立、谁高谁低、谁俯视谁仰视、谁的目光锁在谁脸上）。漏写体位 → 模型默认全员站立齐高。
+## 5. Character Relationships（drive posture & blocking — lock them down）/ 角色关系
+- <Who is stronger / weaker, who chases whom, who looks down on whom>. **The strong stay calm, move little, and even have zero VFX; the weak move a lot and carry all the VFX** — kept consistent across the whole show（shot-language: relationships drive posture）.
+- Multi-character frames: translate each "relationship" into concrete blocking and write it down（who sits / lies / leans / stands, who is higher or lower, who looks down or up, whose gaze is locked on whose face）. If you omit the posture, the model defaults to everyone standing at equal height.
 
-## 6. 通用负向库（每条提示词必带）
+## 6. Shared Negative Library（must appear in every prompt）/ 通用负向库
 ```
-<题材翻车点章节取词，中英对照>，文字，水印，logo，多余人物，多余手指，
-面部变形，服装漂移，光影闪烁，<题材特定负向>
+<terms taken from the genre-pitfall chapter, bilingual>, text, watermark, logo,
+extra people, extra fingers, deformed faces, costume drift, flickering light,
+<genre-specific negatives>
 ```
 
-## 7. 分镜进度台账
-| 集 | 镜 | 内容 | 衔接 | 状态 |
+## 7. Shot Progress Ledger / 分镜进度台账
+| Episode / 集 | Shot / 镜 | Content / 内容 | Transition / 衔接 | Status |
 |---|---|---|---|---|
-| E1 | S01 | <> | 跳切/尾帧/关键帧 | ⏳ |
+| E1 | S01 | <> | jump cut / tail-frame / keyframe | ⏳ |

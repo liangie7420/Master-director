@@ -1,134 +1,195 @@
-# 连续性手册：尾帧承接 / 关键帧插入 / 跳切 / 翻车处理 / 质检
+# Continuity Playbook: Last-Frame Continuation / Video-Extension Chaining / Keyframe Insert / Jump Cut / Failure Handling / Quality Check
 
-> 本手册是"减少抽卡损失"的工程技术核心。读法：阶段 5 拍摄执行全程对照；翻车时先查第 4 章矩阵，别急着重刷。
+> This playbook is the engineering core of "reducing card-pull losses". How to read: consult throughout Phase 5 shooting execution; when output fails, check Chapter 4 matrix FIRST, don't rush to rerun.
 >
-> v2 在 v1 基础上加入"双寄存器翻车决策、升 2K 处方、暴力降级句、形态命门 SOP 升级"。
+> v2 added on top of v1: "dual-register failure decision, upscale-to-2K prescription, violence de-escalation sentences, form-weakness SOP upgrade".
+>
+> v3 added: video-extension chaining as the fourth connection mechanism (Seedance 2.0 native capability, from Seedance2-Storyboard-Generator 2104★), refined light-consistency QC, continuation workflow, card-pull control & iteration discipline.
 
 ---
 
-## 1. 三大衔接机制总览
+## 1. Overview of the Four Connection Mechanisms
 
-| 机制 | 解决什么 | 首帧来源 | 何时用 |
+| Mechanism | Solves | First-Frame Source | When to Use |
 |---|---|---|---|
-| 尾帧承接 | 镜头间画面连贯 | 上镜成片尾帧（`scripts/extract_last_frame.py` 提取） | 默认，同场景连续叙事 |
-| 关键帧插入 | 新角色/新道具/大状态变化安全登场 | 单独产出的定妆关键帧 | 新元素首次出现的那镜 |
-| 跳切 | 换场景/换时间 | 新场景定场图 | 场与场之间 |
+| Last-frame continuation | inter-shot visual coherence | previous shot's output last frame (extracted by `scripts/extract_last_frame.py`) | default, continuous narrative in the same scene |
+| Video-extension chaining | seamless shot/episode connection (Seedance 2.0 native) | previous shot's full output as `@视频1`, write "extend @视频1 by N seconds" | preferred when the model supports extension; smoother than first-frame images |
+| Keyframe insert | safe entry of new character/new prop/major state change | separately produced makeup keyframe | the shot where a new element first appears |
+| Jump cut | scene/time change | new scene's establishing image | between scenes |
 
-判断口诀：**同场同戏用尾帧，新面孔先定妆，换场子先定场。**
+Memory phrase: **same scene same beat → last frame or video extension; new face → makeup first; new place → establishing first.**
 
-## 2. 尾帧承接 SOP
+## 1.5 Video-Extension Chaining SOP (Seedance 2.0 preferred connection method)
 
-### 2.1 执行流程（每镜循环）
+Seedance 2.0 supports uploading existing video and natively extending it (the added part becomes an independent shot). This is a smoother connection than "last-frame image + image-to-video": frame/lighting/action continuity is inferred by the model from the whole video, no manual last-frame extraction needed.
 
-1. 镜 N 成片验收通过后，提取尾帧：
-   `python scripts/extract_last_frame.py <镜N成片.mp4> -o <项目目录/frames>` → 产出 `shot_###_last.png`。
-2. 目检尾帧：人物姿态、光影、构图是否适合"长成"下一镜的起始画面。不适合（如尾帧是运动模糊帧）→ 用 `-t` 参数往前取 0.2–0.5 秒的帧替代。
-3. 镜 N+1 的视频提示词中：该尾帧作为首帧图输入；提示词首段写"画面从首帧延续：人物保持首帧中的姿态与位置，光影方向不变，随后……"。
-4. 镜 N+1 的景别/机位变化规则：
-   - 同景别延续（特写→特写）：最稳，直接续。
-   - 推近（中景→近景）：安全，尾帧本身就是放大源。
-   - 拉远（特写→全景）：可用，但尾帧只提供中心区域，提示词要补全周边陈设（从场景卡复述）。
-   - 切换视角（正面→侧面）：**不要用尾帧承接**，视角跳变时尾帧是误导；改用角色定妆图 + 场景定场图双参考重建。
+1. After shot N's output passes acceptance, upload the whole segment as `@视频1`.
+2. Shot N+1's prompt opens with: `extend @视频1 by N seconds` (N = this shot's added duration).
+3. The narrative section continues from the previous shot's ending state (emotion advances, does not restart; see §6.3), and may change camera angle/shot scale.
+4. Generation length selects the "added part" duration, NOT the total duration.
+5. Video extension is also capacity-limited: reference videos ≤3, total duration ≤15s; for extra-long scenes, extend in segments.
 
-### 2.2 尾帧质量三原则
+**Choice vs last-frame continuation**:
+- Model supports video extension + needs seamless action/lighting continuation → **video extension** (first choice, most stable).
+- Model does not support video extension / needs precise first-frame composition control (major camera change) → **last-frame continuation**.
+- Scene/time change → neither; use **jump cut**.
 
-- 尾帧最好是"动作落点帧"（动作完成的静止瞬间），写剧本时主动设计：每镜正文收尾处把动作写到落点（"手停在杯沿""目光落定"），不要在运动中段切。
-- 尾帧画面里不能有：运动模糊、半闭的眼、说话中的嘴型、画面边缘的半个道具。有 → 往前取帧。
-- 竖屏 9:16 的尾帧，主体避开上下 10% 边缘（平台UI遮挡区）。
+## 2. Last-Frame Continuation SOP
 
-### 2.3 跨集承接
+### 2.1 Execution flow (per-shot loop)
 
-连播集：上集最后一镜的尾帧 = 本集第一镜首帧。独立集：本集首镜走跳切（场景定场图）。
+1. After shot N's output passes acceptance, extract the last frame:
+   `python scripts/extract_last_frame.py <shotN.mp4> -o <project/frames>` → produces `shot_###_last.png`.
+2. Visually inspect the last frame: is the character pose/lighting/composition suitable to "grow into" the next shot's starting frame? If unsuitable (e.g., last frame is a motion-blur frame) → use the `-t` parameter to take a frame 0.2–0.5 seconds earlier.
+3. In shot N+1's video prompt: that last frame is the first-frame input; the prompt's opening section writes "frame continues from the first frame: character keeps pose and position from the first frame, light direction unchanged, then ...".
+4. Shot N+1 shot-scale/camera rules:
+   - Same scale continuation (CU→CU): most stable, directly continue.
+   - Push closer (MS→CU): safe; the last frame itself is the enlargement source.
+   - Pull back (CU→WS): usable, but the last frame only provides the central area; the prompt must fill in surrounding props (restate from the scene card).
+   - Change viewing angle (front→side): **do NOT use last-frame continuation**; when the angle jumps, the last frame is misleading; rebuild with the character makeup image + scene establishing image as dual references.
 
-## 3. 关键帧插入 SOP
+### 2.2 Last-frame quality three principles
 
-### 3.1 触发条件（剧本扫描时逐条核对）
+- The last frame should preferably be an "action landing frame" (the still instant of a completed action). Design this actively when writing the script: end each shot's body text with the action reaching its landing point ("hand stops at the cup rim" "gaze settles"), never cut mid-motion.
+- The last frame must NOT contain: motion blur, half-closed eyes, a mouth mid-speech, a half prop at the frame edge. If it does → take an earlier frame.
+- For 9:16 vertical last frames, keep the subject away from the top/bottom 10% edges (platform UI occlusion zone).
 
-- 新角色首次有脸登场（背影/剪影首次不算，露脸才算）。
-- 关键道具首次特写（剧情锚点物：信物、文件、武器、终端屏幕）。
-- 角色重大状态变化：换装、负伤、易容、形态切换。
+### 2.3 Cross-episode connection
 
-### 3.2 流程
+Serial episodes (model supports video extension): the previous episode's full output as `@视频1`; this episode's first shot opens with "extend @视频1 by N seconds", achieving seamless episode connection (Seedance 2.0 native, more stable than last-frame images).
+Serial episodes (last-frame only): previous episode's last shot's last frame = this episode's first shot's first frame.
+Standalone episodes: this episode's first shot uses jump cut (scene establishing image).
 
-1. **产定妆关键帧**（图生图，不进叙事）：
-   - 新角色：单人、中性光、本场景光色温、半身或全身、正面微侧 15°。已有角色卡的用卡上定妆图，只补"本场景光效版"。
-   - 新道具：特写定场帧——道具居中占画面 40–60%，形态命门全部可见，浅景深，本场景光源。
-2. **冻结编号**：`CH-02`、`PR-01` 式编号写入角色卡/道具卡 `ref:` 字段。
-3. **进叙事镜头**：该镜视频提示词 = 关键帧作首帧（或双图：上镜尾帧 + 关键帧，按模型多图能力，查 model-adapters）+ 锚点复述 + "新元素已在画面中，随后镜头……"。
-4. **首秀镜头设计**：新角色首秀镜给 4–6 秒、缓推或微移、中近景以上景别，让观众（和模型）吃透长相；禁止首秀即大幅动作或遮挡脸。
+## 3. Keyframe-Insert SOP
 
-### 3.3 复合资产图（实战更香）
+### 3.1 Trigger conditions (check item by item during script scan)
 
-开源项目的高频做法：**一张图覆盖角色+场景+道具+氛围**。manju-director 用 `assets/scene-actor-card.md` 实现。
+- A new character first shows their face (back/silhouette first appearance does NOT count; only face-reveal counts).
+- A key prop's first close-up (plot anchor objects: keepsake, document, weapon, terminal screen).
+- A character's major state change: costume change, injury, disguise, form switch.
 
-### 3.4 状态变化类插入
+### 3.2 Flow
 
-换装/负伤等同一角色的状态变化：产"新状态定妆帧"（同角度同光，仅改状态），提示词写"与参考图为同一人，仅服装/伤痕变化为……"，其余锚点逐字不变。
+1. **Produce the makeup keyframe** (image-to-image, NOT in narrative):
+   - New character: single person, neutral light, this scene's light color temperature, half-body or full-body, front with slight 15° turn. If a character card already exists, use the card's makeup image and only add the "this-scene lighting version".
+   - New prop: close-up establishing frame — prop centered occupying 40–60% of the frame, all form weaknesses visible, shallow depth of field, this scene's light source.
+2. **Freeze numbering**: write `CH-02`, `PR-01`-style numbers into the character card / prop card `ref:` field.
+3. **Enter the narrative shot**: that shot's video prompt = keyframe as first frame (or dual images: previous shot's last frame + keyframe, per model multi-image capability, check model-adapters) + anchor restatement + "the new element is already in frame, then the camera ...".
+4. **Debut shot design**: give a new character's debut shot 4–6 seconds, slow push-in or slight movement, medium-close-up or closer scale, so the audience (and the model) fully absorb the appearance; forbid big movements or face occlusion in the debut.
 
-## 4. 翻车处理矩阵（先诊断，后处置）
+### 3.3 Composite asset image (more effective in practice)
 
-| 现象 | 最可能根因 | 处置（按序尝试） |
+High-frequency practice in open-source projects: **one image covering character + scene + prop + atmosphere**. manju-director implements this with `assets/scene-actor-card.md`.
+
+### 3.4 State-change inserts
+
+Costume change / injury and other state changes of the SAME character: produce a "new-state makeup frame" (same angle same light, only the state changed), the prompt writes "same person as the reference image, only clothing/wound changed to ...", other anchors remain verbatim unchanged.
+
+## 4. Failure-Handling Matrix (diagnose first, then treat)
+
+| Symptom | Most Likely Root Cause | Treatment (try in order) |
 |---|---|---|
-| 人物脸变/串脸 | 参考图缺失或多人同框超载 | ① 补/换定妆参考图 ② 减同框人数，拆正反打 ③ 特写改中近景 ④ 三件套防串脸（按 image-prompt-engine §二） |
-| 肢体/手指崩坏 | 一镜多动作（违反 R3）或手部大特写+运镜 | ① 删到单动作 ② 手出画或改固定机位 ③ 降运镜速度 |
-| 光影跳变 | 场景卡光源未复述 / 尾帧与提示词光向冲突 | ① 提示词首段照抄场景卡光源句 ② 换尾帧取帧点 ③ 启用光影四件套（lighting-styles §一） |
-| 服装/发型漂移 | 锚点未逐字复述（R4 违规） | 逐字复述后重刷；仍漂 → 该元素升格形态命门 + 三处复写（image-prompt-engine §九） |
-| 文字乱码 | 屏幕/纸张文字入画 | 改"模糊发光字符流/无法辨认的字迹"；必须可读的文字后期贴图 |
-| 运动鬼畜/瞬移 | 运镜过快 + 动作幅度过大叠加 | 运镜降一档（快速→稍快→匀速），动作幅度改"半步/微倾"级 |
-| 背景路人崩坏 | 深景深群像 | 改浅景深虚化背景，或提示词写"背景人影剪影化、无五官细节" |
-| 首尾帧循环感 | 运镜零位移 + 动作对称 | 加一个微位移（缓推 5%）或视线变化打破对称 |
-| 没出视觉锚点 | 一图多焦点 | 删到只有 1 个视觉锚（光斑 / 飘带 / 剑尖） |
-| **噪点多/糊/脏** | 分辨率不够（**不是真噪点**） | ① 整体尺寸拉到 2K/4K ② 高清重制 = 已出图喂底图重绘 + 强写"保持人物/脸/姿态/构图/配色/特效全部不变，只提升画质" |
-| **远距离对话帧两人低头沉思** | 视线失控 | 远距离对话视线锁定三件套（lighting-styles §十一）按【正文+CONSTRAINTS+Avoid】三处复写 |
+| Face changes / face swapping | missing reference image or over-loaded multi-person frames | ① add/replace makeup reference ② reduce people in frame, split into shot/reverse-shot ③ close-up → medium-close-up ④ anti-face-swap three-piece set (per image-prompt-engine §2) |
+| Limb/finger breakdown | multiple actions in one shot (violates R3) or hand close-up + camera move | ① cut to single action ② hand out of frame or fixed camera ③ lower camera speed |
+| Light jumps | scene-card light source not restated / conflict between last frame and prompt light direction | ① copy the scene card's light sentence into the prompt's first section ② change last-frame extraction point ③ enable lighting four-piece set (lighting-styles §1) |
+| Clothing/hairstyle drift | anchors not restated verbatim (R4 violation) | restate verbatim and rerun; still drifting → promote that element to form weakness + three-place repetition (image-prompt-engine §9) |
+| Garbled text | screen/paper text entering frame | change to "blurred glowing character stream / illegible handwriting"; readable text must be post-composited |
+| Motion glitch / teleporting | camera too fast + action amplitude too large stacked | lower camera one notch (fast→moderately fast→uniform), change action amplitude to "half-step/slight-tilt" level |
+| Background bystander breakdown | deep depth of field group shots | switch to shallow DoF blurred background, or prompt writes "background figures silhouetted, no facial details" |
+| First-last-frame loop feel | zero camera displacement + symmetric action | add a micro-displacement (slow push 5%) or gaze change to break symmetry |
+| Visual anchor missing | one image multiple focuses | cut to only 1 visual anchor (light spot / ribbon / sword tip) |
+| **Noisy/blurry/dirty** | resolution too low (**NOT real noise**) | ① pull overall size to 2K/4K ② HD remaster = feed the existing image back as base + strongly write "keep character/face/pose/composition/color/effects ALL unchanged, only improve quality" |
+| **Long-distance dialogue: both looking down in thought** | eye-line control lost | long-distance dialogue eye-line-lock three-piece set (lighting-styles §11) replicated in 【body+CONSTRAINTS+Avoid】three places |
 
-### 4.1 双寄存器翻车决策（重型建 vs 轻改）
+### 4.1 Dual-register failure decision (heavy build vs light edit)
 
-写提示词时已经判断过了：阶段 2 关键帧全程重型；阶段 5 翻车时先用**轻改**试一次：
+Already decided when writing prompts: Phase 2 keyframes are all heavy-build; Phase 5 failure first tries **light edit** once:
 
-- **轻改一句话**（用 Nano Pro 类视觉理解模型）：
-  - 只改 1 个变量（如换表情、换光线、调构图）
-  - 模板："把 X 改成 Y，除此之外不要做任何改动。"
-- **重型重刷**（用 Image 类完整重起）：
-  - 同时改 ≥3 件事
-  - 换姿态 / 换结构 / 换机位
-  - 连续轻改后开始熔脸串身份
-  → 停手，回阶段 2/4 重起。
+- **Light edit one sentence** (with a Nano-Pro-class visual understanding model):
+  - change only 1 variable (e.g., change expression, light, composition)
+  - template: "Change X to Y, do not touch anything else."
+- **Heavy rerun** (complete rebuild with an Image-class model):
+  - change ≥3 things simultaneously
+  - change pose / change structure / change camera angle
+  - continuous light edits begin melting face and swapping identity
+  → Stop, return to Phase 2/4 and rebuild.
 
-### 4.2 暴力降级句（武戏/对抗戏必带）
+### 4.2 Violence de-escalation sentences (MUST include for martial-arts/combat scenes)
 
-过审命门：`opponents are knocked back by force, not visibly injured. No wounds, no damage, no blood.`
-- 交击帧叠：`sword meeting sword, NOT sword meeting body`
-- 倒地帧叠：`lying still as if asleep or unconscious, no visible injuries`
+Review gate: `opponents are knocked back by force, not visibly injured. No wounds, no damage, no blood.`
+- Clash-frame add-on: `sword meeting sword, NOT sword meeting body`
+- Downed-frame add-on: `lying still as if asleep or unconscious, no visible injuries`
 
-**作用范畴**：玄幻武戏、都市商战、校园冲突、科幻武装对抗——所有有对抗/暴力的镜头。
+**Scope**: xuanhuan martial arts, urban business warfare, campus conflict, sci-fi armed confrontation — all shots with confrontation/violence.
 
-**反 AI 味结尾**（Avoid 常驻，载于 image-prompt-engine §十四）。
+**Anti-AI-quality ending** (permanent in Avoid, carried in image-prompt-engine §14).
 
-## 5. 质检清单
+## 5. Quality Checklist
 
-### 5.1 首帧图质检（每张过）
+### 5.1 First-frame image QC (every image)
 
-- [ ] 角色脸/发型/服装与冻结定妆图一致（逐项对：眉形、发色、瞳色、领型、配饰）
-- [ ] 场景陈设与场景卡清单一致（光源方向、主色调、关键陈设位置）
-- [ ] 光影四件套齐：方向 / 半脸光 / 高光点 / 大光圈虚化（角色帧）
-- [ ] 电影感签名块五件套：构图 + 色板 + DP + 胶片 + 反 AI 味封口
-- [ ] 三处复写：核心约束在主体行 + CONSTRAINTS + Avoid 各出现一次
-- [ ] 无文字、无水印、无多余人物、无多余手指
-- [ ] 主体避开画面边缘 10%
+- [ ] Character face/hairstyle/clothing consistent with the frozen makeup image (check item by item: brow shape, hair color, pupil color, collar style, accessories)
+- [ ] Scene props consistent with the scene-card inventory (light-source direction, primary color tone, key prop positions)
+- [ ] Lighting four-piece set complete: direction / half-face / highlight points / wide aperture blur (character frames)
+- [ ] Cinematic five-piece signature block: composition + palette + DP + film + anti-AI seal
+- [ ] Three-place repetition: core constraint appears once each in subject line + CONSTRAINTS + Avoid
+- [ ] No text, no watermark, no extra people, no extra fingers
+- [ ] Subject clear of the frame edges by 10%
 
-### 5.2 成片质检（每镜过）
+### 5.2 Output QC (every shot)
 
-- [ ] 与首帧一致：人物未换脸、服装未变、光向未跳
-- [ ] 动作符合 R3：单主动作，无瞬移、无鬼畜循环
-- [ ] 物理合理：无悬浮、无穿模、布料/发丝动态自然
-- [ ] 尾帧可用：最后一帧是动作落点，无运动模糊，可作下镜首帧
-- [ ] 台词口型大致匹配（强口型需求场景用后期配音）
-- [ ] 平台安全：无越界内容、无版权标识、无真实商标、对抗戏已加暴力降级句
+- [ ] Consistent with first frame: no face change, no clothing change, no light-direction jump
+- [ ] Action complies with R3: single primary action, no teleporting, no glitch loops
+- [ ] Physics plausible: no floating, no clipping, fabric/hair dynamics natural
+- [ ] Last frame usable: final frame is an action landing point, no motion blur, usable as next shot's first frame
+- [ ] Lip sync roughly matches (strong lip-sync scenes use post-dubbing)
+- [ ] Platform safety: no out-of-bounds content, no copyright marks, no real trademarks, combat scenes have violence de-escalation sentences
 
-### 5.3 整集连看质检（收尾过）
+### 5.3 Full-episode continuous-watch QC (at wrap)
 
-- [ ] 全镜连看：衔接处无跳色、跳光、跳位置
-- [ ] 情绪曲线与剧本行尾标注一致，钩子分布每 3 镜至少 1 个
-- [ ] 角色全剧一致抽查：随机抽 3 镜与定妆图比对
-- [ ] 对话戏关系板对齐：分镜表镜头与 assets/dialogue-board-card 的 6 格一一对应
-- [ ] 分镜表台账更新：每镜状态（✅封板 / 🔄待修 / ⏳待产）
+- [ ] Watch all shots continuously: no color/light/position jumps at connections
+- [ ] Emotional curve matches the script line-end labels; hook distribution at least 1 per 3 shots
+- [ ] Full-episode character consistency spot check: randomly compare 3 shots against the makeup image
+- [ ] Dialogue relationship board aligned: shot-list shots map one-to-one with the 6 cells of assets/dialogue-board-card
+- [ ] Shot-list ledger updated: each shot's status (✅locked / 🔄to-fix / ⏳to-produce)
+
+### 5.4 Light-consistency refinement (add to output QC)
+
+- [ ] Each shot's light-source direction consistent with the scene card (sourceless light = flat light, rewrite the light sentence)
+- [ ] Subject and environment share the same light (when environment is cold-toned, character must not have sourceless warm light)
+- [ ] Contact shadows present (subject touching ground, hand-object contact darkened, no floating feel)
+- [ ] Camera logic: move has start/path/closing frame, no wall-clipping, random spinning, drifting
+
+## 6. Continuation Workflow (multi-episode / cross-shot continuous narrative, maps to Phase 5 per-shot loop)
+
+Continuation is not an unrelated new prompt. It must preserve continuity and push the story forward. When the user says "continue / keep writing / continue the previous one / next shot / continue with the previous one's last frame", run this flow.
+
+### 6.1 Continuation judgment (answer three questions before writing)
+
+```
+Previous segment's ending state:  (character position / emotional residue / action-complete state)
+Next segment's emotional advance: (NOT restart; natural extension from the previous ending)
+Continuity notes:                (which of clothing/wound/makeup/props/light direction must not change)
+```
+
+### 6.2 Reference-image reuse rules
+
+- Character/scene/prop unchanged → directly reuse the previous segment's reference images, **do NOT re-describe** the full appearance; only restate the identity/clothing/scene/prop anchors needed for stability.
+- New character / costume change / scene change / new key prop → give **a fresh compact description + new reference-image prompt**.
+- Precise posture/action continuity → use the previous segment's last frame; general connection → use a natural bridge of "different shot scale/angle + matching action", don't force-paste the last frame.
+
+### 6.3 Emotion advances, does not restart
+
+Whatever emotion the previous segment ended on, the next segment must **advance** rather than replay: shock → denial/action/numbness/anger/collapse; joy → savoring/testing/unease. Forbid repeating the same discovery / the same reaction. Each 15s segment adds only ONE main event or emotional turn.
+
+### 6.4 Continuous-short-film mode (maintained when producing multiple segments)
+
+Maintain an internal character bible and scene continuity sheet; carry a compact version with each segment's output so the user can stay consistent when generating continuously.
+
+## 7. Card-Pull Control & Iteration Discipline (maps to Phase 6)
+
+- **Minimal change**: feedback touches only the relevant lines; everything else stays verbatim. Unnecessary changes make the parts the user liked run away together.
+- **Diagnose before changing**: first judge "which line of the previous version wasn't controlled, which avoidance was missed"; prioritize strengthening positive anchors, don't blindly pile negative words.
+- **Directional rejection needs a redo**: when style/composition/subject is overturned as a whole, don't patch the old version; return to Phase 2/3 to re-imagine.
+- **Max 3 reruns per shot**: after 3 failures → downgrade plan (split shot / change shot scale / keyframe-insert supplementary narrative), and mark the change in the shot list.
+- **Rerun-failure root-cause checklist** (in priority): ① reference images missing/conflicting (deleting style words can worsen collapse → swap reference images) → ② multiple actions stacked (R3) → ③ camera overdone (lower one notch) → ④ resolution insufficient (upscale to 2K/4K) → ⑤ color written in only one place (three-place repetition).

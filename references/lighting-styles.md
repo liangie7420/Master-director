@@ -1,144 +1,144 @@
-# 光影与焦段风格库（阶段 2 定妆/定场、阶段 3 镜头设计时参考）
+# Lighting & Focal-Length Style Library (reference for Phase 2 makeup/establishing and Phase 3 shot design)
 
-> 摄影视角的布光与焦段体系，翻译成 AI 视频/图像模型可执行的提示词语言。所有词条均可直接写入首帧图/视频提示词的光影行。
+> A photographic-perspective lighting & focal-length system, translated into executable prompt language for AI video/image models. Every entry can be written directly into the lighting line of first-frame image / video prompts.
 >
-> v2 在 v1 基础上加入"光影四件套、DP 三位调性表、两条显影链、删词调节器、远距离对话视线锁定"。
+> v2 added on top of v1: "lighting four-piece set, three-DP tone table, two development chains, word-deletion regulator, long-distance dialogue eye-line lock".
 
 ---
 
-## 一、角色帧光影四件套（每条角色帧必含）
+## 1. Character-Frame Lighting Four-Piece Set (EVERY character frame MUST include)
 
-**铁律**：角色帧（特写/中景/越肩/全身/双人/双人多格）的提示词【光影行】段必须钉死 **4 件**：
+**Iron rule**: the 【lighting】line of character frames (close-up/medium/over-shoulder/full body/two-person/two-person multi-panel) must nail down **4 pieces**:
 
-1. **光从哪儿来**（必指方向：`from camera-right / 左侧 45°` 等）
-2. **半脸光**（哪半亮哪半暗 + 暗部加 `warm shadow, not crushed black`）
-3. **高光点**（具体位置：`highlights on cheekbone, nose bridge, lips, collarbone`）
-4. **大光圈虚化**（`shallow DoF / wide aperture / background heavily out of focus`）
+1. **Where the light comes from** (MUST state a direction: `from camera-right / 45° left` etc.)
+2. **Half-face light** (which half bright, which half in shadow + add `warm shadow, not crushed black` to the dark side)
+3. **Highlight points** (specific positions: `highlights on cheekbone, nose bridge, lips, collarbone`)
+4. **Wide aperture blur** (`shallow DoF / wide aperture / background heavily out of focus`)
 
-**任缺一件 = 平光 + 背景清晰 = 像定妆照不像电影帧**。
+**Missing any one = flat light + clear background = looks like a costume photo, not a film frame**.
 
-**朴素一句模板**（直接抄改）：
+**Plain one-sentence template** (copy & adapt directly):
 ```
 Warm light from camera-right. Right half of her face brightly lit, left half in warm shadow.
 Highlights on cheekbone, nose bridge, lips, collarbone. Shallow DoF, wide aperture,
 background heavily out of focus.
 ```
 
-**例外**：四视图定妆（摄影棚中性底）、色卡、灰底物料 → 不需要（产品级图）。**凡有角色 + 真实场景背景都要大光圈虚化**。
+**Exceptions**: four-view makeup (studio neutral backdrop), color card, gray-background material → not needed (product-level images). **Any character + real scene background requires wide aperture blur**.
 
-**光影 + 虚化段合计 ≤ 80 词**，超了就剪。
+**Lighting + blur section total ≤ 80 words**; trim if over.
 
-## 二、DP 三位调性表（写一个 DP 名 ≈ 几十条打光/构图/色彩指令）
+## 2. Three-DP Tone Table (writing one DP name ≈ dozens of lighting/composition/color directives)
 
-| DP 署名 | 调出什么 |
+| DP Credit | Tones It Produces |
 |---|---|
-| **Greig Fraser**（Dune 2021） | 暖沙金褐、火光内景、低反差柔散光、"被沙漠晒过"质感 |
-| **Roger Deakins** | 极简、冷峻、史诗孤独感、大 negative space、硬朗光比、克制色彩 |
-| **Hoyte van Hoytema** | 大画幅 IMAX 质感、冷蓝夜景、暗部仍有色彩深度 |
+| **Greig Fraser** (Dune 2021) | warm sand gold-brown, fire-lit interiors, low-contrast soft diffused light, "sun-baked by the desert" texture |
+| **Roger Deakins** | minimal, cold, epic loneliness, large negative space, hard light ratios, restrained color |
+| **Hoyte van Hoytema** | large-format IMAX texture, cold-blue night scenes, color depth retained in shadows |
 
-三个名字**可叠用**做"调性配方"。DP 署名要和胶片/画幅风格自洽（写 Deakins 冷峻就别叠高饱和 HDR；写 Fraser 沙漠就别叠清新蓝天）。
+The three names **can be stacked** as a "tone recipe". DP credit must be self-consistent with film/format style (writing Deakins cold/minimal → don't stack high-saturation HDR; writing Fraser desert → don't stack fresh blue sky).
 
-**坑**：优先用"DP + 公认代表作 + 时间"（比单写人名稳）；`analog grain` 要配 `Avoid: heavy digital grain`。
+**Pitfall**: prefer "DP + recognized masterpiece + time" (more stable than a bare name); `analog grain` pairs with `Avoid: heavy digital grain`.
 
-## 三、两条显影链（直接抄走）
+## 3. Two Development Chains (copy directly)
 
 ```
-// 彩色日/夜景显影链（低饱和高对比、跳漂白苍茫硬调）
+// Color day/night development chain (low saturation high contrast, skip-bleach desolate hard tone)
 35mm Kodak Vision3 500T film stock with skip-bleach negative LUT,
 analog photochemical grain, single still frame from a feature film.
 
-// 黑白武戏显影链（真实黑白片基灰阶）
+// B&W martial-arts development chain (real B&W film-base grayscale)
 Kodak Double-X 5222 black-and-white film stock aesthetic. Anamorphic widescreen lens.
 Subtle organic film grain only. Colors restrained, slight gray tone.
 ```
 
-**黑白片仍用彩色色卡 + 写灰阶层级**（防层次糊）："红→中深灰、黑保深、白保亮"。
+**B&W films still use a color card + write grayscale hierarchy** (prevent muddy layers): "red→medium dark gray, black stays deep, white stays bright".
 
-## 四、删词调节器（清爽调 vs 压抑调）
+## 4. Word-Deletion Regulator (clean/bright vs dark/oppressive)
 
-调子是基调级决策，**先定再出图**。提示词不变"加什么"，更要"删什么"。
+Tone is a foundational decision; **decide first, then generate**. Prompts aren't just "what to add", but "what to delete".
 
-**清爽明亮调**（蓝天/通透/都市）：
-- **删**：`Dune aesthetic / skip-bleach LUT / analog grain / dusty haze / HDR glow`
-- **加**：`bright clean fresh daylight + clear/soft light-blue sky + white clouds + high clarity + shallow DoF`
-- 冷特效靠 teal-orange 互补（暖背景 vs 冷特效）；蓝天别过饱和（`not over-saturated`）。
+**Clean/bright tone** (blue sky/transparent/urban):
+- **DELETE**: `Dune aesthetic / skip-bleach LUT / analog grain / dusty haze / HDR glow`
+- **ADD**: `bright clean fresh daylight + clear/soft light-blue sky + white clouds + high clarity + shallow DoF`
+- Cold effects rely on teal-orange complement (warm background vs cold effects); blue sky not over-saturated (`not over-saturated`).
 
-**压抑/末世调**（沙尘/冷峻/废土）：
-- **保留**：`Dune aesthetic + Kodak Vision3 500T + skip-bleach + analog grain + dusty haze + desaturated`
-- 全套签名按本调走，不混用。
+**Dark/oppressive tone** (sand dust/cold/wasteland):
+- **KEEP**: `Dune aesthetic + Kodak Vision3 500T + skip-bleach + analog grain + dusty haze + desaturated`
+- Entire signature follows this tone, no mixing.
 
-**坑**：skip-bleach 去饱和会一起吃掉焦点色，焦点色要 `sole saturated / glowing` 显式拔高。
+**Pitfall**: skip-bleach desaturation eats accent colors together; accent colors need `sole saturated / glowing` explicit elevation.
 
-## 五、经典布光法（写进定妆图与角色镜头的"光影行"）
+## 5. Classic Lighting Methods (write into makeup images and character shots' "lighting line")
 
-| 布光法 | 光效特征 | 适用 | 提示词写法 |
+| Method | Light Effect | Fits | Prompt Wording |
 |---|---|---|---|
-| 三点布光 | 主光+补光+轮廓光，干净立体 | 默认安全，商业感 | `三点布光，主光 45° 侧上方` |
-| 伦勃朗光 | 面部一侧三角光斑，立体神秘 | 男角色、权谋戏、压抑戏 | `伦勃朗光，面部一侧三角光区` |
-| 蝴蝶光 | 眼下蝶形阴影，柔美精致 | 女角色、魅惑戏、时尚感 | `蝴蝶光，柔和高位正面光` |
-| 侧光 | 90° 强对比，戏剧化 | 悬疑、对峙、硬朗人像 | `90° 侧光，明暗对半` |
-| 轮廓光/逆光 | 边缘亮线勾勒，分离背景 | 逆光剪影、高光时刻、暧昧戏 | `逆光轮廓光，发丝与肩线镀金边` |
-| 眼神光 | 瞳孔高光点，生命感 | 人像镜头必写！ | `眼中有一点眼神光` |
+| Three-point | key+fill+rim, clean & dimensional | default safe, commercial feel | `three-point lighting, key 45° side-above` |
+| Rembrandt | triangular light patch on one side of face, dimensional & mysterious | male characters, power-play, oppressive scenes | `Rembrandt lighting, triangular light zone on one side of face` |
+| Butterfly | butterfly shadow under the eyes, soft & refined | female characters, seductive scenes, fashion | `butterfly lighting, soft high frontal light` |
+| Side light | 90° strong contrast, dramatic | suspense, confrontation, hard-edged portraits | `90° side light, half-lit half-shadow` |
+| Rim/back light | bright edge line outlining, separates background | backlit silhouette, highlight moments, ambiguous scenes | `backlit rim light, gold edge on hair and shoulder line` |
+| Catchlight | highlight point in pupils, aliveness | MUST write in every portrait shot! | `a catchlight in the eyes` |
 
-**优先级**：任何人像镜头（含定妆、特写）都写眼神光；男强戏优先伦勃朗，女魅戏优先蝴蝶，拿不准用三点布光。
+**Priority**: every portrait shot (incl. makeup, close-up) writes catchlight; male power scenes prefer Rembrandt, female allure scenes prefer butterfly; when unsure, use three-point.
 
-## 六、时段光影（场景卡"时间与天气"字段的参考）
+## 6. Time-of-Day Lighting (reference for scene card's "time & weather" field)
 
-| 时段 | 光线特征 | 提示词写法 | 适用 |
+| Period | Light Character | Prompt Wording | Fits |
 |---|---|---|---|
-| 黄金时刻 | 日落前 1 小时，暖橙斜射长影 | `黄金时刻，暖橙侧逆光，长影` | 浪漫、告别、高光、温暖 |
-| 蓝调时刻 | 日落后 20–30 分钟，冷蓝+暖灯对比 | `蓝调时刻，冷蓝天空与暖窗光对撞` | 都市夜景、孤独、悬疑、科幻 |
-| 正午硬光 | 顶光高反差 | `正午顶光，高反差硬阴影` | 现代建筑、烈日压迫、西部感 |
-| 阴天漫射 | 均匀柔和无影 | `阴天漫射光，柔和无阴影` | 文艺、日常、压抑平缓 |
+| Golden hour | 1h before sunset, warm orange raking light, long shadows | `golden hour, warm orange side-backlight, long shadows` | romance, farewell, highlight, warmth |
+| Blue hour | 20–30 min after sunset, cold blue + warm light contrast | `blue hour, cold blue sky clashing with warm window light` | urban night, loneliness, suspense, sci-fi |
+| Noon hard light | top light, high contrast | `noon top light, high-contrast hard shadows` | modern architecture, sun oppression, western feel |
+| Overcast diffuse | even soft, no shadow | `overcast diffuse light, soft and shadowless` | art-house, daily life, oppressive flat |
 
-**主光 vs 辅光条款**（场景卡必含）：写明主光源方向 + 辅光来源与色温 + 时间或环境，缺一不可。
+**Key vs fill clause** (scene card MUST include): write the key light direction + fill source & color temperature + time or environment — none may be missing.
 
-## 七、焦段心理（镜头行"焦段感"的参考）
+## 7. Focal-Length Psychology (reference for camera line's "focal-length feel")
 
-| 焦段感 | 视觉效果 | 提示词写法 | 用途 |
+| Focal Feel | Visual Effect | Prompt Wording | Use |
 |---|---|---|---|
-| 广角 24–35mm | 透视拉伸，环境卷入 | `24mm 广角感，近大远小` | 建场、压迫、动作、室内空间 |
-| 标准 50mm | 接近人眼，无畸变 | `50mm 感` | 对话戏默认 |
-| 中焦 85mm | 面部比例佳，虚化优美 | `85mm 感，浅景深` | 人像特写、情绪戏（人像黄金焦段） |
-| 长焦 135mm+ | 空间压缩，背景剥离 | `135mm 长焦感，背景压缩` | 情绪特写、暧昧戏、追踪感 |
+| Wide 24–35mm | perspective stretch, environment pulled in | `24mm wide feel, near large far small` | establishing, pressure, action, interior space |
+| Standard 50mm | near human eye, no distortion | `50mm feel` | dialogue default |
+| Medium 85mm | good facial proportions, beautiful blur | `85mm feel, shallow DoF` | portrait close-up, emotional scenes (portrait golden focal length) |
+| Telephoto 135mm+ | spatial compression, background peeled away | `135mm telephoto feel, compressed background` | emotional close-up, ambiguous scenes, tracking feel |
 
-**焦段纪律**：情绪戏用 85/135mm 感；建场与动作用 24–35mm 感；对话戏 50mm 感。一律写"感"字，避免模型按真实镜头参数理解。
+**Focal discipline**: emotional scenes 85/135mm feel; establishing & action 24–35mm feel; dialogue 50mm feel. Always write "feel" (感), avoiding the model interpreting real lens parameters.
 
-## 八、人种肤色适配（角色定妆用）
+## 8. Skin-Tone & Material Adaptation (for character makeup)
 
-| 肤色类型 | 布光要点 | 提示词写法 |
+| Skin/Material Type | Lighting Key | Prompt Wording |
 |---|---|---|
-| 深色皮肤 | 柔光+补光，避免硬阴影吞细节 | `柔和主光加补光，避免硬阴影` |
-| 浅色皮肤 | 侧光增强轮廓，避免过曝 | `侧光塑造轮廓，防止过曝` |
-| 特殊材质服饰（丝绸/金属） | 精准控光，高光点明确 | `丝绸面料，单一高光点，泛光均匀` |
+| Dark skin | soft light + fill, avoid hard shadows swallowing detail | `soft key light with fill, avoid hard shadows` |
+| Light skin | side light enhances contour, avoid overexposure | `side light sculpting contours, prevent overexposure` |
+| Special fabrics (silk/metal) | precise light control, clear highlight points | `silk fabric, single highlight point, even sheen` |
 
-## 九、产品/道具布光（道具定场帧用）
+## 9. Product/Prop Lighting (for prop establishing frames)
 
-| 道具类型 | 布光方案 | 提示词写法 |
+| Prop Type | Lighting Plan | Prompt Wording |
 |---|---|---|
-| 奢侈品/信物类 | 单一光源+反光板精控，深色背景 | `单一柔光主光，深色渐变背景，质感高光精确` |
-| 科技/法器类 | 黑背景+边缘光，冷色 | `黑背景，冷色边缘光勾勒轮廓，科技感` |
-| 食物/生活类 | 顶部光+柔补光 | `顶部暖光加柔补光，光泽自然` |
-| 透明/玻璃/水晶类 | 背光+边缘光 | `背光透射加边缘光，通透折射` |
+| Luxury/keepsake | single light + reflector precision control, dark background | `single soft key light, dark gradient background, precise specular highlights` |
+| Tech/artifact | black background + edge light, cold colors | `black background, cold edge light outlining, tech feel` |
+| Food/lifestyle | top light + soft fill | `top warm light with soft fill, natural sheen` |
+| Transparent/glass/crystal | backlight + edge light | `backlit transmission plus edge light, translucent refraction` |
 
-## 十、地域/画风光影签名（跨题材可选速配）
+## 10. Region/Style Lighting Signatures (optional quick-matching across genres)
 
-| 风格 | 光影签名 | 提示词写法 |
+| Style | Lighting Signature | Prompt Wording |
 |---|---|---|
-| 中式意境 | 低饱和莫兰迪，留白 | `低饱和莫兰迪色调，构图留白，东方意境` |
-| 日式极简 | 大窗光，素净 | `大面窗光，素净柔和，日式极简` |
-| 好莱坞史诗 | 逆光+雾，宏大纵深 | `逆光雾境，层次纵深，史诗感` |
-| 欧洲复古 | 冷调灰，油画光 | `冷灰调，柔和油画感光线` |
-| 中东典雅 | 金+深蓝，对称几何 | `金色暖光与深蓝对比，对称构图` |
-| 美式街头 | 高对比鲜明，夜霓虹 | `高对比，霓虹色块，街头质感` |
+| Chinese mood | low-saturation Morandi, negative space | `low-saturation Morandi palette, compositional negative space, oriental mood` |
+| Japanese minimal | large window light, clean | `large window light, clean and soft, Japanese minimal` |
+| Hollywood epic | backlight + fog, grand depth | `backlit fog world, layered depth, epic feel` |
+| European vintage | cool gray, painterly light | `cool gray tone, soft painterly light` |
+| Middle-Eastern elegant | gold + deep blue, symmetrical geometry | `golden warm light contrasting deep blue, symmetrical composition` |
+| American street | high contrast vivid, night neon | `high contrast, neon color blocks, street texture` |
 
-## 十一、远距离对话帧视线锁定（对话戏加固）
+## 11. Long-Distance Dialogue Eye-Line Lock (dialogue reinforcement)
 
-远距离对话帧（隔屋对峙/跨桌）一旦超出"一臂之内"就掉控，模型会把两人画成各自低头沉思（看似在看其实没看）。
+Long-distance dialogue frames (across-room confrontation / across-table) once beyond "arm's length" lose control; the model draws both people looking down in thought (seemingly looking but not).
 
-**加固三件套**（按【正文】+【CONSTRAINTS】+【Avoid】三处复写）：
-1. **正向**：`eyelines MEET across the room, both heads slightly LIFTED to look at each other`
-2. **Avoid 段**把"低头沉思"族逐项排除：`looking down at the table / heads bowed / eyes lowered / each lost in their own thoughts / averted gaze`
-3. **纯侧脸改 3/4 朝向对方**；`head TURNED toward the other person, chin slightly LIFTED`
+**Reinforcement three-piece set** (replicated in 【body】+【CONSTRAINTS】+【Avoid】):
+1. **Positive**: `eyelines MEET across the room, both heads slightly LIFTED to look at each other`
+2. **Avoid section** excludes the "looking-down-in-thought" family item by item: `looking down at the table / heads bowed / eyes lowered / each lost in their own thoughts / averted gaze`
+3. **Pure profile → 3/4 turn toward the other**; `head TURNED toward the other person, chin slightly LIFTED`
 
-**作用范畴**：所有对话戏镜头。配合 `assets/dialogue-board-card.md`（6 格 2×3 关系板）使用。
+**Scope**: all dialogue shots. Pair with `assets/dialogue-board-card.md` (6-cell 2×3 relationship board).

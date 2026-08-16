@@ -1,87 +1,87 @@
-# 海螺 Hailuo（MiniMax Video）适配手册
+# Hailuo (MiniMax Video) Adapter Manual
 
-> 适配对象：Hailuo 01 / 02（MiniMax） | 更新：2026-08 | 依据：官方文档+社区实测
-> 使用场景：目标模型=海螺时，阶段 4 逐镜提示词按本文件结构公式组装（通用骨架见 video-prompt-framework.md）。
+> Target: Hailuo 01 / 02 (MiniMax) | Updated: 2026-08 | Basis: official docs + community testing
+> Use case: when target model = Hailuo, Phase 4 per-shot prompts are assembled per this file's structure formula (general skeleton in video-prompt-framework.md).
 
-## 一、能力边界速查表
+## 1. Capability-Boundary Quick Table
 
-| 能力 | 参数 | 备注 |
+| Capability | Parameter | Notes |
 |---|---|---|
-| 单段时长 | 6s（主流档，部分场景支持更长） | 漫剧单镜推荐 4–6s，节奏比另两模型更紧凑 |
-| 画幅 | 9:16 / 16:9 / 1:1 | 竖屏短剧 9:16 |
-| 首尾帧 | 支持首帧、尾帧（版本差异，需实测确认多图） | **尾帧承接可用**；多图参考按版本验证 |
-| 镜头指令 | 支持显式镜头指令（如 [推镜] [环绕] 类标记） | 中文自然语言同样有效 |
-| 提示词语言 | 中文友好 | 分段式提示词响应最佳 |
-| 风格化 | 强（动漫/水墨/写实皆可） | 漫剧画风适配度高的模型 |
-| 文字渲染 | 弱 | 同前：模糊字符流替代 |
-| 音频 | 无 | 后期配音 |
+| Single-segment duration | 6s (mainstream tier; some scenes support longer) | comic-drama single shot recommended 4–6s; pacing tighter than the other two models |
+| Aspect ratio | 9:16 / 16:9 / 1:1 | vertical short drama 9:16 |
+| First/last frame | supports first-frame, last-frame (version differences; verify multi-image by testing) | **last-frame continuation usable**; multi-image reference verify per version |
+| Camera directives | supports explicit camera directives (e.g., [push-in] [orbit] style markers) | Chinese natural language also works |
+| Prompt language | Chinese-friendly | segmented prompts respond best |
+| Stylization | strong (anime/ink-wash/realistic all fine) | a model with high fit for comic-drama art styles |
+| Text rendering | weak | same as before: blurry character stream replacement |
+| Audio | none | post dubbing |
 
-## 二、提示词结构公式（分段式响应最佳）
+## 2. Prompt Structure Formula (segmented responses work best)
 
 ```
-【场景】环境锚点 + 时间 + 空间层次
-【主体】谁 + 外观锚点（角色卡逐字）
-【动作】主动作 + 微表情 + 运动幅度
-【镜头】景别 + 运镜 + 视角 + 起幅落幅
-【光影】光源方向 + 色温 + 布光法
-【风格】画风锚点块
-【负面】末行集中
+【Scene】environment anchors + time + spatial layers
+【Subject】who + appearance anchors (verbatim from character card)
+【Action】primary action + micro-expression + motion amplitude
+【Camera】shot scale + camera move + angle + opening/closing frame
+【Light】light-source direction + color temperature + lighting method
+【Style】style-anchor block
+【Negative】concentrated on the end line
 ```
 
-要点：海螺对"镜头指令"词响应直接——需要推镜就写"镜头缓推"，不要只写"推向"。单镜 6s 内只放一个动作闭环（起→落），放不下两个节拍。
+Key point: Hailuo responds directly to "camera-directive" words — to push in, write "camera slow push-in", not just "push toward". Within a 6s shot, place only ONE action loop (start→land); there's no room for two beats.
 
-## 三、运镜与动作词汇（实测响应好的词）
+## 3. Camera & Action Vocabulary (words that test well in practice)
 
-- 运镜：固定 / 缓推 / 缓拉 / 横移 / 环绕（海螺环绕较稳，仍 ≤90°）/ 跟随
-- 镜头指令写法：`镜头缓推，从全景推到近景`（写明起点景别→终点景别）
-- 动作：`主体 + 动作 + 速度 + 结束状态`（"她回身，缓缓，停在门边"）
-- 表情：写"先…后…"的微表情序列（"先是错愕，随后抿唇压下"），海螺面部情绪序列感好
+- Camera moves: static / slow push-in / slow pull-back / lateral track / orbit (Hailuo orbit is more stable; still ≤90°) / follow
+- Camera-directive writing: `camera slow push-in, from full shot to close shot` (state the starting shot scale → ending shot scale)
+- Actions: `subject + action + speed + ending state` ("she turns, slowly, stopping at the door")
+- Expressions: write "first...then..." micro-expression sequences ("first startled, then lips pressing to suppress it"); Hailuo has good facial-emotion sequence feel
 
-## 四、首尾帧衔接实操
+## 4. First/Last-Frame Connection in Practice
 
-1. 尾帧提取 → 图生视频首帧；首句写"延续首帧画面，人物姿态不变，随后……"。
-2. 6s 档节奏：建立(0–1s) → 发展(1–4s) → 收尾(4–6s)，收尾帧刻意做动作落点（供下一镜尾帧承接）。
-3. 双图（尾帧+定妆）按版本实测；不支持时降级：首帧图只放尾帧，定妆锚点靠文字复述。
-4. 已知坑：首帧构图人物过小 → 模型放大背景忽略表演；人物占画面 ≥30% 再喂。
+1. Extract last frame → image-to-video first frame; first sentence writes "continue the first-frame image, character pose unchanged, then ...".
+2. 6s-tier rhythm: Establish(0–1s) → Develop(1–4s) → Close(4–6s); the closing frame deliberately lands as an action point (for the next shot's last-frame continuation).
+3. Dual images (last frame + makeup): verify per version; if unsupported, downgrade: first-frame image holds only the last frame, makeup anchors restated in text.
+4. Known pitfalls: character too small in the first-frame composition → model enlarges the background and ignores the performance; keep the character ≥30% of the frame before feeding.
 
-## 五、常见翻车与规避
+## 5. Common Failures & Avoidance
 
-| 现象 | 根因 | 规避写法 |
+| Symptom | Root Cause | Avoidance Wording |
 |---|---|---|
-| 表演被忽略 | 主体占比小/动作藏在长句里 | 动作独立成段，首帧人物放大，镜头先贴近 |
-| 运镜无效 | 用"推向"而非"缓推" | 用明确镜头指令词（见第三节） |
-| 表情僵硬 | 只写情绪词 | 写"部位+变化序列"，补眼神光 |
-| 转场生硬 | 单镜塞多节拍 | 6s 只放一个动作闭环，多余的拆镜 |
-| 风格漂移 | 画风锚点不足 | 锚点块 4–6 组逐字复述，风格化强是优点也是失控点 |
-| 首帧污染 | 边缘杂物 | 构图清理边缘 10%，写"画面内无多余物体" |
+| Performance ignored | subject occupies small share / action buried in long sentences | make action its own segment, enlarge the first-frame character, camera approaches first |
+| Camera move ineffective | used "push toward" instead of "slow push-in" | use explicit camera-directive words (see Section 3) |
+| Stiff expression | only emotion words | write "body-part + change sequence", add catchlight |
+| Hard transitions | multiple beats crammed in one shot | 6s holds one action loop; split the extras into new shots |
+| Style drift | insufficient style anchors | anchor block 4–6 phrases restated verbatim; strong stylization is both the strength and the loss-of-control point |
+| First-frame contamination | edge debris | clean frame edges 10%, write "no extra objects in frame" |
 
-## 六、抽卡成本控制
+## 6. Card-Pull Cost Control
 
-- 单镜 6s 拆得更碎：90 秒集 ≈ 15–20 镜，别压镜数保时长。
-- 海螺风格化强 → 画风锚点块是全片最大的"漂移变量"，一旦定稿冻结，所有镜头逐字复用。
-- 翻车优先改"动作复杂度"（减节拍）与"运镜速度"（降一档），其次才动参考图。
-- 连刷 ≤3 次；不过 → 拆镜/换景别（continuity-playbook 矩阵）。
+- Split 6s shots finer: a 90s episode ≈ 15–20 shots; don't compress shot count to keep duration.
+- Hailuo's strong stylization → the style-anchor block is the film's biggest "drift variable"; once finalized and frozen, every shot reuses it verbatim.
+- On failure, first change "action complexity" (fewer beats) and "camera speed" (lower one notch); touch reference images only after.
+- Rerun ≤3 times; if still failing → split shot / change scale (continuity-playbook matrix).
 
-## 七、完整示例（原创内容）
+## 7. Full Examples (original content)
 
-文戏特写（尾帧承接）：
+Dialogue close-up (last-frame continuation):
 ```
-【场景】雨夜天台，远处城市灯火虚化，冷蓝夜色（场景卡 SC-05）；
-【主体】她：披肩发，白色衬衫，袖口挽到小臂（定妆图 CH-04），延续首帧坐姿；
-【动作】她缓缓握紧栏杆，指节泛白，随后仰头，闭眼，雨滴落在睫毛上；
-【镜头】近景特写，85mm 感，浅景深，固定机位；
-【光影】城市冷蓝环境光，面部一侧有微弱广告牌暖光，眼中有一点眼神光；
-【风格】电影感写实，低饱和冷调，雨丝可见，细腻颗粒；
-【负面】不要面部变形，不要服装变化，不要文字水印，不要多余人物。
+【Scene】rainy night rooftop, distant city lights blurred, cold-blue night (scene card SC-05);
+【Subject】She: shoulder-length hair, white shirt, sleeves rolled to the forearm (makeup image CH-04), continuing the first-frame sitting pose;
+【Action】She slowly grips the railing, knuckles going white, then tilts her head back, closes her eyes, raindrops landing on her lashes;
+【Camera】close shot, 85mm feel, shallow DoF, fixed camera;
+【Light】city cold-blue ambient light, a faint billboard warm glow on one side of her face, a catchlight in her eyes;
+【Style】cinematic realism, low-saturation cool tone, visible rain streaks, fine grain;
+【Negative】no facial deformation, no clothing change, no text or watermarks, no extra people.
 ```
 
-动作镜（关键帧插入·新道具）：
+Action shot (keyframe insert · new prop):
 ```
-【场景】昏暗档案室，吊灯光束，尘埃浮动（场景卡 SC-06）；
-【主体】他：黑框眼镜，深色外套（定妆图 CH-05），信封从首帧画面延续；
-【动作】他拆开信封，抽出照片，动作放缓，目光在照片上定住，眉头先皱后松；
-【镜头】中近景，镜头缓推，从肩部推到面部，起幅信封在画面中央，落幅他的眼睛；
-【光影】顶光为主，面部留阴影，信封边缘有一线高光；
-【风格】悬疑片质感，冷灰调，浅景深，电影颗粒；
-【负面】不要手部变形，不要文字可读（照片内容模糊处理），不要多余人物，不要水印。
+【Scene】dim archive room, ceiling lamp beam, dust floating (scene card SC-06);
+【Subject】He: black-rimmed glasses, dark coat (makeup image CH-05), the envelope continuing from the first-frame image;
+【Action】He opens the envelope, pulls out the photo, motion slowing, gaze fixing on the photo, brow first knitting then relaxing;
+【Camera】medium close-up, camera slow push-in, from shoulder to face; opening the envelope at frame center, closing his eyes;
+【Light】top light primary, face retaining shadow, a thin highlight on the envelope edge;
+【Style】suspense-film texture, cool gray tone, shallow DoF, cinematic grain;
+【Negative】no hand deformation, no readable text (photo content blurred), no extra people, no watermarks.
 ```

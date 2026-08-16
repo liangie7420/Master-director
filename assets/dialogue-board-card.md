@@ -1,111 +1,103 @@
-# 对话关系板 · <场景名>（编号 DB-##）
+# Dialogue Board Card — <Scene Name / 场景名>（编号 DB-##）
 
-> 6 格 2×3 contact sheet，**锁一场对话戏的 180° 轴线 + 视线真源**。是对话戏在分镜表之前的"blocking 真源"——一张图钉死"A 恒在左朝右、B 恒在右朝左、镜头不跨轴"。
+> A 6-cell 2×3 contact sheet that **locks a dialogue scene's 180° axis + true gaze sources**. It is the "blocking source of truth" produced BEFORE the shot list — one image that pins down "A is always screen-left facing right, B is always screen-right facing left, the camera never crosses the axis".
 >
-> 何时用：任何 ≥2 人对话戏在写分镜表前必出这张图（挡跨轴、防视线漂移、防第三人乱入）。
+> **When to use**: any ≥2-person dialogue scene must produce this image before writing the shot list（blocks axis crossing, prevents gaze drift, prevents third-party intrusions）.
 >
-> 来源：改编自 neoimage-prompt-engine "图型 31 · 正反打双人对话关系板"。
+> **Source**: adapted from neoimage-prompt-engine "Figure 31 · over-the-shoulder two-person dialogue relationship board".
 
-## 1. 图型与版式
+## 1. Figure Type & Layout / 图型与版式
+- **Aspect ratio / 比例**: 6:5（fits 2 columns × 3 rows）
+- **Layout / 布局**: **2 columns × 3 rows**（the left column always holds A, the right column always holds B — splitting pairs as 3×2 is forbidden）
+- **Cell numbering / 格子编号**: 1–6, left to right, top to bottom; bold white in the bottom-right corner
+- **Cell dividers / 格间分隔**: thin white or thin black borders, 1–2px
+- **Third person / 第三人**: only as a background shadow; removed from close-ups（3/4 frames）
 
-- **比例**：6:5（容 2×3 列行）
-- **布局**：**2 列 × 3 行**（左列恒 A 覆盖、右列恒 B 覆盖，禁止 3×2 拆对子）
-- **格子编号**：1–6 从左到右、从上到下；右下角白色加粗
-- **格间分隔**：细白边或细黑边 1–2px
-- **第三人**：只作背景暗影，近景（3/4 格）剔除
+## 2. 180° Axis Lock（highest priority — applies to all 6 cells）/ 180° 轴线锁
+- A is always on **screen-LEFT**, gaze always toward **RIGHT**
+- B is always on **screen-RIGHT**, gaze always toward **LEFT**
+- The camera **NEVER crosses the A–B line**
+- **Declare this at the start of the prompt body + restate it in CONSTRAINTS**（double rewrite = attention reinforcement）. **If you skip it, the 6 cells' gazes go their own ways and the axis will not connect.**
 
-## 2. 180° 轴线锁（最高优先，6 格全适用）
-
-- A 恒在 **screen-LEFT**、视线恒朝 **RIGHT**
-- B 恒在 **screen-RIGHT**、视线恒朝 **LEFT**
-- 镜头**绝不跨过 A—B 连线**
-- **正文开头声明 + CONSTRAINTS 复述**（双处复写 = 注意力强化）。**漏了它 6 格视线各自为政、跨轴不接**。
-
-## 3.6 格分配（按 conenoimage 图型 31 模板）
-
-| 格号 | 位置 | 机位 | A 行为 | B 行为 | 前景虚化 |
+## 3. Six-Cell Allocation（per neoimage Figure 31 template）/ 6 格分配
+| Cell / 格号 | Position / 位置 | Camera / 机位 | A's Behavior / A 行为 | B's Behavior / B 行为 | Foreground Bokeh / 前景虚化 |
 |---|---|---|---|---|---|
-| 1 | 行1-左 | 过肩中景偏 A | A 开口、视线朝右 | — | B 肩在右前景 |
-| 2 | 行1-右 | 反打偏 B | — | B 开口、视线朝左 | A 肩在左前景 |
-| 3 | 行2-左 | A 单人近景 | 脸占满、视线朝右，说话微表情 | — | 无 |
-| 4 | 行2-右 | B 单人近景 | — | 脸占满、视线朝左，说话微表情 | 无 |
-| 5 | 行3-左 | A 中近景 | A 恒左、视线朝右 | — | B 作右边缘虚化 |
-| 6 | 行3-右 | B 中近景 | — | B 恒右、视线朝左 | A 作左边缘虚化 |
+| 1 | row1-left | over-shoulder medium, favoring A | A speaks, gaze right | — | B's shoulder at right foreground |
+| 2 | row1-right | reverse, favoring B | — | B speaks, gaze left | A's shoulder at left foreground |
+| 3 | row2-left | A single close-up | face fills frame, gaze right, speaking micro-expressions | — | none |
+| 4 | row2-right | B single close-up | — | face fills frame, gaze left, speaking micro-expressions | none |
+| 5 | row3-left | A medium close-up | A stays left, gaze right | — | B blurred at right edge |
+| 6 | row3-right | B medium close-up | — | B stays right, gaze left | A blurred at left edge |
 
-**方位排错轴线就崩**。逐格检查前景虚化肩属 + 视线方向。
+**If any position is wrong, the axis collapses.** Check cell by cell: which shoulder owns the foreground bokeh + which way each gaze points.
 
-## 4. 全局一致性（九格 = 一个时刻）
+## 4. Global Consistency（nine cells = ONE moment）/ 全局一致性
+- Same room + same key light + same costumes + same moment
+- Skip this sentence → the 6 cells drift into 6 different moments / 6 different lights
+- Light direction + film stock + tonal signature consistent across all 6 cells
 
-- 同一房间 + 同一主光 + 同一戏服 + 同一时刻
-- 少这句 → 6 格漂成 6 个不同时刻/不同光
-- 光源方向 + 胶片型号 + 调性签名跨 6 格一致
+## 5. Anti-Face-Swap Trio（the biggest risk in multi-character frames）/ 防串脸三件套
+1. **Per-image character reference exclusivity + bind to screen position**:
+   `Image 1 corresponds to A's face in the LEFT column / Image 2 corresponds to B's face in the RIGHT column`
+2. **CONSTRAINTS lock**: write `the two must not swap or merge faces`
+3. **AVOID final line**: write `faces swapped or merged / heads merged`
+4. After generation, verify identity cell by cell; if faces swapped, strengthen the position binding or use dot-marker positioning.
 
-## 5. 防串脸三件套（多角色同框最大风险）
-
-1. **逐张角色参考图排他 + 绑画面位置**：
-   `Image 1 对应画面左列 A 的脸 / Image 2 对应画面右列 B 的脸`
-2. **CONSTRAINTS 锁段**写：`不要两人互相串脸/合脸`
-3. **AVOID 末行**写：`faces swapped or merged / heads merged`
-4. 出图后逐格核身份；串了加强方位绑定或用打点定位。
-
-## 6. 提示词结构（按 image-prompt-engine §三公式）
-
+## 6. Prompt Structure（per the image-prompt-engine §三 formula）/ 提示词结构
 ```
-【参考图片】
-- 图1（A 定妆图）：仅锁 A 的脸/发/戏服
-- 图2（B 定妆图）：仅锁 B 的脸/发/戏服
-- 图3（场景锚图）：仅锁环境与光
+[REFERENCE IMAGES]
+- Image 1 (A look image): locks ONLY A's face / hair / costume
+- Image 2 (B look image): locks ONLY B's face / hair / costume
+- Image 3 (scene anchor): locks ONLY the environment and light
 
-【180° 轴线 — 最高优先，6 格全适用】
-A 恒在 screen-LEFT、视线恒朝 RIGHT；B 恒在 screen-RIGHT、视线恒朝 LEFT；
-镜头绝不跨 A—B 连线。
-<A 一句体位>；<B 一句体位>；<第三人：隐于 B 身后阴影>。
-同一房间、同一主光、同一戏服、同一时刻。
+[180° AXIS — highest priority, applies to all 6 cells]
+A always on screen-LEFT, gaze always RIGHT; B always on screen-RIGHT, gaze always LEFT;
+the camera never crosses the A–B line.
+<A's one-line posture>; <B's one-line posture>; <third person: hidden in B's background shadow>.
+Same room, same key light, same costumes, same moment.
 
-【6 格 · 2列×3行 · 左A右B】
-格1（行1-左）过肩中景偏A：A 的脸与上半身在左，越过右前景虚化的 B 肩；
-A 开口、视线朝右。
-格2（行1-右）反打过肩中景偏B：B 的脸与上半身在右，越过左前景虚化的 A 肩；
-B 开口、视线朝左；第三人暗影在身后。
-格3（行2-左）A 单人近景，脸占满，视线朝右，说话微表情。
-格4（行2-右）B 单人近景，脸占满，视线朝左，说话微表情。
-格5（行3-左）A 中近景单人，B 作右边缘虚化前景；A 恒左、视线朝右。
-格6（行3-右）B 中近景单人，A 作左边缘虚化前景；B 恒右、视线朝左。
+[6 CELLS · 2 COLUMNS × 3 ROWS · LEFT-A RIGHT-B]
+Cell 1 (row1-left) over-shoulder medium favoring A: A's face and upper body on the left, looking past B's blurred right-foreground shoulder;
+A speaks, gaze right.
+Cell 2 (row1-right) reverse over-shoulder medium favoring B: B's face and upper body on the right, looking past A's blurred left-foreground shoulder;
+B speaks, gaze left; the third-person shadow behind.
+Cell 3 (row2-left) A single close-up, face fills frame, gaze right, speaking micro-expressions.
+Cell 4 (row2-right) B single close-up, face fills frame, gaze left, speaking micro-expressions.
+Cell 5 (row3-left) A medium close-up, B as a blurred right-edge foreground; A stays left, gaze right.
+Cell 6 (row3-right) B medium close-up, A as a blurred left-edge foreground; B stays right, gaze left.
 
-【PRESERVE】A（图1）、B（图2）脸与戏服 6 格完全一致，不串脸/合脸；
-场景（图3）与主光跨格一致 = 一个时刻六机位。
+[PRESERVE] A (Image 1) and B (Image 2): faces & costumes fully identical across all 6 cells — no face-swapping or merging;
+scene (Image 3) and key light consistent across cells = one moment, six cameras.
 
-【CONSTRAINTS — 复述轴线】
-- 每格：A 左·朝右，B 右·朝左，镜头不跨轴，跨格视线相接
-- 第三人只作背景暗影，近景 3/4 剔除
-- 恰好两个说话角色
-- 全图唯一文字是右下角白色加粗格号 1–6，无字幕/水印/logo
-- 每格细白边分隔
+[CONSTRAINTS — restate the axis]
+- Every cell: A left · facing right, B right · facing left, camera never crosses the axis, gazes connect across cells
+- Third person only as a background shadow, removed from close-ups（3/4 frames）
+- Exactly two speaking characters
+- The only text in the entire image is the bold white cell number 1–6 in the bottom-right corner — no subtitles / watermark / logo
+- Each cell separated by thin white borders
 
-【PHOTOGRAPHIC TONE】
-真实电影定格，<基调一句：暖烛光/冷蓝/日光>，35mm 胶片感，
-细腻 grain，柔和景深，3–6 格平视镜头，克制不过饱和不塑料。
+[PHOTOGRAPHIC TONE]
+Real cinematic still, <tone one-liner: warm candlelight / cold blue / daylight>, 35mm film feel,
+fine grain, soft depth of field, eye-level cameras across cells 3–6, restrained — neither oversaturated nor plastic.
 
-【AVOID】
-跨 180°轴线、视线翻转（A 朝左或 B 朝右）、faces swapped or merged、
-跨格服装/光不一致、过锐、HDR、磨皮、卡通、CGI 游戏感、anime、
-除 1–6 格号外任何文字。
+[AVOID]
+Crossing the 180° axis, gaze flips（A looking left or B looking right）, faces swapped or merged,
+inconsistent costume / light across cells, oversharpening, HDR, skin-smoothing, cartoon, CGI game look, anime,
+any text other than the cell numbers 1–6.
 ```
 
-## 7. 校验清单（出图后逐项对账）
+## 7. Verification Checklist（check item by item after generation）/ 校验清单
+- [ ] Genuinely 6 cells in 2×3, thin white borders, bold white 1–6 bottom-right
+- [ ] Axis not crossed（in all 6 cells A stays left looking right, B stays right looking left）
+- [ ] Gazes connect（cells 1/2 over-shoulder gazes face each other; cells 3/4 close-up directions are opposite）
+- [ ] Over-shoulder shoulder ownership correct（cell 1 foreground = B's shoulder on the right; cell 2 foreground = A's shoulder on the left）
+- [ ] Faces consistent across the 6 cells, no swapping（face-swap is the max-risk failure）, costumes / light consistent across cells
+- [ ] Cells 5/6: blurred foreground is the counterpart, not stealing focus; positions correct
+- [ ] Third person only in the background shadow, absent from close-ups
+- [ ] Zero text / watermark besides the cell numbers 1–6
+- [ ] Long-distance dialogue frames already use the gaze-lock trio（shot-language §六）
 
-- [ ] 真 6 格 2×3，细白边，右下角白色加粗 1–6
-- [ ] 轴线没跨（6 格里 A 恒左望右、B 恒右望左）
-- [ ] 视线接得上（格1/2 过肩视线相对、格3/4 近景方向相反）
-- [ ] 过肩肩属对（格1 前景是 B 肩在右、格2 前景是 A 肩在左）
-- [ ] 6 格脸一致没串脸（串脸 MAX）、服装/光跨格一致
-- [ ] 格5/6 虚化前景是对方且不抢焦、方位对
-- [ ] 第三人只在背景阴影，近景没乱入
-- [ ] 除 1–6 格号外零文字/水印
-- [ ] 远距离对话帧已用视线锁定三件套（shot-language §六）
+## 8. Relationship to the Shot List / 与分镜表的关系
+**Produce this image FIRST** before designing the dialogue scene's shot list. After the 6-cell camera positions are frozen, each shot in the shot list maps to its corresponding cell — guaranteeing that gaze / stance / axis stay consistent across the 6 shots.
 
-## 8. 与分镜表的关系
-
-对话戏分镜表设计前**先出这张图**，冻结 6 格机位后，分镜表逐镜对应 6 格中对应的那格——保证 6 镜之间视线/站位/轴线一致。
-
-如对话戏超过 6 镜，**重新核查轴线问题**——长对话戏宁拆成"两段对话"分别打关系板，也别硬塞超 6 镜。
+If a dialogue scene needs more than 6 shots, **re-examine the axis issue** — for long dialogues, prefer splitting into "two dialogue segments" with a board each, rather than forcing more than 6 shots into one board.

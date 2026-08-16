@@ -1,84 +1,84 @@
-# 可灵 Kling（快手）适配手册
+# Kling (Kuaishou) Adapter Manual
 
-> 适配对象：可灵 1.6 / 2.0 / 2.1 | 更新：2026-08 | 依据：官方文档+社区实测
-> 使用场景：目标模型=可灵时，阶段 4 逐镜提示词按本文件结构公式组装（通用骨架见 video-prompt-framework.md）。
+> Target: Kling 1.6 / 2.0 / 2.1 | Updated: 2026-08 | Basis: official docs + community testing
+> Use case: when target model = Kling, Phase 4 per-shot prompts are assembled per this file's structure formula (general skeleton in video-prompt-framework.md).
 
-## 一、能力边界速查表
+## 1. Capability-Boundary Quick Table
 
-| 能力 | 参数 | 备注 |
+| Capability | Parameter | Notes |
 |---|---|---|
-| 单段时长 | 5s / 10s（2.x 支持更长实验档） | 漫剧单镜推荐 5–8s |
-| 画幅 | 9:16 / 16:9 / 1:1 | 竖屏短剧 9:16 |
-| 首尾帧 | 支持首帧、尾帧、首尾帧 | **尾帧承接可用**；多图参考支持（数量按版本） |
-| 运动幅度 | 低/中/高三档可调 | 肢体/面部特写用低-中；动作戏中；**默认低更稳** |
-| 提示词语言 | 中文友好 | 公式化段落优于散文 |
-| 图生视频 | 支持，参考图粘性较强 | 人物一致性优于纯文生 |
-| 文字渲染 | 弱 | 同前：模糊字符流替代 |
-| 音频 | 无 | 后期配音 |
+| Single-segment duration | 5s / 10s (2.x supports longer experimental tiers) | comic-drama single shot recommended 5–8s |
+| Aspect ratio | 9:16 / 16:9 / 1:1 | vertical short drama 9:16 |
+| First/last frame | supports first-frame, last-frame, both | **last-frame continuation usable**; multi-image reference supported (count varies by version) |
+| Motion amplitude | low/medium/high three tiers adjustable | limb/face close-ups use low-medium; action scenes medium; **default low is more stable** |
+| Prompt language | Chinese-friendly | formulaic paragraphs beat prose |
+| Image-to-video | supported, reference-image stickiness strong | character consistency better than pure text-to-video |
+| Text rendering | weak | same as before: blurry character stream replacement |
+| Audio | none | post dubbing |
 
-## 二、提示词结构公式（官方推荐主体优先）
+## 2. Prompt Structure Formula (official recommendation: subject first)
 
 ```
-【主体】谁 + 外观锚点（角色卡逐字）
-【运动】主动作 + 运动幅度词（轻微/缓缓/匀速）+ 方向
-【场景】环境锚点 + 空间层次 + 光线
-【镜头】景别 + 运镜 + 视角
-【风格与质感】画风锚点块
-【负面】末行集中
+【Subject】who + appearance anchors (verbatim from character card)
+【Motion】primary action + motion-amplitude word (slight/slowly/uniform) + direction
+【Scene】environment anchors + spatial layers + light
+【Camera】shot scale + camera move + angle
+【Style & Texture】style-anchor block
+【Negative】concentrated on the end line
 ```
 
-要点：可灵对"运动幅度"敏感——写清"轻微/明显"档位比堆动作词有效；中文字词间隔清晰，逗号分段优于长句。
+Key point: Kling is sensitive to "motion amplitude" — writing the clear "slight/obvious" tier is more effective than stacking action words; Chinese with clear word spacing and comma-segmented sentences beats long sentences.
 
-## 三、运镜与动作词汇（实测响应好的词）
+## 3. Camera & Action Vocabulary (words that test well in practice)
 
-- 运镜：固定机位 / 极缓推 / 缓推 / 横移 / 跟随 / 环绕（可灵环绕较稳，但 ≤90° 原则不变）
-- 幅度词：轻微 / 缓缓 / 匀速 / 明显（"剧烈/快速"高危）
-- 动作：主语明确+动词+幅度（"她缓缓侧过头，幅度轻微"）；多人动作必须写明顺序
-- 表情：可灵面部跟随较强，特写给"眼神变化+嘴角微动"级细节，禁止整脸夸张表情
+- Camera moves: fixed camera / extremely-slow push-in / slow push-in / lateral track / follow / orbit (Kling orbit is more stable, but the ≤90° principle stays)
+- Amplitude words: slight / slowly / uniform / obvious ("violent/fast" are high-risk)
+- Actions: clear subject + verb + amplitude ("she slowly turns her head, amplitude slight"); multi-person actions MUST state order
+- Expressions: Kling's face-following is strong; close-ups get "eye change + mouth-corner micro-movement" level detail; forbid whole-face exaggerated expressions
 
-## 四、首尾帧衔接实操
+## 4. First/Last-Frame Connection in Practice
 
-1. 尾帧提取 → 图生视频首帧；首句写"以首帧为起点，延续人物姿态与光影"。
-2. 首尾帧双端模式：适合"角色从 A 姿态到 B 姿态"的完整动作镜；两端都要是动作落点帧（非运动模糊帧）。
-3. 一致性技巧：可灵对"参考图粘性"强，同角色连续镜头一直引用同一张定妆图，换场景也不换脸。
-4. 已知坑：首帧为竖屏时上下裁剪；首帧带半截路人/道具会被延续放大，构图先清理。
+1. Extract last frame → image-to-video first frame; first sentence writes "starting from the first frame, continue character pose and lighting".
+2. First/last-frame dual-end mode: fits "character from pose A to pose B" complete action shots; both ends must be action-landing frames (not motion-blur frames).
+3. Consistency tip: Kling has strong "reference-image stickiness"; continuous shots of the same character keep referencing the same makeup image — face stays even across scene changes.
+4. Known pitfalls: vertical first frame gets cropped top/bottom; a half-bystander/half-prop in the first frame gets continued and amplified; clean the composition first.
 
-## 五、常见翻车与规避
+## 5. Common Failures & Avoidance
 
-| 现象 | 根因 | 规避写法 |
+| Symptom | Root Cause | Avoidance Wording |
 |---|---|---|
-| 人物变形 | 运动幅度高+复杂动作 | 幅度降"低"，动作拆细（先…随后…），减少同框 |
-| 面部塑料感 | 写实画风缺质感词 | 补"细腻皮肤纹理、真实毛孔质感、电影感颗粒" |
-| 动作幅度不足 | 幅度词缺失 | 明确写"明显"或"较大幅度"（需要时） |
-| 循环感 | 无镜头运动 | 固定镜也写人物微动（呼吸起伏、视线移动） |
-| 多人串脸 | 同框超载 | 减同框、拆正反打、越肩遮挡 |
-| 背景漂移 | 场景锚点不足 | 场景卡逐字复述 + 定场图引用 |
+| Character deformation | high motion amplitude + complex action | lower amplitude to "low", split action into detail (first...then...), reduce people in frame |
+| Plastic face | realistic style lacks texture words | add "delicate skin texture, real pore texture, cinematic grain" |
+| Motion amplitude insufficient | amplitude word missing | explicitly write "obvious" or "larger amplitude" (when needed) |
+| Loop feel | no camera movement | even fixed camera writes character micro-motion (breathing rise-fall, gaze movement) |
+| Multi-person face swap | frame overload | reduce people in frame, split shot/reverse-shot, over-shoulder occlusion |
+| Background drift | insufficient scene anchors | scene card verbatim restatement + establishing-image reference |
 
-## 六、抽卡成本控制
+## 6. Card-Pull Cost Control
 
-- 运动幅度默认"低"起步，成片合格率最高；不够再升"中"，别直接上高。
-- 同一参考图链（定妆+场景+尾帧）整集复用，只在动作段重写，减少变量。
-- 翻车先检查"幅度词 vs 动作复杂度"是否匹配：复杂动作必配低幅度+慢速。
-- 连刷 ≤3 次；3 次不过 → 拆镜/降景别/换关键帧插入补叙（continuity-playbook 第 4 章矩阵）。
+- Start motion amplitude at "low" by default — highest pass rate; upgrade to "medium" only if needed; don't jump to high.
+- Reuse the same reference-image chain (makeup + scene + last frame) across the whole episode; rewrite only the action section, reducing variables.
+- On failure, first check whether "amplitude word vs action complexity" matches: complex action MUST pair with low amplitude + slow speed.
+- Rerun ≤3 times; after 3 failures → split shot / lower scale / keyframe-insert supplementary narrative (continuity-playbook Chapter 4 matrix).
 
-## 七、完整示例（原创内容）
+## 7. Full Examples (original content)
 
-文戏特写（尾帧承接）：
+Dialogue close-up (last-frame continuation):
 ```
-【主体】她：长发低挽，墨绿旗袍，耳垂一枚珍珠耳钉（同定妆图 CH-01）；
-【运动】她缓缓抬眸，幅度轻微，睫毛颤了一下，视线落向画外右下方；
-【场景】深夜书房，一盏台灯，暖黄光晕，窗外雨丝斜打在玻璃上（同场景卡 SC-02）；
-【镜头】近景特写，85mm 感，浅景深，固定机位；
-【风格】电影感写实，暖调低饱和，细腻皮肤质感，自然胶片颗粒；
-【负面】不要面部变形，不要服装变化，不要水印文字，不要多余人物。
+【Subject】She: long hair in a low bun, dark-green cheongsam, a pearl stud earring (same as makeup image CH-01);
+【Motion】She slowly raises her eyes, amplitude slight, eyelashes trembling once, gaze falling toward off-frame lower-right;
+【Scene】late-night study, one desk lamp, warm-yellow glow, rain streaks slanting on the glass outside (same as scene card SC-02);
+【Camera】close shot, 85mm feel, shallow DoF, fixed camera;
+【Style】cinematic realism, warm low-saturation, delicate skin texture, natural film grain;
+【Negative】no facial deformation, no clothing change, no watermark or text, no extra people.
 ```
 
-动作镜（关键帧插入·新角色）：
+Action shot (keyframe insert · new character):
 ```
-【主体】他：短发利落，深灰风衣（定妆图 CH-03），以首帧画面为起点；
-【运动】他猛地侧身避让，幅度明显但动作流畅，风衣下摆随转身扬起；
-【场景】废弃仓库，顶光一束斜射，灰尘在光柱中浮动（场景卡 SC-04）；
-【镜头】中景，侧跟运镜，28mm 广角感，起幅他背对镜头，落幅他侧脸入画；
-【风格】赛璐璐动画质感，高对比光影，冷蓝主调；
-【负面】不要肢体变形，不要衣服穿模，不要多余人物，不要文字水印。
+【Subject】He: short neat hair, dark-gray trench coat (makeup image CH-03), starting from the first-frame image;
+【Motion】He abruptly sidesteps to dodge, amplitude obvious but motion smooth, coat hem flaring with the turn;
+【Scene】abandoned warehouse, one beam of top light slanting in, dust floating in the light column (scene card SC-04);
+【Camera】medium shot, side-tracking camera, 28mm wide feel; opening he faces away from camera, closing his profile enters frame;
+【Style】cel-shaded animation texture, high-contrast lighting, cold-blue primary tone;
+【Negative】no limb deformation, no clothing clipping, no extra people, no text or watermarks.
 ```

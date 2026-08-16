@@ -1,39 +1,39 @@
-# 角色卡 · <角色名>（编号 CH-##）
+# Character Card — <Character Name / 角色名>（编号 CH-##）
 
-> 阶段 2 填空；定妆图过闸2 后本卡冻结。此后所有提示词中的角色描写 = 本卡"外观锚点"逐字复述（R4），禁止改写。
+> Fill in during Phase 2; FREEZE this card once the look image passes gate 2 (过闸2). From then on, every prompt's character description MUST be a VERBATIM reuse of this card's "Appearance Anchor" section（R4）— rewriting is forbidden.
 
-## 1. 基本信息
-- 姓名 / 年龄感 / 身份：<>
-- 一句话气质：<如"外表慵懒内里锋利的掌权者">
-- 音色（供配音与台词提示词）：<声线特征 + 性别年龄定位 + 情绪质感，如"低沉磁性，三十代男声，压着砂">
+## 1. Basic Info / 基本信息
+- **Name / age feel / identity / 姓名·年龄感·身份**: <>
+- **One-sentence aura / 一句话气质**: <e.g. "a ruler who looks lazy outside but is razor-sharp inside">
+- **Voice profile / 音色**（for dubbing & dialogue prompts）: <timbre + gender / age bracket + emotional texture, e.g. "low and magnetic, male ~30s, gravelly undercurrent">
 
-## 2. 外观锚点（定死，逐字复用）
-- 脸型五官：<如"窄长脸，眉峰上挑，单眼皮，眼尾微垂，唇薄色淡">
-- 发型发色：<如"及腰黑发，高束马尾，额前两缕碎发">
-- 肤色肤质：<如"冷白皮，左眉尾一粒小痣">
-- 服装（默认套）：<从上到下单列：领/襟/袖/摆/鞋，含材质与主色 HEX>
-- 配饰：<逐项：位置+形态，如"右耳单只银色长耳坠">
-- 体态签名：<如"肩背挺如刀削，站立时重心偏后">
+## 2. Appearance Anchor（LOCKED — reuse verbatim）/ 外观锚点
+- **Face shape & features / 脸型五官**: <e.g. "long narrow face, raised brow peaks, single eyelids, slightly drooping eye corners, thin pale lips">
+- **Hairstyle & hair color / 发型发色**: <e.g. "waist-length black hair, high ponytail, two loose strands at the forehead">
+- **Skin tone & texture / 肤色肤质**: <e.g. "cool pale skin, one small mole at the tail of the left brow">
+- **Outfit — default set / 服装·默认套**: <list top to bottom: collar / lapel / sleeve / hem / shoes, including material & primary HEX>
+- **Accessories / 配饰**: <item by item: position + form, e.g. "single long silver earring on the right ear only">
+- **Posture signature / 体态签名**: <e.g. "back straight as a blade, weight shifted back when standing">
 
-## 3. 形态命门（最易被画错处，负向层逐条禁）
-- 命门 1：<特征> → 负向写法：<如"禁止双眼皮、禁止韩式平眉">
-- 命门 2：<>
+## 3. Form Fatalities（the features most often drawn wrong — ban each in the negative layer）/ 形态命门
+- **Fatality 1 / 命门 1**: <feature> → negative phrasing: <e.g. "no double eyelids, no Korean-style flat brows">
+- **Fatality 2 / 命门 2**: <>
 
-## 4. 表演档案（供剧本与提示词取词）
-- 习惯性微表情：<如"思考时拇指摩挲食指第二节">
-- 情绪外化方式：<如"怒极反笑，声音反而放轻">
-- 禁区：<如"不做夸张大表情，崩溃也只红眼眶">
+## 4. Performance Profile（vocabulary for script & prompts）/ 表演档案
+- **Habitual micro-expression / 习惯性微表情**: <e.g. "rubs the second knuckle of the thumb while thinking">
+- **How emotion externalizes / 情绪外化方式**: <e.g. "smiles when furious — the voice gets quieter instead">
+- **Forbidden zone / 禁区**: <e.g. "no exaggerated expressions; even a breakdown only reddens the eyes">
 
-## 5. 参考图台账
-- 定妆图 ref: <路径/编号>（中性光版）
-- 各场景光效版 ref: <SC-01 版 / SC-02 版……>
-- 状态变化版 ref: <负伤版/换装版，关键帧插入产物>
+## 5. Reference Image Ledger / 参考图台账
+- Look image ref: <path/ID>（neutral-light version）
+- Per-scene lighting versions ref: <SC-01 version / SC-02 version …>
+- State-change versions ref: <injured / costume-change — outputs of keyframe inserts>
 
-## 6. 定妆图提示词（阶段 2 使用）
+## 6. Look Image Prompt（used in Phase 2）/ 定妆图提示词
 ```
-<画风锚点块>，单人定妆，<外观锚点全段逐字>，
-布光法（男强戏=伦勃朗光/女魅戏=蝴蝶光/默认三点布光）+ 眼中有一点眼神光，
-85mm 感浅景深，纯色/场景虚化背景，正面微侧15°，半身像，神态：<气质>。
-负向：<形态命门负向> + <项目通用负向库>（负面词全部集中末行）
+<visual-style anchor block>, single-character look test, <full appearance anchor, verbatim>,
+lighting method (male-dominant drama = Rembrandt light / femme-fatale = butterfly light / default = three-point) + a hint of catchlight in the eyes,
+85mm shallow depth of field, plain or scene-bokeh background, front-facing with a slight 15° turn, half-body shot, expression: <aura>.
+Negative: <form-fatality negatives> + <project shared negative library>（all negative words concentrated on the final line）
 ```
-> 布光法/焦段/肤色适配细节查 `references/lighting-styles.md`；提示词排版纪律（分行、负面末行、参考图代号）查 `references/image-prompt-engine.md`。
+> Lighting method / focal length / skin-tone fit details: see `references/lighting-styles.md`. Prompt formatting discipline（line breaks, negative on the final line, reference image IDs）: see `references/image-prompt-engine.md`.

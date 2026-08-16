@@ -1,31 +1,31 @@
-# 道具卡 · <道具名>（编号 PR-##）
+# Prop Card — <Prop Name / 道具名>（编号 PR-##）
 
-> 仅剧情锚点道具需要建卡（信物/文件/武器/法器/终端）。阶段 2 填空，定场帧冻结后生效。
+> Only story-anchor props need a card（keepsakes / documents / weapons / ritual tools / terminals）. Fill in during Phase 2; takes effect once the establishing frame is frozen.
 
-## 1. 形态锚点（定死，逐字复用）
-- 一句话外形：<如"鸽卵大的血色丹珠，珠内血丝如活物游移">
-- 尺寸参照：<如"可卧于掌心，直径约 3cm，与拇指同宽">
-- 材质与光泽：<如"半透玛瑙质感，内里有缓慢流动的丝状纹理">
-- 颜色（HEX）：<主色 #______ + 辅色 #______>
-- 动态特征：<如"贴近烛光时血丝向光侧聚拢">
+## 1. Form Anchor（LOCKED — reuse verbatim）/ 形态锚点
+- **One-sentence look / 一句话外形**: <e.g. "a pigeon-egg-sized blood-red elixir pearl, the red threads inside writhing like living things">
+- **Size reference / 尺寸参照**: <e.g. "fits in the palm, ~3cm across, about as wide as a thumb">
+- **Material & sheen / 材质与光泽**: <e.g. "translucent agate texture with slow-flowing silky strands inside">
+- **Color (HEX) / 颜色**: <primary #______ + secondary #______>
+- **Dynamic feature / 动态特征**: <e.g. "the red threads gather toward the light when held close to a candle">
 
-## 2. 形态命门（最易画错，负向逐条禁）
-- 命门 1：<如"珠内是血丝不是气泡"> → 负向：<禁止气泡/禁止均匀纯色>
-- 命门 2：<>
+## 2. Form Fatalities（most easily misdrawn — ban each in the negative layer）/ 形态命门
+- **Fatality 1 / 命门 1**: <e.g. "the strands are blood-red threads, NOT bubbles"> → negative: <no bubbles / no uniform flat color>
+- **Fatality 2 / 命门 2**: <>
 
-## 3. 叙事档案
-- 剧情功能：<为什么是关键道具：信物/筹码/证据……>
-- 首次登场镜：<E#-S##>（该镜必须标"关键帧插入·新道具"）
-- 持有者变化：<谁→谁>
+## 3. Narrative Profile / 叙事档案
+- **Story function / 剧情功能**: <why it is a key prop: keepsake / bargaining chip / evidence …>
+- **First-appearance shot / 首次登场镜**: <E#-S##>（this shot MUST be flagged "keyframe insert · new prop"）
+- **Ownership changes / 持有者变化**: <who → who>
 
-## 4. 定场帧
-- 定场帧 ref: <路径/编号>
-- 产品布光方案：<奢侈品=单光+深色背景 / 科技法器=黑背景+冷色边缘光 / 透明物=背光透射，按题材选>
-- 定场帧提示词：
+## 4. Establishing Frame / 定场帧
+- Establishing frame ref: <path/ID>
+- Product lighting scheme / 产品布光方案: <luxury item = single light + dark backdrop / tech artifact = black backdrop + cool rim light / transparent object = backlit transmission — pick per genre>
+- Establishing frame prompt:
 ```
-<画风锚点块>，道具特写定场，<形态锚点全段逐字>，
-道具居中占画面40-60%，浅景深背景虚化，<产品布光方案 + 本场景光源句>，
-<颜色 HEX>，命门特征清晰可见。
-负向：<命门负向> + <项目通用负向库>（负面词全部集中末行）
+<visual-style anchor block>, prop close-up establishing shot, <full form anchor, verbatim>,
+prop centered, occupying 40–60% of the frame, shallow depth of field with bokeh background, <product lighting scheme + this scene's key-light sentence>,
+<color HEX>, fatality features clearly visible.
+Negative: <fatality negatives> + <project shared negative library>（all negative words concentrated on the final line）
 ```
-> 产品布光细节查 `references/lighting-styles.md` 第五节。
+> Product-lighting details: see §五 of `references/lighting-styles.md`.

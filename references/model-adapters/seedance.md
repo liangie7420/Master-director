@@ -1,96 +1,96 @@
-# Seedance（即梦）适配手册
+# Seedance (Jimeng) Adapter Manual
 
-> 适配对象：Seedance 1.0 Pro / 2.0（字节跳动即梦） | 更新：2026-08 | 依据：官方文档+社区实测
-> 使用场景：目标模型=Seedance 时，阶段 4 逐镜提示词按本文件结构公式组装（通用骨架见 video-prompt-framework.md）。
+> Target: Seedance 1.0 Pro / 2.0 (ByteDance Jimeng) | Updated: 2026-08 | Basis: official docs + community testing
+> Use case: when target model = Seedance, Phase 4 per-shot prompts are assembled per this file's structure formula (general skeleton in video-prompt-framework.md).
 
-## 一、能力边界速查表
+## 1. Capability-Boundary Quick Table
 
-| 能力 | 参数 | 备注 |
+| Capability | Parameter | Notes |
 |---|---|---|
-| 单段时长 | 5s / 10s | 漫剧单镜推荐 6–8s（10s 档抽卡风险略高） |
-| 画幅 | 9:16 / 16:9 / 1:1 / 4:3 等 | 竖屏短剧用 9:16 |
-| 首尾帧 | 支持首帧、尾帧、首尾帧 | **尾帧承接核心机制可用**：图生视频填上镜尾帧 |
-| 多图参考 | 1.0 支持单图，1.3 Pro/2.0 支持多图 | 关键帧插入可用"定妆图+尾帧"双图 |
-| 镜头指令 | 支持自然语言镜头描述（推/拉/摇/移/跟/环绕） | 中文直写即可，比英文镜头词更稳 |
-| 提示词语言 | 中文友好 | 中文长句分段优于堆砌关键词 |
-| 文字渲染 | 弱 | 剧本要求可读文字时用后期，提示词写"模糊发光字符流" |
-| 音频 | 无 | 台词/音效后期配音 |
+| Single-segment duration | 5s / 10s | comic-drama single shot recommended 6–8s (10s tier has slightly higher card-pull risk) |
+| Aspect ratio | 9:16 / 16:9 / 1:1 / 4:3 etc. | vertical short drama uses 9:16 |
+| First/last frame | supports first-frame, last-frame, both | **last-frame continuation core mechanism usable**: fill the previous shot's last frame in image-to-video |
+| Multi-image reference | 1.0 single image; 1.3 Pro/2.0 multi-image | keyframe insert can use "makeup image + last frame" dual images |
+| Camera directives | supports natural-language camera descriptions (push/pull/pan/track/follow/orbit) | write directly in Chinese, more stable than English camera words |
+| Prompt language | Chinese-friendly | segmented Chinese long sentences beat stacked keywords |
+| Text rendering | weak | when readable text is required in script, use post-production; prompt writes "blurred glowing character stream" |
+| Audio | none | dialogue/sound effects dubbed in post |
 
-## 二、提示词结构公式（出片率最高顺序）
+## 2. Prompt Structure Formula (order with highest output-success rate)
 
 ```
-【主体与锚点】谁 + 外观/服装（角色卡逐字复述）
-【动作】唯一主动作（起势→过程→落点，R3）+ 至多两个微表情
-【场景与空间】在哪 + 空间层次（前景/中景/后景）+ 陈设锚点
-【镜头】景别 + 运镜 + 焦段感 + 起幅→落幅
-【光影色调】光源方向 + 色温 + 布光法 + 主色调（场景卡逐字）
-【风格】画风锚点块（4–6 组）
-【负面】不要……（末行集中）
+【Subject & Anchors】who + appearance/clothing (verbatim from character card)
+【Action】ONE primary action (preparation→process→landing, R3) + at most two micro-expressions
+【Scene & Space】where + spatial layers (foreground/midground/background) + prop anchors
+【Camera】shot scale + camera move + focal-length feel + opening→closing frame
+【Light & Tone】light-source direction + color temperature + lighting method + primary color tone (verbatim from scene card)
+【Style】style-anchor block (4–6 phrases)
+【Negative】don't... (concentrated on the end line)
 ```
 
-要点：Seedance 对"动作连续性"敏感，主动作务必写清先后顺序（先 X，随后 Y，最后 Z），不要并列动词。
+Key point: Seedance is sensitive to "action continuity"; the primary action MUST clearly state sequence (first X, then Y, finally Z) — not parallel verbs.
 
-## 三、运镜与动作词汇（实测响应好的词）
+## 3. Camera & Action Vocabulary (words that test well in practice)
 
-- 运镜：极缓推 / 缓推 / 缓拉 / 横移 / 跟随 / 环绕（≤90°）/ 固定机位
-- 速度修饰：极缓 > 缓 > 匀速（"快速"类词慎用，易出瞬移）
-- 动作：写"动词+幅度+部位"（如"缓缓抬手，指尖停在半空"），禁止光写情绪词
-- 表情：写"部位+变化"（"眉心先蹙后展"），Seedance 面部表现力强，特写镜头可多给微表情
+- Camera moves: extremely-slow push-in / slow push-in / slow pull-back / lateral track / follow / orbit (≤90°) / fixed camera
+- Speed modifiers: extremely-slow > slow > uniform ("fast"-type words use sparingly; they easily produce teleporting)
+- Actions: write "verb + amplitude + body part" (e.g., "slowly raises her hand, fingertips stopping mid-air"); forbid writing bare emotion words
+- Expressions: write "body part + change" ("brow first knots then relaxes"); Seedance has strong facial performance, close-ups can carry more micro-expressions
 
-## 四、首尾帧衔接实操
+## 4. First/Last-Frame Connection in Practice
 
-1. 上镜成片 → `scripts/extract_last_frame.py` 提取尾帧（取动作落点帧，运动模糊则 -t 0.2 前移）。
-2. 下一镜图生视频：首帧图 = 该尾帧；提示词首句写"画面从首帧延续，人物姿态与光影保持不变，随后……"。
-3. 10s 档长镜：可再用尾帧 + 首帧双端约束（首尾帧模式），中间过程交给模型，适合"持续动作"类镜头。
-4. 已知坑：首帧图中有文字/水印/多余手指会被放大；首帧构图留边 10% 安全区（9:16 平台 UI 遮挡）。
+1. Previous shot's output → extract last frame with `scripts/extract_last_frame.py` (take an action-landing frame; if motion blur, `-t 0.2` earlier).
+2. Next shot's image-to-video: first-frame image = that last frame; prompt's first sentence writes "frame continues from the first frame; character pose and lighting stay unchanged, then ...".
+3. 10s-tier long shots: can use last-frame + first-frame dual-end constraints (first/last-frame mode), the middle process left to the model; fits "sustained action" shots.
+4. Known pitfalls: text/watermarks/extra fingers in the first-frame image get amplified; keep a 10% safe margin at the frame edge (9:16 platform UI occlusion).
 
-## 五、常见翻车与规避
+## 5. Common Failures & Avoidance
 
-| 现象 | 根因 | 规避写法 |
+| Symptom | Root Cause | Avoidance Wording |
 |---|---|---|
-| 面部漂移 | 特写+无参考 | 参考图带角色定妆图；提示词复述五官锚点；景别降为中近景 |
-| 动作瞬移 | 多动作并列/快速运镜 | 主动作唯一化，运镜降速，动作写顺序 |
-| 鬼畜循环 | 运镜零位移+动作对称 | 加微位移（缓推 5%）或表情变化打破对称 |
-| 手部崩坏 | 手部大特写+运镜 | 手出画/固定机位/改中景，或写"手放低，避免手指特写" |
-| 光影跳变 | 光源句缺失 | 首段照抄场景卡光源句（方向+色温+时间） |
-| 服装漂移 | 锚点未复述 | 服装逐字复述；漂移则升格形态命门+负向禁一次 |
-| 文字乱码 | 屏幕入画 | 统一"模糊发光字符流，不可辨认" |
+| Facial drift | close-up + no reference | reference carries character makeup image; prompt restates facial anchors; lower scale to medium-close-up |
+| Action teleporting | multiple parallel actions / fast camera | make primary action unique, slow the camera, write action sequence |
+| Glitch loop | zero camera displacement + symmetric action | add micro-displacement (slow push 5%) or expression change to break symmetry |
+| Hand breakdown | hand big close-up + camera move | hand out of frame / fixed camera / change to medium shot, or write "hand lowered, avoid finger close-up" |
+| Light jumps | light sentence missing | first section copies the scene card's light sentence (direction + color temp + time) |
+| Clothing drift | anchors not restated | restate clothing verbatim; if drifting, promote to form weakness + negative once |
+| Garbled text | screen entering frame | unify to "blurred glowing character stream, illegible" |
 
-## 六、抽卡成本控制
+## 6. Card-Pull Cost Control
 
-- 冻结优先：定妆图、场景定场图、上镜尾帧全部先冻结，本镜只留"动作"一个变量。
-- 首镜必过闸4（用户确认提示词写法）再批量；成片翻车先改提示词结构再重刷，同词连刷 ≤3 次。
-- 10s 档翻车率高时降 5s 档拆镜，别硬撑长镜。
-- 连拍同场景多镜时，参考图保持一致，可整批复用同一首帧链，减少重抽。
+- Freeze first: makeup images, scene establishing images, previous shot's last frame all frozen first; this shot leaves only "action" as one variable.
+- First shot MUST pass Gate 4 (user confirms prompt style) before batching; output failure first changes prompt structure before rerunning; same-words rerun ≤3 times.
+- When 10s-tier failure rate is high, downgrade to 5s tier and split shots; don't force long shots.
+- When shooting multiple shots of the same scene continuously, keep reference images consistent; the whole batch can reuse the same first-frame chain, reducing re-pulls.
 
-## 七、完整示例（原创内容）
+## 7. Full Examples (original content)
 
-文戏特写（尾帧承接）：
+Dialogue close-up (last-frame continuation):
 ```
-【参考图片】
-[图1] 上镜尾帧（画面延续的基准）;
-[图2] 角色定妆图 CH-01;
+【Reference Images】
+[Image 1] previous shot's last frame (baseline for continuation);
+[Image 2] character makeup image CH-01;
 
-【提示词】
-画面从首帧延续，她保持坐姿，指尖停在信纸边缘；
-随后她缓缓抬眸，眼尾微扬，视线越过画面看向右前方；
-特写镜头，85mm 感浅景深，背景虚化，固定机位；
-左侧窗格冷白月光为主光，面部三分之二受光，眼中有一点眼神光；
-冷灰色调，电影感写实，细腻肌肤纹理；
-不要面部变形，不要服装变化，不要字幕水印，不要多余人物。
+【Prompt】
+Frame continues from the first frame; she keeps her sitting pose, fingertips resting at the letter's edge;
+then she slowly raises her eyes, eye-tails slightly lifting, gaze passing over the frame toward the front-right;
+close-up, 85mm feel shallow DoF, blurred background, fixed camera;
+cold-white moonlight from the left window frame is the key light, two-thirds of the face lit, a catchlight in the eyes;
+cool gray tone, cinematic realism, fine skin texture;
+no facial deformation, no clothing change, no subtitles or watermarks, no extra people.
 ```
 
-动作镜（关键帧插入·新道具）：
+Action shot (keyframe insert · new prop):
 ```
-【参考图片】
-[图1] 道具定场帧 PR-01（发光信标）;
-[图2] 角色定妆图 CH-02;
+【Reference Images】
+[Image 1] prop establishing frame PR-01 (glowing beacon);
+[Image 2] character makeup image CH-02;
 
-【提示词】
-画面从首帧延续，信标悬浮于她掌心上方两寸，泛着幽蓝微光；
-她五指缓缓收拢，指尖触及信标边缘时停顿半拍，眉心轻蹙；
-中近景，微俯拍，缓推镜头，前景信标后景她的面部；
-冷蓝主光来自信标，面部下半受光，背景暗部保留层次；
-赛璐璐动画质感，细腻光影，低饱和冷调；
-不要手部变形，不要信标穿模，不要多余人物，不要文字水印。
+【Prompt】
+Frame continues from the first frame; the beacon floats two inches above her palm, glowing faint blue;
+she slowly closes her five fingers, pausing half a beat when the fingertips touch the beacon's edge, brow lightly knitting;
+medium close-up, slight high angle, slow push-in; foreground beacon, background her face;
+cold-blue key light from the beacon, lower half of face lit, shadow detail retained in the background;
+cel-shaded animation texture, delicate lighting, low-saturation cool tone;
+no hand deformation, no beacon clipping, no extra people, no text or watermarks.
 ```

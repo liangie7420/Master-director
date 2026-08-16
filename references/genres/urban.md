@@ -1,292 +1,307 @@
-# 都市题材执导手册
+# Urban Genre Directing Manual
 
-> 适用：都市情感 / 职场 / 逆袭 / 豪门 / 都市悬疑等短剧 | 全文原创，无版权风险
-> 配套：对话戏占比最高——轴线纪律（shot-language.md 第五节）在本题材是硬指标。
+> Applies to: urban romance / workplace / comeback / wealthy-family / urban-mystery short dramas | All content is 100% original, no copyright risk
+> Companion docs: dialogue scenes have the highest share of any genre here — axis discipline (shot-language.md §5) is a hard requirement for this genre.
 
-## 1. 题材调性与情绪曲线范式
+## 1. Genre Tone & Emotional-Curve Paradigm
 
-### 1.1 核心爽点引擎
-- **身份反差**：底层皮囊 + 隐藏身份（董事长/继承人/卧底），揭晓瞬间的震撼。
-- **打脸反转**：被轻视→亮底牌→对方变脸，情绪落差即爽点。
-- **误会-揭晓**：制造信息差（谁误会谁），延迟满足，揭晓时集中释放。
-- **职场/商战翻盘**：被逼到绝路→一次决策翻盘。
-- **豪门博弈**：家庭内权力游戏，规矩与反叛。
+### 1.1 Core Satisfier Engines
 
-### 1.2 90 秒单集情绪曲线模板（四拍）
-| 时间窗 | 阶段 | 给观众什么 |
+- **Identity contrast (身份反差)**: a low-level outer shell + a hidden identity (chairman / heir / undercover agent); the shock lands at the moment of reveal.
+- **Face-slap reversal (打脸反转)**: being looked down on → showing the trump card → the other party's face changes on the spot; the emotional whiplash IS the satisfier.
+- **Misunderstanding–reveal (误会-揭晓)**: manufacture an information gap (who misunderstands whom), delay the payoff, then release it all at once at the reveal.
+- **Workplace / business-war turnaround (职场/商战翻盘)**: backed into a corner → one decision flips the board.
+- **Wealthy-family power game (豪门博弈)**: the power games inside a family — rules versus rebellion.
+
+### 1.2 The 90-Second Single-Episode Emotional-Curve Template (Four Beats)
+
+| Time window | Beat | What the audience gets |
 |---|---|---|
-| 0–3s | 开局钩子 | **前 3 秒必出钩子**（摔门/电话/对峙第一句）——都市剧是强钩子题材 |
-| 3–30s | 压制/误会 | 主角被压（身份未被识破），信息差建立 |
-| 30–70s | 拉锯/试探 | 对话戏推进，暗中交锋，每 10s 一个信息增量 |
-| 70–90s | 反转+新坑 | 一个身份/筹码揭晓（或即将揭晓）+ 新矛盾上场 |
+| 0–3s | Opening hook | **A hook MUST land within the first 3 seconds** (a slammed door / a phone call / the first line of a confrontation) — urban drama is a strong-hook genre |
+| 3–30s | Suppression / misunderstanding | The protagonist is put down (identity not yet seen through); the information gap gets established |
+| 30–70s | Tug-of-war / probing | Dialogue scenes drive it forward, an under-the-surface clash; one increment of new information every 10s |
+| 70–90s | Reversal + new thread | One identity / leverage reveal (or almost-reveal) + a new conflict walks on stage |
 
-### 1.3 五种开局钩子写法（前 3 秒）
-1. 冲突第一句："这婚，我不结了。"（摔请柬）
-2. 视觉反常：西装革履的男人在工地啃盒饭，工牌露出一角金边。
-3. 电话反转：对着电话说"给我办离职"，转手拨通另一个号"收购他们公司"。
-4. 静物先导：一杯凉透的咖啡，一张签好字的文件，倒计时字幕感。
-5. 脚步声+门：推门→里面的人全都愣住（身份冲击前兆）。
+### 1.3 Five Ways to Write the Opening Hook (first 3 seconds)
 
-## 2. 世界观与视觉基调
+1. Conflict in the first line: "这婚，我不结了。" (flinging down the wedding invitation).
+2. Visual incongruity: a man in a tailored suit eating a boxed meal at a construction site, the corner of a gold-edged badge peeking out from his employee ID.
+3. Phone-call reversal: saying "process my resignation" into the phone, then dialing another number and saying "acquire their company."
+4. Still-life lead-in: a coffee gone cold, a signed document, a countdown-subtitle feel.
+5. Footsteps + door: pushing the door open → everyone inside freezes (the harbinger of an identity shock).
 
-### 2.1 三种子风格配色铁律
-| 风格 | 主色 | 辅色 | 焦点色 | 铁律 |
+## 2. Worldbuilding & Visual Tone
+
+### 2.1 Color-Palette Iron Rules for the Three Sub-Styles
+
+| Style | Primary | Secondary | Accent | Iron rule |
 |---|---|---|---|---|
-| 都市夜景霓虹 | #10131F 深夜蓝 | #1F2A44 钢蓝 / #F4A259 暖橙窗光 | #E8554A 警示红 | 夜戏蓝底+橙光对撞；广告牌只做虚化光源 |
-| 高级写字楼冷灰 | #E6E8EC 冷白 | #B9BEC8 岩灰 / #2F343B 深灰 | #C9A227 低调金 | 极简、线条感、大玻璃；低饱和 |
-| 市井暖黄生活流 | #F2E8D5 米暖 | #D9A86C 暖橙 / #8C6A4A 木棕 | #5E9B8A 灰绿点缀 | 烟火气，柔和多光源 |
+| Urban night neon | #10131F 深夜蓝 (Deep Night Blue) | #1F2A44 钢蓝 (Steel Blue) / #F4A259 暖橙窗光 (Warm Orange Window Light) | #E8554A 警示红 (Warning Red) | Night scenes on a blue base with an orange-light collision; billboards exist only as blurred light sources |
+| Premium-office cold gray | #E6E8EC 冷白 (Cold White) | #B9BEC8 岩灰 (Rock Gray) / #2F343B 深灰 (Deep Gray) | #C9A227 低调金 (Understated Gold) | Minimalist, linear, large glass surfaces; low saturation |
+| Street-life warm yellow | #F2E8D5 米暖 (Warm Beige) | #D9A86C 暖橙 (Warm Orange) / #8C6A4A 木棕 (Wood Brown) | #5E9B8A 灰绿点缀 (Gray-Green Accent) | Everyday warmth; soft, multi-source light |
 
-### 2.2 光影签名
-- 夜景霓虹：车窗光条+霓虹色块+逆光剪影；高对比，暗部偏蓝。
-- 写字楼：顶光漫射+玻璃幕墙反光；影子干净，高冷感。
-- 市井：暖黄路灯+店铺灯箱，多光源柔和；生活质感。
+### 2.2 Lighting Signatures
 
-### 2.3 都市质感关键词库（中英对照）
-| 中文 | English | 用途 |
+- Night neon: window light streaks + neon color blocks + backlit silhouettes; high contrast, shadows leaning blue.
+- Office: overhead diffused light + glass-curtain reflections; shadows clean, an air of cool detachment.
+- Street life: warm yellow streetlamps + store sign boxes, soft multi-light; a lived-in texture.
+
+### 2.3 Urban Texture Keyword Bank (Chinese–English)
+
+| 中文 | English | Use case |
 |---|---|---|
-| 玻璃幕墙反射 | glass curtain wall reflection | 写字楼建场 |
-| 雨夜车灯拖尾 | light trails on rainy night | 都市夜景 |
-| 咖啡热气 | coffee steam | 室内对话戏 |
-| 百叶窗条纹光 | venetian blind stripes | 办公室对峙 |
-| 霓虹招牌虚化 | blurred neon signs | 背景光斑 |
-| 高楼剪影 | city skyline silhouette | 天台/结尾 |
+| 玻璃幕墙反射 | glass curtain wall reflection | office establishing shots |
+| 雨夜车灯拖尾 | light trails on a rainy night | urban night scenes |
+| 咖啡热气 | coffee steam | indoor dialogue scenes |
+| 百叶窗条纹光 | venetian blind stripes | office standoffs |
+| 霓虹招牌虚化 | blurred neon signs | background light bokeh |
+| 高楼剪影 | city skyline silhouette | rooftop / ending shots |
 
-## 3. 镜头语言偏好
+## 3. Shot-Language Preferences
 
-### 3.1 高频镜头对照表
-| 情境 | 推荐景别/运镜/焦段 |
+### 3.1 High-Frequency Shot Reference Table
+
+| Situation | Recommended shot scale / camera move / focal length |
 |---|---|
-| 身份揭晓 | 面部大特写 + 缓推 + 85mm（停 1 秒再给反应） |
-| 谈判对峙 | 正反打 + 越肩 + 平视，轴线铁律 |
-| 逆袭高光 | 低机位微仰拍 + 缓拉 + 24mm |
-| 误会/错位 | 双人分屏感（正反打快速交替） |
-| 都市孤独 | 远景剪影 + 固定长镜 8s+ |
-| 脚步声逼近 | 低机位 + 脚步特写 + 微晃 |
+| Identity reveal | Facial extreme close-up + slow push-in + 85mm (hold 1 second before the reaction) |
+| Negotiation standoff | Shot/reverse shot + over-the-shoulder + eye level; the axis rule is absolute |
+| Comeback highlight | Low-angle, slight upward tilt + slow pull-back + 24mm |
+| Misunderstanding / crossed wires | A two-person split-screen feel (fast alternating shot/reverse) |
+| Urban loneliness | Wide silhouette + locked-off long take, 8s+ |
+| Footsteps approaching | Low angle + foot close-up + slight shake |
 
-### 3.2 对话戏轴线纪律（本题材必读）
-1. 每场对话戏定轴线：A 左 B 右，机位在轴线同侧，全场景不换侧。
-2. 正反打覆盖序：主机位（双人过场）→ A 越 B 肩 → B 越 A 肩 → 反应特写。
-3. 视线匹配：A 看画右，B 必须看画左；两人视线高度一致（坐姿对话视线平行）。
-4. 三人以上：先定主对话两人轴线，第三人的插入用越肩进出，不打破主轴线。
-5. 换场景重定轴线，绝不跨场景套用。
+### 3.2 Axis Discipline for Dialogue Scenes (required reading for this genre)
 
-### 3.3 手机/屏幕安全写法
-- 手机屏幕入画：一律"屏幕朝镜头，内容模糊光斑"，可读内容后期贴。
-- 视频通话：画面内小窗 = 模糊头像剪影，声音后期配音。
-- 慎用"屏幕特写+运镜"组合：固定机位最稳。
+1. Set the axis at the start of every dialogue scene: A on the left, B on the right; cameras stay on the same side of the axis and never cross for the whole scene.
+2. Shot/reverse coverage order: master shot (two-person wide) → A over B's shoulder → B over A's shoulder → reaction close-ups.
+3. Eye-line matching: if A looks right-of-frame, B MUST look left-of-frame; the two characters' eye heights must match (parallel eye lines when sitting).
+4. Three or more people: first fix the axis of the two main speakers; a third person enters/exits via over-the-shoulder moves without breaking the main axis.
+5. Reset the axis when the scene changes — never carry an axis across scenes.
 
-### 3.4 节奏控制
-- 对话戏 6–8s/镜（两人轮换正反打）；动作戏 4–5s/镜；氛围空镜 2–3s。
-- 台词密度高时单镜缩短至 5–6s，避免长镜念白（模型口型压力大）。
+### 3.3 Safe Writing for Phones / Screens
 
-## 4. 表演与台词风格
+- Phone screens in frame: always "screen facing the camera, content as blurred light patches"; readable content is composited in post.
+- Video calls: the small window in frame = a blurred head-and-shoulders silhouette; voice is dubbed in post.
+- Use "screen close-up + camera move" sparingly: a locked-off camera is the most stable choice.
 
-### 4.1 动作/微表情描写句式（可直接复用）
-1. 强忍情绪：`她指尖掐进掌心，指节泛白，脸上却挂着挑不出错的微笑`。
-2. 职场假笑 vs 真笑：`嘴角上扬的弧度分毫不差，眼睛却没笑——真正的笑会先到眼角`。
-3. 挂断电话后的停顿：`她握着挂断的手机，在黑暗里站了两秒，才松了肩膀`。
-4. 被轻视的瞬间：`他垂着眼，把名片不紧不慢收进内袋，没有辩解一个字`。
-5. 谈判攻心：`他说话时不看对方，低头摩挲杯沿，每个字却都砸在对方痛处上`。
-6. 揭晓前的呼吸：`她深吸一口气，指甲在桌沿刮过一道细响，才开口`。
-7. 崩溃边缘：`他喉结滚了两下，声音压得又低又平，像怕碎`。
+### 3.4 Pacing Control
 
-### 4.2 台词风格（各附原创例句）
-- 口语化节奏（短句+停顿）："合同我看了。三条路，你自己挑。"
-- 潜台词（话里有话）："王总真是好眼光。"（意思：你看走眼了，等着后悔）
-- 狠话/反讽："你教我做事的时候，先想想自己怎么坐到这个位置的。"
-- 沉默的戏：说完话后 3 秒不接，角色只做动作（喝水/看表/签字），比台词更有压迫感。
+- Dialogue scenes 6–8s per shot (two-person alternating shot/reverse); action 4–5s per shot; atmospheric empty shots 2–3s.
+- When dialogue density is high, shorten single shots to 5–6s; avoid long takes of continuous monologue (the model's lip-sync pressure spikes).
 
-## 5. 高频场景与道具清单
+## 4. Performance & Dialogue Style
 
-### 5.1 高频场景（场景卡一句话锚点）
-1. 写字楼会议室（长桌、玻璃墙、投影幕）
-2. 顶层办公室（落地窗、城市景、极简家具）
-3. 街角咖啡店（暖光、卡座、落地窗）
-4. 地下停车场（冷荧光、车灯、柱列）
-5. 天台（夜风、城市灯火、围栏）
-6. 老式居民楼（暖黄楼道灯、防盗门）
-7. 高档餐厅（烛光、深色木饰、临窗位）
-8. 医院走廊（白炽灯、长椅、消毒水白）
-9. 夜总会/酒吧（霓虹、卡座、吧台）
-10. 机场/车站（大玻璃、人流虚化、广播声）
+### 4.1 Action / Micro-Expression Description Templates (directly reusable)
 
-### 5.2 高频道具（标注形态命门）
-| 道具 | 形态命门（AI 易画错） |
+1. Suppressing emotion: `Her fingertips dig into her palm, knuckles turning white, yet a flawless smile stays on her face`.
+2. The work smile vs. a real smile: `The upward curve of her mouth is exact to the millimeter, but the eyes don't laugh — a real smile reaches the eye corners first`.
+3. The pause after hanging up: `Still holding the hung-up phone, she stands in the dark for two seconds before her shoulders finally relax`.
+4. The moment of being looked down on: `He keeps his eyes down, unhurriedly tucking the business card into his inner pocket, without a single word of defense`.
+5. Psychological attack in negotiation: `He never looks at the other party while speaking, lowering his head to rub the cup rim — yet every word lands exactly on their sore spot`.
+6. The breath before a reveal: `She takes a deep breath, a fingernail scratching a faint line across the table edge, then speaks`.
+7. At the edge of collapse: `His Adam's apple rolls twice; his voice is pressed low and flat, as if afraid it might shatter`.
+
+### 4.2 Dialogue Style (each with an original example line)
+
+- Colloquial rhythm (short sentences + pauses): "合同我看了。三条路，你自己挑。"
+- Subtext (meaning between the lines): "王总真是好眼光。" (Meaning: you sized me up wrong — just wait to regret it.)
+- Hard words / irony: "你教我做事的时候，先想想自己怎么坐到这个位置的。"
+- The silence play: after a line, don't answer for 3 seconds — the character only does an action (drinks / checks the watch / signs). It presses harder than dialogue.
+
+## 5. High-Frequency Scenes & Props Checklist
+
+### 5.1 High-Frequency Scenes (one-line anchors for the scene card)
+
+1. Office meeting room (long table, glass wall, projection screen)
+2. Top-floor office (floor-to-ceiling windows, city view, minimalist furniture)
+3. Corner coffee shop (warm light, booths, floor-to-ceiling windows)
+4. Underground parking garage (cold fluorescent light, headlights, rows of pillars)
+5. Rooftop (night wind, city lights, railing)
+6. Old apartment building (warm yellow stairwell light, security doors)
+7. Upscale restaurant (candlelight, dark wood trim, window seats)
+8. Hospital corridor (fluorescent light, benches, sterile white)
+9. Nightclub / bar (neon, booths, bar counter)
+10. Airport / station (large glass, blurred crowds, broadcast voices)
+
+### 5.2 High-Frequency Props (form weakness marked — where AI tends to draw them wrong)
+
+| Prop | Form weakness (AI likely to mess up) |
 |---|---|
-| 合同文件 | 纸张纹理与文字（模糊化） |
-| 手机 | 屏幕内容（模糊）与品牌特征（避免真实 logo） |
-| 车钥匙 | 造型与金属质感 |
-| 咖啡杯 | 杯沿logo朝向（避免真实品牌） |
-| 请柬/名片 | 烫金字体与卡片比例 |
-| 钢笔 | 笔帽与笔夹细节 |
-| 腕表 | 表盘刻度与表带材质 |
-| 行李箱 | 拉杆与轮子数量 |
-| 雨伞 | 伞骨数量与伞面颜色 |
-| 照片/证据 | 照片内容（关键证据模糊化处理） |
+| Contract documents | Paper texture and the text (blur it) |
+| Phone | Screen content (blur) and brand features (avoid real logos) |
+| Car key | Shape and metal texture |
+| Coffee cup | Cup logo orientation (avoid real brands) |
+| Invitation / business card | Foil-stamped lettering and card proportions |
+| Fountain pen | Cap and clip details |
+| Wristwatch | Dial markings and strap material |
+| Suitcase | Handle and the number of wheels |
+| Umbrella | Rib count and canopy color |
+| Photo / evidence | Photo content (blur critical evidence) |
 
-## 6. 题材级翻车点与负向约束
+## 6. Genre-Level Failure Points & Negative Constraints
 
-| 翻车 | 负向写法（中英对照） |
+| Failure | Negative phrasing (Chinese–English) |
 |---|---|
-| 西装塑料感 | 不要塑料质感西装 avoid plastic-like suit fabric |
-| 多人同框串脸 | 不要面部互换 avoid swapped faces |
-| 手机屏幕乱码 | 不要可辨认文字 do not show readable text |
-| 车辆变形 | 不要汽车变形 do not deform the car |
-| 背景路人五官崩坏 | 不要路人面部细节 background faces blurred |
-| 夜戏过曝 | 不要过度提亮夜景 avoid over-bright night scene |
+| Plastic-looking suits | 不要塑料质感西装 avoid plastic-like suit fabric |
+| Face swapping in multi-person frames | 不要面部互换 avoid swapped faces |
+| Garbled phone-screen text | 不要可辨认文字 do not show readable text |
+| Deformed vehicles | 不要汽车变形 do not deform the car |
+| Ruined faces on background extras | 不要路人面部细节 background faces blurred |
+| Over-exposed night scenes | 不要过度提亮夜景 avoid over-bright night scene |
 
-## 7. 视频模型适配要点
+## 7. Video-Model Adaptation Notes
 
-- **Seedance**：室内暖光对话戏是强项；正反打切镜稳定。
-- **可灵**：写实都市质感粘性强；运动幅度低，避免西服飘动异常。
-- **海螺**：都市夜景霓虹风格化好；6s 档适合对峙戏的单拍完整情绪。
-- （社区经验，需实测验证。）
+- **Seedance**: indoor warm-light dialogue scenes are its strong suit; shot/reverse cutting is stable.
+- **Kling**: realistic urban texture holds together well; motion amplitude is low, so avoid abnormal suit-flutter.
+- **Hailuo**: urban-night neon stylization is good; the 6s preset suits a single complete emotion in a standoff shot.
+- (Community experience — verify against current versions.)
 
-## 8. 原创示例片段《第二份合同》
+## 8. Original Example Excerpt — 《第二份合同》(The Second Contract)
 
-> 90 秒单场戏：顶层办公室，一场"被离职"的反转谈判。13 镜，演示尾帧承接、关键帧插入·新道具（合同）与关键帧插入·新角色（秘书送信）。
+> A 90-second single-scene piece: a top-floor office, a "you're fired" negotiation that flips. 13 shots, demonstrating last-frame continuation, keyframe insert · new prop (the contract), and keyframe insert · new character (the secretary's message bearer).
 
-### 【场景一】顶层办公室
-**环境**：黄昏。顶层办公室，整面落地窗，城市天际线在夕阳里镀金。深色胡桃木办公桌居中，桌面一支钢笔、一杯凉透的咖啡。冷灰+低调金主调。窗外一架飞机拖着尾迹划过。
+### 【Scene 1】Top-Floor Office
 
----
-
-**[00:00.0 – 00:04.0] 开场 · 凉咖啡**
-`[特写|固定|凉透的咖啡，一张签好字的文件]`
-桌上一杯凉透的咖啡，水面凝着一层油光。旁边压着一张签好字的文件，字迹工整，末行签名墨迹已干。窗外飞机尾迹划过天际，在玻璃上拉出一道斜光。
-`[情绪：悬疑蓄力 | 钩子：静物先导（谁签了什么） | 衔接：跳切（本集首镜，用场景定场图）]`
+**Environment**: dusk. Top-floor office, one full wall of floor-to-ceiling windows; the city skyline gilded by the setting sun. A dark walnut desk sits center-frame with a fountain pen and a cup of coffee gone cold. Cold-gray + understated-gold palette. Outside the window, a plane crosses, trailing a contrail.
 
 ---
 
-**[00:04.0 – 00:10.0] 入座 · 沉默**
-`[中景|固定|林深坐下，目光落在文件上]`
-林深推门而入，深灰西装，领带一丝不苟。他在办公椅坐下，没有开灯，夕阳把他的影子拉得很长。他看了文件三秒，才拿起，指腹抚过末行签名。
-> **林深**：（声音很平）……七年。就一页纸。
-`[情绪：蓄力 | 钩子：信息缺口（谁开的除名书） | 衔接：尾帧承接]`
+**[00:00.0 – 00:04.0] Opening · Cold Coffee**
+`[Close-up | locked-off | the cold coffee, a signed document]`
+On the desk, a cup of coffee gone cold, a slick of oil congealed on the surface. Beside it lies a signed document, neat handwriting, the ink of the signature at the last line already dry. Outside, a plane's contrail crosses the sky, dragging a diagonal streak of light across the glass.
+`[Emotion: Suspense building | Hook: Still-life lead-in (who signed what) | Connection: Jump cut (first shot of the episode — use the scene establishing image)]`
 
 ---
 
-**[00:10.0 – 00:16.0] 电话 · 辞令（关键帧插入·新道具）**
-`[特写|微推|手机屏幕亮起]`
-手机在桌上震了两下，屏幕亮起——来电显示"集团人事部"。他没有立刻接，等第三声才拿起来，拇指在接听键上方悬了半秒。
-（**关键帧插入·新道具**：手机作为首个叙事道具 → 先产"手机特写定场帧"PR-01，冻结后作本镜首帧。）
-> **林深**：喂。（停顿）嗯，我看过了。……不用催，我签。
-`[情绪：蓄力 | 钩子：行为之谜（为什么不争） | 衔接：关键帧插入·新道具 PR-01]`
+**[00:04.0 – 00:10.0] Taking a Seat · Silence**
+`[Medium | locked-off | Lin Shen sits down, gaze landing on the document]`
+Lin Shen pushes the door open, dark gray suit, tie flawless. He sits down in the office chair without turning on the light; the setting sun stretches his shadow long. He looks at the document for three seconds before picking it up, running his thumb across the signature on the last line.
+> **林深** (voice very flat): ……七年。就一页纸。
+`[Emotion: Building | Hook: Information gap (whose termination letter is this) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:16.0 – 00:24.0] 挂断 · 停顿**
-`[中景|固定|他握着手机，在暮色里停了两秒]`
-他挂断电话，没有立刻放下手机，而是握着它，在渐渐暗下来的暮色里坐了两秒。落地窗外最后一缕夕阳收走，办公室陷入灰蓝。
-> **林深**：（低声，像自言自语）……也好。
-`[情绪：压抑 | 钩子：行为之谜 | 衔接：尾帧承接]`
+**[00:10.0 – 00:16.0] Phone Call · Resignation Line (keyframe insert · new prop)**
+`[Close-up | slight push-in | the phone screen lights up]`
+The phone buzzes twice on the desk; the screen lights up — the caller reads "Group HR Department." He doesn't answer immediately; only at the third ring does he pick it up, his thumb hovering half a second above the answer key.
+(**Keyframe insert · new prop**: the phone debuts as the first narrative prop → first generate the "phone close-up establishing frame" PR-01, freeze it, then use it as the first frame of this shot.)
+> **林深**: 喂。（停顿）嗯，我看过了。……不用催，我签。
+`[Emotion: Building | Hook: Behavioral mystery (why doesn't he fight it) | Connection: Keyframe insert · new prop PR-01]`
 
 ---
 
-**[00:24.0 – 00:30.0] 门开 · 来客（关键帧插入·新角色）**
-`[中景|固定|门被推开，一道剪影]`
-办公室的门被推开——一道剪影倚在门框，手里转着一串车钥匙。
-（**关键帧插入·新角色**：沈秋雨首次登场 → 先产"门框剪影定妆关键帧"CH-02，冻结后作本镜首帧。）
-> **沈秋雨**：（声音带笑）离职还坐得这么稳的，你是头一个。
-`[情绪：反转入场 | 钩子：身份谜题 | 衔接：关键帧插入·新角色 CH-02]`
+**[00:16.0 – 00:24.0] Hang Up · A Pause**
+`[Medium | locked-off | phone in hand, he sits two seconds in the fading light]`
+He hangs up but doesn't put the phone down right away — he holds it and sits for two seconds as the dusk darkens. Outside the window the last sliver of sunset withdraws; the office sinks into gray-blue.
+> **林深** (low, like talking to himself): ……也好。
+`[Emotion: Suppression | Hook: Behavioral mystery | Connection: Last-frame continuation]`
 
 ---
 
-**[00:30.0 – 00:36.0] 揭晓 · 股东**
-`[中景|缓推|她走近，灯光亮起]`
-她走进来，按开灯——白光亮起，她衬衫袖口卷到小臂，腕上一块旧表，与这间办公室的格调格格不入。她走到桌前，拿起那份文件，翻到末页，看了一眼签名，笑了。
-> **沈秋雨**：林深。认识一下——我，是你刚被撤掉的董事长的……女儿。
-`[情绪：反转 | 钩子：身份揭晓 | 衔接：尾帧承接]`
+**[00:24.0 – 00:30.0] Door Opens · A Visitor (keyframe insert · new character)**
+`[Medium | locked-off | the door pushed open, a silhouette]`
+The office door is pushed open — a silhouette leans against the door frame, idly spinning a set of car keys.
+(**Keyframe insert · new character**: Shen Qiuyu debuts → first generate the "doorway-silhouette makeup keyframe" CH-02, freeze it, then use it as the first frame of this shot.)
+> **沈秋雨** (voice carrying a smile): 离职还坐得这么稳的，你是头一个。
+`[Emotion: Reversal entrance | Hook: Identity puzzle | Connection: Keyframe insert · new character CH-02]`
 
 ---
 
-**[00:36.0 – 00:44.0] 拉锯 · 交锋**
-`[正反打|越肩|两人隔着办公桌]`
-林深抬眼看她，没有起身，也没有惊讶——只是把钢笔拿起来，拔开笔帽，又旋上。
-> **林深**：董事长的女儿，来这间办公室……找我一个被除名的人？
-> **沈秋雨**：（把文件放回桌上，指尖点了点末行签名）因为这签名，是假的。
-`[情绪：拉锯 | 钩子：信息缺口（签名的真相） | 衔接：尾帧承接]`
+**[00:30.0 – 00:36.0] Reveal · The Shareholder**
+`[Medium | slow push-in | she walks in, the lights come on]`
+She walks in and switches on the light — white light floods up; her shirt sleeves rolled to her forearms, an old watch on her wrist, out of place with this office's tone. She walks to the desk, picks up the document, flips to the last page, glances at the signature, and smiles.
+> **沈秋雨**: 林深。认识一下——我，是你刚被撤掉的董事长的……女儿。
+`[Emotion: Reversal | Hook: Identity reveal | Connection: Last-frame continuation]`
 
 ---
 
-**[00:44.0 – 00:52.0] 第二份 · 合同（新道具）**
-`[大特写|极缓推|她递来另一份合同]`
-她从公文包里抽出另一份文件，推到林深面前——封面上印着收购方抬头，是林深七年前亲手注册的那家空壳公司。
-（**关键帧插入·新道具**：第二份合同首次登场 → 先产"收购合同特写定场帧"PR-02，冻结后作本镜首帧。）
-> **沈秋雨**：你七年前注册的公司，三个月前被人低价收购了。收购方签字的人……是我。
-`[情绪：认知颠覆 | 钩子：信息缺口（她为什么盯上他） | 衔接：关键帧插入·新道具 PR-02]`
+**[00:36.0 – 00:44.0] Tug-of-War · Clash**
+`[Shot/reverse | over-the-shoulder | the two across the desk]`
+Lin Shen looks up at her — doesn't stand, doesn't look surprised; he simply picks up the pen, uncaps it, and caps it again.
+> **林深**: 董事长的女儿，来这间办公室……找我一个被除名的人？
+> **沈秋雨** (setting the document back on the desk, fingertip tapping the last-line signature): 因为这签名，是假的。
+`[Emotion: Tug-of-war | Hook: Information gap (the truth behind the signature) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:52.0 – 01:00.0] 沉默 · 杯沿**
-`[特写|固定|他摩挲杯沿，目光落在合同上]`
-林深没有接话，低头看着那杯凉透的咖啡，指尖在杯沿上缓缓摩挲了一圈。办公室里只有空调的低鸣。
-> **林深**：（终于开口，声音很轻）收购价……不对。
-> **沈秋雨**：（挑眉）哪不对。
-> **林深**：低了。那家公司值三倍。
-`[情绪：攻守易位 | 钩子：信息缺口 | 衔接：尾帧承接]`
+**[00:44.0 – 00:52.0] The Second · Contract (new prop)**
+`[Extreme close-up | very slow push-in | she slides another contract toward him]`
+She pulls another document from her briefcase and slides it in front of Lin Shen — the cover bears the acquirer's letterhead: the shell company Lin Shen personally registered seven years ago.
+(**Keyframe insert · new prop**: the second contract debuts → first generate the "acquisition-contract close-up establishing frame" PR-02, freeze it, then use it as the first frame of this shot.)
+> **沈秋雨**: 你七年前注册的公司，三个月前被人低价收购了。收购方签字的人……是我。
+`[Emotion: Cognitive overturn | Hook: Information gap (why has she targeted him) | Connection: Keyframe insert · new prop PR-02]`
 
 ---
 
-**[01:00.0 – 01:08.0] 翻转 · 真章**
-`[中景|缓推|他从抽屉里取出一只旧信封]`
-他拉开抽屉，取出一只泛黄的旧信封，从里面倒出一张更早的转让协议——七年前，他把公司"转让"给一个不存在的名字，而今天，那个名字出现在沈秋雨的收购文件上。
-> **林深**：七年前那笔转让，我留了底。沈小姐——你是来收公司的，还是来认账的？
-`[情绪：大反转 | 钩子：关系之谜 | 衔接：尾帧承接]`
+**[00:52.0 – 01:00.0] Silence · The Cup Rim**
+`[Close-up | locked-off | he rubs the cup rim, gaze on the contract]`
+Lin Shen doesn't answer; he looks down at the cold coffee, rubbing a slow circle around the cup rim with his fingertip. In the office, only the low hum of the air conditioner.
+> **林深** (finally speaking, voice very light): 收购价……不对。
+> **沈秋雨** (an eyebrow raised): 哪不对。
+> **林深**: 低了。那家公司值三倍。
+`[Emotion: Tables turned | Hook: Information gap | Connection: Last-frame continuation]`
 
 ---
 
-**[01:08.0 – 01:14.0] 第二通 · 电话**
-`[特写|微推|手机再次亮起]`
-手机再次震动，来电显示换成了"未知号码"。沈秋雨脸上的笑意第一次收敛，她看着那支手机，没有伸手。
-> **沈秋雨**：（声音低下来）……林深，你七年前，到底替谁背的这笔账？
-`[情绪：危机逼近 | 钩子：身份谜题升级 | 衔接：尾帧承接]`
+**[01:00.0 – 01:08.0] The Turn · The Real Document**
+`[Medium | slow push-in | he takes an old envelope from the drawer]`
+He opens the drawer and takes out a yellowed envelope; from it he pours an even older transfer agreement — seven years ago, he "transferred" the company to a name that didn't exist, and today that name appears on Shen Qiuyu's acquisition papers.
+> **林深**: 七年前那笔转让，我留了底。沈小姐——你是来收公司的，还是来认账的？
+`[Emotion: Major reversal | Hook: Relationship mystery | Connection: Last-frame continuation]`
 
 ---
 
-**[01:14.0 – 01:20.0] 接起 · 一句话**
-`[中景|固定|他按下接听]`
-林深按下接听，没有说话，听筒里传来一个苍老的声音，只说了三个字。他听完，挂断，抬头看向沈秋雨，第一次露出今天真正的笑——笑里带着倦意。
-> **林深**：七年前的事……今晚十点，市档案馆，有人会告诉你全部真相。
-`[情绪：集尾钩子 | 钩子：信息缺口（三个字是什么） | 衔接：尾帧承接（第二集首镜）]`
+**[01:08.0 – 01:14.0] The Second · Phone Call**
+`[Close-up | slight push-in | the phone lights up again]`
+The phone vibrates again; the caller now reads "Unknown Number." For the first time, the smile on Shen Qiuyu's face withdraws. She looks at the phone and doesn't reach for it.
+> **沈秋雨** (voice dropping): ……林深，你七年前，到底替谁背的这笔账？
+`[Emotion: Crisis approaching | Hook: Identity puzzle deepening | Connection: Last-frame continuation]`
 
 ---
 
-**[01:20.0 – 01:26.0] 收束 · 灯熄**
-`[中景|缓拉|她离开，他独自在暗下来的办公室里]`
-沈秋雨抓起合同，走到门口，回头看了他一眼。他把那杯凉咖啡端起来，喝了一口，眉头都没皱。她关上门，办公室重新暗下来，只剩他一个人，和窗外城市的万家灯火。
-`[沉默 2 秒——留白呼吸型]`
-`[情绪：收束 | 钩子：行为之谜（他到底在替谁做事） | 衔接：尾帧承接]`
+**[01:14.0 – 01:20.0] Answering · One Sentence**
+`[Medium | locked-off | he presses answer]`
+Lin Shen presses answer without speaking; from the earpiece comes an old voice that says only three words. He listens, hangs up, looks up at Shen Qiuyu, and for the first time shows today's real smile — a smile worn with weariness.
+> **林深**: 七年前的事……今晚十点，市档案馆，有人会告诉你全部真相。
+`[Emotion: Episode-ending hook | Hook: Information gap (what were the three words) | Connection: Last-frame continuation (Episode 2's first shot)]`
 
 ---
 
-### 本片段提示词化示范（3 镜）
+**[01:20.0 – 01:26.0] Closing · Lights Off**
+`[Medium | slow pull-back | she leaves, he alone in the darkening office]`
+Shen Qiuyu grabs the contract, walks to the door, and glances back at him. He picks up the cold coffee, takes a sip, not even a frown. She closes the door; the office darkens again, leaving only him and the ten thousand lights of the city beyond the window.
+`[2s silence — breathing-room type]`
+`[Emotion: Closing | Hook: Behavioral mystery (who is he really working for) | Connection: Last-frame continuation]`
 
-**镜 7（拉锯交锋，尾帧承接）**：
+---
+
+### Prompt-ification Demonstration for This Excerpt (3 shots)
+
+**Shot 7 (Tug-of-war clash, last-frame continuation)**:
 ```
-【参考图片】[图1] 上镜尾帧（她按开灯）; [图2] 角色定妆图 CH-01/CH-02; [图3] 场景定场图 SC-01;
-【提示词】画面从首帧延续，两人隔着办公桌对视；林深拔开钢笔帽又旋上，
-沈秋雨指尖点着文件上的签名说"这签名是假的"；正反打越肩机位，
-黄昏窗光与顶光混合，冷灰调，低饱和；
-电影感写实，细腻皮肤质感，浅景深，眼神光清晰；
-不要面部变形，不要西装塑料感，不要文字可读，不要水印。
-```
-
-**镜 10（翻转真章，尾帧承接）**：
-```
-【参考图片】[图1] 上镜尾帧（他低头看合同）; [图2] 角色定妆图 CH-01; [图3] 道具定场帧 PR-02;
-【提示词】画面从首帧延续，他从抽屉取出一只泛黄旧信封，倒出一张旧转让协议，
-举到合同旁边对比；中景缓推，顶光为主，旧纸泛黄与合同雪白对比；
-冷灰低饱和调，特写焦点在两张文件上；
-不要文件文字可读，不要纸张变形，不要多余人物，不要水印。
+【Reference images】[Fig.1] Previous shot's tail frame (she switches on the light); [Fig.2] Character design sheets CH-01/CH-02; [Fig.3] Scene establishing image SC-01;
+【Prompt】The frame continues from the first frame; the two face each other across the desk; Lin Shen uncaps the pen and caps it again,
+Shen Qiuyu taps the signature on the document and says "the signature is fake"; shot/reverse over-the-shoulder camera,
+dusk window light mixing with overhead light, cold gray palette, low saturation;
+cinematic realism, fine skin texture, shallow depth of field, clear catchlights;
+no facial distortion, no plastic-like suit, no readable text, no watermark.
 ```
 
-**镜 13（收束灯熄，尾帧承接）**：
+**Shot 10 (The turn · real document, last-frame continuation)**:
 ```
-【参考图片】[图1] 上镜尾帧（她关门离开）; [图2] 角色定妆图 CH-01;
-【提示词】画面从首帧延续，门关上，办公室暗下来；林深独自端杯喝了口凉咖啡，
-窗外城市灯火在玻璃上映成光斑，他侧脸半明半暗；
-中景缓拉，蓝调夜色为主光，暖橙城市光为远处辅光；
-电影感写实，冷调，浅景深，轻颗粒；
-不要面部变形，不要多余人物，不要文字水印。
+【Reference images】[Fig.1] Previous shot's tail frame (he looks down at the contract); [Fig.2] Character design sheet CH-01; [Fig.3] Prop establishing frame PR-02;
+【Prompt】The frame continues from the first frame; he takes a yellowed old envelope from the drawer and pours out an older transfer agreement,
+holding it up beside the contract for comparison; medium shot, slow push-in, overhead light as key, the yellowed paper against the snow-white contract;
+cold gray low-saturation palette, the focus on the two documents;
+no readable document text, no paper deformation, no extra people, no watermark.
+```
+
+**Shot 13 (Closing · lights off, last-frame continuation)**:
+```
+【Reference images】[Fig.1] Previous shot's tail frame (she closes the door and leaves); [Fig.2] Character design sheet CH-01;
+【Prompt】The frame continues from the first frame; the door closes and the office darkens; Lin Shen alone raises the cup and drinks a sip of the cold coffee,
+the city lights beyond the window refracting into bokeh on the glass, his profile half-lit, half-shadow;
+medium shot, slow pull-back, blue-toned night as key light, warm orange city light as distant fill;
+cinematic realism, cool tone, shallow depth of field, light grain;
+no facial distortion, no extra people, no text watermark.
 ```

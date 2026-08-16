@@ -1,209 +1,295 @@
-# 首帧图提示词引擎（阶段 4 写首帧图提示词时必读，重构版 v2）
+# First-Frame Image Prompt Engine (MUST READ when writing first-frame image prompts in Phase 4, Refactored v3)
 
-> 面向自然语言类图像模型（即梦/Nano Banana/GPT Image 等无独立负向字段的模型）。所有控制都写进文本本身。本文件与 `assets/character-card.md`、`assets/scene-card.md`、`assets/prop-card.md`、`assets/scene-actor-card.md`、`assets/dialogue-board-card.md` 模板配合使用。
+> For natural-language image models (Jimeng / Nano Banana / GPT Image, etc. — models WITHOUT a separate negative-prompt field). All control is written into the text itself. This file works with the `assets/character-card.md`, `assets/scene-card.md`, `assets/prop-card.md`, `assets/scene-actor-card.md`, `assets/dialogue-board-card.md` templates.
 >
-> v2 在 v1 基础上吸收了"参考图排他声明、三处复写、签名块五件套、删词调节器、双寄存器、5 类过度复杂"等实战规律。
+> v2 absorbed "reference-image exclusive declarations, three-place repetition, five-piece signature block, word-deletion regulator, dual register, 5 over-complexity types" on top of v1.
+>
+> v3 integrated open-source patterns on top of v2: 5 need-anchoring questions, 7-layer frame decomposition, lighting-sculpting formula, contact shadows, focal-length lookup.
 
-## 一、六条铁律
+## 0. Need-Anchoring (ask five questions before writing)
 
-1. **分行**：每个语义模块独立一行。碎片化单行、长串堆叠都会降低模型控制精度。
-2. **负面末行**：所有"不要/禁止/无"集中写在提示词**最后一行**；正向描述区**绝不出现**不想要的词（点名 = 召唤）。
-3. **参考图代号**：正文里只用 `图1/图2` 或 `image1/image2` 指代，禁止出现文件名与路径。
-4. **空间锚点具体化**：用方位（左/右/前景/后景）+ 层级（前/中/远景）+ 距离参照（"贴近画面右下角""距主体约一步"），禁止模糊的"旁边/附近"。**高度用构图关系，不用米数**（"脚下踩着、在画面下半部，离地约 10 米 + 保持平视/仰拍 + 绝不要鸟瞰"）。
-5. **光影四件套**（角色帧必含）：① 光从哪来（具体方向） ② 半脸光（哪半亮哪半暗） ③ 高光点（具体位置，颧骨/鼻梁/唇/锁骨） ④ 大光圈虚化（背景虚化、wide aperture）。任何一帧角色镜头缺一个 = 平光 + 背景清晰 = 定妆照不是电影。
-6. **一图一焦点**：一张首帧图只锁一个视觉焦点（人/道具/空间关系），多焦点稀释后全部糊掉。
+**A prompt is not an adjective; it is a constraint system.** Bad prompts are like wishing ("generate something premium, cinematic, with good light"); good prompts are like director's blocking (state subject, light, material, action, camera, constraints). Before writing any first-frame image, run the five questions:
 
-## 二、一图一职 + 排他声明（防漂核心）
+| Question | What to Specify |
+|---|---|
+| Who watches | target audience, aesthetic preference |
+| What do they see | subject, person, space, event |
+| Why do they watch | pain point, emotion, story hook |
+| Where do they watch | platform, ratio, duration, sound environment |
+| What should they do after | remember the character, feel the emotion, understand the relationship |
 
-每张参考图必须**唯一职责 + 排他声明**。参考图不是"参考整图"，而是"参考某一维度"。
+## 1. Six Iron Rules
 
-**反例**（必翻车）：
-```
-[图1] 角色定妆图 [图2] 场景图
-```
-模型会自己脑补两者各自管什么 → 串脸/漂色。
+1. **Line Separation**: Each semantic module on its own line. Fragmented single lines or long stacked strings reduce model control precision.
+2. **Negative End Line**: All "don't/forbidden/no" concentrated in the **last line** of the prompt; positive description area **NEVER** contains unwanted words (naming = summoning).
+3. **Reference Image Codes**: Use only `Image 1/Image 2` or `image1/image2` in text, NO filenames or paths allowed.
+4. **Spatial Anchor Specificity**: Use directions (left/right/foreground/background) + layers (front/middle/distance) + distance references ("close to bottom-right corner of frame" "about one step from subject"), NO vague "nearby/around". **Height uses compositional relationships, NOT metric measurements** ("feet on, in lower half of frame, about 10 meters off ground + maintain eye-level/slight upward angle + NEVER bird's eye view").
+5. **Four-Piece Lighting Set** (MUST include for character frames): ① Light source direction (specific direction) ② Half-face lighting (which half bright, which half in shadow) ③ Highlight points (specific positions: cheekbone/nose bridge/lips/collarbone) ④ Wide aperture background blur (background blurred, wide aperture). Any character frame missing one = flat lighting + clear background = costume photo not cinematic frame.
+6. **One Image One Focus**: Each first-frame image locks only ONE visual focus (person/prop/spatial relationship), multiple focuses dilute and blur everything.
 
-**正例**（唯一职责 + 排他=不归我管就不问我要）：
-```
-[图1] 角色定妆图 —— 仅作为角色身份锚（脸/发/服装），不提供场景/构图/光影
-[图2] 场景定场图 —— 仅作为环境与色板锚（建筑/光/色调），不提供人物身份
-[图3] 道具定场帧 —— 仅作为道具形态锚（结构/光泽/工艺），不提供场景与人物
-```
+### 1.1 Lighting-Sculpting Formula (MUST check for character/scene frames' 【PHOTOGRAPHIC TONE】)
 
-**凡没分配的维度，模型一定自作主张**。排他声明就是给模型画"自治边界"。
-
-## 三、结构公式（按序输出）
+Lighting is not a one-word "warm/cold". Write it item by item per the six-variable formula:
 
 ```
-主体行（谁：外观锚点逐字复述 + 位置）
-空间与构图行（景别/机位/站位/前景后景层次 + 高度用构图关系）
-光影行（光影四件套：方向+半脸+高光点+大光圈；时段/布光法见 lighting-styles.md）
-环境行（场景锚点逐字复述 + 陈设要点）
-镜头行（焦段感 + 视角，如"85mm 感，平视微仰"）
-画风行（电影感签名块五件套 + 风格锚点）
-负面末行（不要……，不要……，不要……）
+time & environment + key-light direction + light quality + color temperature + light ratio + reflective medium + shadow type + material response + forbidden lighting errors
 ```
 
-**三处复写铁律**：同一核心约束（角色形态命门 / 配色铁律 / 核心负面）要在「主体行或光影行（正向）+ 末尾【CONSTRAINTS】或锁定段（禁令）+ 负面末行（Avoid）」三处各说一遍。**适度重复 = 注意力强化**，只写一处 = 跑偏。
+**Three key judgments**:
+1. **Light MUST have a source**: which side the window is on, whether the streetlight is front or side-back, whether candlelight is the sole source or a fill — sourceless light = flat light.
+2. **Material MUST respond to light**: metal→thin elongated highlights; glass→transparent reflections; wet ground→mirror reflections; fabric→soft diffuse reflection.
+3. **Subject MUST share the environment's light**: when the environment is cold-toned, the character cannot have sourceless warm light; a product on a table MUST have a contact shadow.
 
-## 四、电影感签名块五件套（避免 AI 味）
+**Contact shadow** (high-frequency failure point): there MUST be a real darkening between the subject and the ground, and between the hand and the object — `contact shadow under the subject, feet/object touching surface with real shadow`. No contact shadow = floating/knockout feel.
 
-按"摆→色→谁拍→拿啥拍→封口"五件套锁定摄影签名：
+## 2. One Image One Responsibility + Exclusive Declaration (Anti-Derailment Core)
+
+Each reference image must have **unique responsibility + exclusive declaration**. Reference images are NOT "reference the whole image", but "reference a specific dimension".
+
+**Negative Example** (Will fail):
+```
+[Image 1] Character costume image [Image 2] Scene image
+```
+Model will make up what each controls → face swapping/color derailing.
+
+**Positive Example** (One responsibility + exclusive = what's not mine, I don't ask for):
+```
+[Image 1] Character costume image —— Only serves as character identity anchor (face/hair/clothing), does not provide scene/composition/lighting
+[Image 2] Scene reference image —— Only serves as environment and color palette anchor (building/light/tone), does not provide character identity
+[Image 3] Prop reference frame —— Only serves as prop form anchor (structure/sheen/craftsmanship), does not provide scene or characters
+```
+
+**Any undistributed dimension, the model will definitely make its own decisions**. Exclusive declarations draw "autonomy boundaries" for the model.
+
+## 3. Six-Section Structure Formula (Output in Order)
+
+> Based on neoimage-prompt-engine's six-section skeleton, **English as skeleton (image model's native language), Chinese lock sentences embedded in 【Locks】section**. Each prompt gets both Chinese and English versions.
 
 ```
-构图流派：电影感对角构图 / 居中对称 / 越肩轴线等
-hex 色板：#xxx（主色）+ #xxx（辅色）+ #xxx（焦点色），锁死对应
-DP 摄影师署名：Greig Fraser (Dune 2021) / Roger Deakins / Hoyte van Hoytema 等
-胶片型号/画幅：35mm Kodak Vision3 500T / Kodak Double-X 5222 / 6K 大画幅
-反 AI 味封口：the overall PHOTO is clean, NO digital grain; NOT CGI / anime / video-game render
+【Reference Image Annotations】
+Image 1 (Character Reference · <Who>): Anchors ONLY <Who>'s identity (face/hair/clothing), strictly preserved unchanged, provides appearance only NOT pose; this image corresponds to frame area [<Position>].
+Image 2 (……): …… (each image one line, each line with "Only serves as..." / "Does not provide..." exclusive declaration)
+Image N (Scene Reference): Anchors ONLY the environment, provides background only, NOT characters or color tone.
+Image C (Color Palette / Cinematic Tone Reference): Anchors ONLY the overall cinematic tone and color palette (hue/brightness/saturation orientation), NOT characters/composition/specific content.
+
+[Subject] <One sentence defining the frame>: Shot scale/camera angle/perspective + who is doing what where + environment. Position/height use compositional relationships, NOT metric measurements.
+
+[Effects Layer] <What color, what texture, how large the effects are>. Texture uses positive/negative word banks for precision. For multiple characters, write each character's effects separately with explicit color/shape contrast.
+
+【Locks & Constraints】Written in two layers, do NOT mix:
+· PRESERVE — Do not change <Who>'s facial features/hair/clothing (<specific>), only change pose to "<new pose>"; face and identity strictly preserved from Image X, no face swapping; for multiple characters add "no face swapping between characters + bind positions".
+· CONSTRAINTS — Logic/shape/quantity prohibitions go here (exactly N / maintain mechanical face non-human / wall must be solid). ⚠ Iron rule: shape locks · quantity locks · NO-FACE type logical prohibitions MUST go in CONSTRAINTS, NOT in TONE or Avoid — wrong block weight causes failures.
+
+【PHOTOGRAPHIC TONE】Tone (clean/dark), sky, light, color palette, clarity/texture (clean sharp no noise OR film grain). Character frames MUST include three-dimensionality of light + wide aperture background blur.
+
+【Avoid】Write negative iron rules for the most common failure points in this path: wrong colors, wrong textures, face swapping, whole-image noise, wrong camera angles, cartoon/game feel, text watermarks, etc.
+
+size <ratio>, quality <2K/4K>
 ```
 
-五件套必须自洽：写 Deakins 冷峻就别叠高饱和 HDR；写 Fraiser 沙漠就别叠清新蓝天。**清爽调整套签名要按 §六 删负**。
+**Three-Place Repetition Iron Rule**: The same core constraint (character form weakness / color palette iron rule / core negative) MUST be stated in THREE places: 「[Subject] or 【PHOTOGRAPHIC TONE】(positive) + 【Locks & Constraints】CONSTRAINTS section (prohibition) + 【Avoid】(negative)」. **Moderate repetition = attention strengthening**, only one place = derailing.
 
-**显影链配方（直接可抄）**：
+### 3.1 Seven-Layer Frame Decomposition (skeleton derivation before writing [Subject])
+
+Abstract style must be decomposed into concrete frame layers; write each layer clearly, then merge into one sentence:
+
+| Layer | What to Specify |
+|---|---|
+| Subject | who is the protagonist: form, proportion, pose, material |
+| Environment | where: time, weather, spatial attributes |
+| Composition | where the subject sits in the frame: negative space, symmetry, leading lines |
+| Foreground | any occlusion: raindrops, door frames, plants, glass |
+| Midground | where the subject and key action occur |
+| Background | does the background provide emotion, information, or depth |
+| Depth | distance and focus relationship between front/mid/back layers |
+
+### 3.2 Focal-Length Lookup Table (choose when writing the camera line)
+
+| Focal Length | Fits |
+|---|---|
+| 14-24mm wide | environmental pressure, speed, spatial distortion, on-scene feel |
+| 35mm | narrative, street, person-environment balance |
+| 50mm | near human eye, natural realism |
+| 85mm | portrait close-up, emotion, shallow DoF |
+| 135mm+ | spatial compression, isolation, voyeuristic feel, strong emotion |
+
+## 4. Cinematic Signature Block Five-Piece Set (Avoid AI Quality)
+
+Lock cinematography signature with "Composition → Color → Who shot → With what → Seal" five-piece set:
+
 ```
-// 彩色日/夜景（低饱和高对比、跳漂白苍茫硬调）
+Composition Style: Cinematic diagonal composition / centered symmetry / over-the-shoulder axis etc.
+Hex Color Palette: #xxx (primary) + #xxx (secondary) + #xxx (accent), locked exactly
+Cinematographer Credit: Greig Fraser (Dune 2021) / Roger Deakins / Hoyte van Hoytema etc.
+Film Stock / Format: 35mm Kodak Vision3 500T / Kodak Double-X 5222 / 6K large format
+Anti-AI Quality Seal: the overall PHOTO is clean, NO digital grain; NOT CGI / anime / video-game render
+```
+
+Five-piece set must be self-consistent: if writing Deakins cold/minimalist, don't stack high-saturation HDR; if writing Fraiser desert, don't stack fresh blue sky. **Clean/bright tone adjust entire signature per §6 delete negatives**.
+
+**Development Chain Recipes (Directly Copyable)**:
+```
+// Color Day/Night (low saturation high contrast, skip-bleach hard tone)
 35mm Kodak Vision3 500T film stock with skip-bleach negative LUT,
 analog photochemical grain, single still frame from a feature film.
 
-// 黑白武戏（真实黑白片基灰阶）
+// B&W Action (real B&W film base grayscale)
 Kodak Double-X 5222 black-and-white film stock aesthetic. Anamorphic widescreen lens.
 Subtle organic film grain only. Colors restrained, slight gray tone.
 ```
 
-**黑白片仍用彩色色卡 + 写灰阶层级**（防层次糊）："红→中深灰、黑保深、白保亮"。
+**B&W films still use color palette + write grayscale hierarchy** (prevent muddy layers): "red → medium dark gray, black stays deep, white stays bright".
 
-## 五、参考图纪律（图生图部分）
+## 5. Reference-Image Discipline (image-to-image section)
 
-### 改图模式（在已有图上修改）
-- 首行声明：`严格基于提供的参考图（图1），`
-- 只写改动，不重述原图；必须有 Keep 锚点：`保持图1中人物的五官、发型、服装完全不变，`（具体到特征）。
-- 末行负向：`不要改动人物本身，不要多余人物，不要水印。`
-- 适用：阶段 5 翻车处理中的"轻改不让底图漂"。
+### Edit mode (modify an existing image)
+- Opening declaration: `Strictly based on the provided reference image (Image 1),`
+- Write only the change; do not re-describe the original; MUST have a Keep anchor: `Keep the facial features, hairstyle, and clothing of the person in Image 1 completely unchanged,` (specific to features).
+- End-line negative: `do not alter the person themselves, no extra people, no watermark.`
+- Fits: Phase 5 failure handling's "light edit without letting the base image drift".
 
-### 参考提取模式（取元素画新图）
-- 首行声明：`仅提取参考图（图1）中的[具体元素]（点名到特征），并构建一张全新画面，`
-- 明确两清单：从图1提取什么 / 全新构建什么（背景/构图/光影/风格）。
-- 多图点名来源：`图1提供角色，图2提供场景风格，`
-- **防整图搬运末行**：`不要照搬参考图原本的背景与构图。`
-- 适用：阶段 2 角色定妆、阶段 5 视角切换时的"尾帧换机位"。
+### Reference-extraction mode (take an element to draw a new image)
+- Opening declaration: `Only extract [specific element] from reference image (Image 1) (named down to features), and build an entirely new frame,`
+- State two lists: what to extract from Image 1 / what to build new (background/composition/light/style).
+- Multi-image source naming: `Image 1 provides the character, Image 2 provides the scene style,`
+- **Anti-whole-image-copy end line**: `do not copy the original background and composition of the reference image.`
+- Fits: Phase 2 character makeup, Phase 5 "last-frame camera-change" when switching angles.
 
-### 尾帧承接模式（本技能特有）
-- 首帧 = 上镜尾帧时无需生成新图；若因视角切换需重建，按"参考提取模式"处理：尾帧为图1，提取人物姿态与服装，重建新机位下的画面，并写 `保持图1中人物的姿态、服装与光影方向，仅改变机位角度。`
+### Last-frame continuation mode (specific to this skill)
+- When first frame = previous shot's last frame, no new image needed; if rebuilding due to angle change, handle per "reference-extraction mode": the last frame is Image 1, extract the character's pose and clothing, rebuild the frame under the new camera angle, and write `Keep the pose, clothing, and light direction of the person in Image 1; only change the camera angle.`
 
-## 六、删词调节器（清爽调 vs 压抑调）
+## 6. Word Deletion Regulator (Clean/Bright Tone vs Dark/Oppressive Tone)
 
-调子是基调级决策，**先定再出图**。提示词不只是"加什么"，更是"删什么"。
+Tone is a foundational decision, **decide first then generate**. Prompts are not just about "what to add", but also "what to delete".
 
-**清爽明亮调**（蓝天/通透/都市）：
-- **删**：`Dune aesthetic / skip-bleach LUT / analog grain / dusty haze / HDR glow`
-- **加**：`bright clean fresh daylight + clear/soft light-blue sky + white clouds + high clarity + shallow DoF`
-- 冷特效靠 teal-orange 互补（暖背景 vs 冷特效）；蓝天别过饱和（`not over-saturated`）。
+**Clean/Bright Tone** (Blue sky/transparent/urban):
+- **DELETE**: `Dune aesthetic / skip-bleach LUT / analog grain / dusty haze / HDR glow`
+- **ADD**: `bright clean fresh daylight + clear/soft light-blue sky + white clouds + high clarity + shallow DoF`
+- Cold effects rely on teal-orange complement (warm background vs cold effects); blue sky not over-saturated (`not over-saturated`).
 
-**压抑/末世调**（沙尘/冷峻/废土）：
-- **保留**：`Dune aesthetic + Kodak Vision3 500T + skip-bleach + analog grain + dusty haze + desaturated`
-- 全套签名按本调走，不混用。
+**Dark/Oppressive Tone** (Sand dust/cold/post-apocalyptic):
+- **KEEP**: `Dune aesthetic + Kodak Vision3 500T + skip-bleach + analog grain + dusty haze + desaturated`
+- Entire signature follows this tone, no mixing.
 
-**坑**：skip-bleach 去饱和会一起吃掉焦点色，搭配时焦点色要 `sole saturated / glowing` 显式拔高。
+**Pitfall**: skip-bleach desaturation eats accent colors together; when pairing, accent colors need `sole saturated / glowing` explicit elevation.
 
-## 七、双寄存器（重型建 vs 轻改）
+## 7. Dual Register (Heavy Build vs Light Edit)
 
-| 任务 | 模型 | 提示词 |
+> This is the foundation of the entire system. Wrong register = biggest time sink.
+
+| Task | Model | Prompt |
 |---|---|---|
-| **重型建**（定妆图/定场图/关键帧从零生成） | 重型图像模型（Image 类） | 完整六段式提示词 |
-| **轻改**（在底图上微调一处） | 视觉理解模型（Nano Pro 类） | 中文一句话 + "其余不变" |
+| **Heavy Build** (Character/Scene/Keyframe generation from scratch) | Heavy-duty Image Model (Image type) | Complete six-section prompt |
+| **Light Edit** (Fine-tuning one aspect on existing image) | Visual Understanding Model (Nano Pro type) | Single Chinese sentence + "keep everything else unchanged" |
 
-**7 类轻改模板**（中文一句话，均配"其余不变"）：
+> Practical verification: Let Nano Pro build from scratch, wind effects become thin wisps; let Image 2 build and the momentum is full. So **Build uses Image 2, Edit uses Nano Pro**, working together.
+
+**7 Light Edit Templates** (Chinese one sentence, all with "keep everything else unchanged"):
 ```
-镜头远近：  把镜头拉远一点，其余不变。
-居中/构图：把人物挪到左三分之一，其余不变。
-景别：     从全身改成半身特写，其余不变。
-表情：     表情改成眯眼挑眉，其余不变。
-材质改写： 把衣袖材质改成丝绸，结构不变，其余不变。
-去元素：   去掉丝袜，改成光脚，其余不变。
-换元素：   把背景换成沙漠（@基底 @风格），其余不变。
-```
-
-**两条规则**：
-- 删元素必给替代状态（去丝袜→"光脚"，别只说"去掉"）。
-- 改动必给物理因果（湿身→"衣袖紧贴皮肤"），否则模型把反常理细节"合理化"抹平。
-
-**何时轻改 vs 重刷**：
-- 只动 1 个变量、底图基本满意 → 轻改（一句话）
-- 同时改 ≥3 件事 / 换姿态 / 换结构 / 换机位 / 连续轻改后开始熔脸串身份 → 停手，回重型完整重起
-
-## 八、5 类过度复杂（写完逐项自检）
-
-1. **术语堆叠 vs 朴素一句**：光影别写 `★1/3 warm DIRECTIONAL key light at ~45°...★2/3 chiaroscuro...`，写 `Warm light from camera-right. Right half lit, left half in warm shadow.`。
-2. **"族"标签分组 Avoid vs 平铺**：别写 `★(锚点漂移族)★...`，直接平铺 6-12 条核心禁令，无标签。
-3. **★★ 大块开头声明 vs 一行点题**：别在开头堆 4-6 行 `THIS IS X NOT Y`，压成一行。
-4. **每张 ref 都长 disclaim vs 只对易漂处**：只对真正易漂的那张写长排他声明，其他简单一句。
-5. **HEX 色板大全堆叠 vs 沿用色卡一句**：第一帧定色卡后，后续仅 `warm crimson-gold per established color bible`，别每帧抄一遍 HEX 全表。
-
-**总字数目标**：复杂帧 ≤ 500 词；简单帧 ≤ 350 词。超了回头剪。
-
-## 九、高风险特征必出 SOP（形态命门升级版）
-
-**铁律**：如果某个特征翻车了整张图就废了（角色脸/形态命门/数量/颜色对垒），就必须走这套 SOP。
-
-1. **前置标** `if missing the design fails`：在主体行或 CONSTRAINTS 段把关键形态特征前置。
-2. **预想翻车**：预想它最可能翻成什么（手部→六指；法阵→气泡；魔兽→卡通）。
-3. **写"失败模式 → 补救句"**：每个翻车点一条补救句。
-4. **出图后逐项对账**：对照清单逐项核。
-5. **没到位真重跑 + 追加补救句**：别凑合。
-
-例（玄幻法阵）：
-```
-主体行：[图1] 法阵居中，[法阵纹路=八角放射，内环三圈、外环十二芒，禁止画成连续同心圆]
-CONSTRAINTS：法阵纹路必须八角放射，禁连续同心圆；如有失败模式→追加补救句"外环必须十二芒，单数不可"
-负面末行：do not deform the rune; do not use circles
+Camera Distance: 把镜头拉远一点，其余不变。
+Composition: 把人物挪到左三分之一，其余不变。
+Shot Scale: 从全身改成半身特写，其余不变。
+Expression: 表情改成眯眼挑眉，其余不变。
+Material: 把衣袖材质改成丝绸，结构不变，其余不变。
+Remove Element: 去掉丝袜，改成光脚，其余不变。
+Replace Element: 把背景换成沙漠（@基底 @风格），其余不变。
 ```
 
-## 十、对话戏高风险区：远距离视线锁定
+**Two Rules**:
+- Removing elements MUST provide replacement state (remove stockings → "bare feet", don't just say "remove").
+- Changes MUST provide physical causation (wet body → "sleeves clinging to skin"), otherwise model "rationalizes" and erases counter-intuitive details.
 
-远距离对话帧（隔屋对峙/跨桌）一旦超出"一臂之内"就掉控，模型会把两人画成各自低头沉思（看似在看其实没看）。
-**加固三件套**：
-1. 正向：`eyelines MEET across the room, both heads slightly LIFTED to look at each other`
-2. Avoid 段把"低头沉思"族逐项排除：`looking down at the table / heads bowed / eyes lowered / each lost in their own thoughts / averted gaze`
-3. 纯侧脸改 3/4 朝向对方；`head TURNED toward the other person, chin slightly LIFTED`
+**When to Light Edit vs Re-Build**:
+- Only changing 1 variable, base image basically satisfactory → Light edit (single sentence)
+- Changing ≥3 things simultaneously / changing pose / changing structure / changing camera angle / continuous edits start melting face and swapping identity → Stop, go back to heavy-duty complete rebuild
 
-**作用范畴**：所有对话戏镜头，按【正文】+【CONSTRAINTS】+【Avoid】三处复写。
+## 8. Five Over-Complexity Types (self-check item by item after writing)
 
-## 十一、迭代纪律（对应抽卡控制）
+1. **Term stacking vs plain sentence**: for lighting, don't write `★1/3 warm DIRECTIONAL key light at ~45°...★2/3 chiaroscuro...`; write `Warm light from camera-right. Right half lit, left half in warm shadow.`.
+2. **"Family"-labeled grouped Avoid vs flat list**: don't write `★(anchor-drift family)★...`; directly list 6-12 core prohibitions flat, no labels.
+3. **Big ★★ opening declaration vs one-line point**: don't pile 4-6 lines of `THIS IS X NOT Y` at the opening; compress to one line.
+4. **Long disclaimer for every ref vs only for drift-prone ones**: write a long exclusive declaration only for the genuinely drift-prone image; others get one simple sentence.
+5. **Full HEX palette stacking vs one color-bible line**: after the first frame sets the color card, later frames only use `warm crimson-gold per established color bible`; don't copy the full HEX table every frame.
 
-- **最小改动**：反馈只动相关行，其余逐字保留。无谓改动会让用户满意的部分一起跑掉。
-- **先诊断再改**：先判"上一版哪一行没控住、漏了哪条规避"，优先强化正向锚点，不无脑堆负面词。
-- **方向性否定要重做**：风格/构图/主体被整体推翻时，不回旧版小修，回阶段 2/3 重新构想。
-- **假设透明**：用户需求过简时，内部补齐一套合理假设直接产出，输出后一行标注关键假设。
+**Total word targets**: complex frames ≤ 500 words; simple frames ≤ 350 words. Trim if over.
 
-## 十二、 API 参数建议（附录）
+## 9. High-Risk Feature "MUST APPEAR" SOP (Form Weakness Upgrade)
+
+**Iron Rule**: If a feature failing ruins the entire image (character face/form weakness/quantity/color confrontation), MUST follow this SOP.
+
+1. **Precondition Mark** `if missing the design fails`: Place critical form features in subject line or CONSTRAINTS section.
+2. **Anticipate Failure**: Imagine what it most likely fails into (hands → six fingers; magic array → bubbles; monster → cartoon).
+3. **Write "Failure Mode → Remedy Sentence"**: One remedy sentence for each failure point.
+4. **Post-Generation Checklist**: Check against list item by item.
+5. **Re-run with Additional Remedy if Needed**: Don't compromise.
+
+Example (Fantasy Magic Array):
+```
+Subject Line: [Image 1] Magic array centered, [array pattern=octagonal radial, inner ring three circles, outer ring twelve points, forbidden to draw as continuous concentric circles]
+CONSTRAINTS: Array pattern must be octagonal radial, no continuous concentric circles; if failure mode → add remedy sentence "outer ring must be twelve points, odd number not allowed"
+Negative End Line: do not deform the rune; do not use circles
+```
+
+## 10. Dialogue High-Risk Zone: Long-Distance Eye-Line Lock
+
+Long-distance dialogue frames (across room confrontation/across table) once beyond "arm's length" lose control, model draws both people looking down in thought (seems like looking but actually not).
+**Reinforcement Three-Piece Set**:
+1. Positive: `eyelines MEET across the room, both heads slightly LIFTED to look at each other`
+2. Avoid section excludes "looking down in thought" family item by item: `looking down at the table / heads bowed / eyes lowered / each lost in their own thoughts / averted gaze`
+3. Pure profile changed to 3/4 turn toward other person; `head TURNED toward the other person, chin slightly LIFTED`
+
+**Scope**: All dialogue frames, replicated in three places: 【body text】+【CONSTRAINTS】+【Avoid】.
+
+## 11. Iteration Discipline (maps to card-pull control)
+
+- **Minimal change**: feedback touches only the relevant lines; everything else stays verbatim. Unnecessary changes make the parts the user liked run away together.
+- **Diagnose before changing**: first judge "which line of the previous version wasn't controlled, which avoidance was missed"; prioritize strengthening positive anchors, don't blindly pile negative words.
+- **Directional rejection needs a redo**: when style/composition/subject is overturned as a whole, don't patch the old version; return to Phase 2/3 to re-imagine.
+- **Transparent assumptions**: when the user's need is too sparse, fill in a reasonable set of assumptions internally and produce directly; after output, mark the key assumptions in one line.
+
+## 12. API Parameter Suggestions (appendix)
 
 ```
-【API 参数建议】
-model: <gpt-image-2 / nano-banana-pro / 即梦>
-[改图任务(在已有图上改光/改局部)注明：调用 images.edit，不是 generate]
-size: 单帧 1K~2K；多格/多视图/群像站位图 1536 长边或 2K+
-quality: medium（默认）；high 留最终交付
-Thinking Mode: 复杂合成/多约束/多角色时开启
-参考图：图1 = [职责]   图2 = [职责]   …
-【提醒】改图 Preset list 核心；九宫格在 PRESERVE 开头加"preserve the multi-panel grid layout and the content of every panel"
+【API Parameter Suggestions】
+model: <gpt-image-2 / nano-banana-pro / Jimeng>
+[edit tasks (change light/partial area on existing image) note: call images.edit, NOT generate]
+size: single frame 1K~2K; multi-panel/multi-view/group-blocking images 1536 long edge or 2K+
+quality: medium (default); high reserved for final delivery
+Thinking Mode: enable for complex composites / multi-constraint / multi-character
+Reference images: Image 1 = [role]   Image 2 = [role]   ...
+【Reminder】Preset list is core for edits; for 3x3 grids, add at the PRESERVE opening "preserve the multi-panel grid layout and the content of every panel"
 ```
 
-- 改图（edit）vs 建图（generate）不分是"双寄存器翻车"根因。
-- `output_format`：成片/物料一律 jpeg；透明底/无损叠层才 png。
-- `size`：单帧 1K–2K；九宫格/多视图/群像站位必须 1536 长边或 2K+（否则每格细节糊）。
+- Confusing edit vs generate is the "dual-register failure" root cause.
+- `output_format`: final images/materials always jpeg; only transparent-background / lossless-layer needs png.
+- `size`: single frame 1K–2K; 3x3 grids / multi-view / group blocking MUST be 1536 long edge or 2K+ (otherwise per-cell detail blurs).
 
-## 十三、 定妆/定场/道具/复合资产提示词（与 assets 模板联动）
+## 13. Makeup/Establishing/Prop/Composite-Asset Prompts (linked with assets templates)
 
-- **角色定妆**（character-card.md / scene-actor-card.md）：add 眼神光 + 布光法（伦勃朗光 男/蝴蝶光 女 优先）+ 85mm 感 + 形态命门三处复写 + 排他声明。
-- **场景定场**（scene-card.md）：add 时段光影（黄金时刻/蓝调时刻/阴天漫射 按基调选）+ 布光法按场景选 + 双区分轴色板。
-- **道具定场**（prop-card.md）：add 产品布光（奢侈品单光+反光板精控 / 科技产品冰盒感黑背景 按题材选）+ 形态命门三处复写。
-- **复合资产图**（scene-actor-card.md）：一图覆盖角色+场景+道具+氛围，最高效的关键帧插入方式。
-- **对话关系板**（dialogue-board-card.md）：6 格 2×3 锁 180° 轴线，对话戏前置必出。
+- **Character makeup** (character-card.md / scene-actor-card.md): add catchlight + lighting method (Rembrandt for male / butterfly for female preferred) + 85mm feel + form weakness three-place repetition + exclusive declaration.
+- **Scene establishing** (scene-card.md): add time-of-day lighting (golden hour / blue hour / overcast diffuse per tone) + lighting method per scene + dual-axis color palette.
+- **Prop establishing** (prop-card.md): add product lighting (luxury: single light + reflector precision control / tech: ice-box black background per genre) + form weakness three-place repetition.
+- **Composite asset image** (scene-actor-card.md): one image covering character+scene+prop+atmosphere, the most efficient keyframe-insert method.
+- **Dialogue relationship board** (dialogue-board-card.md): 6-cell 2×3 locking the 180° axis, required before dialogue scenes.
 
-## 十四、 反 AI 味词库（Avoid 常驻）
+### 13.1 Selling-Point → Evidence Conversion (MUST check for prop/product/ability establishing)
 
-⚠️ 不在正向描述里出现。用一段写完补充到末行。
+Writing "powerful/premium/strong" is useless — the model doesn't know what "premium" looks like. Translate abstract selling points into **visible evidence**:
+
+| Selling Point | Visible Evidence |
+|---|---|
+| Lightweight | fabric swaying gently in wind, wrist not drooping, a feather landing without bending it |
+| Waterproof | water beads rolling off, surface not absorbing, wet-ground reflection |
+| Premium | material detail, restrained light, real proportions (NOT random gold light effects) |
+| Tech | precise structure, smooth interaction, restrained UI (NOT full-screen blue lines) |
+| Sharp | thin elongated highlight on the blade, clean cut surfaces, edge reflecting as a line |
+| Powerful | cracks in the ground, grip surface depressed under force, clothes lifted by air pressure |
+
+**Product/prop hard constraints**: ① structure must not change ② no random generated text/trademarks ③ hand-object contact must have pressure & shadow ④ proportions must not deform from wide angle or camera move ⑤ selling point must have visible evidence ⑥ don't let the model generate big Chinese characters/signs/incorrect packaging copy.
+
+## 14. Anti-AI-Quality Word Bank (permanent in Avoid)
+
+⚠️ Not in the positive description. Write it as one paragraph appended to the end line.
 
 ```
 overpolished studio look, plastic smoothing skin, oversaturation of non-red elements,
@@ -213,4 +299,4 @@ text, watermark, logo, signature, multiple characters without intent,
 unnamed facial features mixing into subject
 ```
 
-**题材级负向**（每个题材的"翻车点"段已列），逐个点名（如科幻：`cyberpunk = blue-purple tint`；古装：`studio portrait look`）。
+**Genre-level negatives** (each genre's "failure points" section lists them); name them one by one (e.g., sci-fi: `cyberpunk = blue-purple tint`; costume drama: `studio portrait look`).

@@ -1,156 +1,156 @@
-# 镜头语言速查（阶段 3 设计分镜、阶段 4 写提示词时用）
+# Shot-Language Quick Reference (use when designing shots in Phase 3 and writing prompts in Phase 4)
 
-> 用法：剧本镜头标注行 `[景别|运镜|画面要点]` 的景别/运镜词必须取自本表；提示词中的镜头字段同样用本表词汇（三模型通用词汇，模型特异写法以 model-adapters 为准）。
+> Usage: the shot-scale/camera-move words in the script's shot-label line `[shot scale|camera move|frame key points]` MUST come from this table; the camera fields in prompts also use this table's vocabulary (vocabulary common to all three models; model-specific wording per model-adapters).
 
 ---
 
-## 一、景别表（由远到近）
+## 1. Shot-Scale Table (far to near)
 
-| 景别 | 取景范围 | 典型用途 | 视频模型风险 |
+| Shot Scale | Framing Range | Typical Use | Video-Model Risk |
 |---|---|---|---|
-| 大远景 | 环境为主体，人如豆 | 开场建场、孤绝感、巨物压迫 | 低；放心用 |
-| 远景 | 全身+大量环境 | 走位、关系位置、武戏全貌 | 低-中；人多易糊 |
-| 全景 | 全身，头顶留空 | 动作交代、服装展示 | 中；注意肢体 |
-| 中景 | 膝/腰以上 | 对话戏主力、动作+表情兼顾 | 中 |
-| 中近景 | 胸以上 | 对话+情绪，漫剧最常用 | 中 |
-| 近景 | 肩以上 | 情绪戏主力 | 中-高；面部细节要锚 |
-| 特写 | 面部为主 | 情绪爆点、反应镜头 | 高；易五官漂移，须角色参考图 |
-| 大特写 | 眼/唇/手/道具局部 | 关键道具、微表情、钩子帧 | 高；手部是翻车重灾区 |
+| Extreme long shot | environment is the subject, people are dots | opening establishing, isolation, giant-object pressure | low; safe to use |
+| Long shot | full body + lots of environment | blocking, positional relations, full view of fight scenes | low-mid; many people tend to blur |
+| Full shot | full body, headroom above | action exposition, costume display | mid; watch the limbs |
+| Medium shot | above knee/waist | dialogue workhorse, action + expression balance | mid |
+| Medium close-up | above chest | dialogue + emotion, MOST used in comic drama | mid |
+| Close shot | above shoulders | emotional-scene workhorse | mid-high; facial details need anchors |
+| Close-up | face as subject | emotional explosion, reaction shots | high; facial features drift easily, needs character reference |
+| Big close-up | eye/lip/hand/prop close-up | key props, micro-expressions, hook frames | high; hands are the top failure zone |
 
-## 二、运镜表（视频模型实测响应好的安全词）
+## 2. Camera-Move Table (safe words that video models respond to well in practice)
 
-| 运镜 | 写法 | 适用 | 风险与备注 |
+| Move | Wording | Fits | Risk & Notes |
 |---|---|---|---|
-| 固定 | `固定机位` | 一切，最稳 | 最低；情绪戏常用 |
-| 推 | `缓推 / 极缓推` | 蓄力、逼近真相、暧昧爬坡 | 低；要求"真实透视变化，非2D缩放" |
-| 拉 | `缓拉 / 极缓拉` | 揭示全貌、收束、孤独感 | 低 |
-| 移 | `平移 / 跟移` | 横向关系、行走跟随 | 中；背景视差要自然 |
-| 跟 | `后跟 / 侧跟` | 奔跑、追逐 | 中-高；主体易漂移，配浅景深 |
-| 摇 | `横摇 / 竖摇` | 扫视环境、反应接力 | 中；幅度宜小 |
-| 升降 | `缓升 / 缓降` | 气势、俯瞰、结尾拔高 | 中 |
-| 环绕 | `环绕（≤90°）` | 高光时刻、双人关系 | 高；≤90° 安全，180°+ 易串脸崩坏 |
-| 手持 | `手持微晃` | 纪实感、紧张感 | 中；写"轻微呼吸感晃动"，禁写"剧烈晃动" |
-| 甩/快摇 | `快摇` | 动作戏转场 | 高；慎用，建议用跳切替代 |
+| Static | `fixed camera` | everything, most stable | lowest; common in emotional scenes |
+| Push in | `slow push-in / extremely slow push-in` | build-up, approaching truth, ambiguous rise | low; require "real perspective change, NOT 2D zoom" |
+| Pull back | `slow pull-back / extremely slow pull-back` | reveal the whole, close out, loneliness | low |
+| Track | `lateral track / track-with` | lateral relations, walking follow | mid; background parallax must be natural |
+| Follow | `rear follow / side follow` | running, chasing | mid-high; subject tends to drift, pair with shallow DoF |
+| Pan | `horizontal pan / vertical pan` | scanning environment, reaction relay | mid; small amplitude preferred |
+| Crane | `slow crane-up / slow crane-down` | momentum, bird's-eye, ending elevation | mid |
+| Orbit | `orbit (≤90°)` | highlight moments, two-person relations | high; ≤90° safe, 180°+ easily face-swaps/breaks |
+| Handheld | `handheld micro-shake` | documentary feel, tension | mid; write "slight breath-like shake", forbid "violent shake" |
+| Whip pan | `fast pan` | action-scene transitions | high; use sparingly, prefer jump cut |
 
-**速度修饰词**（安全度从高到低）：`极缓` > `缓` > `匀速` > `稍快` > `快速`（高风险，动作戏外勿用）。
+**Speed modifiers** (safety high to low): `extremely slow` > `slow` > `uniform` > `moderately fast` > `fast` (high risk; do not use outside action scenes).
 
-**复合运镜**：一镜至多两个运镜叠加（如"缓推+微降"），三个以上必翻车。默认只用单个运镜。
+**Compound moves**: at most TWO camera moves stacked per shot (e.g., "slow push-in + slight crane-down"); three or more WILL fail. Default to a single move.
 
-## 三、焦段与景深心理
+## 3. Focal Length & Depth-of-Field Psychology
 
-> 布光法与焦段风格全库见 `references/lighting-styles.md`。
+> Full lighting-method and focal-style library in `references/lighting-styles.md`.
 
-| 写法 | 效果 | 用途 |
+| Wording | Effect | Use |
 |---|---|---|
-| `广角透视`（24-35mm 感） | 空间拉伸、前景夸张 | 建场、压迫感、动作戏 |
-| `标准视角`（50mm 感） | 接近人眼 | 对话戏默认 |
-| `中焦 85mm 感` | 面部比例佳、虚化优美 | 人像特写、情绪戏（人像黄金焦段） |
-| `长焦压缩`（135mm+ 感） | 背景压缩、主体剥离 | 情绪特写、暧昧戏、追踪感 |
-| `浅景深，背景虚化` | 焦点锐利，焦外奶油化 | 角色帧必带（防背景路人崩坏） |
-| `深景深` | 前后皆实 | 建场、群像（谨慎，人多必糊） |
+| `wide-angle perspective` (24-35mm feel) | space stretch, exaggerated foreground | establishing, pressure, action |
+| `standard perspective` (50mm feel) | near human eye | dialogue default |
+| `medium 85mm feel` | good facial proportions, beautiful blur | portrait close-up, emotional scenes (portrait golden focal length) |
+| `telephoto compression` (135mm+ feel) | background compression, subject isolation | emotional close-up, ambiguous scenes, tracking feel |
+| `shallow DoF, blurred background` | sharp focus, creamy out-of-focus | character frames MUST have (prevents background bystander breakdown) |
+| `deep DoF` | near and far both sharp | establishing, group shots (caution; many people WILL blur) |
 
-**焦段纪律**：情绪戏用 85/135mm 感；建场与动作用 24–35mm 感；对话戏 50mm 感。一律写"感"字，避免模型按真实镜头参数理解。
+**Focal-length discipline**: emotional scenes use 85/135mm feel; establishing and action use 24–35mm feel; dialogue uses 50mm feel. Always write "feel" (感), avoiding the model interpreting it as real lens parameters.
 
-## 四、机位与视角
+## 4. Camera Position & Angle
 
-| 写法 | 心理 |
+| Wording | Psychology |
 |---|---|
-| `平视` | 客观、平等（默认） |
-| `微仰拍` | 角色强势、威压 |
-| `大仰拍` | 巨物/强者压迫（配大远景或特写） |
-| `微俯拍` | 弱势、被审视、怜悯 |
-| `大俯拍/顶视` | 上帝视角、站位图、命运感 |
-| `越肩` | 对话戏，带前景肩部 |
-| `荷兰角` | 失衡、不安（单镜一次，勿连用） |
+| `eye level` | objective, equal (default) |
+| `slight low angle` | character dominant, imposing |
+| `steep low angle` | giant/strong-pressure (pair with extreme long shot or close-up) |
+| `slight high angle` | vulnerable, examined, pity |
+| `steep high angle / top view` | god's eye, blocking view, fate feel |
+| `over-the-shoulder` | dialogue, with foreground shoulder |
+| `Dutch angle` | imbalance, unease (one shot once, don't chain) |
 
-## 五、对话戏轴线纪律（180° 规则）
+## 5. Dialogue Axis Discipline (180° rule)
 
-1. 双人对话先定轴线：两角色连线即为轴线，所有机位布置在轴线同一侧，全场景不换侧。
-2. 正反打覆盖：主机位（双人过场）→ A 越 B 肩 → B 越 A 肩 → 各自的特写/反应镜。视线方向必须匹配：A 朝画右看，B 必须朝画左看。
-3. 换场景 = 重定轴线，绝不跨场景套用上一场。
-4. 越轴只许通过镜头运动（环绕）或角色走位完成，且要拍出来，不许硬切。
+1. Two-person dialogue defines the axis first: the line connecting the two characters IS the axis; all camera positions sit on the same side of the axis; never switch sides within a scene.
+2. Shot/reverse-shot coverage: master shot (two-person establishing) → A over B's shoulder → B over A's shoulder → each person's close-up/reaction. Eye-line directions MUST match: if A looks screen-right, B MUST look screen-left.
+3. Scene change = re-define the axis; NEVER carry the previous scene's axis across.
+4. Crossing the axis is only allowed through camera movement (orbit) or character blocking, and it must be shown on screen — no hard cuts.
 
-## 六、节奏控制
+## 6. Pacing Control
 
-- 单镜 4–10 秒；文戏均速 6–8 秒/镜，情绪特写可到 10 秒；动作戏 4–6 秒/镜。
-- 剪辑节奏 = 情绪曲线：蓄力期镜长，爆发期镜短，收束期再拉长。
-- 一场戏里景别要有"呼吸"：远→中→近→特写 爬坡，特写后切远景换气，禁止全程同景别。
-- **景别跳切纪律**：禁止远景直接跳大特写（缺过渡 = 观众迷失 + 模型串信息）；远→近必须经中景/近景过渡，除非刻意用跳切做冲击（此时给 1 个建场镜缓冲）。
-- **起幅/落幅**：每个运镜镜头在分镜表中写明"起幅画面 → 落幅画面"（运镜开始与结束时画面里是什么）。落幅最好是动作完成态（供尾帧提取），起幅需能由上镜尾帧自然长成。
+- Single shot 4–10 seconds; dialogue scenes average 6–8s/shot, emotional close-ups up to 10s; action 4–6s/shot.
+- Editing rhythm = emotional curve: build-up phase has long shots, burst phase short shots, closing phase lengthens again.
+- Shot scale within a scene must "breathe": far→medium→close→close-up climbs, then a long shot after close-up to breathe; forbid the same scale throughout.
+- **Shot-scale jump-cut discipline**: forbid jumping directly from long shot to big close-up (no transition = viewer lost + model mixes information); far→near must pass through medium/close shot unless an intentional jump-cut impact (then give 1 establishing shot as buffer).
+- **Opening frame / closing frame**: every camera-move shot states in the shot list "opening frame → closing frame" (what is in the frame when the move starts and ends). The closing frame is preferably an action-complete state (for last-frame extraction); the opening frame must be able to naturally grow from the previous shot's last frame.
 
-### 单镜节奏四段式（视频提示词叙事段套用）
+### Single-shot four-beat rhythm (applied to video-prompt narrative section)
 
-| 段 | 时间窗 | 任务 |
+| Beat | Time Window | Task |
 |---|---|---|
-| 建立 | 0–2s | 承接首帧，确认场景与人物位置 |
-| 发展 | 2–8s | 主动作推进，微表情变化（起势→过程→落点） |
-| 高潮 | 8–12s | 情绪点/台词点/视觉钩子（唯一强调句） |
-| 收尾 | 12–15s | 动作落点定格，供尾帧提取 |
+| Establish | 0–2s | continue from first frame, confirm scene & character position |
+| Develop | 2–8s | primary action advances, micro-expression changes (preparation→process→landing) |
+| Climax | 8–12s | emotional/line/visual-hook point (the ONE emphasized sentence) |
+| Close | 12–15s | action lands and freezes, for last-frame extraction |
 
-短镜（4–6s）压缩：建立(0–1s) → 发展(1–4s) → 收尾(4–6s)。
+Short shots (4–6s) compress: Establish(0–1s) → Develop(1–4s) → Close(4–6s).
 
-### 表演幅度（画风适配，动画分镜法）
+### Performance amplitude (style-adapted, animation storyboard method)
 
-漫剧/动画画风的表演可适度夸张（真人感则克制）：
-- 动漫感画风：动作幅度比真人感大 20–30%，表情更鲜明（瞪眼、嘴角弧度加大），提示词写"动画式表演，表情夸张鲜明"。
-- 真人感/写实画风：表演收敛，情绪靠微表情与停顿（部位级细节），提示词写"克制表演，情绪由微表情承载"。
-- 幅度分寸：夸张 ≠ 卡通化，肢体不脱离物理（不悬浮、不变形）；对白可配"表演气口"（停顿/抢话）增强戏剧感。
+Comic-drama/animation-style performance may be moderately exaggerated (live-action feel stays restrained):
+- Anime-style look: action amplitude 20–30% larger than live-action feel, expressions more distinct (wide eyes, enlarged mouth-curve); prompt writes "animated performance, exaggerated vivid expressions".
+- Live-action/realistic look: performance restrained, emotion carried by micro-expressions and pauses (body-part-level detail); prompt writes "restrained performance, emotion carried by micro-expressions".
+- Amplitude boundary: exaggeration ≠ cartoonish; limbs stay physical (no floating, no deformation); dialogue may pair with "performance breaths" (pauses/interruptions) to heighten drama.
 
-### 高度/位置用构图关系（不写米数）
+### Height/position via compositional relationships (don't write meters)
 
-模型对"飞 10 米"锚不住。**把"高"翻译成空间关系**：
-- 楼顶/地面在**他脚下**、压到画面**下方一条**、又小又远。
-- 脚和楼顶之间留**一大段空旷天空**（空气间隙）。
-- 他在画面**上半部、四周是天空**。
-- **低角度仰拍**（从下往上看他、背景是天）→ 读作"高"，又不变成俯瞰地图。
+Models can't anchor "flies 10 meters". **Translate "height" into spatial relationships**:
+- rooftop/ground **beneath his feet**, pressed to the frame's **lower edge**, small and distant.
+- leave a **large expanse of empty sky** between the feet and the rooftop (air gap).
+- he is in the frame's **upper half, sky all around**.
+- **low-angle upward shot** (looking up at him, sky behind) → reads as "high" without becoming a bird's-eye map.
 
-"再高一点"给可对照量 + 锁机位：`离地约 10 米出头 + 保持平视/仰拍 + 绝不要鸟瞰`。"凌空"要写 `脚不沾任何东西 / NOT on any surface`。
+"Higher" needs a comparable quantity + locked camera: `about 10+ meters above ground + keep eye-level/upward angle + NEVER bird's-eye`. "Afloat" must write `feet not touching anything / NOT on any surface`.
 
-### 角色关系驱动姿态（演员档位）
+### Character-relationship-driven pose (actor tier)
 
-姿态和特效不是孤立美术，是**人物关系的外化**。先想清谁强谁弱、谁主动谁被动：
-- **真正的强者**：平静、从容、甚至零特效（强到不需要展示力量）。
-- **弱/急的一方**：张扬、用力、满身特效（越使劲越显被压制）。
-- 关系定了要**全片一致**，别中途反过来。
-- **多人同框**：把"关系"翻译成具体 blocking 并写死。落到"谁坐/卧/倚/立、谁高谁低、谁俯视谁仰视、谁的目光锁在谁脸上"。**漏写体位 → 模型默认全员站立齐高；只写"看向某方向" → 望向虚空而非看人**。双方体位 + 相对高度 + 视线锁定到对方脸，按正向 + CONSTRAINTS + Avoid 三处复写。
+Pose and effects are not isolated art; they are **externalizations of character relationships**. First decide who is strong/weak, active/passive:
+- **The truly strong**: calm, composed, even zero effects (strong enough not to need to display power).
+- **The weak/urgent side**: flamboyant, effortful, covered in effects (the harder they try, the more suppressed they look).
+- Once set, the relationship stays consistent across the whole film; don't flip mid-way.
+- **Multiple people in frame**: translate "relationship" into concrete blocking and write it dead. Down to "who sits/lies/leans/stands, who is higher/lower, who looks down at whom, whose gaze locks onto whose face". **Omitting body position → the model defaults everyone standing equal height; writing only "looking in some direction" → looking at void, not at the person**. Both parties' body positions + relative height + gaze locked to the other's face, replicated in positive + CONSTRAINTS + Avoid.
 
-### 多人同框 depth order 逐层声明（群像站位图）
+### Multi-person depth order (group blocking)
 
-**当一镜 ≥3 人**（会议室、家族场景、群战），按 depth order 逐层写谁在前谁在后：
+**When one shot has ≥3 people** (meeting rooms, family scenes, group battles), state layer by layer who is in front/behind:
 
 ```
-- 前景（最前）：[人物/物 + 位置 + 朝向 + 状态]
-- 近侧中景（第二层）：[……]
-- 远侧中景（第三层）：[……]
-- 最远（背景）：[……]
+- Foreground (closest): [person/object + position + facing + state]
+- Near-midground (2nd layer): [……]
+- Far-midground (3rd layer): [……]
+- Farthest (background): [……]
 ```
 
-**结尾复述一遍**：`So the depth order from camera into the scene is: A → B → C → D → 背景`。配合长投影（高空俯瞰）和巨物横陈（做"分割墙"），让站位可读。
+**Restate at the end**: `So the depth order from camera into the scene is: A → B → C → D → background`. Pair with long shadows (high-angle) and giant objects lying across (as "dividing walls") to make the blocking readable.
 
-### 远距离对话帧视线锁定（核心加固）
+### Long-distance dialogue eye-line lock (core reinforcement)
 
-**对话戏一旦超出"一臂之内"**（隔屋对峙/跨桌拍桌），模型两人各自低头沉思，看似在看其实没看。
+**Once dialogue goes beyond "arm's length"** (across-room confrontation / slamming the table across), models draw both people looking down in thought — seemingly looking but not actually.
 
-**加固三件套**（按【正文】+【CONSTRAINTS】+【Avoid】三处复写）：
-1. **正向**：`eyelines MEET across the room, both heads slightly LIFTED to look at each other`
-2. **Avoid 段**把"低头沉思"族逐项排除：`looking down at the table / heads bowed / eyes lowered / each lost in their own thoughts / averted gaze`
-3. **纯侧脸改 3/4 朝向对方**；`head TURNED toward the other person, chin slightly LIFTED`
+**Reinforcement three-piece set** (replicated in 【body】+【CONSTRAINTS】+【Avoid】):
+1. **Positive**: `eyelines MEET across the room, both heads slightly LIFTED to look at each other`
+2. **Avoid section** excludes the "looking-down-in-thought" family item by item: `looking down at the table / heads bowed / eyes lowered / each lost in their own thoughts / averted gaze`
+3. **Pure profile → 3/4 turn toward the other**; `head TURNED toward the other person, chin slightly LIFTED`
 
-作用范畴：所有距离超过一臂的对话镜头；配合 `assets/dialogue-board-card.md`（6 格 2×3 关系板）使用。
+Scope: all dialogue shots beyond arm's length; pair with `assets/dialogue-board-card.md` (6-cell 2×3 relationship board).
 
-## 七、转场方式（衔接方式与镜头的关系）
+## 7. Transition Methods (connection vs shot handling)
 
-| 衔接 | 镜头处理 |
+| Connection | Shot Handling |
 |---|---|
-| 尾帧承接 | 下一镜从尾帧画面延续，可做推/移/景别变化，但起始构图必须能由尾帧自然长成 |
-| 关键帧插入 | 新元素定妆帧作首帧，本镜运镜从该帧出发（通常缓推或微移展示新元素） |
-| 跳切 | 换场景/时间；首镜用新场景定场图，建议先给 1 个建场镜（大远景/远景）再进叙事 |
+| Last-frame continuation | next shot continues from the last-frame image; may push/track/change scale, but the opening composition must naturally grow from the last frame |
+| Keyframe insert | new element's makeup frame as first frame; this shot's move starts from that frame (usually slow push-in or slight movement to showcase the new element) |
+| Jump cut | scene/time change; first shot uses the new scene's establishing image; recommend 1 establishing shot first (extreme long/long shot) before entering narrative |
 
-## 八、高危组合黑名单（写分镜表时逐条规避）
+## 8. High-Risk Combination Blacklist (avoid item by item when writing the shot list)
 
-- ❌ 大特写 + 环绕运镜（五官漂移）
-- ❌ 3 人以上同框 + 浅景深特写（必串脸）
-- ❌ 手部精细动作 + 快速运镜（手指崩坏）
-- ❌ 大幅度奔跑 + 长焦正面（肢体变形）
-- ❌ 屏幕/文字入画 + 任何运镜（文字必乱码；文字用"模糊发光字符流"替代）
-- ❌ 一镜内角色换装/形态切换（拆成两镜+关键帧插入）
+- ❌ big close-up + orbit move (facial drift)
+- ❌ 3+ people in frame + shallow-DoF close-up (will face-swap)
+- ❌ fine hand action + fast camera move (finger breakdown)
+- ❌ full-sprint running + telephoto front view (limb deformation)
+- ❌ screen/text in frame + any camera move (text WILL garble; use "blurred glowing character stream" instead)
+- ❌ in-shot costume change/form switch (split into two shots + keyframe insert)

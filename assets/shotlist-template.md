@@ -1,26 +1,26 @@
-# 分镜表 · 《片名》第 N 集（阶段 3 产出，闸3 确认后冻结）
+# Shot List — <Drama Title / 片名> Episode N（Phase 3 output; freezes after gate 3 confirms）
 
-> 从标准分镜剧本逐镜转写。每镜一行；首帧来源与衔接方式决定生产顺序。风险标记命中 shot-language.md 第 8 章黑名单任一条时必填处置方案。
+> Transcribed from the standard shooting script, one line per shot. The first-frame source and the transition method decide the production order. Any shot that hits an item on the shot-language.md chapter 8 blacklist MUST fill in a mitigation plan.
 
-## 分镜表
+## Shot List / 分镜表
 
-| 镜号 | 时长(s) | 景别 | 运镜 | 画面主体 | 主动作(唯一) | 微表情 | 台词 | 情绪 | 衔接方式 | 首帧来源 | 风险标记 | 状态 |
+| Shot / 镜号 | Dur (s) / 时长 | Shot Size / 景别 | Camera Move / 运镜 | Subject / 画面主体 | Primary Action (single) / 主动作·唯一 | Micro-Expression / 微表情 | Line / 台词 | Emotion / 情绪 | Transition / 衔接方式 | First-Frame Source / 首帧来源 | Risk Flags / 风险标记 | Status |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| S01 | 5.0 | 大远景 | 极缓推 | 观测站全景 | 风雪掠过山脊 | — | — | 悬疑蓄力 | 跳切 | SC-01 定场图 | — | ⏳ |
-| S02 | 6.0 | 中景 | 手持跟移 | 沈昭 | 挤进门，手电扫过 | 手腕停顿+白雾呼吸 | "不可能还有电" | 蓄力 | 尾帧承接 | S01 尾帧 | 手持-降速 | ⏳ |
-| S03 | 6.0 | 特写 | 微推 | 指尖与屏幕 | 落指触屏 | 睫毛颤+下颌绷紧 | — | 发现 | 尾帧承接 | S02 尾帧 | 手部-固定机位备选 | ⏳ |
-| S04 | 6.0 | 大特写 | 固定 | 屏幕坐标 | 字符定格 | 呼吸停止 | — | 发现升级 | 关键帧插入·新道具 | PR-01 定场帧 | 文字入画-改模糊字符流 | ⏳ |
+| S01 | 5.0 | extreme long shot | ultra-slow push-in | full view of the observation station | snow sweeping across the ridge | — | — | suspense building | jump cut | SC-01 establishing image | — | ⏳ |
+| S02 | 6.0 | medium shot | handheld follow | Shen Zhao | shoves the door open, flashlight sweeping | wrist pause + white breath cloud | "不可能还有电" | building tension | tail-frame carry | S01 tail frame | handheld — slow down | ⏳ |
+| S03 | 6.0 | close-up | slight push-in | fingertip & screen | finger taps the screen | lashes flutter + jaw tightens | — | discovery | tail-frame carry | S02 tail frame | hand close-up — fixed-camera alternative | ⏳ |
+| S04 | 6.0 | extreme close-up | fixed | screen coordinates | characters freeze in place | breath stops | — | discovery escalates | keyframe insert · new prop | PR-01 establishing frame | on-screen text — switch to blurred character stream | ⏳ |
 
-## 填写规则
-1. **主动作(唯一)**：一格只写一个主动作（R3）；写不下两个动作 → 拆镜。
-2. **微表情**：1–2 个部位级细节，从剧本正文摘录。
-3. **衔接方式**四值：尾帧承接 / 关键帧插入·新角色 / 关键帧插入·新道具 / 跳切——与剧本行尾标注一致，改任一处必须同步另一处。
-4. **首帧来源**填具体编号：S## 尾帧 / CH-## 定妆图 / SC-## 定场图 / PR-## 定场帧。
-5. **起幅/落幅**（运镜镜必填，固定镜可省）：每镜用"→"写明运镜开始与结束时画面里是什么，如"起幅：她捏珠的手垂在身侧 → 落幅：珠贴上下唇"。落幅必须是动作完成态（供尾帧提取）。
-6. **生产排序**：定场图与定妆图（跳切与关键帧的源头）必须先产；尾帧承接链上的镜头严格按镜号顺序生产，不能跳号。
+## Fill-In Rules / 填写规则
+1. **Primary action (single) / 主动作·唯一**: one primary action per cell（R3）; if you write two actions → split the shot.
+2. **Micro-expression / 微表情**: 1–2 part-level details, quoted from the script body.
+3. **Transition has exactly 4 allowed values / 衔接方式四值**: tail-frame carry / keyframe insert · new character / keyframe insert · new prop / jump cut — must match the script's end-of-line annotation; changing either one requires syncing the other.
+4. **First-frame source / 首帧来源** takes a concrete ID: S## tail frame / CH-## look image / SC-## establishing image / PR-## establishing frame.
+5. **Start / end framing / 起幅·落幅**（required for camera-move shots; optional for fixed shots）: for each shot, write with "→" what is in frame at the start and at the end of the move, e.g. "start: her hand holding the pearl hangs at her side → end: the pearl pressed against her lips". The end frame MUST be a completed action state（for tail-frame extraction）.
+6. **Production order / 生产排序**: establishing images and look images（the sources of jump cuts and keyframes）must be produced FIRST; shots on a tail-frame carry chain MUST be produced strictly in shot-number order — no skipping numbers.
 
-## 统计自检（交闸3 前）
-- [ ] 全镜时长之和 = 剧本总时长
-- [ ] 衔接链完整：除 S01 与跳切镜外，每镜首帧来源都是存在的上镜或已冻结资产
-- [ ] 关键帧插入镜的定妆帧编号已列入生产计划且排在该镜之前
-- [ ] 黑名单（shot-language.md 第 8 章）逐镜扫过，命中项已填处置方案
+## Stats Self-Check（before submitting to gate 3）/ 统计自检
+- [ ] Sum of all shot durations = the script's total duration
+- [ ] Transition chain complete: every shot's first-frame source is an existing previous shot or a frozen asset, except S01 and the jump-cut shots
+- [ ] The keyframe-insert shots' look / frame IDs are listed in the production plan and scheduled BEFORE those shots
+- [ ] Blacklist（shot-language.md chapter 8）scanned shot by shot; any hits already have a mitigation plan filled in

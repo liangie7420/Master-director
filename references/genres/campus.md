@@ -1,296 +1,311 @@
-# 校园题材执导手册
+# Campus Genre Directing Manual
 
-> 适用：青春校园 / 友情 / 成长 / 竞赛 / 轻喜等短剧 | 全文原创，无版权风险
-> 配套：群像戏多人同框纪律见第 3.2 节（校园剧同框率高，本题材的命门）。
+> Applies to: youth campus / friendship / growth / competition / light-comedy short dramas | All content is 100% original, no copyright risk
+> Companion docs: the ensemble multi-person on-screen discipline is in §3.2 — campus dramas have the highest on-screen headcount rate of any genre, which makes this the genre's lifeline.
 
-## 1. 题材调性与情绪曲线范式
+## 1. Genre Tone & Emotional-Curve Paradigm
 
-### 1.1 核心情绪引擎
-- **误解与和解**：小误会大情绪，和好时的释放是主甜点。
-- **竞赛热血**：团队目标+个体成长，燃点集中在冲刺与揭榜。
-- **暗恋心事**：没说出口的喜欢，细节糖（借橡皮、顺路、留灯）。
-- **毕业离别**：时间压力下的珍惜与告别，天然催泪。
-- **转学生谜团**：新面孔+神秘背景，驱动前几集悬念。
+### 1.1 Core Emotional Engines
 
-### 1.2 90 秒单集情绪曲线模板（四拍）
-| 时间窗 | 阶段 | 给观众什么 |
+- **Misunderstanding and reconciliation (误解与和解)**: a small misunderstanding, a big emotion; the release when they make up is the primary sweet point.
+- **Competition passion (竞赛热血)**: a team goal + individual growth; the ignition points concentrate at the final sprint and the results board.
+- **The secret crush (暗恋心事)**: a liking never spoken aloud; the sweetness lives in details (borrowing an eraser, walking the same way home, leaving a light on).
+- **Graduation farewell (毕业离别)**: cherishing and saying goodbye under time pressure — naturally tear-inducing.
+- **The transfer-student mystery (转学生谜团)**: a new face + a mysterious background; it drives the suspense of the first few episodes.
+
+### 1.2 The 90-Second Single-Episode Emotional-Curve Template (Four Beats)
+
+| Time window | Beat | What the audience gets |
 |---|---|---|
-| 0–8s | 日常切入 | 校园生活切片（教室/走廊/球场），钩子=一个反常细节 |
-| 8–35s | 冲突/误会 | 一个矛盾事件（座位/竞赛/传言） |
-| 35–65s | 升温/合力 | 一起做一件事（训练/补习/调查），关系推进 |
-| 65–90s | 释然+新线 | 小和解或小燃点 + 下一集引线 |
+| 0–8s | Daily-life entry | A slice of campus life (classroom / corridor / court); the hook = one abnormal detail |
+| 8–35s | Conflict / misunderstanding | One contradictory event (a seat / a competition / a rumor) |
+| 35–65s | Warming up / joining forces | Doing one thing together (training / tutoring / investigating); the relationship advances |
+| 65–90s | Relief + new thread | A small reconciliation or a small ignition point + the lead-in for the next episode |
 
-### 1.3 群像戏镜头分配原则
-- 群像（≥3 人同框）每场戏 ≤2 镜；其余拆成两两对话与单人反应镜。
-- 分配公式：群像建场 1 镜 → 两两主线对话 60% → 单人反应/心理镜 30% → 群像收尾 1 镜。
-- 台词焦点：同框镜头里只有一个人说话，其他人做反应动作。
+### 1.3 Shot-Allocation Principles for Ensemble Scenes
 
-## 2. 世界观与视觉基调
+- Ensemble shots (≥3 people in frame) are limited to ≤2 per scene; everything else is split into two-person dialogues and single-person reaction shots.
+- Allocation formula: 1 ensemble establishing shot → 60% two-person main-thread dialogue → 30% single-person reaction / inner-state shots → 1 ensemble closing shot.
+- Dialogue focus: in a same-frame shot, only ONE person speaks; the others perform reaction actions.
 
-### 2.1 三种子风格配色铁律
-| 风格 | 主色 | 辅色 | 焦点色 | 铁律 |
+## 2. Worldbuilding & Visual Tone
+
+### 2.1 Color-Palette Iron Rules for the Three Sub-Styles
+
+| Style | Primary | Secondary | Accent | Iron rule |
 |---|---|---|---|---|
-| 夏日晴空 | #EAF6FF 天青白 | #7FB8E8 晴蓝 / #F5E6C8 麦色 | #FF8C5A 落日橘 | 高亮干净，天空与白墙占大面 |
-| 黄昏教室 | #F2C98F 暖橙 | #D9884E 琥珀 / #8C6A52 木棕 | #F5F0E6 窗光白 | 逆光剪影，粉笔灰在光柱里 |
-| 雨季文艺 | #B8C4CE 灰蓝 | #7D8F9B 铅灰 / #A8C3A0 苔绿 | #E8B4A0 干枯粉 | 低饱和，玻璃水痕，微凉感 |
+| Summer clear sky (夏日晴空) | #EAF6FF 天青白 (Sky White-Blue) | #7FB8E8 晴蓝 (Clear Blue) / #F5E6C8 麦色 (Wheat) | #FF8C5A 落日橘 (Sunset Orange) | High-key and clean; sky and white walls dominate the frame |
+| Dusk classroom (黄昏教室) | #F2C98F 暖橙 (Warm Orange) | #D9884E 琥珀 (Amber) / #8C6A52 木棕 (Wood Brown) | #F5F0E6 窗光白 (Window-Light White) | Backlit silhouettes; chalk dust floating inside the light beams |
+| Rainy-season literary (雨季文艺) | #B8C4CE 灰蓝 (Gray-Blue) | #7D8F9B 铅灰 (Lead Gray) / #A8C3A0 苔绿 (Moss Green) | #E8B4A0 干枯粉 (Dried Pink) | Low saturation; water streaks on glass; a slight chill |
 
-### 2.2 光影签名
-- 夏日：正午顶光+走廊剪影；画面明亮，影子短硬。
-- 黄昏教室：西晒逆光+黑板反光，人物成剪影或半剪影。
-- 雨季：窗光漫射+室内补光，玻璃水痕做前景。
+### 2.2 Lighting Signatures
 
-### 2.3 校园质感关键词库（中英对照）
-| 中文 | English | 用途 |
+- Summer: noon overhead light + corridor silhouettes; the frame bright, shadows short and hard.
+- Dusk classroom: west-facing backlight + blackboard reflections; figures become silhouettes or half-silhouettes.
+- Rainy season: window-light diffused + indoor fill; water streaks on glass as the foreground element.
+
+### 2.3 Campus Texture Keyword Bank (Chinese–English)
+
+| 中文 | English | Use case |
 |---|---|---|
-| 粉笔灰飞扬 | chalk dust floating | 教室逆光 |
-| 校服布料 | school uniform fabric | 人物服装锚点 |
-| 塑胶跑道 | rubber running track | 操场镜头 |
-| 汽水水汽 | soda condensation | 夏日小道具 |
-| 黑板反光 | blackboard reflection | 教室光线 |
-| 落叶/樱花 | fallen leaves / cherry blossoms | 季节空镜 |
+| 粉笔灰飞扬 | chalk dust floating | classroom backlight |
+| 校服布料 | school uniform fabric | character clothing anchor |
+| 塑胶跑道 | rubber running track | sports-field shots |
+| 汽水水汽 | soda condensation | summer small props |
+| 黑板反光 | blackboard reflection | classroom lighting |
+| 落叶/樱花 | fallen leaves / cherry blossoms | seasonal empty shots |
 
-## 3. 镜头语言偏好
+## 3. Shot-Language Preferences
 
-### 3.1 高频镜头对照表
-| 情境 | 推荐景别/运镜/焦段 |
+### 3.1 High-Frequency Shot Reference Table
+
+| Situation | Recommended shot scale / camera move / focal length |
 |---|---|
-| 奔跑（追赶/逃离） | 中景 + 侧跟 + 50mm |
-| 天台告白/谈心 | 逆光远景 + 固定 + 50mm |
-| 课堂小动作 | 桌面低机位特写 + 固定 |
-| 走廊偶遇 | 中景 + 横向移镜 |
-| 竞赛/冲刺 | 大远景 + 侧跟 + 广角 |
-| 教室夕阳 | 中景 + 缓推 + 85mm |
-| 毕业/离别 | 大远景 + 固定长镜 8s+ |
+| Running (chasing / escaping) | Medium + lateral tracking + 50mm |
+| Rooftop confession / heart-to-heart | Backlit wide + locked-off + 50mm |
+| Small moves in class | Low-angle desktop close-up + locked-off |
+| Corridor encounter | Medium + lateral dolly |
+| Competition / final sprint | Extreme wide + lateral tracking + wide-angle |
+| Classroom at sunset | Medium + slow push-in + 85mm |
+| Graduation / farewell | Extreme wide + locked-off long take, 8s+ |
 
-### 3.2 群像戏多人同框纪律（本题材命门）
-1. **同框上限 3 人**：≥4 人同框 = 串脸重灾，优先拆镜。
-2. 3 人同框构图：三角站位（前景 1 + 后景 2 虚化），主对话者在前景焦点。
-3. 群像建场镜（5 人以上）只给大远景/远景，脸部不做细节（提示词写"远景人物，面部无细节"）。
-4. 台词分配：同框内只一人说话；听者做反应（转头/挑眉/窃笑）。
-5. 背景路人：一律"背景人影虚化，无五官细节"。
+### 3.2 Ensemble Multi-Person On-Screen Discipline (this genre's lifeline)
 
-### 3.3 时间感表现（四季/晨昏空镜）
-- 春：樱花+教室窗；夏：蝉鸣感+烈日白；秋：落叶+黄昏；冬：晨雾+围巾。
-- 每集至少 1 个 2s 季节空镜，提示词写清"季节+光线+标志物"，时间跳变用跳切衔接。
+1. **On-screen cap of 3 people**: ≥4 people in frame = a face-swap disaster zone; prioritize splitting the shot.
+2. 3-person composition: triangle blocking (1 in foreground + 2 blurred in background); the main speaker occupies the foreground focus.
+3. Ensemble establishing shots (5+ people) get extreme-wide / wide shots only, with no facial detail (write "distant figures, no facial detail" in the prompt).
+4. Dialogue allocation: only one person speaks within a same-frame shot; listeners react (turn head / raise eyebrow / snicker).
+5. Background extras: always "blurred background figures, no facial-feature detail."
 
-### 3.4 节奏控制
-- 日常戏 5–7s/镜；热血/竞赛 4–5s/镜；情绪戏 6–8s/镜。
-- 轻喜节奏：对白快接（台词 4–5 字/秒），反应镜短（0.5–1s 级微镜），喜剧靠反应镜的"切"。
+### 3.3 Expressing Time (seasonal / dawn-dusk empty shots)
 
-## 4. 表演与台词风格
+- Spring: cherry blossoms + classroom window; summer: a cicada-chorus feel + blazing white sun; autumn: fallen leaves + dusk; winter: morning mist + scarves.
+- Each episode needs at least one 2s seasonal empty shot; in the prompt write clearly "season + light + signature object"; use jump cuts to bridge time shifts.
 
-### 4.1 动作/微表情描写句式（可直接复��）
-1. 转笔：`他转笔的动作在听到她名字时顿了一下，笔掉在桌上`。
-2. 攥衣角：`她攥着衣角，指腹来回摩挲，关节发白也不松`。
-3. 眼神躲闪：`他飞快看她一眼，又移开，耳根先红`。
-4. 欲言又止：`她张了张嘴，最后只把话咽回去，点了点头`。
-5. 少年奔跑：`他翻过看台护栏落地时膝盖微屈，惯性让他前冲两步才站稳`。
-6. 口是心非：`嘴上说"随便"，身体却已经往球场那边挪了半步`。
-7. 群体起哄→独处低语：`起哄声里他耳朵通红，等人散尽，他压着声音问她：你刚才说的，算数吗`。
+### 3.4 Pacing Control
 
-### 4.2 台词风格（各附原创例句）
-- 少年语感（短句+口头禅）："行了行了，我请客，堵你的嘴。"
-- 口是心非："我才不关心你去不去呢。"（转身却把伞留在她桌上）
-- 热血宣言："怕什么？输了就再来一局，反正我们年轻。"
-- 告别含蓄："毕业以后……你要记得，后排那个位子，一直是你的。"
+- Daily-life scenes 5–7s per shot; passionate / competition 4–5s per shot; emotional scenes 6–8s per shot.
+- Light-comedy rhythm: rapid dialogue cuts (4–5 characters per second of dialogue), short reaction shots (0.5–1s micro-cuts); comedy is driven by the "cut" on reaction shots.
 
-## 5. 高频场景与道具清单
+## 4. Performance & Dialogue Style
 
-### 5.1 高频场景（场景卡一句话锚点）
-1. 教室（课桌列阵、黑板、窗帘、夕阳）
-2. 走廊（储物柜、窗光、人来人往虚化）
-3. 天台（围栏、蓝天、风大）
-4. 操场（跑道、看台、白线）
-5. 图书馆（长桌、书架、安静光）
-6. 食堂（暖光、长桌、人声）
-7. 社团活动室（海报、旧沙发、灯具）
-8. 单车棚（排列单车、晨光/暮色）
-9. 宿舍（上下铺、窗台、台灯）
-10. 车站/校门（毕业季、行李箱、横幅）
+### 4.1 Action / Micro-Expression Description Templates (directly reusable)
 
-### 5.2 高频道具（标注形态命门）
-| 道具 | 形态命门（AI 易画错） |
+1. Pen-spin: `The pen-spin in his hand stops the moment her name is mentioned; the pen clatters onto the desk`.
+2. Clutching the clothes hem: `She clutches the hem of her clothes, rubbing it back and forth with her fingertips, joints going white yet refusing to let go`.
+3. Dodge-eye contact: `He steals a quick glance at her, then looks away; his ears redden first`.
+4. On the verge of speaking: `She opens her mouth, but in the end swallows the words and simply nods`.
+5. A boy running: `As he vaults the bleacher railing, his knees bend slightly on landing; momentum sends him two staggering steps forward before he steadies himself`.
+6. Saying one thing, meaning another: `His mouth says "whatever," but his body has already shifted half a step toward the court`.
+7. Group teasing → private murmur: `Amid the teasing cheers his ears burn red; once the crowd thins out, he asks her in a low voice: what you said just now — did you mean it?`
+
+### 4.2 Dialogue Style (each with an original example line)
+
+- Youthful speech (short sentences + catchphrases): "行了行了，我请客，堵你的嘴。"
+- Saying one thing, meaning another: "我才不关心你去不去呢。" (yet she turns and leaves the umbrella on his desk)
+- Passionate declaration: "怕什么？输了就再来一局，反正我们年轻。"
+- Understated farewell: "毕业以后……你要记得，后排那个位子，一直是你的。"
+
+## 5. High-Frequency Scenes & Props Checklist
+
+### 5.1 High-Frequency Scenes (one-line anchors for the scene card)
+
+1. Classroom (rows of desks, blackboard, curtains, sunset light)
+2. Corridor (lockers, window light, blurred passers-by)
+3. Rooftop (railing, blue sky, strong wind)
+4. Sports field (running track, bleachers, white lines)
+5. Library (long tables, shelves, quiet light)
+6. Cafeteria (warm light, long tables, chatter)
+7. Club room (posters, old sofa, work lamps)
+8. Bicycle shed (rows of bikes, morning light / dusk)
+9. Dormitory (bunk beds, windowsill, desk lamp)
+10. Station / school gate (graduation season, suitcases, banner)
+
+### 5.2 High-Frequency Props (form weakness marked — where AI tends to draw them wrong)
+
+| Prop | Form weakness (AI likely to mess up) |
 |---|---|
-| 课本/笔记 | 纸页文字（模糊化）+涂鸦 |
-| 校服 | 款式统一（纽扣/领口/臂章位置） |
-| 自行车 | 车架结构与轮辐数量 |
-| 篮球/足球 | 球面纹理与高光 |
-| 奖状/证书 | 文字（模糊化）+烫金 |
-| 粉笔 | 粉尘轨迹与断节 |
-| 耳机 | 线材走向与耳塞形状 |
-| 相机/拍立得 | 镜头反光与机身按钮 |
-| 汽水罐 | 拉环与品牌（避免真实品牌） |
-| 毕业册 | 封皮质感与照片（模糊） |
+| Textbook / notebook | Paper text (blur) + doodles |
+| School uniform | Style consistency (buttons / collar / armband positions) |
+| Bicycle | Frame structure and spoke count |
+| Basketball / football | Ball-surface texture and highlights |
+| Award certificate | Text (blur) + foil stamping |
+| Chalk | Dust trails and broken pieces |
+| Earphones | Cable path and earbud shape |
+| Camera / Polaroid | Lens reflection and body buttons |
+| Soda can | Pull-tab and brand (avoid real brands) |
+| Yearbook | Cover texture and photos (blur) |
 
-## 6. 题材级翻车点与负向约束
+## 6. Genre-Level Failure Points & Negative Constraints
 
-| 翻车 | 负向写法（中英对照） |
+| Failure | Negative phrasing (Chinese–English) |
 |---|---|
-| 多人同框串脸 | 不要面部互换 do not swap faces |
-| 校服款式漂移 | 校服样式全程一致 uniform style consistent |
-| 黑板字乱码 | 不要可辨认文字 do not show readable text |
-| 奔跑肢体崩坏 | 不要肢体变形 do not deform limbs |
-| 年龄感失真 | 保持少年感，不要成年化 avoid mature look |
-| 背景群演崩坏 | 背景人群无五官细节 blurred background crowd |
+| Face swapping in multi-person frames | 不要面部互换 do not swap faces |
+| School-uniform style drifting | 校服样式全程一致 uniform style consistent |
+| Garbled blackboard text | 不要可辨认文字 do not show readable text |
+| Broken limbs while running | 不要肢体变形 do not deform limbs |
+| Age reading wrong | 保持少年感，不要成年化 avoid mature look |
+| Background extras collapsing | 背景人群无五官细节 blurred background crowd |
 
-## 7. 视频模型适配要点
+## 7. Video-Model Adaptation Notes
 
-- **Seedance**：明亮日光场景（操场/走廊）出片率高；奔跑类动作写清顺序。
-- **可灵**：校服与场景粘性强；群像同框风险最高，务必减同框。
-- **海螺**：青春文艺风格化（雨季/黄昏）好；6s 档适合"起哄→独处"的反差短镜。
-- （社区经验，需实测验证。）
+- **Seedance**: bright-daylight scenes (sports field / corridor) have a high success rate; write running-type actions in clear sequence.
+- **Kling**: uniforms and campus sets hold together well; ensemble same-frame shots carry the highest face-swap risk — reduce same-frame count by all means.
+- **Hailuo**: youth literary stylization (rainy season / dusk) is good; the 6s preset suits the "teasing → private moment" contrast in short shots.
+- (Community experience — verify against current versions.)
 
-## 8. 原创示例片段《后排靠窗》第一集
+## 8. Original Example Excerpt — 《后排靠窗》第一集 (By the Window in the Back Row, Episode 1)
 
-> 90 秒单场戏：黄昏教室，一场关于"座位"的误会与和解。13 镜，演示尾帧承接、关键帧插入·新道具（笔记本）与关键帧插入·新角色（转学生）。
+> A 90-second single-scene piece: a dusk classroom, a misunderstanding and reconciliation over "a seat." 13 shots, demonstrating last-frame continuation, keyframe insert · new prop (the notebook), and keyframe insert · new character (the transfer student).
 
-### 【场景一】高三（3）班教室
-**环境**：深秋黄昏。教室里空了大半，夕阳从西窗斜灌进来，在课桌列阵上拉出长长影子。粉笔灰在光柱里浮动，黑板擦了一半，剩下半行板书。后排靠窗的座位空着，桌面上摊着一本笔记本。
+### 【Scene 1】Class 3, Senior Year 3
 
----
-
-**[00:00.0 – 00:05.0] 开场 · 空座**
-`[中景|固定|后排靠窗的空座位]`
-夕阳从西窗斜灌进来，粉笔灰在光柱里浮动。后排靠窗的座位空着，桌面摊着一本合上的笔记本，笔压在页边。教室后面黑板报上贴着倒计时：距高考 233 天。
-`[情绪：蓄力 | 钩子：静物先导（谁的空座） | 衔接：跳切（本集首镜，用场景定场图）]`
+**Environment**: late-autumn dusk. The classroom is mostly empty; the setting sun slants in from the west windows, dragging long shadows across the rows of desks. Chalk dust floats inside the light beams; the blackboard is half-erased, half a line of lesson notes left. The seat by the window in the back row is empty; an open notebook lies on the desktop.
 
 ---
 
-**[00:05.0 – 00:11.0] 归来 · 不速之客（关键帧插入·新角色）**
-`[中景|缓推|门口站着一个拎行李箱的男生]`
-教室门被推开，一个拎着行李箱的男生站在门口，校服外套搭在臂弯，衬衫领子立着，发梢还滴着水——外面刚下过雨。他扫了一眼教室，目光落在后排靠窗的空座上。
-（**关键帧插入·新角色**：转学生首次登场 → 先产"门口定妆关键帧"CH-02，冻结后作本镜首帧。）
-> **顾远**：（对空教室，自言自语）……就那吧。
-`[情绪：蓄力 | 钩子：行为之谜（他为什么挑那个座位） | 衔接：关键帧插入·新角色 CH-02]`
+**[00:00.0 – 00:05.0] Opening · The Empty Seat**
+`[Medium | locked-off | the empty seat by the window in the back row]`
+The setting sun slants in from the west windows; chalk dust floats inside the light beams. The seat by the window in the back row is empty; a closed notebook lies open on the desktop, a pen pressed against the page edge. On the wallboard behind the classroom, a countdown reads: 233 days to the gaokao.
+`[Emotion: Building | Hook: Still-life lead-in (whose empty seat) | Connection: Jump cut (first shot of the episode — use the scene establishing image)]`
 
 ---
 
-**[00:11.0 – 00:17.0] 座位 · 冲突（新道具）**
-`[特写|微推|笔记本被拿起]`
-他走到座位边，放下行李箱，伸手拿起那本笔记本——封皮内侧夹着一张字条："此座有人，勿动。"字迹娟秀。他看了一眼，把字条夹回去，笔记本放回原位，却在旁边的空位坐下了。
-（**关键帧插入·新道具**：笔记本/字条首次登场 → 先产"笔记本特写定场帧"PR-01，冻结后作本镜首帧。）
-`[情绪：悬念 | 钩子：信息缺口（字条是谁写的） | 衔接：关键帧插入·新道具 PR-01]`
+**[00:05.0 – 00:11.0] Arrival · An Uninvited Guest (keyframe insert · new character)**
+`[Medium | slow push-in | a boy with a suitcase stands at the door]`
+The classroom door is pushed open; a boy holding a suitcase stands in the doorway, school-uniform jacket draped over his arm, shirt collar up, the tips of his hair still dripping — it just rained outside. He sweeps his eyes across the classroom; his gaze lands on the empty seat by the window in the back row.
+(**Keyframe insert · new character**: the transfer student debuts → first generate the "doorway makeup keyframe" CH-02, freeze it, then use it as the first frame of this shot.)
+> **顾远** (to the empty classroom, talking to himself): ……就那吧。
+`[Emotion: Building | Hook: Behavioral mystery (why did he pick that seat) | Connection: Keyframe insert · new character CH-02]`
 
 ---
 
-**[00:17.0 – 00:23.0] 主人 · 归来**
-`[中景|固定|她推门进来，看见他坐在自己座位旁]`
-林一苇抱着书走进教室，看见那个陌生男生坐在自己座位旁，脚步顿住。她低头看了看他，又看了看桌面的笔记本——位置没动，但多了一道水痕。
-> **林一苇**：（声音不大，语气认真）同学，这是我的座位。
-> **顾远**：（抬头看她，指了指自己坐的椅子）你的座位是这张。我坐的是旁边这张。
-`[情绪：小冲突 | 钩子：信息缺口（他是不是故意的） | 衔接：尾帧承接]`
+**[00:11.0 – 00:17.0] The Seat · Conflict (new prop)**
+`[Close-up | slight push-in | the notebook is picked up]`
+He walks to the seat, sets down the suitcase, and reaches for the notebook — tucked inside the cover is a note: "This seat is taken. Don't touch." The handwriting is elegant. He glances at it, tucks the note back, puts the notebook back in place, but sits down in the empty seat beside it.
+(**Keyframe insert · new prop**: the notebook / note debuts → first generate the "notebook close-up establishing frame" PR-01, freeze it, then use it as the first frame of this shot.)
+`[Emotion: Suspense | Hook: Information gap (who wrote the note) | Connection: Keyframe insert · new prop PR-01]`
 
 ---
 
-**[00:23.0 – 00:29.0] 对峙 · 字条**
-`[特写|固定|她翻开笔记本，字条还在]`
-她翻开笔记本，确认字条还在，松了口气，又觉得当着人面检查不太礼貌，耳根微红。
-> **林一苇**：……字条你没动？
-> **顾远**：（把字条从封皮里抽出来，还给她）动了一下，又放回去了。你写的？字不错。
-`[情绪：缓和 | 钩子：行为之谜（他为什么不坐那个座） | 衔接：尾帧承接]`
+**[00:17.0 – 00:23.0] The Owner · Returns**
+`[Medium | locked-off | she pushes the door open and finds him sitting beside her seat]`
+Lin Yiwei walks into the classroom hugging her books and freezes at the sight of the unfamiliar boy sitting beside her seat. She looks down at him, then at the notebook on the desk — it hasn't moved, but there's a new water stain on it.
+> **林一苇** (not loud, but serious in tone): 同学，这是我的座位。
+> **顾远** (looking up at her, pointing at his own chair): 你的座位是这张。我坐的是旁边这张。
+`[Emotion: Small conflict | Hook: Information gap (is he doing this on purpose) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:29.0 – 00:35.0] 黄昏 · 两个背影**
-`[中景|缓拉|两人各自坐下，各写各的作业]`
-两人各自落座，隔着一张课桌，各自翻开作业本。夕阳把两个人的影子投在地板上，几乎连在一起。教室里只剩下笔尖划纸的声音。
-> **林一苇**：（头也不抬）……转学生？
-> **顾远**：（笔没停）嗯。高三转学，我妈说我是来冲刺的。
-> **林一苇**：（笔顿了一下）232 天了。冲刺，有点晚。
-> **顾远**：（终于抬头，看她）所以我才坐这儿——靠窗，光线好，学得快。
-`[情绪：拉锯升温 | 钩子：关系之谜 | 衔接：尾帧承接]`
+**[00:23.0 – 00:29.0] Standoff · The Note**
+`[Close-up | locked-off | she opens the notebook; the note is still there]`
+She opens the notebook, confirms the note is still there, breathes easier — then feels it's rude to have checked in front of him, and the tips of her ears flush.
+> **林一苇**: ……字条你没动？
+> **顾远** (sliding the note out of the cover and handing it back): 动了一下，又放回去了。你写的？字不错。
+`[Emotion: Easing | Hook: Behavioral mystery (why didn't he sit in that seat) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:35.0 – 00:43.0] 笔记 · 试探（新道具）**
-`[特写|极缓推|她推过来一张便利贴]`
-她写了一张便利贴，推过课桌中间线，推到他的练习册边缘。他低头看——便利贴上写着：左边第三道题，公式带错了。他挑了挑眉，在便利贴下方写了一行字，推回来。
-> **顾远**：（写）你怎么知道我写的是第三道？
-> **林一苇**：（写，推回去）因为你把"3"写得像"5"。全教室都看得出来。
-`[情绪：轻喜 | 钩子：无（情感小推进） | 衔接：尾帧承接]`
+**[00:29.0 – 00:35.0] Dusk · Two Silhouettes**
+`[Medium | slow pull-back | the two sit down and do their homework separately]`
+The two sit down, a desk apart, each opening their own exercise book. The setting sun casts their shadows onto the floor, almost merging into one. In the classroom, only the scratch of pen on paper.
+> **林一苇** (not looking up): ……转学生？
+> **顾远** (pen not stopping): 嗯。高三转学，我妈说我是来冲刺的。
+> **林一苇** (pen pausing): 232 天了。冲刺，有点晚。
+> **顾远** (finally looking up at her): 所以我才坐这儿——靠窗，光线好，学得快。
+`[Emotion: Tug-of-war warming up | Hook: Relationship mystery | Connection: Last-frame continuation]`
 
 ---
 
-**[00:43.0 – 00:51.0] 晚自习 · 灯亮**
-`[中景|固定|教室灯亮起，两人仍在]`
-窗外的天完全黑下来，教室的灯自动亮起。两人谁都没走，一个在刷题，一个在补笔记。讲台前的值日生喊了一声"锁门了啊"，两人同时抬头，对视一眼。
-> **林一苇**：（收拾书包，语气平常）明天……你还坐这？
-> **顾远**：（也收书包）嗯。靠窗，光线好。
-> **林一苇**：（小声）……那明天，我带两个包子，你欠我一次。
-`[情绪：暧昧萌芽 | 钩子：无（约定建立） | 衔接：尾帧承接]`
+**[00:35.0 – 00:43.0] Notes · Probing (new prop)**
+`[Close-up | very slow push-in | she slides a sticky note across]`
+She writes a sticky note and pushes it across the midline of the desk to the edge of his exercise book. He looks down — the note reads: on the third problem from the left, you plugged in the wrong formula. He raises an eyebrow, writes a line beneath it, and pushes it back.
+> **顾远** (writing): 你怎么知道我写的是第三道？
+> **林一苇** (writing, pushing it back): 因为你把"3"写得像"5"。全教室都看得出来。
+`[Emotion: Light comedy | Hook: None (a small emotional step forward) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:51.0 – 00:57.0] 走廊 · 并排**
-`[中景|跟移|两人并排走出校门]`
-两人并排走下楼梯，穿过走廊，校门口的路灯把影子拉长又缩短。他拎着行李箱，她抱着书，中间隔着一臂的距离，谁也没说话，谁也没走快。
-`[情绪：日常甜 | 钩子：无 | 衔接：尾帧承接]`
+**[00:43.0 – 00:51.0] Evening Study · Lights On**
+`[Medium | locked-off | the classroom lights turn on; the two are still there]`
+The sky outside the window has gone fully dark; the classroom lights click on by themselves. Neither of them leaves — one grinding through problems, the other catching up on notes. The duty student at the podium calls out "locking up," and the two look up at the same time, catching each other's eyes.
+> **林一苇** (packing her bag, tone matter-of-fact): 明天……你还坐这？
+> **顾远** (packing his bag too): 嗯。靠窗，光线好。
+> **林一苇** (in a small voice): ……那明天，我带两个包子，你欠我一次。
+`[Emotion: Budding attraction | Hook: None (an agreement is forged) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:57.0 – 01:03.0] 报摊 · 名字（新信息）**
-`[特写|固定|他停下来买了一份报纸，封面上有熟悉的名字]`
-路过报摊，顾远忽然停下，买了一份报纸，随手折好塞进口袋——动作很快，快得有点刻意。林一苇看了一眼报纸头版，上面的字被折住了，只露出一角。
-> **林一苇**：（没追问，只说）……走快点，要下雨了。
-> **顾远**：（把报纸塞得更深）嗯。
-`[情绪：悬念 | 钩子：信息缺口（报纸上是谁） | 衔接：尾帧承接]`
+**[00:51.0 – 00:57.0] Hallway · Side by Side**
+`[Medium | tracking | the two walk out of the school gate side by side]`
+The two walk down the stairs side by side, through the corridor; the streetlamp at the school gate stretches their shadows long, then shortens them. He carries the suitcase, she hugs her books; an arm's width between them, neither speaking, neither walking faster.
+`[Emotion: Everyday sweetness | Hook: None | Connection: Last-frame continuation]`
 
 ---
 
-**[01:03.0 – 01:09.0] 分岔 · 伞**
-`[中景|固定|路口，他把伞递给她]`
-路口，雨真的落下来。他把伞递给她，自己把书包顶在头上。
-> **顾远**：你家近，伞你拿着。
-> **林一苇**：（没接，反而把书塞给他）你家远，书你拿着。明天还我。
-> **顾远**：（看着手里的书，笑了）……行。明天还。
-`[情绪：甜点 | 钩子：约定 | 衔接：尾帧承接]`
+**[00:57.0 – 01:03.0] Newsstand · A Name (new information)**
+`[Close-up | locked-off | he stops to buy a newspaper; a familiar name on the front page]`
+Passing the newsstand, Gu Yuan suddenly stops, buys a newspaper, folds it quickly and stuffs it into his pocket — the motion fast, almost conspicuously fast. Lin Yiwei glances at the front page; the headline is folded over, only a corner visible.
+> **林一苇** (not pressing, only saying): ……走快点，要下雨了。
+> **顾远** (stuffing the newspaper deeper): 嗯。
+`[Emotion: Suspense | Hook: Information gap (who is on the newspaper) | Connection: Last-frame continuation]`
 
 ---
 
-**[01:09.0 – 01:15.0] 雨夜 · 独看**
-`[中景|缓推|他回到住处，摊开报纸]`
-雨夜里，他回到住处，关上门，摊开那张报纸——头版照片上是一张年轻的面孔，标题写着"市数学竞赛金奖"。照片里的人，是林一苇。
-> **顾远**：（把报纸折好，声音很低）……原来你也不只是会写便利贴。
-`[情绪：反转 | 钩子：身份谜题（他为什么查她） | 衔接：尾帧承接]`
+**[01:03.0 – 01:09.0] The Fork · Umbrella**
+`[Medium | locked-off | at the intersection, he hands her the umbrella]`
+At the intersection, the rain really does fall. He hands her the umbrella and shields his head with his school bag.
+> **顾远**: 你家近，伞你拿着。
+> **林一苇** (not taking it, instead shoving her books at him): 你家远，书你拿着。明天还我。
+> **顾远** (looking at the books in his hands, breaking into a smile): ……行。明天还。
+`[Emotion: Sweet point | Hook: The agreement | Connection: Last-frame continuation]`
 
 ---
 
-**[01:15.0 – 01:20.0] 收束 · 笔记本**
-`[特写|极缓推|他翻开那本"明天要还"的书，里面夹着字条]`
-他翻开明天要还的书，里面夹着那张字条——"此座有人，勿动。"字迹娟秀。他看了很久，把字条夹回原处，合上书，关灯。窗外雨声渐小。
-`[沉默 2 秒——留白呼吸型]`
-`[情绪：集尾钩子 | 钩子：行为之谜（他到底为什么转学） | 衔接：尾帧承接（第二集首镜）]`
+**[01:09.0 – 01:15.0] Rainy Night · Reading Alone**
+`[Medium | slow push-in | he returns home and spreads out the newspaper]`
+In the rainy night, he returns home, closes the door, and spreads out the newspaper — the front-page photo shows a young face, the headline reading "Gold Medal, Municipal Math Competition." The person in the photo is Lin Yiwei.
+> **顾远** (folding the newspaper, voice very low): ……原来你也不只是会写便利贴。
+`[Emotion: Reversal | Hook: Identity puzzle (why is he investigating her) | Connection: Last-frame continuation]`
 
 ---
 
-### 本片段提示词化示范（3 镜）
+**[01:15.0 – 01:20.0] Closing · The Notebook**
+`[Close-up | very slow push-in | he opens the book he must return tomorrow; a note is tucked inside]`
+He opens the book to be returned tomorrow — the note is tucked inside: "This seat is taken. Don't touch." The handwriting is elegant. He looks at it for a long time, tucks the note back in place, closes the book, turns off the light. Outside, the rain sound fades.
+`[2s silence — breathing-room type]`
+`[Emotion: Episode-ending hook | Hook: Behavioral mystery (why did he really transfer schools) | Connection: Last-frame continuation (Episode 2's first shot)]`
 
-**镜 2（转学生登场，关键帧插入·新角色）**：
+---
+
+### Prompt-ification Demonstration for This Excerpt (3 shots)
+
+**Shot 2 (The transfer student debuts, keyframe insert · new character)**:
 ```
-【参考图片】[图1] 门口定妆关键帧 CH-02; [图2] 场景定场图 SC-01;
-【提示词】画面从首帧延续，他站在教室门口，校服外套搭在臂弯，
-衬衫领子立着，发梢滴水，目光扫向教室后排靠窗的空座；
-中景缓推，黄昏逆光为主，人物面部受窗光侧照，剪影感；
-暖橙夕阳色调，青春电影质感，浅景深，粉笔灰光柱；
-不要面部变形，不要校服款式变化，不要多余人物，不要文字水印。
-```
-
-**镜 7（便利贴试探，尾帧承接）**：
-```
-【参考图片】[图1] 上镜尾帧（两人各写作业）; [图2] 角色定妆图 CH-01/CH-02;
-【提示词】画面从首帧延续，她写好一张便利贴推过课桌中间线到他的练习册边缘，
-他挑眉低头看，在便利贴下方写一行字推回去；特写极缓推，焦点在便利贴与两人的手；
-黄昏暖光为主，窗光侧照，笔尖阴影清晰；
-青春电影质感，浅景深，细腻纸张纹理；
-不要便利贴文字可读，不要手指变形，不要多余人物，不要水印。
+【Reference images】[Fig.1] Doorway makeup keyframe CH-02; [Fig.2] Scene establishing image SC-01;
+【Prompt】The frame continues from the first frame; he stands in the classroom doorway, uniform jacket draped over his arm,
+shirt collar up, hair tips dripping, his gaze sweeping toward the empty seat by the window in the back row;
+medium shot, slow push-in, dusk backlight as key, his face lit from the side by window light, a silhouette feel;
+warm orange sunset palette, youth-film texture, shallow depth of field, chalk dust floating in the light beams;
+no facial distortion, no uniform-style changes, no extra people, no text watermark.
 ```
 
-**镜 11（雨夜独看，尾帧承接）**：
+**Shot 7 (Sticky-note probing, last-frame continuation)**:
 ```
-【参考图片】[图1] 上镜尾帧（他进门关灯前）; [图2] 角色定妆图 CH-02;
-【提示词】画面从首帧延续，他在台灯下摊开报纸，头版照片是一张年轻面孔，
-他看了很久，把报纸折好，声音很低说了句话；中景缓推，
-台灯暖光为主，房间暗部保留，窗外雨声光线冷蓝；
-冷暖对撞，电影感写实，浅景深；
-不要报纸文字可读，不要面部变形，不要多余人物，不要水印。
+【Reference images】[Fig.1] Previous shot's tail frame (the two doing homework separately); [Fig.2] Character design sheets CH-01/CH-02;
+【Prompt】The frame continues from the first frame; she writes a sticky note and pushes it across the desk's midline to the edge of his exercise book,
+he raises an eyebrow and looks down, writes a line beneath it and pushes it back; close-up, very slow push-in, focus on the sticky note and their hands;
+dusk warm light as key, window light from the side, pen-tip shadows crisp;
+youth-film texture, shallow depth of field, fine paper texture;
+no readable sticky-note text, no finger deformation, no extra people, no watermark.
+```
+
+**Shot 11 (Rainy night, reading alone, last-frame continuation)**:
+```
+【Reference images】[Fig.1] Previous shot's tail frame (he enters the door before turning off the light); [Fig.2] Character design sheet CH-02;
+【Prompt】The frame continues from the first frame; under the desk lamp he spreads out the newspaper, the front-page photo a young face,
+he looks at it for a long time, folds the newspaper, and says a line in a very low voice; medium shot, slow push-in,
+desk-lamp warm light as key, the room's dark areas preserved, the rainy night outside the window cold blue;
+warm-cold contrast, cinematic realism, shallow depth of field;
+no readable newspaper text, no facial distortion, no extra people, no watermark.
 ```

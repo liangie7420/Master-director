@@ -1,271 +1,286 @@
-# 科幻题材执导手册
+# Sci-Fi Genre Directing Manual
 
-> 适用：赛博朋克 / 近未来 / 太空 / 废土 / AI 伦理等科幻短剧 | 全文原创，无版权风险
-> 配套：场景卡填"配色铁律"时从本章取词；镜头设计查 shot-language.md 与 lighting-styles.md。
+> Applies to: cyberpunk / near-future / space / post-apocalyptic wasteland / AI-ethics sci-fi short dramas | All content is 100% original, no copyright risk
+> Companion docs: when filling the scene card's "color-palette iron rules" field, take keywords from this chapter; for shot design, consult shot-language.md and lighting-styles.md.
 
-## 1. 题材调性与情绪曲线范式
+## 1. Genre Tone & Emotional-Curve Paradigm
 
-### 1.1 核心爽点/悬念引擎
-科幻短剧的钩子不是特效，是**认知差**：观众知道规则 A，主角发现了规则 B。四个主引擎：
-- **认知颠覆**：世界观规则被打破（AI 有自我意识、记忆被篡改、时间闭环）。
-- **技术恐惧**：技术反噬（义体失控、监控系统自主决策、武器暴走）。
-- **末日求生**：资源稀缺下的道德抉择（谁值得被救）。
-- **身份谜题**：我是谁（克隆、意识上传、人造人记忆植入）。
+### 1.1 Core Satisfier / Hook Engines
 
-### 1.2 90 秒单集情绪曲线模板（四拍）
-| 时间窗 | 阶段 | 给观众什么 |
+The hook of a sci-fi short drama is NOT its VFX — it is the **cognitive gap (认知差)**: the audience knows rule A, while the protagonist has discovered rule B. That gap between what the viewer believes and what is actually true is what generates the suspense that holds attention. Four main engines, each exploiting that gap from a different direction:
+
+- **Cognitive overturn (认知颠覆)**: The rules of the world get broken — an AI gains self-awareness, memories are rewritten, a time loop closes in on itself.
+- **Techno-dread (技术恐惧)**: Technology turns against its creators — a cybernetic limb goes out of control, surveillance systems make autonomous decisions, weapons run amok.
+- **Post-apocalyptic survival (末日求生)**: Scarcity forces moral choices — when resources run out, deciding who deserves to be saved is the drama itself.
+- **Identity puzzle (身份谜题)**: "Who am I?" — clones, uploaded consciousness, manufactured humans carrying implanted memories.
+
+### 1.2 The 90-Second Single-Episode Emotional-Curve Template (Four Beats)
+
+| Time window | Beat | What the audience gets |
 |---|---|---|
-| 0–15s | 异常植入 | 一个反常识的视觉/事件（悬浮信标、废弃站台还亮着灯）→ 钩子 |
-| 15–45s | 探因 | 主角尝试解释，发现线索互相矛盾 → 信息缺口 |
-| 45–75s | 反转 | 一个认知颠覆（规则被推翻）→ 高能点 |
-| 75–90s | 升级 | 更大的异常登场 / 主角身份疑云 → 集尾钩子 |
+| 0–15s | Anomaly injection | One counter-intuitive visual or event (a floating beacon, a light still burning in an abandoned station) → the hook |
+| 15–45s | Cause probing | The protagonist tries to explain what she saw, but the clues contradict each other → an information gap |
+| 45–75s | Reversal | One cognitive overturn (a rule of the world is toppled) → the high-energy point |
+| 75–90s | Escalation | A larger anomaly arrives / the protagonist's identity falls under suspicion → the episode-ending hook |
 
-### 1.3 多集连播曲线
-每集执行"异常→探因→反转→升级"；第 2 集开始，上一集的"升级"即本集"异常"，形成链条。每 3–4 集一次大的世界观揭示。
+### 1.3 The Multi-Episode Serial Curve
 
-## 2. 世界观与视觉基调
+Each episode runs the same cycle of "anomaly → cause-probing → reversal → escalation." From episode 2 onward, the previous episode's "escalation" becomes this episode's "anomaly," so the episodes chain into one continuous arc. Every 3–4 episodes, deliver one major worldbuilding reveal to refresh the information gap.
 
-### 2.1 三种子风格配色铁律（全片锁死，不许漂）
-| 风格 | 主色 | 辅色 | 焦点色 | 铁律 |
+## 2. Worldbuilding & Visual Tone
+
+### 2.1 Color-Palette Iron Rules for the Three Sub-Styles (locked for the entire episode — no drifting)
+
+| Style | Primary | Secondary | Accent | Iron rule |
 |---|---|---|---|---|
-| 赛博霓虹 | #1A1B2E 深靛夜 | #0FF2C9 电青 / #FF3D8B 霓虹粉 | #FFD166 警示琥珀 | 夜 > 昼；霓虹色只做光源与反射，不涂满物体 |
-| 冷峻近未来 | #2E3440 冷灰 | #88C0D0 钢青 / #4C566A 岩灰 | #E5E9F0 冷白 | 低饱和，白与灰占 70%；高光只在屏幕/窗户 |
-| 废土黄昏 | #5C4033 锈棕 | #8C7A6B 沙尘 / #2F3E46 暗钢 | #E8A87C 落日橙 | 尘土感；绿植/鲜艳色 = 异常信号 |
+| Cyber neon | #1A1B2E 深靛夜 (Deep Indigo Night) | #0FF2C9 电青 (Electric Cyan) / #FF3D8B 霓虹粉 (Neon Pink) | #FFD166 警示琥珀 (Warning Amber) | Night dominates over day; neon is used ONLY as light sources and reflections, never painted across object surfaces |
+| Cold near-future | #2E3440 冷灰 (Cold Gray) | #88C0D0 钢青 (Steel Cyan) / #4C566A 岩灰 (Rock Gray) | #E5E9F0 冷白 (Cold White) | Low saturation; white and gray cover 70% of the frame; highlights appear only on screens and windows |
+| Wasteland dusk | #5C4033 锈棕 (Rust Brown) | #8C7A6B 沙尘 (Dusty Sand) / #2F3E46 暗钢 (Dark Steel) | #E8A87C 落日橙 (Sunset Orange) | A pervasive dusty feel; any greenery or vivid color reads as an anomaly signal |
 
-### 2.2 光影签名
-- 赛博霓虹：主光来自霓虹（青/粉双色），雨夜地面反光；高对比，暗部偏蓝。
-- 近未来：大面积冷白漫射（荧光顶光）+ 单点屏幕冷光；影子干净锐利。
-- 废土：黄昏侧逆光，尘埃可见光柱；阴影长而柔和。
+### 2.2 Lighting Signatures
 
-### 2.3 科幻质感关键词库（中英对照）
-| 中文 | English | 用途 |
+- Cyber neon: key light comes from the neon itself (dual cyan/pink), with reflections off rain-soaked ground; high contrast, shadows leaning blue.
+- Near-future: large areas of cold white diffused light (fluorescent overhead) plus a single-point screen glow; shadows are clean and sharp.
+- Wasteland: low-angle dusk backlight; dust visible inside light beams; shadows long and soft.
+
+### 2.3 Sci-Fi Texture Keyword Bank (Chinese–English)
+
+| 中文 | English | Use case |
 |---|---|---|
-| 全息投影，半透明 | holographic projection, translucent | 屏幕/信息界面 |
-| 金属拉丝质感 | brushed metal texture | 义体/机械 |
-| 雨夜霓虹反光 | neon reflections on wet asphalt | 赛博夜景 |
-| 蒸汽与冷凝 | steam and condensation | 工业/低温 |
-| 故障特效，数据乱码感 | glitch effect | 异常/黑客 |
-| 悬浮粒子 | floating particles | 氛围/能量场 |
-| 哑光磨砂材质 | matte frosted material | 未来家居/面板 |
+| 全息投影，半透明 | holographic projection, translucent | screens / information interfaces |
+| 金属拉丝质感 | brushed metal texture | cybernetic limbs / machinery |
+| 雨夜霓虹反光 | neon reflections on wet asphalt | cyber night scenes |
+| 蒸汽与冷凝 | steam and condensation | industrial / low-temperature settings |
+| 故障特效，数据乱码感 | glitch effect | anomalies / hacking |
+| 悬浮粒子 | floating particles | atmosphere / energy fields |
+| 哑光磨砂材质 | matte frosted material | futuristic furniture / panels |
 
-## 3. 镜头语言偏好
+## 3. Shot-Language Preferences
 
-### 3.1 高频镜头对照表
-| 情境 | 推荐景别/运镜/焦段 |
+### 3.1 High-Frequency Shot Reference Table
+
+| Situation | Recommended shot scale / camera move / focal length |
 |---|---|
-| 揭示巨物（巨型建筑/星舰） | 大远景 + 极缓推 + 24mm 广角 |
-| 黑客/终端操作 | 屏幕反光特写 + 固定 + 85mm |
-| 义体启动/能量显现 | 大特写（手臂/眼瞳）+ 极缓推 |
-| 城市追逐 | 中景 + 侧跟 + 50mm |
-| AI 与人对峙 | 正反打 + 越肩 + 平视，机位严格轴线同侧 |
-| 末日空旷感 | 远景 + 固定长镜 8–10s |
-| 故障/记忆闪回 | 快切 + 跳切 + 荷兰角（单镜一次） |
+| Revealing something colossal (mega-structure / starship) | Extreme wide + very slow push-in + 24mm wide-angle |
+| Hacking / terminal operation | Screen-reflection close-up + locked-off + 85mm |
+| Cybernetic limb activation / energy flare | Extreme close-up (arm / eye) + very slow push-in |
+| Urban chase | Medium + lateral tracking + 50mm |
+| AI vs. human confrontation | Shot/reverse shot + over-the-shoulder + eye level; camera positions strictly on the same side of the axis |
+| Post-apocalyptic emptiness | Wide + locked-off long take, 8–10s |
+| Glitch / memory flashback | Fast cuts + jump cuts + Dutch angle (one use per shot) |
 
-### 3.2 慎用镜头与替代
-- ❌ 全息屏+环绕运镜（屏上内容必乱码）→ 固定机位+字符流"模糊发光"处理。
-- ❌ 机械变形特写+快速运镜（零件崩坏）→ 极缓推，一次只变形一个部件。
-- ❌ 大场面太空战（模型必糊）→ 拆成"舰船剪影远景 + 座舱内特写"两组镜。
+### 3.2 Shots to Use with Caution — and Their Replacements
 
-### 3.3 节奏控制
-- 文戏 6–8s/镜；动作/追逐 4–6s/镜；氛围空镜 2–4s（科幻氛围镜是集尾钩子常用武器）。
-- 单镜内"科技操作"动作要拆细：抬手→悬停→落指→界面响应，四拍各 0.5–1s。
+- ❌ Holographic screen + orbiting camera move (the on-screen content will always come out as garbled code) → Use a locked-off camera plus a "blurred, glowing" character-stream treatment instead.
+- ❌ Mechanical-transformation close-up + fast camera move (parts collapse into broken geometry) → Use a very slow push-in; transform only ONE component at a time.
+- ❌ A large-scale space battle in a single shot (the ships always render mushy) → Split it into two shot groups: "distant silhouette of the ship + close-up inside the cockpit."
 
-## 4. 表演与台词风格
+### 3.3 Pacing Control
 
-### 4.1 动作/微表情描写句式（可直接复用）
-1. 终端操作：`指尖悬在屏幕上方三寸，悬停两秒才落指，落指后界面应声亮起`。
-2. 义体反应：`右臂的金属关节发出细微咔哒声，指节依次收紧`。
-3. 全息交互：`光屏映在她瞳孔里，她手指划过空气，数据流随指尖流转`。
-4. 面对异常：`呼吸停了半拍，瞳孔先放大再收缩，随即强迫自己移开视线`。
-5. 记忆闪回：`眼神有一瞬失焦，像在看画面之外的东西，随后睫毛猛地颤了一下`。
-6. 压抑恐惧：`她指尖掐进掌心，表面平静，声线却压得很平`。
-7. 机械动作感（AI 角色）：`转头动作有一帧顿挫，像在读取，随后才给出反应`。
+- Dialogue / slow-burn scenes 6–8s per shot; action / chase 4–6s per shot; atmospheric empty shots 2–4s (a sci-fi atmosphere shot is a common weapon for the episode-ending hook).
+- Inside a single shot, "tech-operation" actions must be broken into fine, sequential steps — raise hand → hover → press down → interface responds; four beats of 0.5–1s each, so the model renders one clean state at a time.
 
-### 4.2 台词风格（各附原创例句）
-- 冷幽默（高强度张力下）："系统说我该休息了。上一个这么说的系统，已经被我断电了。"
-- 术语密度（专业感）："信标回传的不是坐标——是心跳频率。生物信号，活的。"
-- 绝望留白（末路感）："你救不了所有人。"（停顿）"但至少……别让他们白死。"
+## 4. Performance & Dialogue Style
 
-## 5. 高频场景与道具清单
+### 4.1 Action / Micro-Expression Description Templates (directly reusable)
 
-### 5.1 高频场景（场景卡一句话锚点）
-1. 地下霓虹巷（雨夜、招牌、积水反光）
-2. 观测站/空间站主控室（弧形主控台、碎屏、窗外星空）
-3. 数据机房（冷蓝灯带、机柜阵列、冷气雾）
-4. 实验室（白墙、培养舱、单点冷光）
-5. 废土公路（锈车残骸、黄昏、风沙）
-6. 天台停机坪（夜风、城市灯火、无人机起降）
-7. 义体诊所（无影灯、器械托盘、消毒水味暗示）
-8. AI 核心舱（光缆如脉络、中央光柱）
-9. 废弃住宅（积灰、断电器、植物枯萎）
-10. 地下避难所（低矮、暖黄应急灯、物资架）
+1. Terminal operation: `The fingertip hovers an inch above the screen, hangs for two full seconds, then presses down; the interface lights up the instant the finger lands`.
+2. Cybernetic response: `The metal joints of the right arm make a faint click as the fingers tighten one after another`.
+3. Holographic interaction: `The light panel reflects in her pupils as she sweeps a finger through the air; data streams flow along the fingertip`.
+4. Facing the anomaly: `Her breath skips half a beat; the pupils dilate, then contract, and she forces herself to look away`.
+5. Memory flashback: `For an instant her gaze loses focus, as if looking at something beyond the frame, then her lashes flicker sharply once`.
+6. Suppressed fear: `Her fingertips dig into her palm; on the surface she stays calm, but her voice is pressed flat and level`.
+7. Mechanical acting (AI characters): `Her head-turn carries one frame of stutter, like a read, before she finally responds`.
 
-### 5.2 高频道具（标注形态命门）
-| 道具 | 形态命门（AI 易画错） |
+### 4.2 Dialogue Style (each with an original example line)
+
+- Cold humor (under high tension): "系统说我该休息了。上一个这么说的系统，已经被我断电了。"
+- Terminology density (professional credibility): "信标回传的不是坐标——是心跳频率。生物信号，活的。"
+- Despairing ellipsis (a dead-end feeling): "你救不了所有人。"（停顿）"但至少……别让他们白死。"
+
+## 5. High-Frequency Scenes & Props Checklist
+
+### 5.1 High-Frequency Scenes (one-line anchors for the scene card)
+
+1. Underground neon alley (rainy night, signs, puddle reflections)
+2. Observatory / space-station main control room (curved console, cracked screens, starfield beyond the window)
+3. Server room / data center (cold blue light strips, cabinet rows, chilled mist)
+4. Laboratory (white walls, incubation pods, single-point cold light)
+5. Wasteland highway (rusted car wrecks, dusk, windblown sand)
+6. Rooftop helipad (night wind, city lights, drone takeoffs and landings)
+7. Cybernetic clinic (shadowless surgical light, instrument tray, an implied smell of disinfectant)
+8. AI core chamber (optic cables like veins, a central pillar of light)
+9. Abandoned residence (layers of dust, tripped breakers, withered plants)
+10. Underground shelter (low ceiling, warm yellow emergency lights, supply racks)
+
+### 5.2 High-Frequency Props (form weakness marked — where AI tends to draw them wrong)
+
+| Prop | Form weakness (AI likely to mess up) |
 |---|---|
-| 全息终端 | 屏内文字 → 一律模糊字符流 |
-| 义体手臂 | 关节数量与金属质感 |
-| 能量信标 | 发光颜色唯一（锁 HEX） |
-| 药丸/基因试剂 | 胶囊形状与液体气泡 |
-| 数据卡/芯片 | 金手指触点排布 |
-| 头盔/呼吸面罩 | 面罩反光与呼吸雾气 |
-| 激光枪 | 弹匣位置与发光部件 |
-| 无人机 | 旋翼数量（双/四轴） |
-| 扫描仪 | 扫描光束颜色与形状 |
-| 监控屏幕 | 屏内内容 → 模糊处理 |
+| Holographic terminal | Text inside the screen → always render as blurred character streams |
+| Cybernetic arm | The number of joints and the metal texture |
+| Energy beacon | Its glow color must be unique (locked to a HEX value) |
+| Pills / genetic reagents | Capsule shape and the bubbles inside the liquid |
+| Data card / chip | The gold-finger contact layout |
+| Helmet / breathing mask | Mask reflection and the condensation of breath |
+| Laser gun | Magazine position and the glowing parts |
+| Drone | Number of rotors (twin / quad) |
+| Scanner | Scan-beam color and shape |
+| Monitor screen | Content on the screen → blur it |
 
-## 6. 题材级翻车点与负向约束
+## 6. Genre-Level Failure Points & Negative Constraints
 
-| 翻车 | 负向写法（中英对照） |
+| Failure | Negative phrasing (Chinese–English) |
 |---|---|
-| 全息屏文字乱码 | 不要可辨认文字 do not show readable text |
-| 机械结构崩坏 | 不要机械关节错位 do not deform mechanical joints |
-| 赛博=全蓝紫偏置 | 不要整屏蓝紫滤镜 avoid monochrome blue-purple tint |
-| 义体塑料感 | 不要塑料质感 avoid plastic-like metal |
-| 太空失重穿帮 | 不要物体悬浮不稳 avoid floating objects |
-| 未来感=闪亮堆砌 | 不要过度反光金属堆砌 avoid excessive chrome |
+| Garbled text on holographic screens | 不要可辨认文字 do not show readable text |
+| Mechanical structures collapsing | 不要机械关节错位 do not deform mechanical joints |
+| "Cyber" read as an all-blue-purple tint | 不要整屏蓝紫滤镜 avoid monochrome blue-purple tint |
+| Plastic-looking cybernetic limbs | 不要塑料质感 avoid plastic-like metal |
+| Weightlessness continuity error in space | 不要物体悬浮不稳 avoid floating objects |
+| "Futuristic" = shiny overload | 不要过度反光金属堆砌 avoid excessive chrome |
 
-## 7. 视频模型适配要点
+## 7. Video-Model Adaptation Notes
 
-- **Seedance**：冷调夜景是强项，霓虹雨夜出片率高；动作连续性写顺序。
-- **可灵**：科技静态场景（机房/实验室）粘性强；运动幅度默认低。
-- **海螺**：风格化（赛博动漫感）适配度高；6s 档节奏紧凑适合追逐戏拆解。
-- （以上为社区经验，需实测验证各自版本。）
+- **Seedance**: Cool-toned night scenes are its strong suit; neon rainy-night shots have a high success rate; write action continuity in sequence.
+- **Kling**: Static tech scenes (server rooms / labs) hold together well; its default motion amplitude is low.
+- **Hailuo**: Stylized looks (a cyber anime feel) adapt well; the 6s preset's tight rhythm suits breaking up chase scenes.
+- (Community experience — verify against each model's current version before relying on it.)
 
-## 8. 原创示例片段《零号信号》
+## 8. Original Example Excerpt — 《零号信号》(Signal Zero)
 
-> 90 秒单场戏：地下观测站，发现异常信号。12 镜，演示尾帧承接 ×2、关键帧插入·新道具 ×1、关键帧插入·新角色 ×1。
+> A 90-second single-scene piece: an underground observatory, discovering an anomalous signal. 12 shots, demonstrating last-frame continuation ×2, keyframe insert · new prop ×1, and keyframe insert · new character ×1.
 
-### 【场景一】废弃观测站主控室
-**环境**：极夜，穹顶玻璃裂三分之一，月光灌入在地面积灰上投下冷蓝光带。环形主控台，半数碎屏，仅一台终端亮幽绿待机光。前景倾倒转椅与散落文件，中景主控台，后景穹顶星空。尘粒悬浮。风声从裂缝挤入，像低哑哨音。
+### 【Scene 1】Abandoned Observatory Main Control Room
 
----
-
-**[00:00.0 – 00:06.0] 入场 · 唯一的光**
-`[大远景|极缓推|观测站全景，一点绿光]`
-风雪掠过环形山脊，观测站像锈蚀的铆钉钉在崖边。镜头从山脊缓推，掠过裂开的穹顶——主控室深处，那台终端的幽绿待机光在黑暗里一明一灭，像呼吸。
-`[情绪：悬疑蓄力 | 钩子：视觉奇观 | 衔接：跳切（本集首镜，用场景定场图）]`
+**Environment**: Polar night; the dome glass is cracked by a third, and moonlight pours in, laying a cold blue light band across the dust on the floor. A ring-shaped main console; half its screens are shattered, only one terminal glowing with a dim green standby light. Foreground: an overturned swivel chair and scattered files; middle ground: the main console; background: the dome and starfield. Dust motes float in the air. Wind squeezes through the cracks, like a low, hoarse whistle.
 
 ---
 
-**[00:06.0 – 00:12.0] 手电 · 尘**
-`[中景|手持微晃|沈昭挤进门，光柱扫过主控台]`
-沈昭侧身挤进主控室，防寒服肩部蹭过门框，积灰簌簌落在肩头。她右手举战术手电，光柱切开黑暗——尘粒在光柱里翻滚。光扫到亮着的终端时，她手腕顿了一下，呼吸在面罩里结成一团白雾。
-> **沈昭**：（压低，自语）……不可能还有电。
-`[情绪：悬疑蓄力 | 钩子：行为之谜（谁在维持电力） | 衔接：尾帧承接]`
+**[00:00.0 – 00:06.0] Entrance · The Only Light**
+`[Extreme wide | very slow push-in | full view of the observatory, a single green light]`
+Snow and wind sweep across the crater ridge; the observatory sits riveted onto the cliff edge like a rusted bolt. The camera pushes in slowly from the ridge, passing the cracked dome — deep in the control room, that terminal's dim green standby light blinks on and off in the dark, like breathing.
+`[Emotion: Suspense building | Hook: Visual spectacle | Connection: Jump cut (first shot of the episode — use the scene establishing image)]`
 
 ---
 
-**[00:12.0 – 00:18.0] 触屏 · 惊醒**
-`[特写|固定|指尖悬在屏幕上方三寸]`
-她走到终端前，左手悬在屏幕上方三寸，悬停整整两秒——绿光映在瞳孔里。她睫毛颤了一下，落指。指尖触屏一瞬，待机光熄灭，屏幕黑了一帧，随即爆出满屏字符流。她下意识后仰半寸，下颌绷紧。
-`[情绪：发现 | 钩子：信息缺口（屏幕内容） | 衔接：尾帧承接]`
+**[00:06.0 – 00:12.0] Flashlight · Dust**
+`[Medium | handheld, slight shake | Shen Zhao squeezes through the door, beam sweeping the console]`
+Shen Zhao squeezes sideways into the control room; the shoulder of her cold-weather suit scrapes the door frame, and a flurry of dust lands on her shoulder. Her right hand holds a tactical flashlight; the beam cuts through the dark — dust motes tumble inside the light. When the beam hits the lit terminal, her wrist stops for a moment, and her breath fogs into a white puff inside the mask.
+> **沈昭** (voice low, muttering to herself): ……不可能还有电。
+`[Emotion: Suspense building | Hook: Behavioral mystery (who is keeping the power on) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:18.0 – 00:24.0] 回应 · 坐标（新道具登场）**
-`[大特写|固定|字符流定格成一行坐标]`
-字符流骤然收束，定格成一行坐标，下方小字缓慢浮现。沈昭的呼吸停了——面罩白雾散开，再没有新的。她右手指节抵住屏幕边缘，拇指无意识摩挲裂开的玻璃，像确认这不是幻觉。
-（**关键帧插入·新道具**：终端屏幕首次叙事核心登场 → 先产"屏幕坐标特写定场帧"PR-01，冻结后作本镜首帧。）
-`[情绪：发现升级 | 钩子：信息缺口（坐标指向哪） | 衔接：关键帧插入·新道具 PR-01]`
+**[00:12.0 – 00:18.0] Touchscreen · Awakening**
+`[Close-up | locked-off | fingertip hovering three inches above the screen]`
+She walks to the terminal; her left hand hovers three inches above the screen for two full seconds — the green light reflecting in her pupils. Her lashes tremble; she presses down. The instant her fingertip touches the screen, the standby light dies, the screen goes black for one frame, then explodes into a full-screen character stream. She instinctively leans back half an inch, jaw tightening.
+`[Emotion: Discovery | Hook: Information gap (what is on the screen) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:24.0 – 00:30.0] 识读 · 血色**
-`[特写|极缓推|她瞳孔里倒映坐标]`
-她逐位识读。读到倒数第二位，眉峰猛地拧起，喉结滚动一下，抵在屏幕边缘的手指蜷紧，指节泛白。
-> **沈昭**：（气声，几乎不成句）这是……观测站自己。
-`[情绪：危机逼近 | 钩子：关系之谜（谁在呼叫她） | 衔接：尾帧承接]`
+**[00:18.0 – 00:24.0] Response · Coordinates (new prop debuts)**
+`[Extreme close-up | locked-off | the character stream freezes into a single line of coordinates]`
+The character stream snaps together and freezes into a line of coordinates; small text below slowly fades in. Shen Zhao's breath stops — the white fog from her mask disperses, and no new one forms. The knuckles of her right hand press against the screen edge; her thumb unconsciously rubs the cracked glass, as if confirming this isn't a hallucination.
+(**Keyframe insert · new prop**: the terminal screen debuts as the narrative core → first generate the "screen-coordinates close-up establishing frame" PR-01, freeze it, then use it as the first frame of this shot.)
+`[Emotion: Discovery escalating | Hook: Information gap (where do the coordinates point) | Connection: Keyframe insert · new prop PR-01]`
 
 ---
 
-**[00:30.0 – 00:36.0] 风停 · 灯亮**
-`[中景|固定|全部碎屏同时亮起幽绿]`
-风声毫无征兆地停了。所有碎裂的屏幕同时亮起，幽绿的光从四面八方落在她身上——她僵在原地，肩头落灰震落一层，瞳孔里映着十几块绿光。
-`[沉默 2 秒——危机降临型]`
-`[情绪：危机降临 | 钩子：集尾回收 | 衔接：尾帧承接（第二集首镜续用）]`
+**[00:24.0 – 00:30.0] Reading · Blood-Red**
+`[Close-up | very slow push-in | the coordinates reflected in her pupils]`
+She reads the digits one by one. At the second-to-last one, her brows snap together, her Adam's apple rolls once, and the fingers braced on the screen edge curl tight, knuckles going white.
+> **沈昭** (breathy, barely forming words): 这是……观测站自己。
+`[Emotion: Crisis approaching | Hook: Relationship mystery (who is calling her) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:36.0 – 00:42.0] 新角色 · 门后（关键帧插入）**
-`[中景|缓拉|终端前多了一道影子]`
-终端前多了一道影子——一道剪影立在门口，防风服兜帽压得很低，只露出一截下颌线，光从他的角度投过来，在沈昭脸上笼下一层阴影。他没开口，指尖在门框上轻叩了两下，金属声很脆。
-（**关键帧插入·新角色**：神秘人首次露脸前 → 先产"门框剪影定妆关键帧"CH-02，冻结后作本镜首帧。）
-> **神秘人**：（声音平静，像念说明书）坐标是我发的。你该走了。
-`[情绪：反转 | 钩子：身份谜题 | 衔接：关键帧插入·新角色 CH-02]`
+**[00:30.0 – 00:36.0] Wind Stops · Lights On**
+`[Medium | locked-off | every shattered screen lights up green at once]`
+The wind stops without warning. All the broken screens light up simultaneously; green light falls on her from all sides — she freezes in place, a layer of dust shaken from her shoulders, a dozen green glows reflected in her pupils.
+`[2s silence — crisis-arrival type]`
+`[Emotion: Crisis arrives | Hook: Episode-end payoff | Connection: Last-frame continuation (carried over as Episode 2's first shot)]`
 
 ---
 
-**[00:42.0 – 00:48.0] 对峙 · 光带**
-`[正反打|固定|她看他，他看她]`
-沈昭转身，手电光直射他面部——兜帽下是一张年轻的脸，左眉一道旧疤，眼睛被光刺得眯起，却不躲。她枪口没抬，但拇指已移上保险。
-> **沈昭**：信号三十年前就断了。你是谁。
-> **神秘人**：（眯眼，不退）三十年前……它才刚醒。
-`[情绪：拉锯 | 钩子：认知颠覆（它=终端） | 衔接：尾帧承接]`
+**[00:36.0 – 00:42.0] New Character · Behind the Door (keyframe insert)**
+`[Medium | slow pull-back | a shadow appears before the terminal]`
+A shadow appears before the terminal — a silhouette standing in the doorway, the hood of the windproof suit pulled low, only a stretch of jawline showing; light from his side throws a layer of shadow across Shen Zhao's face. He says nothing; his fingertip taps the door frame twice, the metallic clink crisp.
+(**Keyframe insert · new character**: before the mysterious man's face is ever shown → first generate the "doorway-silhouette makeup keyframe" CH-02, freeze it, then use it as the first frame of this shot.)
+> **神秘人** (voice calm, like reading a manual): 坐标是我发的。你该走了。
+`[Emotion: Reversal | Hook: Identity puzzle | Connection: Keyframe insert · new character CH-02]`
 
 ---
 
-**[00:48.0 – 00:56.0] 声浪 · 全屏**
-`[中景|手持微晃|全部绿屏字迹开始同步滚动]`
-两人同时安静。所有碎屏上的字符开始同步滚动，节奏逐渐统一，像十几张嘴在合唱同一句。沈昭手电的光开始发颤——不是她的手，是电压在抖。
-`[情绪：危机升级 | 钩子：信息缺口 | 衔接：尾帧承接]`
+**[00:42.0 – 00:48.0] Standoff · Light Beam**
+`[Shot/reverse shot | locked-off | she looks at him, he looks at her]`
+Shen Zhao turns, flashlight beam straight into his face — under the hood is a young face, an old scar across the left brow; his eyes squint against the light but he doesn't flinch. Her gun stays lowered, but her thumb has already moved to the safety.
+> **沈昭**: 信号三十年前就断了。你是谁。
+> **神秘人** (squinting, not backing away): 三十年前……它才刚醒。
+`[Emotion: Tug-of-war | Hook: Cognitive overturn ("it" = the terminal) | Connection: Last-frame continuation]`
 
 ---
 
-**[00:56.0 – 01:04.0] 字幕 · 一句**
-`[大特写|极缓推|字符定格成一句话]`
-滚动戛然而止。所有屏幕同时定格成同一句话，绿光在黑暗中像一行警告。沈昭读了两遍，面罩内的呼吸急促起来。
-`[情绪：认知颠覆 | 钩子：关系之谜 | 衔接：尾帧承接]`
+**[00:48.0 – 00:56.0] Sound Surge · Full Screen**
+`[Medium | handheld, slight shake | the text on every green screen begins scrolling in sync]`
+Both fall silent. The characters on all the cracked screens begin scrolling in unison, the rhythm gradually unifying — like a dozen mouths chanting the same line. Shen Zhao's flashlight beam starts to tremble — not her hand; the voltage is shaking.
+`[Emotion: Crisis escalating | Hook: Information gap | Connection: Last-frame continuation]`
 
 ---
 
-**[01:04.0 – 01:12.0] 真相 · 身份**
-`[特写|缓推|她瞳孔里映着那句字幕]`
-屏幕上写的是她的编号——三十年前废弃项目的实验体编号。她摘下右手手套，腕内侧有一串同样的字符，新旧墨迹，一模一样。
-> **沈昭**：（声音发干）……这不是观测站。是我。
-`[情绪：身份谜题揭晓 | 钩子：认知颠覆 | 衔接：尾帧承接]`
+**[00:56.0 – 01:04.0] Subtitle · One Sentence**
+`[Extreme close-up | very slow push-in | the characters freeze into a single sentence]`
+The scrolling stops abruptly. All the screens freeze on the same sentence, green light hanging in the dark like a line of warning. Shen Zhao reads it twice; her breathing inside the mask turns rapid.
+`[Emotion: Cognitive overturn | Hook: Relationship mystery | Connection: Last-frame continuation]`
 
 ---
 
-**[01:12.0 – 01:20.0] 收束 · 第一句人声**
-`[中景|缓拉|神秘人跨过门槛，光在他身后拉长]`
-神秘人跨过门槛，走进绿光里，防风服拉链被缓缓拉下一半——锁骨上同样一串字符，新旧墨迹，一模一样。他第一次正眼看向她。
-> **神秘人**：编号 07。……我是你的副本。
-`[沉默 2 秒——认知过载型]`
-`[情绪：集尾钩子 | 钩子：身份谜题再升级 | 衔接：尾帧承接（第二集首镜）]`
+**[01:04.0 – 01:12.0] Truth · Identity**
+`[Close-up | slow push-in | the sentence reflected in her pupils]`
+What the screen shows is her number — the experiment-subject number of a project abandoned thirty years ago. She pulls off her right glove; on the inside of her wrist is the same string of characters, old and new ink, identical.
+> **沈昭** (voice gone dry): ……这不是观测站。是我。
+`[Emotion: Identity puzzle solved | Hook: Cognitive overturn | Connection: Last-frame continuation]`
 
 ---
 
-### 本片段提示词化示范（3 镜）
+**[01:12.0 – 01:20.0] Closing · The First Human Voice**
+`[Medium | slow pull-back | the mysterious man steps over the threshold, light stretching behind him]`
+The mysterious man steps over the threshold into the green light, pulling the zipper of the windproof suit slowly down halfway — the same string of characters across his collarbone, old and new ink, identical. For the first time he looks directly at her.
+> **神秘人**: 编号 07。……我是你的副本。
+`[2s silence — cognitive-overload type]`
+`[Emotion: Episode-ending hook | Hook: Identity puzzle deepened | Connection: Last-frame continuation (Episode 2's first shot)]`
 
-**镜 5（识读·血色，尾帧承接）**：
+---
+
+### Prompt-ification Demonstration for This Excerpt (3 shots)
+
+**Shot 5 (Reading · Blood-Red, last-frame continuation)**:
 ```
-【参考图片】[图1] 上镜尾帧（屏幕坐标定格）; [图2] 角色定妆图 CH-01;
-【提示词】画面从首帧延续，屏幕坐标冷绿光映在她脸上；她逐位识读坐标，
-读到倒数第二位时眉峰拧起，喉结滚动，抵在屏幕边缘的手指蜷紧指节泛白；
-特写镜头，85mm 感，极缓推，固定光源为屏幕冷绿光；
-冷灰绿调，电影感写实，细腻皮肤纹理，眼中一点屏幕反光；
-不要面部变形，不要文字可读，不要多余人物，不要水印。
-```
-
-**镜 7（新角色登场，关键帧插入）**：
-```
-【参考图片】[图1] 门框剪影定妆关键帧 CH-02; [图2] 场景定场图 SC-01;
-【提示词】画面从首帧延续，剪影立在门口，防风服兜帽压得很低，
-只露一截下颌线；他指尖在门框上轻叩两下，金属声清脆；
-中景，缓拉，门框前景、他中景、绿光终端后景；
-顶光从身后投来，面部被兜帽阴影笼罩，下颌线有一线冷光；
-冷灰绿调，悬疑电影质感，浅景深；
-不要面部模糊变形，不要多余人物，不要文字水印。
+【Reference images】[Fig.1] Previous shot's tail frame (screen coordinates frozen); [Fig.2] Character design sheet CH-01;
+【Prompt】The frame continues from the first frame; the screen's cold green coordinates light her face; she reads the coordinates digit by digit,
+brows snapping together at the second-to-last digit, Adam's apple rolling, the fingers braced on the screen edge curling until the knuckles go white;
+close-up, 85mm feel, very slow push-in, single fixed light source = the screen's cold green glow;
+cold gray-green palette, cinematic realism, fine skin texture, a glint of screen reflection in the eyes;
+no facial distortion, no readable text, no extra people, no watermark.
 ```
 
-**镜 12（身份揭晓，尾帧承接）**：
+**Shot 7 (New character debuts, keyframe insert)**:
 ```
-【参考图片】[图1] 上镜尾帧（她摘手套）; [图2] 角色定妆图 CH-01;
-【提示词】画面从首帧延续，她摘下手套露出腕内侧字符；
-他跨过门槛走进绿光，拉下半截拉链，锁骨上同样字符，两人对视；
-中景缓拉，绿光渐亮，他影子在身后拉长；
-主光源为屏幕绿光，暖色防风灯作为远处辅光，冷暖微对撞；
-电影感写实，冷调，轻颗粒；
-不要面部变形，不要服装漂移，不要文字可读，不要水印。
+【Reference images】[Fig.1] Doorway-silhouette makeup keyframe CH-02; [Fig.2] Scene establishing image SC-01;
+【Prompt】The frame continues from the first frame; a silhouette stands in the doorway, hood of the windproof suit pulled low,
+only a stretch of jawline showing; his fingertip taps the door frame twice, the metallic clink crisp;
+medium shot, slow pull-back, door frame in the foreground, him in the middle ground, the green terminal in the background;
+top light from behind, face under the hood's shadow, a thread of cold light along the jawline;
+cold gray-green palette, suspenseful cinematic texture, shallow depth of field;
+no facial blur or distortion, no extra people, no readable text, no watermark.
+```
+
+**Shot 12 (Identity reveal, last-frame continuation)**:
+```
+【Reference images】[Fig.1] Previous shot's tail frame (she removes her glove); [Fig.2] Character design sheet CH-01;
+【Prompt】The frame continues from the first frame; she removes her glove, revealing the characters on the inside of her wrist;
+he steps over the threshold into the green light, zipper pulled halfway down, the same characters on his collarbone, the two locking eyes;
+medium shot, slow pull-back, the green light brightening, his shadow stretching behind him;
+key light = the screens' green glow, a warm windproof lamp as distant fill light, a subtle warm-cold collision;
+cinematic realism, cool tone, light grain;
+no facial distortion, no costume drift, no readable text, no watermark.
 ```
