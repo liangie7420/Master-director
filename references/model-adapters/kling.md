@@ -11,7 +11,7 @@
 | Aspect ratio | 9:16 / 16:9 / 1:1 | vertical short drama 9:16 |
 | First/last frame | supports first-frame, last-frame, both | **last-frame continuation usable**; multi-image reference supported (count varies by version) |
 | Motion amplitude | low/medium/high three tiers adjustable | limb/face close-ups use low-medium; action scenes medium; **default low is more stable** |
-| Prompt language | Chinese-friendly | formulaic paragraphs beat prose |
+| Prompt language | **English preferred** (Chinese-friendly fallback) | formulaic paragraphs beat prose; keep Chinese ONLY for dialogue lines / character names / lock sentences |
 | Image-to-video | supported, reference-image stickiness strong | character consistency better than pure text-to-video |
 | Text rendering | weak | same as before: blurry character stream replacement |
 | Audio | none | post dubbing |
@@ -61,24 +61,24 @@ Key point: Kling is sensitive to "motion amplitude" — writing the clear "sligh
 - On failure, first check whether "amplitude word vs action complexity" matches: complex action MUST pair with low amplitude + slow speed.
 - Rerun ≤3 times; after 3 failures → split shot / lower scale / keyframe-insert supplementary narrative (continuity-playbook Chapter 4 matrix).
 
-## 7. Full Examples (original content)
+## 7. Full Examples (original content, English prompt + Chinese dialogue)
 
 Dialogue close-up (last-frame continuation):
 ```
-【Subject】She: long hair in a low bun, dark-green cheongsam, a pearl stud earring (same as makeup image CH-01);
-【Motion】She slowly raises her eyes, amplitude slight, eyelashes trembling once, gaze falling toward off-frame lower-right;
-【Scene】late-night study, one desk lamp, warm-yellow glow, rain streaks slanting on the glass outside (same as scene card SC-02);
-【Camera】close shot, 85mm feel, shallow DoF, fixed camera;
-【Style】cinematic realism, warm low-saturation, delicate skin texture, natural film grain;
-【Negative】no facial deformation, no clothing change, no watermark or text, no extra people.
+[Subject] She: long hair in a low bun, dark-green cheongsam, a pearl stud earring (same as makeup image CH-01);
+[Motion] She slowly raises her eyes, amplitude slight, eyelashes trembling once, gaze falling toward off-frame lower-right; she says, "……不可能还有电。" (lowered, to herself);
+[Scene] late-night study, one desk lamp, warm-yellow glow, rain streaks slanting on the glass outside (same as scene card SC-02);
+[Camera] close shot, 85mm feel, shallow DoF, fixed camera;
+[Style] cinematic realism, warm low-saturation, delicate skin texture, natural film grain;
+[Negative] no facial deformation, no clothing change, no watermark or text, no extra people.
 ```
 
 Action shot (keyframe insert · new character):
 ```
-【Subject】He: short neat hair, dark-gray trench coat (makeup image CH-03), starting from the first-frame image;
-【Motion】He abruptly sidesteps to dodge, amplitude obvious but motion smooth, coat hem flaring with the turn;
-【Scene】abandoned warehouse, one beam of top light slanting in, dust floating in the light column (scene card SC-04);
-【Camera】medium shot, side-tracking camera, 28mm wide feel; opening he faces away from camera, closing his profile enters frame;
-【Style】cel-shaded animation texture, high-contrast lighting, cold-blue primary tone;
-【Negative】no limb deformation, no clothing clipping, no extra people, no text or watermarks.
+[Subject] He: short neat hair, dark-gray trench coat (makeup image CH-03), starting from the first-frame image;
+[Motion] He abruptly sidesteps to dodge, amplitude obvious but motion smooth, coat hem flaring with the turn;
+[Scene] abandoned warehouse, one beam of top light slanting in, dust floating in the light column (scene card SC-04);
+[Camera] medium shot, side-tracking camera, 28mm wide feel; opening he faces away from camera, closing his profile enters frame;
+[Style] cel-shaded animation texture, high-contrast lighting, cold-blue primary tone;
+[Negative] no limb deformation, no clothing clipping, no extra people, no text or watermarks.
 ```

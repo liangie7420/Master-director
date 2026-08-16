@@ -11,8 +11,8 @@
 | Aspect ratio | 9:16 / 16:9 / 1:1 / 4:3 etc. | vertical short drama uses 9:16 |
 | First/last frame | supports first-frame, last-frame, both | **last-frame continuation core mechanism usable**: fill the previous shot's last frame in image-to-video |
 | Multi-image reference | 1.0 single image; 1.3 Pro/2.0 multi-image | keyframe insert can use "makeup image + last frame" dual images |
-| Camera directives | supports natural-language camera descriptions (push/pull/pan/track/follow/orbit) | write directly in Chinese, more stable than English camera words |
-| Prompt language | Chinese-friendly | segmented Chinese long sentences beat stacked keywords |
+| Camera directives | supports natural-language camera descriptions (push/pull/pan/track/follow/orbit) | write camera moves in English (`slow push-in`, `orbit ≤90°`); Chinese also accepted but English is more stable |
+| Prompt language | **English preferred** (Chinese-friendly fallback) | segmented English sentences with clear structure beat stacked keywords; keep Chinese ONLY for dialogue lines / character names / lock sentences |
 | Text rendering | weak | when readable text is required in script, use post-production; prompt writes "blurred glowing character stream" |
 | Audio | none | dialogue/sound effects dubbed in post |
 
@@ -63,17 +63,18 @@ Key point: Seedance is sensitive to "action continuity"; the primary action MUST
 - When 10s-tier failure rate is high, downgrade to 5s tier and split shots; don't force long shots.
 - When shooting multiple shots of the same scene continuously, keep reference images consistent; the whole batch can reuse the same first-frame chain, reducing re-pulls.
 
-## 7. Full Examples (original content)
+## 7. Full Examples (original content, English prompt + Chinese dialogue)
 
 Dialogue close-up (last-frame continuation):
 ```
-【Reference Images】
+[Reference Images]
 [Image 1] previous shot's last frame (baseline for continuation);
 [Image 2] character makeup image CH-01;
 
-【Prompt】
+[Prompt]
 Frame continues from the first frame; she keeps her sitting pose, fingertips resting at the letter's edge;
 then she slowly raises her eyes, eye-tails slightly lifting, gaze passing over the frame toward the front-right;
+she says, "……不可能还有电。" (low, to herself);
 close-up, 85mm feel shallow DoF, blurred background, fixed camera;
 cold-white moonlight from the left window frame is the key light, two-thirds of the face lit, a catchlight in the eyes;
 cool gray tone, cinematic realism, fine skin texture;
@@ -82,11 +83,11 @@ no facial deformation, no clothing change, no subtitles or watermarks, no extra 
 
 Action shot (keyframe insert · new prop):
 ```
-【Reference Images】
+[Reference Images]
 [Image 1] prop establishing frame PR-01 (glowing beacon);
 [Image 2] character makeup image CH-02;
 
-【Prompt】
+[Prompt]
 Frame continues from the first frame; the beacon floats two inches above her palm, glowing faint blue;
 she slowly closes her five fingers, pausing half a beat when the fingertips touch the beacon's edge, brow lightly knitting;
 medium close-up, slight high angle, slow push-in; foreground beacon, background her face;

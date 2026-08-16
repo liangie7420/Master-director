@@ -11,7 +11,7 @@
 | Aspect ratio | 9:16 / 16:9 / 1:1 | vertical short drama 9:16 |
 | First/last frame | supports first-frame, last-frame (version differences; verify multi-image by testing) | **last-frame continuation usable**; multi-image reference verify per version |
 | Camera directives | supports explicit camera directives (e.g., [push-in] [orbit] style markers) | Chinese natural language also works |
-| Prompt language | Chinese-friendly | segmented prompts respond best |
+| Prompt language | **English preferred** (Chinese-friendly fallback) | segmented prompts respond best; keep Chinese ONLY for dialogue lines / character names / lock sentences |
 | Stylization | strong (anime/ink-wash/realistic all fine) | a model with high fit for comic-drama art styles |
 | Text rendering | weak | same as before: blurry character stream replacement |
 | Audio | none | post dubbing |
@@ -62,26 +62,26 @@ Key point: Hailuo responds directly to "camera-directive" words — to push in, 
 - On failure, first change "action complexity" (fewer beats) and "camera speed" (lower one notch); touch reference images only after.
 - Rerun ≤3 times; if still failing → split shot / change scale (continuity-playbook matrix).
 
-## 7. Full Examples (original content)
+## 7. Full Examples (original content, English prompt + Chinese dialogue)
 
 Dialogue close-up (last-frame continuation):
 ```
-【Scene】rainy night rooftop, distant city lights blurred, cold-blue night (scene card SC-05);
-【Subject】She: shoulder-length hair, white shirt, sleeves rolled to the forearm (makeup image CH-04), continuing the first-frame sitting pose;
-【Action】She slowly grips the railing, knuckles going white, then tilts her head back, closes her eyes, raindrops landing on her lashes;
-【Camera】close shot, 85mm feel, shallow DoF, fixed camera;
-【Light】city cold-blue ambient light, a faint billboard warm glow on one side of her face, a catchlight in her eyes;
-【Style】cinematic realism, low-saturation cool tone, visible rain streaks, fine grain;
-【Negative】no facial deformation, no clothing change, no text or watermarks, no extra people.
+[Scene] rainy night rooftop, distant city lights blurred, cold-blue night (scene card SC-05);
+[Subject] She: shoulder-length hair, white shirt, sleeves rolled to the forearm (makeup image CH-04), continuing the first-frame sitting pose;
+[Action] She slowly grips the railing, knuckles going white, then tilts her head back, closes her eyes, raindrops landing on her lashes; she whispers, "……别再来了。" (breathy);
+[Camera] close shot, 85mm feel, shallow DoF, fixed camera;
+[Light] city cold-blue ambient light, a faint billboard warm glow on one side of her face, a catchlight in her eyes;
+[Style] cinematic realism, low-saturation cool tone, visible rain streaks, fine grain;
+[Negative] no facial deformation, no clothing change, no text or watermarks, no extra people.
 ```
 
 Action shot (keyframe insert · new prop):
 ```
-【Scene】dim archive room, ceiling lamp beam, dust floating (scene card SC-06);
-【Subject】He: black-rimmed glasses, dark coat (makeup image CH-05), the envelope continuing from the first-frame image;
-【Action】He opens the envelope, pulls out the photo, motion slowing, gaze fixing on the photo, brow first knitting then relaxing;
-【Camera】medium close-up, camera slow push-in, from shoulder to face; opening the envelope at frame center, closing his eyes;
-【Light】top light primary, face retaining shadow, a thin highlight on the envelope edge;
-【Style】suspense-film texture, cool gray tone, shallow DoF, cinematic grain;
-【Negative】no hand deformation, no readable text (photo content blurred), no extra people, no watermarks.
+[Scene] dim archive room, ceiling lamp beam, dust floating (scene card SC-06);
+[Subject] He: black-rimmed glasses, dark coat (makeup image CH-05), the envelope continuing from the first-frame image;
+[Action] He opens the envelope, pulls out the photo, motion slowing, gaze fixing on the photo, brow first knitting then relaxing;
+[Camera] medium close-up, camera slow push-in, from shoulder to face; opening the envelope at frame center, closing his eyes;
+[Light] top light primary, face retaining shadow, a thin highlight on the envelope edge;
+[Style] suspense-film texture, cool gray tone, shallow DoF, cinematic grain;
+[Negative] no hand deformation, no readable text (photo content blurred), no extra people, no watermarks.
 ```

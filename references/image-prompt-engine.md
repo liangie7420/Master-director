@@ -63,7 +63,7 @@ Model will make up what each controls → face swapping/color derailing.
 
 ## 3. Six-Section Structure Formula (Output in Order)
 
-> Based on neoimage-prompt-engine's six-section skeleton, **English as skeleton (image model's native language), Chinese lock sentences embedded in 【Locks】section**. Each prompt gets both Chinese and English versions.
+> Based on neoimage-prompt-engine's six-section skeleton, **English as the default skeleton (image model's native language), Chinese lock sentences embedded in 【Locks】section; Chinese dialogue lines and character names stay in the original**. Prompts are written in English by default; a Chinese gloss is optional for the user's reading only.
 
 ```
 【Reference Image Annotations】

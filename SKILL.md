@@ -160,7 +160,13 @@ Card-pull control principles (written into every failure recommendation):
 
 ## Output Language Rules
 
-- Conversation and scripts use Simplified Chinese; prompts default to Chinese (all three models are friendly to it); when a model adapter file specifies that a field needs English, follow that file.
+- **Conversation and scripts use Simplified Chinese** — the working language with the user.
+- **Prompts default to ENGLISH** (English is the native language of most image/video foundation models; English body text gives the strongest control). Keep Chinese ONLY in these fields, which models handle better in Chinese:
+  - Dialogue line text (台词原文): keep the original Chinese line — models render speech with the character's voice.
+  - Character names (角色名) and proper nouns: keep Chinese (or the name as established in the character card).
+  - Lock sentences in 【Locks & Constraints】: Chinese lock sentences are allowed when the model adapter file says so (reference-image locking reads Chinese more accurately on some models).
+- **Camera words, shot-scale abbreviations, lighting terms, film stock, HEX codes**: always English originals (`ECU`, `Dolly In`, `chiaroscuro`, `Kodak Vision3 500T`, `#A82A2A`) — these are model-recognized "spells", never translated.
+- **Output format**: when the user needs to read/verify a prompt, give an English-prompt-first version; a Chinese gloss is optional and secondary. Iteration edits are written in the same language as the prompt being edited.
 - Prompts are always placed in code blocks; first-frame image prompts and video prompts go in SEPARATE code blocks, never merged.
 
 ## Reference File Index

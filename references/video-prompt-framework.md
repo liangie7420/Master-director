@@ -154,7 +154,7 @@ Once the material identity is fixed, all details can be derived. **The core of d
 
 ## 9. Dialogue & Voice Rules
 
-- The dialogue section MUST state: `Character says "(line text)"`, voice = character card "voice" field **copied verbatim**, tone = the emotion marked at the line end.
+- The dialogue section MUST state: `Character says "(line text)"`, voice = character card "voice" field **copied verbatim**, tone = the emotion marked at the line end. **The line text stays in the original Chinese** (e.g., `She says, "……不可能还有电。"`); only the surrounding prompt is English.
 - Line word conversion: normal 3–4 characters/second; line duration must not exceed shot duration - 1 second (and keep another 1–2 seconds of reaction aftertaste).
 - Strong lip-sync scenes (close-up long lines) → recommend post-dubbing; prompt writes "mouth opens and closes naturally when speaking, lip sync need not be precise".
 
