@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-10-17",
+  "meaning": "true/false refer to this named version and entry only; absent/null means unverified. This is a preparation registry, not an API client.",
+  "profiles": {
+    "seedance-2.0-ark": {
+      "provider": "ByteDance / Volcengine Ark",
+      "model_id": "doubao-seedance-2-0-260128",
+      "entry": "Ark video generation API",
+      "tasks": {"text_to_video": true, "image_to_video": true, "keyframe_pair": true, "multimodal_reference": true, "video_edit": true, "video_extend": true},
+      "native_audio": true,
+      "duration": {"min": 4, "max": 15, "integer": true},
+      "max_assets": {"image": 9, "video": 3, "audio": 3},
+      "audio_requires_visual": true,
+      "reference_syntax": "at_zh",
+      "timing": "ordered_beats",
+      "negative_policy": "optional",
+      "sources": ["https://docs.volcengine.com/docs/ark/seedance-2-0?lang=en", "https://docs.volcengine.com/docs/ark/seedance-2-0-prompt-guide?lang=zh", "https://docs.volcengine.com/docs/ark/create-video-generation-task-api?lang=zh"],
+      "unvalidated": ["Account access, uploads and input-media limits must also be checked at submission", "No live video evaluation in this repository"]
+    },
+    "minimax-hailuo-2.3": {
+      "provider": "MiniMax",
+      "model_id": "MiniMax-Hailuo-2.3",
+      "entry": "MiniMax video_generation API",
+      "tasks": {"text_to_video": true, "image_to_video": true, "keyframe_pair": false, "multimodal_reference": null, "video_edit": null, "video_extend": null},
+      "native_audio": null,
+      "duration": {"values": [6, 10], "integer": true, "by_resolution": {"768P": [6, 10], "1080P": [6]}},
+      "max_prompt_characters": 2000,
+      "reference_syntax": "numbered",
+      "timing": "prose",
+      "negative_policy": "optional",
+      "sources": ["https://platform.minimax.io/docs/api-reference/video-generation-t2v", "https://platform.minimax.io/docs/api-reference/video-generation-i2v", "https://platform.minimax.io/docs/api-reference/video-generation-fl2v"],
+      "unvalidated": ["Do not inherit Hailuo-02 start/end-frame support", "Native sound is unverified here; use post production unless confirmed"]
+    },
+    "minimax-hailuo-02": {
+      "provider": "MiniMax",
+      "model_id": "MiniMax-Hailuo-02",
+      "entry": "MiniMax video_generation API",
+      "tasks": {"text_to_video": true, "image_to_video": true, "keyframe_pair": true, "multimodal_reference": null, "video_edit": null, "video_extend": null},
+      "native_audio": null,
+      "duration": {"values": [6, 10], "integer": true, "by_resolution": {"512P": [6, 10], "768P": [6, 10], "1080P": [6]}},
+      "max_prompt_characters": 2000,
+      "task_resolutions": {"keyframe_pair": ["768P", "1080P"]},
+      "reference_syntax": "numbered",
+      "timing": "prose",
+      "negative_policy": "optional",
+      "sources": ["https://platform.minimax.io/docs/api-reference/video-generation-t2v", "https://platform.minimax.io/docs/api-reference/video-generation-i2v", "https://platform.minimax.io/docs/api-reference/video-generation-fl2v"],
+      "unvalidated": ["Native audio, editing and extension are not established by these sources"]
+    },
+    "google-omni-1.1-flash": {
+      "provider": "Google",
+      "model_id": "gemini-omni-1.1-flash",
+      "entry": "Gemini API / AI Studio (not Veo)",
+      "tasks": {"text_to_video": true, "image_to_video": true, "keyframe_pair": true, "multimodal_reference": true, "video_edit": true, "video_extend": true},
+      "native_audio": null,
+      "reference_syntax": "numbered",
+      "timing": "ordered_beats",
+      "negative_policy": "optional",
+      "sources": ["https://deepmind.google/models/gemini-omni/", "https://deepmind.google/models/gemini-omni/prompt-guide/", "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-omni-1-1-flash/"],
+      "unvalidated": ["Exact per-task duration/resolution/input limits must be filled from the chosen entry before strict preparation", "Extension is interaction-based; a video label alone is not a Gemini API payload", "Omni and Veo are separate families"]
+    },
+    "kling-configure-version": {
+      "provider": "Kuaishou / Kling",
+      "model_id": null,
+      "entry": "User must select model version and web/API entry",
+      "tasks": {},
+      "native_audio": null,
+      "reference_syntax": "numbered",
+      "timing": "prose",
+      "negative_policy": "optional",
+      "sources": ["https://app.klingai.com/global/dev/document-api"],
+      "unvalidated": ["Official site blocked automated retrieval during this audit; no historical version's limits are assumed", "Configure task support and numeric limits before strict preparation"]
+    },
+    "image-configure-model": {
+      "provider": "User-selected image model",
+      "model_id": null,
+      "entry": "Choose image model and generate/edit interface",
+      "tasks": {"asset_image": null, "first_frame_image": null, "end_frame_image": null},
+      "reference_syntax": "numbered",
+      "negative_policy": "optional",
+      "sources": [],
+      "unvalidated": ["Image templates are portable editorial inputs; this profile asserts no provider capability"]
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "id": "S10",
+  "task": "image_to_video",
+  "prompt_language": "zh",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "书店重新有了等人的温度",
+  "visible_evidence": "柜台台灯亮起，暖光照到留下的信与钥匙",
+  "focus": "从顾宁按灯的动作落在信和钥匙上",
+  "style": "二维都市动画，清晰深色线稿，克制的色块阴影，室内暖白与窗外冷蓝对比",
+  "action": "顾宁按下柜台台灯开关，暖黄灯光亮起，信纸和蓝绳铜钥匙留在灯下。",
+  "camera": {
+    "description": "固定店内全景，顾宁在柜台左侧，林川在门边右后方，台灯成为最后落点"
+  },
+  "lighting": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+  "start_state": {
+    "CH-01.position": "顾宁在柜台边，台灯关闭",
+    "PR-01.state": "信封：柜台上已打开",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "PR-02.contact": "蓝绳铜钥匙：柜台左侧"
+  },
+  "end_state": {
+    "CH-01.position": "顾宁在柜台边，台灯开启",
+    "PR-01.state": "信封：柜台灯下已打开",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯开启暖黄",
+    "PR-02.contact": "蓝绳铜钥匙：柜台左侧"
+  },
+  "preserve": [
+    "SC-01.light"
+  ],
+  "must": [
+    "柜台台灯亮起，暖光照到留下的信与钥匙"
+  ],
+  "prefer": [],
+  "avoid": [
+    "额外人物",
+    "自动生成字幕或纸面可读文字"
+  ],
+  "audio": {
+    "mode": "post",
+    "description": "开关轻响，雨声渐弱",
+    "dialogue": "—"
+  },
+  "assets": [
+    {
+      "id": "S10-FR",
+      "kind": "image",
+      "role": "first_frame",
+      "source": "../media/S10-first.png",
+      "description": "本镜已设计首帧，提供人物与布局；实际图片待生成"
+    }
+  ],
+  "frame_references": [
+    {
+      "id": "CH-01",
+      "kind": "image",
+      "role": "identity",
+      "source": "../media/CH-01.png",
+      "description": "顾宁，28岁，齐下颌黑色短发，左眉尾小痣，深蓝针织开衫与米白内衫"
+    },
+    {
+      "id": "CH-02",
+      "kind": "image",
+      "role": "identity",
+      "source": "../media/CH-02.png",
+      "description": "林川，35岁，短黑发，窄长脸，灰绿色雨衣，右肩背深棕旧邮差包"
+    },
+    {
+      "id": "SC-01",
+      "kind": "image",
+      "role": "scene",
+      "source": "../media/SC-01.png",
+      "description": "小书店，画面左侧是柜台，右后方是玻璃门，临街窗在门左，窗外冷蓝雨夜"
+    },
+    {
+      "id": "PR-01",
+      "kind": "image",
+      "role": "prop",
+      "source": "../media/PR-01.png",
+      "description": "米黄色旧信封，无可读文字，封口有一道细折痕"
+    },
+    {
+      "id": "PR-02",
+      "kind": "image",
+      "role": "prop",
+      "source": "../media/PR-02.png",
+      "description": "磨旧铜色短柄钥匙，柄孔穿一根褪色蓝绳，齿形保持一致"
+    }
+  ],
+  "editorial_cut": "留半秒后剪辑结束",
+  "performance_note": "顾宁:把决定留给明天。",
+  "lighting_changes": true
+}

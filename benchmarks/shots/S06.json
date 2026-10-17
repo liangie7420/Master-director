@@ -1,0 +1,52 @@
+{
+  "id": "S06",
+  "task": "video_extend",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "期待被门外的沉默打断",
+  "visible_evidence": "等待后视线仍在门口，笑意消失，钥匙仍在右手",
+  "focus": "继续看她等待的脸，最后落在仍紧握的钥匙",
+  "style": "二维动画，清晰线稿，克制的色块阴影",
+  "action": "延续前镜的等待，她看向门口，唇边刚浮起的笑意慢慢消失，右手仍握钥匙。",
+  "camera": {
+    "description": "延续前镜固定中近景与视线方向"
+  },
+  "lighting": "画面左侧窗光，柔和阴影",
+  "start_state": {
+    "CH-01.position": "坐在桌旁",
+    "CH-01.gaze": "门口",
+    "PR-02.owner": "甲右手",
+    "SC-01.light": "窗在画面左侧，柔和日光"
+  },
+  "end_state": {
+    "CH-01.position": "坐在桌旁",
+    "CH-01.gaze": "门口",
+    "PR-02.owner": "甲右手",
+    "SC-01.light": "窗在画面左侧，柔和日光"
+  },
+  "preserve": [
+    "CH-01.position",
+    "CH-01.gaze",
+    "PR-02.owner",
+    "SC-01.light"
+  ],
+  "must": [
+    "等待后视线仍在门口，笑意消失，钥匙仍在右手"
+  ],
+  "prefer": [],
+  "avoid": [],
+  "audio": {
+    "mode": "post",
+    "description": "室内低环境声",
+    "dialogue": ""
+  },
+  "assets": [
+    {
+      "id": "V05",
+      "kind": "video",
+      "role": "base_video",
+      "source": "",
+      "description": "前镜 S05 的实际通过视频，待生成后提供"
+    }
+  ]
+}

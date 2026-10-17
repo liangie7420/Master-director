@@ -1,0 +1,85 @@
+{
+  "id": "S08",
+  "task": "image_to_video",
+  "prompt_language": "zh",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "她放下必须立刻做决定的紧绷",
+  "visible_evidence": "眉间松开，视线落向钥匙，缓缓呼气",
+  "focus": "从紧绷的眉间移到落向钥匙的视线",
+  "style": "二维都市动画，清晰深色线稿，克制的色块阴影，室内暖白与窗外冷蓝对比",
+  "action": "顾宁看着信纸，眉间逐渐松开，缓缓呼气，再将视线落到柜台上的钥匙。",
+  "camera": {
+    "description": "固定中近景，脸与柜台一角同框，钥匙不抢先成为主焦点"
+  },
+  "lighting": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+  "start_state": {
+    "CH-01.position": "顾宁在柜台内侧，看信纸",
+    "PR-01.state": "信封：柜台上已打开",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "PR-02.contact": "蓝绳铜钥匙：柜台左侧"
+  },
+  "end_state": {
+    "CH-01.position": "顾宁在柜台内侧，视线落向钥匙",
+    "PR-01.state": "信封：柜台上已打开",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "PR-02.contact": "蓝绳铜钥匙：柜台左侧"
+  },
+  "preserve": [
+    "SC-01.light"
+  ],
+  "must": [
+    "眉间松开，视线落向钥匙，缓缓呼气"
+  ],
+  "prefer": [],
+  "avoid": [
+    "额外人物",
+    "自动生成字幕或纸面可读文字"
+  ],
+  "audio": {
+    "mode": "post",
+    "description": "一口缓慢呼气，雨声",
+    "dialogue": "顾宁：连歇一晚，都替我想好了。"
+  },
+  "assets": [
+    {
+      "id": "S08-FR",
+      "kind": "image",
+      "role": "first_frame",
+      "source": "../media/S08-first.png",
+      "description": "本镜已设计首帧，提供人物与布局；实际图片待生成"
+    }
+  ],
+  "frame_references": [
+    {
+      "id": "CH-01",
+      "kind": "image",
+      "role": "identity",
+      "source": "../media/CH-01.png",
+      "description": "顾宁，28岁，齐下颌黑色短发，左眉尾小痣，深蓝针织开衫与米白内衫"
+    },
+    {
+      "id": "SC-01",
+      "kind": "image",
+      "role": "scene",
+      "source": "../media/SC-01.png",
+      "description": "小书店，画面左侧是柜台，右后方是玻璃门，临街窗在门左，窗外冷蓝雨夜"
+    },
+    {
+      "id": "PR-01",
+      "kind": "image",
+      "role": "prop",
+      "source": "../media/PR-01.png",
+      "description": "米黄色旧信封，无可读文字，封口有一道细折痕"
+    },
+    {
+      "id": "PR-02",
+      "kind": "image",
+      "role": "prop",
+      "source": "../media/PR-02.png",
+      "description": "磨旧铜色短柄钥匙，柄孔穿一根褪色蓝绳，齿形保持一致"
+    }
+  ],
+  "editorial_cut": "省略走到门边，切回营业牌",
+  "performance_note": "顾宁:从自责转为释然。"
+}

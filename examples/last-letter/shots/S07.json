@@ -1,0 +1,85 @@
+{
+  "id": "S07",
+  "task": "image_to_video",
+  "prompt_language": "zh",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "父亲给她留下了选择，而非命令",
+  "visible_evidence": "信纸展开，后期显示父亲的留言",
+  "focus": "注意力停在信纸和握纸的手",
+  "style": "二维都市动画，清晰深色线稿，克制的色块阴影，室内暖白与窗外冷蓝对比",
+  "action": "顾宁把信纸展开并稳住，钥匙平放在柜台靠左处。",
+  "camera": {
+    "description": "固定信纸近景，画面留出后期排字区域，生成画面只保留无可读字的纸面"
+  },
+  "lighting": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+  "start_state": {
+    "CH-01.position": "顾宁站在柜台内侧，信纸半展开",
+    "PR-01.state": "信封：柜台上已打开",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "PR-02.contact": "蓝绳铜钥匙：柜台左侧"
+  },
+  "end_state": {
+    "CH-01.position": "信纸完全展开，钥匙留在柜台左侧",
+    "PR-01.state": "信封：柜台上已打开",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "PR-02.contact": "蓝绳铜钥匙：柜台左侧"
+  },
+  "preserve": [
+    "SC-01.light"
+  ],
+  "must": [
+    "信纸完全展开并稳住，纸面留白供后期合成文字"
+  ],
+  "prefer": [],
+  "avoid": [
+    "额外人物",
+    "自动生成字幕或纸面可读文字"
+  ],
+  "audio": {
+    "mode": "post",
+    "description": "纸张展开声，短暂安静",
+    "dialogue": "后期文字：累了，就歇一晚。开门的日子，你自己定。"
+  },
+  "assets": [
+    {
+      "id": "S07-FR",
+      "kind": "image",
+      "role": "first_frame",
+      "source": "../media/S07-first.png",
+      "description": "本镜已设计首帧，提供人物与布局；实际图片待生成"
+    }
+  ],
+  "frame_references": [
+    {
+      "id": "CH-01",
+      "kind": "image",
+      "role": "identity",
+      "source": "../media/CH-01.png",
+      "description": "顾宁，28岁，齐下颌黑色短发，左眉尾小痣，深蓝针织开衫与米白内衫"
+    },
+    {
+      "id": "SC-01",
+      "kind": "image",
+      "role": "scene",
+      "source": "../media/SC-01.png",
+      "description": "小书店，画面左侧是柜台，右后方是玻璃门，临街窗在门左，窗外冷蓝雨夜"
+    },
+    {
+      "id": "PR-01",
+      "kind": "image",
+      "role": "prop",
+      "source": "../media/PR-01.png",
+      "description": "米黄色旧信封，无可读文字，封口有一道细折痕"
+    },
+    {
+      "id": "PR-02",
+      "kind": "image",
+      "role": "prop",
+      "source": "../media/PR-02.png",
+      "description": "磨旧铜色短柄钥匙，柄孔穿一根褪色蓝绳，齿形保持一致"
+    }
+  ],
+  "editorial_cut": "切顾宁面部反应",
+  "performance_note": "顾宁:被允许停下来。"
+}

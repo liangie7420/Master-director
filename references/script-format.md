@@ -1,10 +1,12 @@
 # Standard Storyboard Script Format Spec (MUST READ in Phase 1)
 
-> This format is the single source of truth for the entire "script → shot list → prompt" chain. All output fields are backward compatible: every shot in the script maps losslessly to one row of the shot list and one segment of the prompt.
+> Preserve narrative decisions across script → shot specification → task-specific prompt. Existing scripts can keep their prose format; add intent, visible evidence and state records where needed.
 
 ---
 
 ## 1. Document Skeleton
+
+For each shot, also record intent, visible evidence, attention target and the start/end state. The sample below illustrates a format, not universal timing or aesthetic requirements. Generation task and editorial cut are separate fields; see assets/shotlist-template.md and references/shot-spec.md.
 
 ```markdown
 ---
@@ -39,17 +41,17 @@
 
 ### 1. Timecodes
 - Format `MM:SS.S`, consecutive from 00:00.0; no overlap, no gaps.
-- Single shot duration 4–10 seconds (the video model's single-segment capability window); content over 10 seconds MUST be split into more shots.
+- Shot duration follows the event and exact model/version/entry limits. Split when the event cannot fit or remain readable, rather than applying a universal 10-second ceiling.
 - Sum of all shot durations = the total duration declared in the header, with zero error.
 
 ### 2. Shot-label line `[shot scale|camera move|frame key points]`
-- Shot-scale and camera-move words MUST be taken from the lookup tables in `references/shot-language.md`; self-invented words are forbidden (models don't respond to made-up words).
+- Use clear shot-scale and camera descriptions; consult references/shot-language.md when useful. Special control syntax follows the selected model adapter.
 - Frame key points ≤15 characters; write only the core of "who does what where"; details go to the body text.
 - Two-person/multi-person shots mark relative positions in the key points (e.g., "Yu left, Xie right") for axis discipline.
 
 ### 3. Body text (action & micro-expression) — the soul of this format
 - **Action chain**: within one shot, write the primary action as "preparation → process → landing" (iron rule R3: ONE primary action per shot).
-- **Micro-expressions**: at least TWO body-part-specific descriptions per shot — eyes (where they look, how long they stay, when they move away), mouth corners, jaw, Adam's apple, brow peak, eyelashes, breathing (a beat heavier / held / slowed), fingers (curling, tapping, rolling, hovering).
+- **Visible evidence**: choose behavior that reveals the shot's information or emotional turn. Add micro-expression/body detail when readable and relevant; no fixed number is required.
 - **Physical dynamics**: fabric, hair strands, and props physically responding to the action ("the red skirt trailed off the couch edge" "the tassel swayed with each breath") — these are the seeds for the video model to generate realistic dynamics.
 - **Forbidden**: bare abstract emotion words ("she was enchanting"), novel-style inner monologue ("she thought to herself"), off-camera information (settings the audience can't see). Everything must be shootable.
 
@@ -63,9 +65,9 @@
 - **Hook**: this shot's information-gap type given to the audience — visual spectacle / behavioral mystery / information gap / relationship mystery / crisis approaching / none (transition shot). At least one non-"none" hook per 3 shots.
 - **Sound**: this shot's sound cue in ≤8 words — ambient (wind / rain / clock ticking) + music mood (low strings / no music / heartbeat) + any diegetic sound the shot NEEDS (screen beep / footsteps / breath). Written at script time so voice and music stay consistent across shots and episodes (AI video models need the same sound baseline every shot). Example: `wind through glass crack + low strings` / `screen beep + no music` / `breathing + heartbeat`.
 - **Connection**: one of six values, decides the next shot's first-frame source:
-  - `video extension` (default when the model supports it): this shot's first frame = previous shot's whole output extended (`@视频1`).
+  - `video extension`: continue the previous accepted video when the intended edit and target entry support it.
   - `keyframe pair`: first frame + designed end frame generated as a keyframe pair; video produced by first-and-last-frame interpolation.
-  - `tail-frame carry` (fallback): this shot's first frame = previous shot's output last frame (extracted); only when the model supports neither extension nor 首尾帧.
+  - `tail-frame carry`: use the actual prior accepted output's extracted frame as the next image input when that connection serves the shot. Check whether extraction preserves a usable state.
   - `keyframe insert · new character`: this shot has a new character's first appearance → first produce that character's makeup keyframe; flow in continuity-playbook Chapter 3.
   - `keyframe insert · new prop`: this shot has a key prop's first close-up → first produce the prop establishing frame.
   - `jump cut`: scene/time change → use the scene establishing image as the first frame, not the last frame.
@@ -162,15 +164,15 @@ The wind stops without warning. **Every cracked screen in the control room light
 ## 4. Key Points for Adapting Source Text
 
 1. **Keep golden lines and plot points, re-arrange sight and sound**: the source's psychological descriptions are all externalized into shootable actions/expressions/props; what cannot be externalized is deleted, not forced into lines.
-2. **Episode-splitting principle**: each episode ends at the frame of "maximum information gap"; the new episode's first shot defaults to video extension (serial feel, `@视频1`) — tail-frame carry only as fallback.
-3. **Volume conversion**: 90 seconds ≈ 10–16 shots; ~800 characters of source narrative ≈ one episode. Exceed → split episodes, don't compress single-shot duration.
+2. **Episode boundary**: choose a meaningful turn or unresolved question when the story calls for it. Select extension, a fresh frame or another connection for the intended edit and actual model support.
+3. **Duration planning**: estimate from performed dialogue, action and pacing; source-text length is not a fixed conversion into screen time.
 
 ## 5. Post-Writing Self-Check (MUST pass before Gate 1)
 
-- [ ] Timecodes consecutive, single shot 4–10s, sum = total duration
-- [ ] Every shot's label line uses words from the shot-language.md lookup table
-- [ ] Every shot has at least two body-part-level micro-expressions and one physical dynamic
-- [ ] Every shot has only ONE primary action (R3)
-- [ ] Line-end triple labels complete; connection values legal; every new character/new prop first appearance marked with keyframe insert
+- [ ] Timecodes consecutive, each shot within its selected model/task limits, sum = total duration
+- [ ] Each shot's intent and visible evidence are clear
+- [ ] Performance details are readable and relevant to the event
+- [ ] Each shot carries a coherent event that fits its duration
+- [ ] Editorial cut, generation task, source assets and declared continuity are recorded separately
 - [ ] Line duration ≤ shot duration - 1 second
 - [ ] No inner monologue, no unshootable information, no copyright risk (R6)

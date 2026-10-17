@@ -1,0 +1,170 @@
+{
+  "baseline_ref": "26e00305b286d69a6034e72b9c02767da74e8af2",
+  "captured_on": "2026-10-17",
+  "scope": "Local static baseline, not generated-video quality",
+  "files": {
+    "SKILL.md": "6416ff4c8ccc2bdcfc30645144665307a3dc8c05f423c1de00b2afc688df8c43",
+    "references/image-prompt-engine.md": "b8ea1264bd23f45941207727c51384dcd1e519cc0c551dd6063c3a9050cb9f50",
+    "references/video-prompt-framework.md": "f1790389a6a4f43ace03783fb9b95e95b3623e9d384e7972a8016bd75a7c45f3",
+    "references/model-adapters/seedance.md": "669d25116d55ca0046da527ffb720f1aa15bf3785d504508544ccab1b1e15ecf",
+    "scripts/check_prompt.py": "f3bd5a53535216844e238738b51508e150ae0665ca927e382727d2525d030b60"
+  },
+  "scanner_cases": [
+    {
+      "id": "temporal_eyes",
+      "text": "@图片1。动漫风格，侧光。起幅闭眼，随后睁眼。不要字幕。",
+      "errors": [
+        [
+          "CONFLICT",
+          "冲突指令: 闭眼 + 睁眼 — 冲突指令 —— 同一 prompt 内互相矛盾，模型只能随机挑一个执行"
+        ],
+        [
+          "MISSING",
+          "[ref] 参考图声明缺失 — prompt 必须引用参考图（reference/首帧/定妆图/@视频1）——无参考图 = 换脸/漂移风险"
+        ]
+      ],
+      "warnings": [],
+      "infos": []
+    },
+    {
+      "id": "different_subjects",
+      "text": "@图片1。动漫风格，侧光。甲闭眼，乙睁眼。不要字幕。",
+      "errors": [
+        [
+          "CONFLICT",
+          "冲突指令: 闭眼 + 睁眼 — 冲突指令 —— 同一 prompt 内互相矛盾，模型只能随机挑一个执行"
+        ],
+        [
+          "MISSING",
+          "[ref] 参考图声明缺失 — prompt 必须引用参考图（reference/首帧/定妆图/@视频1）——无参考图 = 换脸/漂移风险"
+        ]
+      ],
+      "warnings": [],
+      "infos": []
+    },
+    {
+      "id": "camera_substring",
+      "text": "Reference image 1. Anime style. Soft light. The vase stands still; the camera returns to a medium shot with a push in. No text.",
+      "errors": [
+        [
+          "R3-OVERLOAD",
+          "push, stands, turns — 多动作叠加（R3 违反）—— 单镜头只允许 1 个主动作 + 至多 2 个微表情变化；堆叠是肢体崩坏头号原因"
+        ]
+      ],
+      "warnings": [],
+      "infos": []
+    },
+    {
+      "id": "native_image_ref",
+      "text": "@图片1。动漫风格，侧光，角色静坐。不要字幕、水印。",
+      "errors": [
+        [
+          "MISSING",
+          "[ref] 参考图声明缺失 — prompt 必须引用参考图（reference/首帧/定妆图/@视频1）——无参考图 = 换脸/漂移风险"
+        ]
+      ],
+      "warnings": [],
+      "infos": []
+    },
+    {
+      "id": "reference_word_only",
+      "text": "reference",
+      "errors": [],
+      "warnings": [
+        [
+          "MISSING",
+          "[negline] 负面提示缺失 — 负面提示缺失——无负向字段的模型（即梦/Nano Banana）必须把'不要什么'写成负面末行"
+        ],
+        [
+          "MISSING",
+          "[style] 画风锚点缺失 — 缺少风格锚点——同角色跨镜会画风漂移"
+        ]
+      ],
+      "infos": [
+        [
+          "MISSING",
+          "[light] 光影四件套疑似缺失（角色帧） — 角色帧应有光影四件套：光源方向/半面光/高光点/大光圈背景虚化；无任何光影词 = 平光证件照"
+        ]
+      ]
+    },
+    {
+      "id": "text_only_asset",
+      "text": "二维线稿角色设定。浅灰背景，黑色短发，深蓝外套。",
+      "errors": [
+        [
+          "MISSING",
+          "[ref] 参考图声明缺失 — prompt 必须引用参考图（reference/首帧/定妆图/@视频1）——无参考图 = 换脸/漂移风险"
+        ]
+      ],
+      "warnings": [
+        [
+          "MISSING",
+          "[negline] 负面提示缺失 — 负面提示缺失——无负向字段的模型（即梦/Nano Banana）必须把'不要什么'写成负面末行"
+        ],
+        [
+          "MISSING",
+          "[style] 画风锚点缺失 — 缺少风格锚点——同角色跨镜会画风漂移"
+        ]
+      ],
+      "infos": [
+        [
+          "MISSING",
+          "[light] 光影四件套疑似缺失（角色帧） — 角色帧应有光影四件套：光源方向/半面光/高光点/大光圈背景虚化；无任何光影词 = 平光证件照"
+        ]
+      ]
+    },
+    {
+      "id": "empty",
+      "text": "",
+      "errors": [
+        [
+          "MISSING",
+          "[ref] 参考图声明缺失 — prompt 必须引用参考图（reference/首帧/定妆图/@视频1）——无参考图 = 换脸/漂移风险"
+        ]
+      ],
+      "warnings": [
+        [
+          "MISSING",
+          "[negline] 负面提示缺失 — 负面提示缺失——无负向字段的模型（即梦/Nano Banana）必须把'不要什么'写成负面末行"
+        ],
+        [
+          "MISSING",
+          "[style] 画风锚点缺失 — 缺少风格锚点——同角色跨镜会画风漂移"
+        ]
+      ],
+      "infos": [
+        [
+          "MISSING",
+          "[light] 光影四件套疑似缺失（角色帧） — 角色帧应有光影四件套：光源方向/半面光/高光点/大光圈背景虚化；无任何光影词 = 平光证件照"
+        ]
+      ]
+    },
+    {
+      "id": "same_scope_conflict",
+      "text": "Reference image 1. Anime style. Soft light. 角色同时闭眼并睁眼。No text.",
+      "errors": [
+        [
+          "CONFLICT",
+          "冲突指令: 闭眼 + 睁眼 — 冲突指令 —— 同一 prompt 内互相矛盾，模型只能随机挑一个执行"
+        ]
+      ],
+      "warnings": [],
+      "infos": []
+    },
+    {
+      "id": "negation_scope",
+      "text": "Reference image 1. Anime style. Warm light. No subtitles. A crowd enters.",
+      "errors": [],
+      "warnings": [],
+      "infos": []
+    },
+    {
+      "id": "valid_english",
+      "text": "Reference image 1. Anime style. Soft side light. No text, no watermark.",
+      "errors": [],
+      "warnings": [],
+      "infos": []
+    }
+  ],
+  "video_generation_status": "not_run"
+}

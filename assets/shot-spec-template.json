@@ -1,0 +1,22 @@
+{
+  "id": "S01",
+  "task": "image_to_video",
+  "prompt_language": "zh",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "观众看到角色试图交出证据，又不愿放手",
+  "visible_evidence": "信封到达桌子中线后，角色手掌仍压住封口",
+  "focus": "从角色的脸转到手与信封的接触点",
+  "style": "二维动画，清晰线稿，克制的色块阴影",
+  "action": "她将信封推到桌子中线，掌根继续压住封口，停住。",
+  "camera": {"description": "固定中景，脸与压住信封的手同时可见"},
+  "lighting": "画面左侧窗光，柔和阴影",
+  "start_state": {"character": "坐在画面左侧，朝右", "envelope": "平放在她面前，右掌压住封口"},
+  "end_state": {"character": "坐在画面左侧，朝右", "envelope": "平放桌子中线，右掌仍压住封口"},
+  "preserve": [],
+  "must": ["信封到达中线后仍被手掌压住"],
+  "prefer": ["推到中线时视线短暂下落"],
+  "avoid": [],
+  "audio": {"mode": "post", "description": "纸面摩擦声", "dialogue": "她说：你自己看。"},
+  "assets": [{"id": "FR-01", "kind": "image", "role": "first_frame", "source": "", "description": "本镜首帧，提供人物、站位与桌面布局"}]
+}

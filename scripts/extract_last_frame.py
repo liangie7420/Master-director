@@ -73,6 +73,10 @@ def extract(ffmpeg, ffprobe, video, out_dir, offset=0.0, shot=None):
 
 
 def main():
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
+
     ap = argparse.ArgumentParser(description="视频尾帧提取（尾帧承接机制配套工具）")
     ap.add_argument("input", help="视频文件路径，或 --batch 模式下的目录")
     ap.add_argument("-o", "--out", default=None, help="输出目录（默认与视频同目录）")

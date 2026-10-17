@@ -61,7 +61,7 @@ DIAGNOSTICS = [
     ),
     (
         ["文字乱码", "字幕乱码", "屏幕文字", "garbled", "乱码", "字花了"],
-        "屏幕/纸面文字入镜（AI 模型必乱码）",
+        "文字能力、字数/尺寸或参考素材可能不满足当前任务；先核对实际模型与样片",
         [
             "改为'模糊发光的字符流 / 无法辨认的手写'",
             "可读文字一律后期合成，不进模型",
@@ -106,7 +106,7 @@ DIAGNOSTICS = [
     ),
     (
         ["噪点", "模糊", "画质糊", "不清", "blurry", "noisy", "脏", "模糊不清"],
-        "分辨率不足（不是真噪点）",
+        "分辨率、压缩、失焦或降噪可能损失细节；需检查来源与输出",
         [
             "整体拉到 2K/4K",
             "HD 重绘：原图回投 + 强写'保持角色/脸/姿势/构图/色彩/特效全部不变，只提升质量'",
@@ -124,7 +124,7 @@ DIAGNOSTICS = [
     ),
     (
         ["口型对不上", "口型", "lip sync", "嘴型"],
-        "强口型戏的唇形同步瓶颈（模型极限 92% 左右）",
+        "唇形、台词时序或模型能力可能不匹配；需结合实际模型与样片判断",
         [
             "改背景旁白（不露口型）",
             "后期配音替换",
@@ -133,7 +133,7 @@ DIAGNOSTICS = [
     ),
     (
         ["音画脱节", "配乐不搭", "声音不对", "audio", "音效"],
-        "无音频参考，模型自由发挥",
+        "声音描述、参考、支持范围或平台重写可能与预期不符",
         [
             "绑定 @音频 参考（节奏/情绪锚点）",
             "视频 prompt 声音基线补全（环境音+音乐情绪）",
@@ -190,7 +190,7 @@ def format_one(keywords, cause, fixes, fallback):
         "══════════════════════════════════════",
         "🩺 诊断命中：%s" % " / ".join(keywords),
         "══════════════════════════════════════",
-        "【根因】%s" % cause,
+        "【候选原因】%s" % cause,
         "【修复方案】（按顺序尝试）",
     ]
     for i, f in enumerate(fixes, 1):
@@ -200,6 +200,10 @@ def format_one(keywords, cause, fixes, fallback):
 
 
 def main():
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
+
     ap = argparse.ArgumentParser(description="出片失败诊断引擎（manju-director 配套）")
     ap.add_argument("query", nargs="?", help="症状关键词，如 '人物变脸' / '手'")
     ap.add_argument("--all", action="store_true", help="列出全部诊断项")

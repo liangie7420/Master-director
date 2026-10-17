@@ -1,0 +1,47 @@
+{
+  "id": "S05",
+  "task": "image_to_video",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "她听见门外熟悉的敲门声，紧张转为期待",
+  "visible_evidence": "目光抬向门口，眉间松开，握钥匙的手保持原位",
+  "focus": "从紧绷的眉间移到望向门口的眼神",
+  "style": "二维动画，清晰线稿，克制的色块阴影",
+  "action": "敲门声后，她的目光从钥匙抬向门口，眉间逐渐松开，右手仍握住钥匙。",
+  "camera": {
+    "description": "固定中近景，脸与右手均可见，不改变人物与门的方向关系"
+  },
+  "lighting": "画面左侧窗光，柔和阴影",
+  "start_state": {
+    "CH-01.position": "坐在桌旁",
+    "CH-01.gaze": "右手钥匙",
+    "PR-02.owner": "甲右手",
+    "SC-01.light": "窗在画面左侧，柔和日光"
+  },
+  "end_state": {
+    "CH-01.position": "坐在桌旁",
+    "CH-01.gaze": "门口",
+    "PR-02.owner": "甲右手",
+    "SC-01.light": "窗在画面左侧，柔和日光"
+  },
+  "preserve": [],
+  "must": [
+    "目光抬向门口，眉间松开，握钥匙的手保持原位"
+  ],
+  "prefer": [],
+  "avoid": [],
+  "audio": {
+    "mode": "post",
+    "description": "室内低环境声",
+    "dialogue": ""
+  },
+  "assets": [
+    {
+      "id": "FR-05",
+      "kind": "image",
+      "role": "first_frame",
+      "source": "",
+      "description": "本镜首帧，提供人物、钥匙与房间"
+    }
+  ]
+}

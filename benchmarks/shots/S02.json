@@ -1,0 +1,61 @@
+{
+  "id": "S02",
+  "task": "multimodal_reference",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "交出证据的动作暴露了她的不舍",
+  "visible_evidence": "信封到达桌中线，右掌仍压住封口",
+  "focus": "从两人的对视转到桌中线的手",
+  "style": "二维动画，清晰线稿，克制的色块阴影",
+  "action": "甲将信封推向桌子中线，右掌仍压在封口；乙保持坐姿看着甲，手停在自己一侧。",
+  "camera": {
+    "description": "固定双人中景，从桌侧拍摄，保留两张脸和完整桌中线"
+  },
+  "lighting": "画面左侧窗光，柔和阴影",
+  "start_state": {
+    "CH-01.position": "画面左侧面朝右",
+    "CH-02.position": "画面右侧面朝左",
+    "PR-01.owner": "甲右掌压住",
+    "SC-01.light": "窗在画面左侧，柔和日光"
+  },
+  "end_state": {
+    "CH-01.position": "画面左侧面朝右",
+    "CH-02.position": "画面右侧面朝左",
+    "PR-01.owner": "桌中线，仍由甲右掌压住",
+    "SC-01.light": "窗在画面左侧，柔和日光"
+  },
+  "preserve": [],
+  "must": [
+    "信封到达桌中线，右掌仍压住封口"
+  ],
+  "prefer": [],
+  "avoid": [],
+  "audio": {
+    "mode": "post",
+    "description": "室内低环境声",
+    "dialogue": ""
+  },
+  "assets": [
+    {
+      "id": "CH-01",
+      "kind": "image",
+      "role": "identity",
+      "source": "",
+      "description": "只提供甲的身份、发型和服装"
+    },
+    {
+      "id": "CH-02",
+      "kind": "image",
+      "role": "identity",
+      "source": "",
+      "description": "只提供乙的身份、发型和服装"
+    },
+    {
+      "id": "SC-01",
+      "kind": "image",
+      "role": "scene",
+      "source": "",
+      "description": "提供桌子、窗和空间布局"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "S02",
+  "task": "image_to_video",
+  "prompt_language": "zh",
+  "duration_seconds": 6,
+  "resolution": "768P",
+  "intent": "关店被意外来访打断",
+  "visible_evidence": "雨衣男子敲门两下，顾宁从前景转头",
+  "focus": "先看门外敲门的手，再看前景顾宁的反应",
+  "style": "二维都市动画，清晰深色线稿，克制的色块阴影，室内暖白与窗外冷蓝对比",
+  "action": "林川在玻璃门外敲两下，顾宁在柜台边抬眼看向门口。",
+  "camera": {
+    "description": "固定店内广角，前景柜台与背景玻璃门清楚可读"
+  },
+  "lighting": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+  "start_state": {
+    "CH-01.position": "顾宁在柜台后，林川在门外",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "SC-01.door": "玻璃门关闭"
+  },
+  "end_state": {
+    "CH-01.position": "顾宁看向门外，林川手放下",
+    "SC-01.light": "书店顶灯暖白，窗外冷蓝雨夜，柜台台灯关闭",
+    "SC-01.door": "玻璃门关闭"
+  },
+  "preserve": [
+    "SC-01.light"
+  ],
+  "must": [
+    "雨衣男子敲门两下，顾宁从前景转头"
+  ],
+  "prefer": [],
+  "avoid": [
+    "额外人物",
+    "自动生成字幕或纸面可读文字"
+  ],
+  "audio": {
+    "mode": "post",
+    "description": "两下敲门声与窗外雨声",
+    "dialogue": "—"
+  },
+  "assets": [
+    {
+      "id": "S02-FR",
+      "kind": "image",
+      "role": "first_frame",
+      "source": "../media/S02-first.png",
+      "description": "本镜已设计首帧，提供人物与布局；实际图片待生成"
+    }
+  ],
+  "frame_references": [
+    {
+      "id": "CH-01",
+      "kind": "image",
+      "role": "identity",
+      "source": "../media/CH-01.png",
+      "description": "顾宁，28岁，齐下颌黑色短发，左眉尾小痣，深蓝针织开衫与米白内衫"
+    },
+    {
+      "id": "CH-02",
+      "kind": "image",
+      "role": "identity",
+      "source": "../media/CH-02.png",
+      "description": "林川，35岁，短黑发，窄长脸，灰绿色雨衣，右肩背深棕旧邮差包"
+    },
+    {
+      "id": "SC-01",
+      "kind": "image",
+      "role": "scene",
+      "source": "../media/SC-01.png",
+      "description": "小书店，画面左侧是柜台，右后方是玻璃门，临街窗在门左，窗外冷蓝雨夜"
+    }
+  ],
+  "editorial_cut": "省略开门，切门口双人中景",
+  "performance_note": "顾宁:被打断的疲惫。"
+}
